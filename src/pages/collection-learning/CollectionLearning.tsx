@@ -6,6 +6,8 @@ import {PagesStackProps} from '../../shared/model/types';
 import {Grid} from '../../shared/ui/Grid';
 import {Answers} from './model/types';
 import {StyleSheet} from 'react-native';
+import {FlashcardButtons} from './ui/FlashcardButtons';
+import {FlashcardContainer} from './ui/FlashcardContainer';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -74,56 +76,30 @@ export const CollectionLearning = ({
 
   return (
     <Grid direction="column" fillAwailableSpace rowGap={20}>
-      <Grid
-        direction="column"
-        rowGap={10}
-        fillAwailableSpace
-        alignItems="center"
-        justifyContent="center"
-        surfaceProps={{style: {borderRadius: 10}}}>
+      <FlashcardContainer>
         <Text variant="displayMedium" style={styles.wordText}>
           {trainingWord}
         </Text>
-        <Text
-          variant="displayMedium"
-          style={{
-            display: isAnswerShown ? undefined : 'none',
-            textAlign: 'center',
-          }}
-          textBreakStrategy="balanced">
-          {translation}
-        </Text>
-        <Text
-          textBreakStrategy="balanced"
-          style={{
-            display: isAnswerShown && examples ? undefined : 'none',
-            textAlign: 'center',
-          }}>
-          {examples}
-        </Text>
-      </Grid>
-      <Grid alignItems="center" justifyContent="center">
-        {!isAnswerShown ? (
-          <Button onPress={() => setAnswerShowing(true)} icon="eye">
-            Show answer
-          </Button>
-        ) : (
-          <Grid justifyContent="space-between">
-            <Button
-              mode="contained"
-              onPress={() => setNextWord(Answers.Incorrect)}
-              icon="close-thick">
-              Incorrect
-            </Button>
-            <Button
-              contentStyle={styles.checkButtonContent}
-              mode="contained"
-              icon="check-bold"
-              onPress={() => setNextWord(Answers.Correct)}>
-              Correct
-            </Button>
-          </Grid>
+        {isAnswerShown && (
+          <Text
+            variant="displayMedium"
+            style={styles.wordText}
+            textBreakStrategy="balanced">
+            {translation}
+          </Text>
         )}
+        {isAnswerShown && Boolean(examples) && (
+          <Text textBreakStrategy="balanced" style={styles.wordText}>
+            {examples}
+          </Text>
+        )}
+      </FlashcardContainer>
+      <Grid alignItems="center" justifyContent="center">
+        <FlashcardButtons
+          onAnswerPress={setNextWord}
+          onAnswerShow={() => setAnswerShowing(true)}
+          isAnswerShown={isAnswerShown}
+        />
       </Grid>
     </Grid>
   );

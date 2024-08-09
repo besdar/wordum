@@ -49,7 +49,9 @@ export const AddWordForm = ({
     ).then(translationResponse => {
       setValue(
         'translation',
-        translationResponse.translations.slice(0, 3).join(', '),
+        Array.from(new Set(translationResponse.translations))
+          .slice(0, 3)
+          .join(', '),
       );
       setValue(
         'examples',

@@ -6,6 +6,7 @@ import {PagesStackProps} from '../../shared/model/types';
 import {AddCollectionButton} from './ui/AddCollectionButton';
 import {CollectionItem} from './ui/CollectionItem';
 import {useQuery} from '../../shared/lib/useQuery';
+import {showDeleteConfirmationAlert} from './ui/showDeleteConfirmationAlert';
 
 export const Overview = ({
   navigation,
@@ -26,7 +27,11 @@ export const Overview = ({
               collectionId: collection.id,
             })
           }
-          onDelete={() => deleteCollection(collection.id).then(() => refetch())}
+          onDelete={() =>
+            showDeleteConfirmationAlert()
+              .then(() => deleteCollection(collection.id))
+              .then(() => refetch())
+          }
           onStartLearning={() =>
             navigation.navigate('CollectionLearning', {
               collectionId: collection.id,
