@@ -4,6 +4,12 @@ export enum StorageKeys {
   COLLECTIONS = 'COLLECTIONS',
 }
 
+export enum LearningType {
+  Flascards = 'Flashcards',
+  Writing = 'Writing',
+  Listening = 'Listening',
+}
+
 export type CollectionItem = {
   value: string;
   translation: string;
@@ -11,6 +17,7 @@ export type CollectionItem = {
   sourceVoice?: string;
   examples?: string;
   fsrsCard: Card;
+  learningType: LearningType;
 };
 
 export type AddCollectionFormFields = {

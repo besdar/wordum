@@ -50,6 +50,11 @@ export const CollectionItem = ({
         style={styles.collectionButton}
       />
       <IconButton
+        icon="information"
+        size={15}
+        style={styles.collectionButton}
+      />
+      <IconButton
         icon="plus-circle"
         onPress={onAddWord}
         accessibilityLabel="Add a word"

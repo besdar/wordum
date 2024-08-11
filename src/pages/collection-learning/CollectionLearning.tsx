@@ -1,13 +1,21 @@
-import {ActivityIndicator, Button, Icon, Text} from 'react-native-paper';
+import {
+  ActivityIndicator,
+  Button,
+  Icon,
+  IconButton,
+  Text,
+} from 'react-native-paper';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTrainingWord} from './model/useTrainingWord';
-import {PagesStackProps} from '../../shared/model/types';
+import {LearningType, PagesStackProps} from '../../shared/model/types';
 import {Grid} from '../../shared/ui/Grid';
 import {Answers} from './model/types';
 import {StyleSheet} from 'react-native';
 import {FlashcardButtons} from './ui/FlashcardButtons';
-import {FlashcardContainer} from './ui/FlashcardContainer';
+import {FlashcardWrapper} from './ui/FlashcardWrapper';
+import {WritingLearning} from './ui/WritingLearning';
+import {playSound} from './lib/sound';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -33,6 +41,8 @@ export const CollectionLearning = ({
     isItFinal,
     isLoading,
     examples,
+    learningType,
+    learningLanguage,
   } = useTrainingWord(collectionId);
 
   if (isLoading) {
@@ -52,21 +62,6 @@ export const CollectionLearning = ({
         </Button>
       </Grid>
     );
-  } else if (!trainingWord) {
-    return (
-      <Grid
-        direction="column"
-        fillAwailableSpace
-        alignItems="center"
-        justifyContent="center"
-        rowGap={10}>
-        <Icon source="emoticon-sad-outline" size={100} color="red" />
-        <Text>Something went wrong</Text>
-        <Button mode="outlined" onPress={() => navigation.goBack()}>
-          Return back
-        </Button>
-      </Grid>
-    );
   }
 
   const setNextWord = (answer: Answers) => {
@@ -74,9 +69,16 @@ export const CollectionLearning = ({
     setAnswerShowing(false);
   };
 
-  return (
-    <Grid direction="column" fillAwailableSpace rowGap={20}>
-      <FlashcardContainer>
+  if (learningType === LearningType.Flascards) {
+    return (
+      <FlashcardWrapper
+        footer={
+          <FlashcardButtons
+            onAnswerPress={setNextWord}
+            onAnswerShow={() => setAnswerShowing(true)}
+            isAnswerShown={isAnswerShown}
+          />
+        }>
         <Text variant="displayMedium" style={styles.wordText}>
           {trainingWord}
         </Text>
@@ -93,14 +95,63 @@ export const CollectionLearning = ({
             {examples}
           </Text>
         )}
-      </FlashcardContainer>
-      <Grid alignItems="center" justifyContent="center">
-        <FlashcardButtons
-          onAnswerPress={setNextWord}
-          onAnswerShow={() => setAnswerShowing(true)}
-          isAnswerShown={isAnswerShown}
+      </FlashcardWrapper>
+    );
+  }
+
+  if (learningType === LearningType.Writing) {
+    return (
+      <FlashcardWrapper
+        footer={
+          <WritingLearning
+            onAnswerPress={setNextWord}
+            learningWord={trainingWord as string}
+            learningLanguage={learningLanguage as string}
+          />
+        }>
+        <Text variant="displayMedium" style={styles.wordText}>
+          {translation}
+        </Text>
+      </FlashcardWrapper>
+    );
+  }
+
+  if (learningType === LearningType.Listening) {
+    return (
+      <FlashcardWrapper
+        footer={
+          <WritingLearning
+            onAnswerPress={setNextWord}
+            learningWord={translation as string}
+            learningLanguage={learningLanguage as string}
+          />
+        }>
+        <IconButton
+          icon="volume-high"
+          onPress={() => playSound(trainingWord as string)}
+          size={100}
         />
-      </Grid>
+        <Button
+          onPress={() => setNextWord(Answers.SkipListening)}
+          icon="volume-variant-off">
+          I cannot listen audio right now
+        </Button>
+      </FlashcardWrapper>
+    );
+  }
+
+  return (
+    <Grid
+      direction="column"
+      fillAwailableSpace
+      alignItems="center"
+      justifyContent="center"
+      rowGap={10}>
+      <Icon source="emoticon-sad-outline" size={100} color="red" />
+      <Text>Something went wrong</Text>
+      <Button mode="outlined" onPress={() => navigation.goBack()}>
+        Return back
+      </Button>
     </Grid>
   );
 };

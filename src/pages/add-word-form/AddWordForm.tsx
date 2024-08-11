@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {ActivityIndicator, Button, IconButton, Text} from 'react-native-paper';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {createEmptyCard} from 'ts-fsrs';
 import {
   getCollection,
   addWordToCollection,
@@ -12,6 +11,7 @@ import {useQuery} from '../../shared/lib/useQuery';
 import {PagesStackProps} from '../../shared/model/types';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {Grid} from '../../shared/ui/Grid';
+import {ToastAndroid} from 'react-native';
 
 export const AddWordForm = ({
   route: {
@@ -46,23 +46,30 @@ export const AddWordForm = ({
       getValues('word'),
       collection.sourceLanguage,
       collection.targetLanguage,
-    ).then(translationResponse => {
-      setValue(
-        'translation',
-        Array.from(new Set(translationResponse.translations))
-          .slice(0, 3)
-          .join(', '),
+    )
+      .then(translationResponse => {
+        setValue(
+          'translation',
+          Array.from(new Set(translationResponse.translations))
+            .slice(0, 3)
+            .join(', '),
+        );
+        setValue(
+          'examples',
+          translationResponse.context?.examples
+            .slice(0, 3)
+            .map(result => result[collection.learningLanguage])
+            .join(' ') || '',
+        );
+        setValue('targetVoice', translationResponse.voice || '');
+        setValue('sourceVoice', translationResponse.sourceVoice || '');
+      })
+      .catch(() =>
+        ToastAndroid.show(
+          'Something went wrong while retrieving translation data',
+          ToastAndroid.SHORT,
+        ),
       );
-      setValue(
-        'examples',
-        translationResponse.context?.examples
-          .slice(0, 3)
-          .map(result => result[collection.learningLanguage])
-          .join(' ') || '',
-      );
-      setValue('targetVoice', translationResponse.voice || '');
-      setValue('sourceVoice', translationResponse.sourceVoice || '');
-    });
   };
 
   return (
@@ -101,8 +108,14 @@ export const AddWordForm = ({
             translation: onValid.translation,
             targetVoice: onValid.targetVoice,
             sourceVoice: onValid.sourceVoice,
-            fsrsCard: createEmptyCard(),
-          }).then(() => reset()),
+          })
+            .then(() => reset())
+            .catch(() =>
+              ToastAndroid.show(
+                'Something went wrong while saving your card',
+                ToastAndroid.SHORT,
+              ),
+            ),
         )}>
         Add word to this collection
       </Button>
