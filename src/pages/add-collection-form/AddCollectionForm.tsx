@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Button, Text} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {Grid} from '../../shared/ui/Grid';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {useForm} from 'react-hook-form';
@@ -9,13 +9,15 @@ import {SupportedLanguages} from '../../shared/api/translations';
 import {ControlledPicker} from '../../shared/ui/ControlledPicker';
 import {Picker} from '@react-native-picker/picker';
 import {AddCollectionFormFields} from '../../shared/model/types';
-import {View} from 'react-native';
 import {ControlledSegmentedButtons} from '../../shared/ui/ControlledSegmentedButtons';
 import {createCollection} from '../../shared/api/async-storage';
+import {LANGUAGE_FLAGS} from '../overview/model/consts';
+import {useTranslation} from 'react-i18next';
 
 export const AddCollectionForm = ({
   navigation,
 }: NativeStackScreenProps<PagesStackProps, 'AddCollectionForm'>) => {
+  const {t} = useTranslation();
   const languagesList = useMemo(() => Object.entries(SupportedLanguages), []);
   const {control, handleSubmit} = useForm<AddCollectionFormFields>({
     defaultValues: {
@@ -31,29 +33,37 @@ export const AddCollectionForm = ({
     <Grid direction="column" rowGap={5} padding={5} alignItems="stretch">
       <ControlledTextInput
         name="name"
-        label="Collection name"
+        label={t('collection_name')}
         control={control}
         rules={{required: true}}
       />
-      <View>
-        <Text>Primary language</Text>
-        <ControlledPicker name="sourceLanguage" control={control}>
-          {languagesList.map(([label, value]) => (
-            <Picker.Item key={value} value={value} label={label} />
-          ))}
-        </ControlledPicker>
-      </View>
-      <View>
-        <Text>Seconsary language</Text>
-        <ControlledPicker name="targetLanguage" control={control}>
-          {languagesList.map(([label, value]) => (
-            <Picker.Item key={value} value={value} label={label} />
-          ))}
-        </ControlledPicker>
-      </View>
+      <ControlledPicker
+        name="sourceLanguage"
+        control={control}
+        label={t('primary_language')}>
+        {languagesList.map(([label, value]) => (
+          <Picker.Item
+            key={value}
+            value={value}
+            label={`${LANGUAGE_FLAGS[value]} ${label}`}
+          />
+        ))}
+      </ControlledPicker>
+      <ControlledPicker
+        name="targetLanguage"
+        control={control}
+        label={t('secondary_language')}>
+        {languagesList.map(([label, value]) => (
+          <Picker.Item
+            key={value}
+            value={value}
+            label={`${LANGUAGE_FLAGS[value]} ${label}`}
+          />
+        ))}
+      </ControlledPicker>
       <ControlledTextInput
         name="wordsToTrain"
-        label="Words to learn in a day"
+        label={t('words_to_learn_in_a_day')}
         control={control}
         rules={{
           required: true,
@@ -61,21 +71,21 @@ export const AddCollectionForm = ({
         }}
         keyboardType="numeric"
       />
-      <Text>Learning language</Text>
       <ControlledSegmentedButtons
+        label={t('learning_language')}
         name="learningLanguage"
         control={control}
         buttons={[
-          {value: 'source', label: 'primary'},
-          {value: 'target', label: 'translation'},
+          {value: 'source', label: t('primary')},
+          {value: 'target', label: t('secondary')},
         ]}
       />
       <Button
-        mode="outlined"
+        mode="contained"
         onPress={handleSubmit(data =>
           createCollection(data).then(() => navigation.popToTop()),
         )}>
-        Create
+        {t('create')}
       </Button>
     </Grid>
   );

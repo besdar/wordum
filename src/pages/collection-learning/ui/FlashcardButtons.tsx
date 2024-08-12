@@ -3,6 +3,7 @@ import {Grid} from '../../../shared/ui/Grid';
 import {Answers} from '../model/types';
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -21,10 +22,12 @@ export const FlashcardButtons = ({
   onAnswerShow,
   isAnswerShown,
 }: Props) => {
+  const {t} = useTranslation();
+
   if (!isAnswerShown) {
     return (
       <Button onPress={onAnswerShow} icon="eye">
-        Show answer
+        {t('show_answer')}
       </Button>
     );
   }
@@ -35,14 +38,14 @@ export const FlashcardButtons = ({
         mode="contained"
         onPress={() => onAnswerPress(Answers.Incorrect)}
         icon="close-thick">
-        Incorrect
+        {t('incorrect')}
       </Button>
       <Button
         contentStyle={styles.checkButtonContent}
         mode="contained"
         icon="check-bold"
         onPress={() => onAnswerPress(Answers.Correct)}>
-        Correct
+        {t('correct')}
       </Button>
     </Grid>
   );

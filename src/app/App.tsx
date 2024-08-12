@@ -8,10 +8,14 @@ import {PaperNavigationBar} from './ui/PaperNavigationBar';
 import {AddWordForm} from '../pages/add-word-form/AddWordForm';
 import {AddCollectionForm} from '../pages/add-collection-form/AddCollectionForm';
 import {CollectionLearning} from '../pages/collection-learning/CollectionLearning';
+import {useTranslation} from 'react-i18next';
+import '../shared/lib/i18n';
 
 const Stack = createNativeStackNavigator<PagesStackProps>();
 
 function App(): React.JSX.Element {
+  const {t} = useTranslation();
+
   return (
     <Material3ThemeProvider>
       <AppNavigator>
@@ -27,22 +31,22 @@ function App(): React.JSX.Element {
           <Stack.Screen
             name="Overview"
             component={Overview}
-            options={{title: 'Collections', headerBackVisible: false}}
+            options={{title: t('collections'), headerBackVisible: false}}
           />
           <Stack.Screen
             name="AddWordForm"
             component={AddWordForm}
-            options={{title: 'Add new word'}}
+            options={{title: t('add_new_word')}}
           />
           <Stack.Screen
             name="AddCollectionForm"
             component={AddCollectionForm}
-            options={{title: 'New collection'}}
+            options={{title: t('new_collection')}}
           />
           <Stack.Screen
             name="CollectionLearning"
             component={CollectionLearning}
-            options={{title: 'Train your words', headerBackVisible: false}}
+            options={{title: t('exercises'), headerBackVisible: false}}
           />
         </Stack.Navigator>
       </AppNavigator>

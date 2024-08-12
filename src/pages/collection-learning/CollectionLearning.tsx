@@ -16,6 +16,7 @@ import {FlashcardButtons} from './ui/FlashcardButtons';
 import {FlashcardWrapper} from './ui/FlashcardWrapper';
 import {WritingLearning} from './ui/WritingLearning';
 import {playSound} from './lib/sound';
+import {useTranslation} from 'react-i18next';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -32,6 +33,7 @@ export const CollectionLearning = ({
   },
   navigation,
 }: NativeStackScreenProps<PagesStackProps, 'CollectionLearning'>) => {
+  const {t} = useTranslation();
   const [isAnswerShown, setAnswerShowing] = useState(false);
 
   const {
@@ -56,9 +58,9 @@ export const CollectionLearning = ({
         justifyContent="center"
         rowGap={10}>
         <Icon source="check-circle-outline" size={100} color="green" />
-        <Text>That's all for now</Text>
+        <Text>{t('all_for_now')}</Text>
         <Button mode="outlined" onPress={() => navigation.goBack()}>
-          Finish
+          {t('finish')}
         </Button>
       </Grid>
     );
@@ -134,7 +136,7 @@ export const CollectionLearning = ({
         <Button
           onPress={() => setNextWord(Answers.SkipListening)}
           icon="volume-variant-off">
-          I cannot listen audio right now
+          {t('no_audio_message')}
         </Button>
       </FlashcardWrapper>
     );
@@ -148,9 +150,9 @@ export const CollectionLearning = ({
       justifyContent="center"
       rowGap={10}>
       <Icon source="emoticon-sad-outline" size={100} color="red" />
-      <Text>Something went wrong</Text>
+      <Text>{t('something_went_wrong')}</Text>
       <Button mode="outlined" onPress={() => navigation.goBack()}>
-        Return back
+        {t('return_back')}
       </Button>
     </Grid>
   );

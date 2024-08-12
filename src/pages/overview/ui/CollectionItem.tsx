@@ -1,5 +1,5 @@
 import {StyleSheet, Text} from 'react-native';
-import {TouchableRipple, IconButton} from 'react-native-paper';
+import {TouchableRipple, IconButton, Badge} from 'react-native-paper';
 import {LANGUAGE_FLAGS} from '../model/consts';
 import {CollectionContainer} from './CollectionContainer';
 import {Grid} from '../../../shared/ui/Grid';
@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
   collectionButton: {
     margin: 0,
   },
+  badge: {marginTop: -10, marginRight: -10},
 });
 
 type Props = {
@@ -27,14 +28,15 @@ export const CollectionItem = ({
   onStartLearning,
 }: Props) => (
   <CollectionContainer key={collection.id}>
+    <Badge style={styles.badge}>
+      {getWordsToLearn(collection.words).length}
+    </Badge>
     <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
       <TouchableRipple onPress={onStartLearning}>
         <Grid direction="column" alignItems="center">
           <Text>{collection.name}</Text>
           <Text>
-            {`${collection.words.length} / ${
-              getWordsToLearn(collection.words).length
-            } / ${LANGUAGE_FLAGS[collection.sourceLanguage]} -> ${
+            {`${LANGUAGE_FLAGS[collection.sourceLanguage]} -> ${
               LANGUAGE_FLAGS[collection.targetLanguage]
             }`}
           </Text>

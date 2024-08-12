@@ -12,12 +12,14 @@ import {PagesStackProps} from '../../shared/model/types';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {Grid} from '../../shared/ui/Grid';
 import {ToastAndroid} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 export const AddWordForm = ({
   route: {
     params: {collectionId},
   },
 }: NativeStackScreenProps<PagesStackProps, 'AddWordForm'>) => {
+  const {t} = useTranslation();
   const [isValueSetted, setFlagIsValueSetted] = useState(false);
   const {control, getValues, setValue, handleSubmit, reset} = useForm({
     defaultValues: {
@@ -37,11 +39,10 @@ export const AddWordForm = ({
   if (isLoading) {
     return <ActivityIndicator animating size="large" />;
   } else if (!collection) {
-    return <Text>Something went wrong, sorry, please return back</Text>;
+    return <Text>{t('error_return_back')}</Text>;
   }
 
   const onWordSubmit = () => {
-    setFlagIsValueSetted(Boolean(getValues('word')));
     getTranslations(
       getValues('word'),
       collection.sourceLanguage,
@@ -66,10 +67,11 @@ export const AddWordForm = ({
       })
       .catch(() =>
         ToastAndroid.show(
-          'Something went wrong while retrieving translation data',
+          t('error_retrieving_translation_data'),
           ToastAndroid.SHORT,
         ),
-      );
+      )
+      .finally(() => setFlagIsValueSetted(true));
   };
 
   return (
@@ -78,7 +80,7 @@ export const AddWordForm = ({
         <ControlledTextInput
           control={control}
           name="word"
-          label={`Word (${collection.sourceLanguage})`}
+          label={`${t('word')} (${collection.sourceLanguage})`}
           rules={{required: true}}
           onPress={() => setFlagIsValueSetted(false)}
           onSubmitEditing={onWordSubmit}
@@ -90,13 +92,13 @@ export const AddWordForm = ({
         rules={{required: true}}
         control={control}
         name="translation"
-        label={`Translation (${collection.targetLanguage})`}
+        label={`${t('translation')} (${collection.targetLanguage})`}
         disabled={!isValueSetted}
       />
       <ControlledTextInput
         control={control}
         name="examples"
-        label="Usage examples"
+        label={t('usage_examples')}
         disabled={!isValueSetted}
       />
       <Button
@@ -112,12 +114,12 @@ export const AddWordForm = ({
             .then(() => reset())
             .catch(() =>
               ToastAndroid.show(
-                'Something went wrong while saving your card',
+                t('error_saving_your_card'),
                 ToastAndroid.SHORT,
               ),
             ),
         )}>
-        Add word to this collection
+        {t('add_word_to_this_collection')}
       </Button>
     </Grid>
   );
