@@ -2,6 +2,7 @@
   "collections": "Collections",
   "add_new_word": "Add new word",
   "new_collection": "New collection",
+  "edit_collection": "Edit collection",
   "exercises": "Exercises",
   "collection_name": "Collection name",
   "primary_language": "Primary language",
@@ -30,5 +31,8 @@
   "collection_deletion": "Collection deletion",
   "collection_deletion_message": "Are you sure you want to delete this collection?",
   "cancel": "Cancel",
-  "yes": "Yes"
+  "yes": "Yes",
+  "update": "Update",
+  "settings": "Settings",
+  "about": "About"
 }

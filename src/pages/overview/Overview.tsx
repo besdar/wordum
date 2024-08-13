@@ -14,6 +14,7 @@ export const Overview = ({
   const {data, refetch} = useQuery({
     queryFn: getCollections,
     initialData: [],
+    queryKey: ['collections'],
   });
 
   return (
@@ -23,8 +24,8 @@ export const Overview = ({
           key={collection.id}
           collection={collection}
           onAddWord={() =>
-            navigation.navigate('AddWordForm', {
-              collectionId: collection.id,
+            navigation.push('AddWordForm', {
+              collection,
             })
           }
           onDelete={() =>
@@ -33,14 +34,19 @@ export const Overview = ({
               .then(() => refetch())
           }
           onStartLearning={() =>
-            navigation.navigate('CollectionLearning', {
-              collectionId: collection.id,
+            navigation.push('CollectionLearning', {
+              collection,
+            })
+          }
+          onUpdateCollection={() =>
+            navigation.push('UpdateCollectionForm', {
+              collection,
             })
           }
         />
       ))}
       <AddCollectionButton
-        onPress={() => navigation.navigate('AddCollectionForm')}
+        onPress={() => navigation.push('UpdateCollectionForm', {})}
       />
     </Grid>
   );

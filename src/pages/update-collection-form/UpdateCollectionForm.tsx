@@ -10,23 +10,27 @@ import {ControlledPicker} from '../../shared/ui/ControlledPicker';
 import {Picker} from '@react-native-picker/picker';
 import {AddCollectionFormFields} from '../../shared/model/types';
 import {ControlledSegmentedButtons} from '../../shared/ui/ControlledSegmentedButtons';
-import {createCollection} from '../../shared/api/async-storage';
+import {updateCollection} from '../../shared/api/async-storage';
 import {LANGUAGE_FLAGS} from '../overview/model/consts';
 import {useTranslation} from 'react-i18next';
 
-export const AddCollectionForm = ({
+export const UpdateCollectionForm = ({
   navigation,
-}: NativeStackScreenProps<PagesStackProps, 'AddCollectionForm'>) => {
+  route: {
+    params: {collection},
+  },
+}: NativeStackScreenProps<PagesStackProps, 'UpdateCollectionForm'>) => {
   const {t} = useTranslation();
   const languagesList = useMemo(() => Object.entries(SupportedLanguages), []);
+  const defaultValues = {
+    name: collection?.name || '',
+    sourceLanguage: collection?.sourceLanguage || SupportedLanguages.ENGLISH,
+    targetLanguage: collection?.targetLanguage || SupportedLanguages.RUSSIAN,
+    wordsToTrain: collection?.wordsToTrain || 20,
+    learningLanguage: collection?.learningLanguage || 'target',
+  };
   const {control, handleSubmit} = useForm<AddCollectionFormFields>({
-    defaultValues: {
-      name: '',
-      sourceLanguage: SupportedLanguages.ENGLISH,
-      targetLanguage: SupportedLanguages.RUSSIAN,
-      wordsToTrain: 20,
-      learningLanguage: 'target',
-    },
+    defaultValues,
   });
 
   return (
@@ -83,7 +87,7 @@ export const AddCollectionForm = ({
       <Button
         mode="contained"
         onPress={handleSubmit(data =>
-          createCollection(data).then(() => navigation.popToTop()),
+          updateCollection(data).then(() => navigation.popToTop()),
         )}>
         {t('create')}
       </Button>

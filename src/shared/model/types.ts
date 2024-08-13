@@ -36,10 +36,13 @@ export type Collection = {
 export type PagesStackProps = {
   Overview: undefined;
   AddWordForm: {
-    collectionId: string;
+    collection: Collection;
   };
-  AddCollectionForm: undefined;
+  UpdateCollectionForm: {
+    collection?: Collection;
+  };
   CollectionLearning: {
-    collectionId: string;
+    collection: Collection;
   };
+  About: undefined;
 };

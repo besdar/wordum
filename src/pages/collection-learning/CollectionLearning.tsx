@@ -1,10 +1,4 @@
-import {
-  ActivityIndicator,
-  Button,
-  Icon,
-  IconButton,
-  Text,
-} from 'react-native-paper';
+import {Button, Icon, IconButton, Text} from 'react-native-paper';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTrainingWord} from './model/useTrainingWord';
@@ -29,7 +23,7 @@ const styles = StyleSheet.create({
 
 export const CollectionLearning = ({
   route: {
-    params: {collectionId},
+    params: {collection},
   },
   navigation,
 }: NativeStackScreenProps<PagesStackProps, 'CollectionLearning'>) => {
@@ -41,15 +35,12 @@ export const CollectionLearning = ({
     setNextTrainingWord,
     translation,
     isItFinal,
-    isLoading,
     examples,
     learningType,
     learningLanguage,
-  } = useTrainingWord(collectionId);
+  } = useTrainingWord(collection);
 
-  if (isLoading) {
-    return <ActivityIndicator animating />;
-  } else if (isItFinal) {
+  if (isItFinal) {
     return (
       <Grid
         direction="column"

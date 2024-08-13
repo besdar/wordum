@@ -36,7 +36,7 @@ export const saveCollection = (collection: Collection) =>
 
 const getUUID = () => Math.random().toString(16).slice(2);
 
-export const createCollection = (data: AddCollectionFormFields) =>
+export const updateCollection = (data: AddCollectionFormFields) =>
   saveCollection({
     id: getUUID(),
     words: [],

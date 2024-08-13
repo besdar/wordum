@@ -1,24 +1,28 @@
 import {useFocusEffect} from '@react-navigation/native';
-import {useCallback, useState} from 'react';
+import {useCallback} from 'react';
+import {
+  DefaultError,
+  DefinedInitialDataOptions,
+  DefinedUseQueryResult,
+  QueryKey,
+  useQuery as tanstackUseQuery,
+} from '@tanstack/react-query';
 
-type Props<T> = {
-  initialData: T;
-  queryFn: () => Promise<T>;
-};
+export const useQuery = <
+  TQueryFnData = unknown,
+  TError = DefaultError,
+  TData = TQueryFnData,
+  TQueryKey extends QueryKey = QueryKey,
+>(
+  props: DefinedInitialDataOptions<TQueryFnData, TError, TData, TQueryKey>,
+): DefinedUseQueryResult<TData, TError> => {
+  const {refetch, ...returnValues} = tanstackUseQuery(props);
 
-export const useQuery = <T>({initialData, queryFn}: Props<T>) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(initialData);
-  const refetch = useCallback(() => {
-    setIsLoading(true);
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [refetch]),
+  );
 
-    queryFn()
-      .then(setData)
-      .finally(() => setIsLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useFocusEffect(refetch);
-
-  return {data, isLoading, refetch};
+  return {...returnValues, refetch};
 };

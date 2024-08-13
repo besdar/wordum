@@ -19,6 +19,7 @@ type Props = {
   onStartLearning: () => void;
   onAddWord: () => void;
   onDelete: () => void;
+  onUpdateCollection: () => void;
 };
 
 export const CollectionItem = ({
@@ -26,6 +27,7 @@ export const CollectionItem = ({
   onAddWord,
   onDelete,
   onStartLearning,
+  onUpdateCollection,
 }: Props) => (
   <CollectionContainer key={collection.id}>
     <Badge style={styles.badge}>
@@ -52,9 +54,10 @@ export const CollectionItem = ({
         style={styles.collectionButton}
       />
       <IconButton
-        icon="information"
+        icon="cog"
         size={15}
         style={styles.collectionButton}
+        onPress={onUpdateCollection}
       />
       <IconButton
         icon="plus-circle"

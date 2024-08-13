@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {ActivityIndicator, Button, IconButton, Text} from 'react-native-paper';
+import {Button, IconButton} from 'react-native-paper';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {
-  getCollection,
-  addWordToCollection,
-} from '../../shared/api/async-storage';
+import {addWordToCollection} from '../../shared/api/async-storage';
 import {getTranslations} from '../../shared/api/translations';
-import {useQuery} from '../../shared/lib/useQuery';
 import {PagesStackProps} from '../../shared/model/types';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {Grid} from '../../shared/ui/Grid';
@@ -16,7 +12,7 @@ import {useTranslation} from 'react-i18next';
 
 export const AddWordForm = ({
   route: {
-    params: {collectionId},
+    params: {collection},
   },
 }: NativeStackScreenProps<PagesStackProps, 'AddWordForm'>) => {
   const {t} = useTranslation();
@@ -30,17 +26,6 @@ export const AddWordForm = ({
       sourceVoice: '',
     },
   });
-
-  const {data: collection, isLoading} = useQuery({
-    queryFn: () => getCollection(collectionId),
-    initialData: undefined,
-  });
-
-  if (isLoading) {
-    return <ActivityIndicator animating size="large" />;
-  } else if (!collection) {
-    return <Text>{t('error_return_back')}</Text>;
-  }
 
   const onWordSubmit = () => {
     getTranslations(

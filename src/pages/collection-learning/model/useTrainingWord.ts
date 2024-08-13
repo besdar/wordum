@@ -1,12 +1,15 @@
 import {useState, useMemo, useEffect} from 'react';
-import {CollectionItem, LearningType} from '../../../shared/model/types';
+import {
+  Collection,
+  CollectionItem,
+  LearningType,
+} from '../../../shared/model/types';
 import {fsrs} from 'ts-fsrs';
-import {useQuery} from '../../../shared/lib/useQuery';
 import {getFsrsRatingFromUserAnswer, getWordsToLearn} from '../lib/learning';
-import {getCollection, saveCollection} from '../../../shared/api/async-storage';
+import {saveCollection} from '../../../shared/api/async-storage';
 import {Answers} from './types';
 
-export const useTrainingWord = (collectionId: string) => {
+export const useTrainingWord = (collection: Collection) => {
   const learingInstance = useMemo(() => fsrs(), []);
   const [isItFinal, setIsItFinal] = useState(false);
   const [collectionItem, setCollectionItem] = useState<
@@ -14,10 +17,6 @@ export const useTrainingWord = (collectionId: string) => {
   >();
   const [timer, setTimer] = useState(Date.now());
   const [wordsToLearn, setWordsToLearn] = useState<CollectionItem[]>([]);
-  const {data: collection, isLoading} = useQuery({
-    queryFn: () => getCollection(collectionId),
-    initialData: undefined,
-  });
 
   useEffect(() => {
     if (collection?.words.length) {
@@ -70,7 +69,6 @@ export const useTrainingWord = (collectionId: string) => {
     setNextTrainingWord,
     translation: collectionItem?.translation,
     isItFinal,
-    isLoading,
     examples: collectionItem?.examples,
     learningType: collectionItem?.learningType,
     learningLanguage:

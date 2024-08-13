@@ -2,6 +2,7 @@
   "collections": "Коллекции",
   "add_new_word": "Добавить новое слово",
   "new_collection": "Новая коллекция",
+  "edit_collection": "Редактирование коллекции",
   "exercises": "Упражнения",
   "collection_name": "Название коллекции",
   "primary_language": "Основной язык",
@@ -30,5 +31,8 @@
   "collection_deletion": "Удаление коллекции",
   "collection_deletion_message": "Вы уверены, что хотите удалить эту коллекцию?",
   "cancel": "Отмена",
-  "yes": "Да"
+  "yes": "Да",
+  "update": "Обновить",
+  "settings": "Настройки",
+  "about": "О приложении"
 }
