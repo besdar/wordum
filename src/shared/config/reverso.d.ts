@@ -52,7 +52,7 @@ declare module 'reverso-api' {
 }
 
 declare module 'reverso-api/src/enums/languages' {
-  const SupportedLanguages = {
+  const ReversoSupportedLanguages = {
     ARABIC: 'arabic',
     GERMAN: 'german',
     SPANISH: 'spanish',
@@ -71,10 +71,5 @@ declare module 'reverso-api/src/enums/languages' {
     UKRAINIAN: 'ukrainian',
   } as const;
 
-  global {
-    type SupportedLanguagesType =
-      (typeof SupportedLanguages)[keyof typeof SupportedLanguages];
-  }
-
-  export = SupportedLanguages;
+  export = ReversoSupportedLanguages;
 }

@@ -3,10 +3,10 @@ import {
   Collection,
   CollectionItem,
   LearningType,
-} from '../../../shared/model/types';
+} from '../../../shared/model/collection';
 import {fsrs} from 'ts-fsrs';
 import {getFsrsRatingFromUserAnswer, getWordsToLearn} from '../lib/learning';
-import {saveCollection} from '../../../shared/api/async-storage';
+import {saveCollection} from '../../../shared/api/storage';
 import {Answers} from './types';
 
 export const useTrainingWord = (collection: Collection) => {

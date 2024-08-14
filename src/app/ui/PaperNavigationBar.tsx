@@ -3,9 +3,9 @@ import React from 'react';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import packageJson from '../../../package.json';
-import {useTranslation} from 'react-i18next';
 import {Linking} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
+import {translate} from '../../shared/lib/i18n';
 
 export const PaperNavigationBar = ({
   navigation,
@@ -13,7 +13,6 @@ export const PaperNavigationBar = ({
   options,
   back,
 }: NativeStackHeaderProps) => {
-  const {t} = useTranslation();
   const [visible, setVisible] = React.useState(false);
 
   const {data} = useQuery({
@@ -48,21 +47,22 @@ export const PaperNavigationBar = ({
             setVisible(false);
             Linking.openURL(packageJson.homepage);
           }}
-          title={t('update')}
+          title={translate('update')}
           disabled={!isUpdateReady}
         />
         <Menu.Item
           onPress={() => {
             setVisible(false);
+            navigation.navigate('Settings');
           }}
-          title={t('settings')}
+          title={translate('settings')}
         />
         <Menu.Item
           onPress={() => {
             setVisible(false);
             navigation.push('About');
           }}
-          title={t('about')}
+          title={translate('about')}
         />
       </Menu>
     </Appbar.Header>

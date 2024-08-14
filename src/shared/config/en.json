@@ -34,5 +34,7 @@
   "yes": "Yes",
   "update": "Update",
   "settings": "Settings",
-  "about": "About"
+  "about": "About",
+  "api_source": "API source",
+  "save": "Save"
 }

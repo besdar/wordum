@@ -4,9 +4,10 @@ import {initReactI18next} from 'react-i18next';
 import en from '../config/en.json';
 import ru from '../config/ru.json';
 import {findBestLanguageTag} from 'react-native-localize';
+import {AppSupportedLanguages} from '../model/collection';
 
 const SupportedLanguagesToI18nMap: Partial<
-  Record<SupportedLanguagesType, keyof CustomTypeOptions['resources']>
+  Record<AppSupportedLanguages, keyof CustomTypeOptions['resources']>
 > = {
   english: 'en',
   russian: 'ru',
@@ -31,4 +32,4 @@ i18n
     resources: {en: {translation: en}, ru: {translation: ru}},
   });
 
-export default i18n;
+export const translate = i18n.t;

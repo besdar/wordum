@@ -4,7 +4,7 @@ import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
 import {useForm} from 'react-hook-form';
 import React from 'react';
 import {Answers} from '../model/types';
-import {useTranslation} from 'react-i18next';
+import { translate } from '../../../shared/lib/i18n';
 
 type Props = {
   onAnswerPress: (answer: Answers) => void;
@@ -17,7 +17,6 @@ export const WritingLearning = ({
   learningWord,
   learningLanguage,
 }: Props) => {
-  const {t} = useTranslation();
   const {control, handleSubmit} = useForm({defaultValues: {answer: ''}});
   const submitAnswer = handleSubmit(({answer}) =>
     onAnswerPress(
@@ -35,7 +34,7 @@ export const WritingLearning = ({
         mode="contained"
       />
       <ControlledTextInput
-        label={`${t('write_in')} ${learningLanguage}`}
+        label={`${translate('write_in')} ${learningLanguage}`}
         name="answer"
         control={control}
         onSubmitEditing={submitAnswer}

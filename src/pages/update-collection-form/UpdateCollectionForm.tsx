@@ -1,18 +1,20 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {Button} from 'react-native-paper';
 import {Grid} from '../../shared/ui/Grid';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {useForm} from 'react-hook-form';
-import {PagesStackProps} from '../../shared/model/types';
+import {AppSupportedLanguages} from '../../shared/model/collection';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {SupportedLanguages} from '../../shared/api/translations';
 import {ControlledPicker} from '../../shared/ui/ControlledPicker';
 import {Picker} from '@react-native-picker/picker';
-import {AddCollectionFormFields} from '../../shared/model/types';
+import {AddCollectionFormFields} from '../../shared/model/collection';
 import {ControlledSegmentedButtons} from '../../shared/ui/ControlledSegmentedButtons';
-import {updateCollection} from '../../shared/api/async-storage';
+import {updateCollection} from '../../shared/api/storage';
 import {LANGUAGE_FLAGS} from '../overview/model/consts';
-import {useTranslation} from 'react-i18next';
+import {translate} from '../../shared/lib/i18n';
+import {PagesStackProps} from '../../shared/model/navigator';
+
+const languagesList = Object.entries(AppSupportedLanguages);
 
 export const UpdateCollectionForm = ({
   navigation,
@@ -20,12 +22,10 @@ export const UpdateCollectionForm = ({
     params: {collection},
   },
 }: NativeStackScreenProps<PagesStackProps, 'UpdateCollectionForm'>) => {
-  const {t} = useTranslation();
-  const languagesList = useMemo(() => Object.entries(SupportedLanguages), []);
   const defaultValues = {
     name: collection?.name || '',
-    sourceLanguage: collection?.sourceLanguage || SupportedLanguages.ENGLISH,
-    targetLanguage: collection?.targetLanguage || SupportedLanguages.RUSSIAN,
+    sourceLanguage: collection?.sourceLanguage || AppSupportedLanguages.ENGLISH,
+    targetLanguage: collection?.targetLanguage || AppSupportedLanguages.RUSSIAN,
     wordsToTrain: collection?.wordsToTrain || 20,
     learningLanguage: collection?.learningLanguage || 'target',
   };
@@ -37,14 +37,14 @@ export const UpdateCollectionForm = ({
     <Grid direction="column" rowGap={5} padding={5} alignItems="stretch">
       <ControlledTextInput
         name="name"
-        label={t('collection_name')}
+        label={translate('collection_name')}
         control={control}
         rules={{required: true}}
       />
       <ControlledPicker
         name="sourceLanguage"
         control={control}
-        label={t('primary_language')}>
+        label={translate('primary_language')}>
         {languagesList.map(([label, value]) => (
           <Picker.Item
             key={value}
@@ -56,7 +56,7 @@ export const UpdateCollectionForm = ({
       <ControlledPicker
         name="targetLanguage"
         control={control}
-        label={t('secondary_language')}>
+        label={translate('secondary_language')}>
         {languagesList.map(([label, value]) => (
           <Picker.Item
             key={value}
@@ -67,7 +67,7 @@ export const UpdateCollectionForm = ({
       </ControlledPicker>
       <ControlledTextInput
         name="wordsToTrain"
-        label={t('words_to_learn_in_a_day')}
+        label={translate('words_to_learn_in_a_day')}
         control={control}
         rules={{
           required: true,
@@ -76,12 +76,12 @@ export const UpdateCollectionForm = ({
         keyboardType="numeric"
       />
       <ControlledSegmentedButtons
-        label={t('learning_language')}
+        label={translate('learning_language')}
         name="learningLanguage"
         control={control}
         buttons={[
-          {value: 'source', label: t('primary')},
-          {value: 'target', label: t('secondary')},
+          {value: 'source', label: translate('primary')},
+          {value: 'target', label: translate('secondary')},
         ]}
       />
       <Button
@@ -89,7 +89,7 @@ export const UpdateCollectionForm = ({
         onPress={handleSubmit(data =>
           updateCollection(data).then(() => navigation.popToTop()),
         )}>
-        {t('create')}
+        {translate('create')}
       </Button>
     </Grid>
   );

@@ -1,4 +1,6 @@
-export const LANGUAGE_FLAGS: Record<SupportedLanguagesType, string> = {
+import {AppSupportedLanguages} from '../../../shared/model/collection';
+
+export const LANGUAGE_FLAGS: Record<AppSupportedLanguages, string> = {
   english: '🇬🇧',
   spanish: '🇪🇸',
   french: '🇫🇷',

@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
 import {useForm} from 'react-hook-form';
-import {Button, IconButton} from 'react-native-paper';
+import {IconButton} from 'react-native-paper';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {addWordToCollection} from '../../shared/api/async-storage';
-import {getTranslations} from '../../shared/api/translations';
-import {PagesStackProps} from '../../shared/model/types';
+import {addWordToCollection} from '../../shared/api/storage';
+import {getTranslation} from './api/translation';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {Grid} from '../../shared/ui/Grid';
 import {ToastAndroid} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import {translate} from '../../shared/lib/i18n';
+import {Button} from '../../shared/ui/Button';
+import {PagesStackProps} from '../../shared/model/navigator';
 
 export const AddWordForm = ({
   route: {
     params: {collection},
   },
 }: NativeStackScreenProps<PagesStackProps, 'AddWordForm'>) => {
-  const {t} = useTranslation();
   const [isValueSetted, setFlagIsValueSetted] = useState(false);
   const {control, getValues, setValue, handleSubmit, reset} = useForm({
     defaultValues: {
@@ -28,31 +28,21 @@ export const AddWordForm = ({
   });
 
   const onWordSubmit = () => {
-    getTranslations(
+    getTranslation(
       getValues('word'),
       collection.sourceLanguage,
       collection.targetLanguage,
+      collection.learningLanguage,
     )
       .then(translationResponse => {
-        setValue(
-          'translation',
-          Array.from(new Set(translationResponse.translations))
-            .slice(0, 3)
-            .join(', '),
-        );
-        setValue(
-          'examples',
-          translationResponse.context?.examples
-            .slice(0, 3)
-            .map(result => result[collection.learningLanguage])
-            .join(' ') || '',
-        );
-        setValue('targetVoice', translationResponse.voice || '');
+        setValue('translation', translationResponse.translation);
+        setValue('examples', translationResponse.examples || '');
+        setValue('targetVoice', translationResponse.targetVoice || '');
         setValue('sourceVoice', translationResponse.sourceVoice || '');
       })
       .catch(() =>
         ToastAndroid.show(
-          t('error_retrieving_translation_data'),
+          translate('error_retrieving_translation_data'),
           ToastAndroid.SHORT,
         ),
       )
@@ -65,7 +55,7 @@ export const AddWordForm = ({
         <ControlledTextInput
           control={control}
           name="word"
-          label={`${t('word')} (${collection.sourceLanguage})`}
+          label={`${translate('word')} (${collection.sourceLanguage})`}
           rules={{required: true}}
           onPress={() => setFlagIsValueSetted(false)}
           onSubmitEditing={onWordSubmit}
@@ -77,13 +67,13 @@ export const AddWordForm = ({
         rules={{required: true}}
         control={control}
         name="translation"
-        label={`${t('translation')} (${collection.targetLanguage})`}
+        label={`${translate('translation')} (${collection.targetLanguage})`}
         disabled={!isValueSetted}
       />
       <ControlledTextInput
         control={control}
         name="examples"
-        label={t('usage_examples')}
+        label={translate('usage_examples')}
         disabled={!isValueSetted}
       />
       <Button
@@ -99,12 +89,12 @@ export const AddWordForm = ({
             .then(() => reset())
             .catch(() =>
               ToastAndroid.show(
-                t('error_saving_your_card'),
+                translate('error_saving_your_card'),
                 ToastAndroid.SHORT,
               ),
             ),
         )}>
-        {t('add_word_to_this_collection')}
+        {translate('add_word_to_this_collection')}
       </Button>
     </Grid>
   );

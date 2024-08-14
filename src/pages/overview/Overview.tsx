@@ -1,12 +1,12 @@
 import React from 'react';
 import {Grid} from '../../shared/ui/Grid';
-import {deleteCollection, getCollections} from '../../shared/api/async-storage';
+import {deleteCollection, getCollections} from '../../shared/api/storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {PagesStackProps} from '../../shared/model/types';
 import {AddCollectionButton} from './ui/AddCollectionButton';
 import {CollectionItem} from './ui/CollectionItem';
 import {useQuery} from '../../shared/lib/useQuery';
 import {showDeleteConfirmationAlert} from './ui/showDeleteConfirmationAlert';
+import {PagesStackProps} from '../../shared/model/navigator';
 
 export const Overview = ({
   navigation,

@@ -1,6 +1,6 @@
 {
   "name": "wordum",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "homepage": "https://github.com/besdar/wordum",
   "author": "Beskov Dmitry @besdar",
@@ -22,6 +22,7 @@
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
     "@tanstack/react-query": "^5.51.23",
+    "@vitalets/google-translate-api": "^9.2.0",
     "expo": "^51.0.22",
     "i18next": "^23.12.2",
     "intl-pluralrules": "^2.0.1",

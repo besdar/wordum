@@ -2,12 +2,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Collection,
   CollectionItem,
-  StorageKeys,
   AddCollectionFormFields,
   LearningType,
-} from '../model/types';
+} from '../model/collection';
 import {createEmptyCard} from 'ts-fsrs';
 import {DocumentDirectoryPath, downloadFile} from '@dr.pogodin/react-native-fs';
+import {StorageKeys} from '../model/storage';
+import {APISources} from '../model/apiSources';
 
 export const getCollection = (id: string): Promise<Collection> =>
   AsyncStorage.getItem(StorageKeys.COLLECTIONS + '_' + id).then(value =>
@@ -116,3 +117,8 @@ export const addWordToCollection = async (
 
   return saveCollection({...collection, words: collectionWords});
 };
+
+export const getAPISource = () =>
+  AsyncStorage.getItem(StorageKeys.API_SOURCE).then(
+    result => (result as APISources) || APISources.ReversoContextUnofficial,
+  );

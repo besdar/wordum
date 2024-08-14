@@ -1,5 +1,5 @@
 import {Grade, Rating} from 'ts-fsrs';
-import {CollectionItem} from '../../../shared/model/types';
+import {CollectionItem} from '../../../shared/model/collection';
 import {Answers} from '../model/types';
 
 export const getFsrsRatingFromUserAnswer = (

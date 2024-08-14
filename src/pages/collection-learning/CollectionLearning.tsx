@@ -1,8 +1,8 @@
-import {Button, Icon, IconButton, Text} from 'react-native-paper';
+import {Icon, IconButton, Text} from 'react-native-paper';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTrainingWord} from './model/useTrainingWord';
-import {LearningType, PagesStackProps} from '../../shared/model/types';
+import {LearningType} from '../../shared/model/collection';
 import {Grid} from '../../shared/ui/Grid';
 import {Answers} from './model/types';
 import {StyleSheet} from 'react-native';
@@ -10,7 +10,9 @@ import {FlashcardButtons} from './ui/FlashcardButtons';
 import {FlashcardWrapper} from './ui/FlashcardWrapper';
 import {WritingLearning} from './ui/WritingLearning';
 import {playSound} from './lib/sound';
-import {useTranslation} from 'react-i18next';
+import {translate} from '../../shared/lib/i18n';
+import {Button} from '../../shared/ui/Button';
+import {PagesStackProps} from '../../shared/model/navigator';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -27,7 +29,6 @@ export const CollectionLearning = ({
   },
   navigation,
 }: NativeStackScreenProps<PagesStackProps, 'CollectionLearning'>) => {
-  const {t} = useTranslation();
   const [isAnswerShown, setAnswerShowing] = useState(false);
 
   const {
@@ -49,9 +50,9 @@ export const CollectionLearning = ({
         justifyContent="center"
         rowGap={10}>
         <Icon source="check-circle-outline" size={100} color="green" />
-        <Text>{t('all_for_now')}</Text>
+        <Text>{translate('all_for_now')}</Text>
         <Button mode="outlined" onPress={() => navigation.goBack()}>
-          {t('finish')}
+          {translate('finish')}
         </Button>
       </Grid>
     );
@@ -127,7 +128,7 @@ export const CollectionLearning = ({
         <Button
           onPress={() => setNextWord(Answers.SkipListening)}
           icon="volume-variant-off">
-          {t('no_audio_message')}
+          {translate('no_audio_message')}
         </Button>
       </FlashcardWrapper>
     );
@@ -141,9 +142,9 @@ export const CollectionLearning = ({
       justifyContent="center"
       rowGap={10}>
       <Icon source="emoticon-sad-outline" size={100} color="red" />
-      <Text>{t('something_went_wrong')}</Text>
+      <Text>{translate('something_went_wrong')}</Text>
       <Button mode="outlined" onPress={() => navigation.goBack()}>
-        {t('return_back')}
+        {translate('return_back')}
       </Button>
     </Grid>
   );

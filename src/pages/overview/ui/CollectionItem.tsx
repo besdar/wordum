@@ -4,7 +4,7 @@ import {LANGUAGE_FLAGS} from '../model/consts';
 import {CollectionContainer} from './CollectionContainer';
 import {Grid} from '../../../shared/ui/Grid';
 import React from 'react';
-import {Collection} from '../../../shared/model/types';
+import {Collection} from '../../../shared/model/collection';
 import {getWordsToLearn} from '../../collection-learning/lib/learning';
 
 const styles = StyleSheet.create({
