@@ -1,5 +1,8 @@
 import {translate} from '@vitalets/google-translate-api';
-import {Collection, TranslationResponse} from '../../../shared/model/collection';
+import {
+  Collection,
+  TranslationResponse,
+} from '../../../shared/model/collection';
 
 export const convertReversoResponse = (
   translationResponse: ReversoResponse,

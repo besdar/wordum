@@ -42,6 +42,7 @@ export const PaperNavigationBar = ({
           />
         }>
         <Menu.Item
+          leadingIcon="arrow-down-bold-circle"
           theme={{colors: {primary: 'green'}}}
           onPress={() => {
             setVisible(false);
@@ -51,6 +52,15 @@ export const PaperNavigationBar = ({
           disabled={!isUpdateReady}
         />
         <Menu.Item
+          leadingIcon="tray-arrow-down"
+          onPress={() => {
+            setVisible(false);
+            navigation.push('Import');
+          }}
+          title={translate('collection_import')}
+        />
+        <Menu.Item
+          leadingIcon="cog"
           onPress={() => {
             setVisible(false);
             navigation.navigate('Settings');
@@ -58,6 +68,7 @@ export const PaperNavigationBar = ({
           title={translate('settings')}
         />
         <Menu.Item
+          leadingIcon="information"
           onPress={() => {
             setVisible(false);
             navigation.push('About');

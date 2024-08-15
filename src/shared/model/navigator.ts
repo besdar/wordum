@@ -5,7 +5,7 @@ export type PagesStackProps = {
   AddWordForm: {
     collection: Collection;
   };
-  UpdateCollectionForm: {
+  UpdateCollectionFormContainer: {
     collection?: Collection;
   };
   CollectionLearning: {
@@ -13,4 +13,5 @@ export type PagesStackProps = {
   };
   About: undefined;
   Settings: undefined;
+  Import: undefined;
 };

@@ -39,14 +39,14 @@ export const Overview = ({
             })
           }
           onUpdateCollection={() =>
-            navigation.push('UpdateCollectionForm', {
+            navigation.push('UpdateCollectionFormContainer', {
               collection,
             })
           }
         />
       ))}
       <AddCollectionButton
-        onPress={() => navigation.push('UpdateCollectionForm', {})}
+        onPress={() => navigation.push('UpdateCollectionFormContainer', {})}
       />
     </Grid>
   );

@@ -1,11 +1,11 @@
 import {StyleSheet, Text} from 'react-native';
 import {TouchableRipple, IconButton, Badge} from 'react-native-paper';
-import {LANGUAGE_FLAGS} from '../model/consts';
 import {CollectionContainer} from './CollectionContainer';
 import {Grid} from '../../../shared/ui/Grid';
 import React from 'react';
 import {Collection} from '../../../shared/model/collection';
 import {getWordsToLearn} from '../../collection-learning/lib/learning';
+import {LANGUAGE_FLAGS} from '../../../shared/config/consts';
 
 const styles = StyleSheet.create({
   collectionButton: {

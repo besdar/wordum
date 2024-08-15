@@ -9,6 +9,8 @@
   "secondary_language": "Secondary language",
   "primary": "Primary",
   "secondary": "Secondary",
+  "primary_word": "Primary word",
+  "secondary_word": "Secondary word",
   "words_to_learn_in_a_day": "Words to learn in a day",
   "learning_language": "Learning language",
   "create": "Create",
@@ -36,5 +38,9 @@
   "settings": "Settings",
   "about": "About",
   "api_source": "API source",
-  "save": "Save"
+  "save": "Save",
+  "collection_import": "Collection import",
+  "import": "Import",
+  "text_for_import": "Text for import",
+  "import_rules": "To import a new collection, please paste your text below in the required format. The first word or phrase is considered primary and the one after the semicolon is considered secondary."
 }

@@ -1,11 +1,11 @@
 import React from 'react';
+import {translate} from '../shared/lib/i18n';
 import {Material3ThemeProvider} from './ui/Material3ThemeProvider';
 import {Overview} from '../pages/overview/Overview';
 import {AppNavigator} from './ui/AppNavigator';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {PaperNavigationBar} from './ui/PaperNavigationBar';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {translate} from '../shared/lib/i18n';
 import {PagesStackProps} from '../shared/model/navigator';
 
 const Stack = createNativeStackNavigator<PagesStackProps>();
@@ -45,10 +45,10 @@ function App(): React.JSX.Element {
               options={{title: translate('add_new_word')}}
             />
             <Stack.Screen
-              name="UpdateCollectionForm"
+              name="UpdateCollectionFormContainer"
               getComponent={() =>
-                require('../pages/update-collection-form/UpdateCollectionForm')
-                  .UpdateCollectionForm
+                require('../pages/update-collection-form/UpdateCollectionFormContainer')
+                  .UpdateCollectionFormContainer
               }
               options={{title: translate('new_collection')}}
             />
@@ -74,6 +74,11 @@ function App(): React.JSX.Element {
                 require('../pages/settings/Settings').Settings
               }
               options={{title: translate('settings')}}
+            />
+            <Stack.Screen
+              name="Import"
+              getComponent={() => require('../pages/import/Import').Import}
+              options={{title: translate('collection_import')}}
             />
           </Stack.Navigator>
         </AppNavigator>

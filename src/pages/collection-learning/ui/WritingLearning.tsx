@@ -4,7 +4,7 @@ import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
 import {useForm} from 'react-hook-form';
 import React from 'react';
 import {Answers} from '../model/types';
-import { translate } from '../../../shared/lib/i18n';
+import {translate} from '../../../shared/lib/i18n';
 
 type Props = {
   onAnswerPress: (answer: Answers) => void;
