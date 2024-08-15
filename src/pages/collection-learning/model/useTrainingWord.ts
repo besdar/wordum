@@ -4,7 +4,7 @@ import {
   CollectionItem,
   LearningType,
 } from '../../../shared/model/collection';
-import {fsrs} from 'ts-fsrs';
+import {fsrs, Rating} from 'ts-fsrs';
 import {getFsrsRatingFromUserAnswer, getWordsToLearn} from '../lib/learning';
 import {saveCollection} from '../../../shared/api/storage';
 import {Answers} from './types';
@@ -17,6 +17,12 @@ export const useTrainingWord = (collection: Collection) => {
   >();
   const [timer, setTimer] = useState(Date.now());
   const [wordsToLearn, setWordsToLearn] = useState<CollectionItem[]>([]);
+  const [statistics, setStat] = useState({
+    [Rating.Easy]: 0,
+    [Rating.Hard]: 0,
+    [Rating.Good]: 0,
+    [Rating.Again]: 0,
+  });
 
   useEffect(() => {
     if (collection?.words.length) {
@@ -34,14 +40,21 @@ export const useTrainingWord = (collection: Collection) => {
   const setNextTrainingWord = (previousAnswer: Answers) => {
     let words = wordsToLearn;
     if (previousAnswer !== Answers.SkipListening) {
+      const grade = getFsrsRatingFromUserAnswer(
+        previousAnswer,
+        Date.now() - timer,
+      );
+
       learingInstance.next(
         collectionItem!.fsrsCard,
         Date.now(),
-        getFsrsRatingFromUserAnswer(previousAnswer, Date.now() - timer),
+        grade,
         ({card}) => {
           collectionItem!.fsrsCard = card;
         },
       );
+
+      setStat(prev => ({...prev, [grade]: prev[grade] + 1}));
     } else {
       words = wordsToLearn.filter(
         ({learningType}) => learningType !== LearningType.Listening,
@@ -75,5 +88,6 @@ export const useTrainingWord = (collection: Collection) => {
       collection?.learningLanguage === 'source'
         ? collection?.sourceLanguage
         : collection?.targetLanguage,
+    statistics,
   };
 };

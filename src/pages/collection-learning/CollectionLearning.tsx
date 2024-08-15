@@ -39,6 +39,7 @@ export const CollectionLearning = ({
     examples,
     learningType,
     learningLanguage,
+    statistics,
   } = useTrainingWord(collection);
 
   if (isItFinal) {
@@ -66,6 +67,7 @@ export const CollectionLearning = ({
   if (learningType === LearningType.Flascards) {
     return (
       <FlashcardWrapper
+        statistics={statistics}
         footer={
           <FlashcardButtons
             onAnswerPress={setNextWord}
@@ -96,6 +98,7 @@ export const CollectionLearning = ({
   if (learningType === LearningType.Writing) {
     return (
       <FlashcardWrapper
+        statistics={statistics}
         footer={
           <WritingLearning
             onAnswerPress={setNextWord}
@@ -113,6 +116,7 @@ export const CollectionLearning = ({
   if (learningType === LearningType.Listening) {
     return (
       <FlashcardWrapper
+        statistics={statistics}
         footer={
           <WritingLearning
             onAnswerPress={setNextWord}

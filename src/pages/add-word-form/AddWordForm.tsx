@@ -6,10 +6,10 @@ import {addWordToCollection} from '../../shared/api/storage';
 import {getTranslation} from './api/translation';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {Grid} from '../../shared/ui/Grid';
-import {ToastAndroid} from 'react-native';
 import {translate} from '../../shared/lib/i18n';
 import {Button} from '../../shared/ui/Button';
 import {PagesStackProps} from '../../shared/model/navigator';
+import {showToastMessage} from '../../shared/lib/message';
 
 export const AddWordForm = ({
   route: {
@@ -41,10 +41,7 @@ export const AddWordForm = ({
         setValue('sourceVoice', translationResponse.sourceVoice || '');
       })
       .catch(() =>
-        ToastAndroid.show(
-          translate('error_retrieving_translation_data'),
-          ToastAndroid.SHORT,
-        ),
+        showToastMessage(translate('error_retrieving_translation_data')),
       )
       .finally(() => setFlagIsValueSetted(true));
   };
@@ -80,19 +77,14 @@ export const AddWordForm = ({
         mode="outlined"
         onPress={handleSubmit(onValid =>
           addWordToCollection(collection.id, {
-            value: onValid.word,
-            examples: onValid.examples,
-            translation: onValid.translation,
+            value: onValid.word.trim(),
+            examples: onValid.examples.trim(),
+            translation: onValid.translation.trim(),
             targetVoice: onValid.targetVoice,
             sourceVoice: onValid.sourceVoice,
           })
             .then(() => reset())
-            .catch(() =>
-              ToastAndroid.show(
-                translate('error_saving_your_card'),
-                ToastAndroid.SHORT,
-              ),
-            ),
+            .catch(() => showToastMessage(translate('error_saving_your_card'))),
         )}>
         {translate('add_word_to_this_collection')}
       </Button>

@@ -17,14 +17,15 @@ export const WritingLearning = ({
   learningWord,
   learningLanguage,
 }: Props) => {
-  const {control, handleSubmit} = useForm({defaultValues: {answer: ''}});
-  const submitAnswer = handleSubmit(({answer}) =>
+  const {control, handleSubmit, reset} = useForm({defaultValues: {answer: ''}});
+  const submitAnswer = handleSubmit(({answer}) => {
     onAnswerPress(
-      answer.toLowerCase() === learningWord.toLowerCase()
+      answer.trim().toLowerCase() === learningWord.toLowerCase()
         ? Answers.Correct
         : Answers.Incorrect,
-    ),
-  );
+    );
+    reset();
+  });
 
   return (
     <Grid columnGap={5}>
@@ -40,6 +41,8 @@ export const WritingLearning = ({
         onSubmitEditing={submitAnswer}
         rules={{required: true}}
         viewProps={{style: {flexGrow: 1}}}
+        autoComplete="off"
+        autoCapitalize="none"
       />
       <IconButton icon="check" mode="contained" onPress={submitAnswer} />
     </Grid>
