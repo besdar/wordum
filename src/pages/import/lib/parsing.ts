@@ -1,5 +1,8 @@
-import {createLearningCardsForCollectionItem} from '../../../shared/lib/collection';
-import {Collection} from '../../../shared/model/collection';
+import {
+  createLearningCardsForCollectionItem,
+  getUUID,
+} from '../../../shared/lib/collection';
+import {Collection, CollectionItems} from '../../../shared/model/collection';
 
 export const parseTextToCollectionWords = (
   text: string,
@@ -8,14 +11,19 @@ export const parseTextToCollectionWords = (
   text
     .split('\n')
     .filter(Boolean)
-    .flatMap(line => {
+    .flat()
+    .reduce<CollectionItems>((acc, line) => {
       const [value, translation] = line.split(';');
 
-      return createLearningCardsForCollectionItem(
+      const itemId = getUUID();
+      acc[itemId] = createLearningCardsForCollectionItem(
         {
+          id: itemId,
           value: value.trim(),
           translation: translation.trim(),
         },
         learningLanguage,
       );
-    });
+
+      return acc;
+    }, {});

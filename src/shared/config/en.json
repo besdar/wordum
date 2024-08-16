@@ -6,12 +6,12 @@
   "exercises": "Exercises",
   "collection_name": "Collection name",
   "primary_language": "Primary language",
-  "secondary_language": "Secondary language",
+  "secondary_language": "Translation language (secondary)",
   "primary": "Primary",
   "secondary": "Secondary",
   "primary_word": "Primary word",
   "secondary_word": "Secondary word",
-  "words_to_learn_in_a_day": "Words to learn in a day",
+  "words_to_learn_in_a_day": "Number of words per study",
   "learning_language": "Learning language",
   "create": "Create",
   "error_return_back": "Something went wrong, sorry, please return back",
@@ -42,5 +42,6 @@
   "collection_import": "Collection import",
   "import": "Import",
   "text_for_import": "Text for import",
-  "import_rules": "To import a new collection, please paste your text below in the required format. The first word or phrase is considered primary and the one after the semicolon is considered secondary."
+  "import_rules": "To import a new collection, please paste your text below in the required format. The first word or phrase is considered primary and the one after the semicolon is considered secondary.",
+  "exist_word_message": "This word already exists in this collection"
 }

@@ -31,7 +31,8 @@ export const UpdateCollectionForm = ({
           name="name"
           label={translate('collection_name')}
           control={control}
-          rules={{required: true}}
+          rules={{required: true, maxLength: 15}}
+          maxLength={15}
         />
         <ControlledPicker
           name="sourceLanguage"

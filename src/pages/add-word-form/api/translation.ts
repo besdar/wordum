@@ -9,9 +9,9 @@ import {
 } from '../lib/convertTranslationResponse';
 import {getReversoTranslation} from './reverso';
 import {getGoogleTranslation} from './google';
-import {getAPISource} from '../../../shared/api/storage';
 import {appLangToGoogleLangMap} from '../model/appLangToGoogleLangMap';
 import {APISources} from '../../../shared/model/apiSources';
+import {appSettings} from '../../../shared/config/AppSettings';
 
 export const getTranslation = async (
   word: string,
@@ -19,7 +19,7 @@ export const getTranslation = async (
   targetLanguage: AppSupportedLanguages,
   learningLanguage: Collection['learningLanguage'],
 ): Promise<TranslationResponse> => {
-  const sourceAPI = await getAPISource();
+  const sourceAPI = appSettings.getSetting('apiSource');
 
   if (sourceAPI === APISources.ReversoContextUnofficial) {
     const response = await getReversoTranslation(

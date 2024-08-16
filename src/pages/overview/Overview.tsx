@@ -1,12 +1,12 @@
 import React from 'react';
 import {Grid} from '../../shared/ui/Grid';
-import {deleteCollection, getCollections} from '../../shared/api/storage';
+import {deleteCollection, getCollections} from '../../shared/model/storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AddCollectionButton} from './ui/AddCollectionButton';
-import {CollectionItem} from './ui/CollectionItem';
 import {useQuery} from '../../shared/lib/useQuery';
 import {showDeleteConfirmationAlert} from './ui/showDeleteConfirmationAlert';
 import {PagesStackProps} from '../../shared/model/navigator';
+import {CollectionItems} from './ui/CollectionItems';
 
 export const Overview = ({
   navigation,
@@ -18,9 +18,9 @@ export const Overview = ({
   });
 
   return (
-    <Grid gap={15} wrap justifyContent="space-between">
+    <Grid gap={20} wrap justifyContent="space-around">
       {data.map(collection => (
-        <CollectionItem
+        <CollectionItems
           key={collection.id}
           collection={collection}
           onAddWord={() =>

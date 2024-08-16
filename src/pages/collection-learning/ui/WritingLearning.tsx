@@ -30,6 +30,11 @@ export const WritingLearning = ({
   return (
     <Grid columnGap={5}>
       <IconButton
+        mode="contained"
+        icon="delete"
+        onPress={() => onAnswerPress(Answers.Delete)}
+      />
+      <IconButton
         icon="skip-next"
         onPress={() => onAnswerPress(Answers.Incorrect)}
         mode="contained"

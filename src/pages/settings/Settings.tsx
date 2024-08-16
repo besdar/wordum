@@ -5,17 +5,12 @@ import {Picker} from '@react-native-picker/picker';
 import {translate} from '../../shared/lib/i18n';
 import {Grid} from '../../shared/ui/Grid';
 import {Button} from '../../shared/ui/Button';
-import {saveAPISource} from './model/storage';
-import {getAPISource} from '../../shared/api/storage';
 import {APISources} from '../../shared/model/apiSources';
+import {appSettings, AppSettingsValues} from '../../shared/config/AppSettings';
 
 export const Settings = () => {
-  const {control, handleSubmit} = useForm({
-    defaultValues: async () => {
-      const apiSource = await getAPISource();
-
-      return {apiSource};
-    },
+  const {control, handleSubmit} = useForm<AppSettingsValues>({
+    defaultValues: {apiSource: appSettings.getSetting('apiSource')},
   });
 
   return (
@@ -33,9 +28,7 @@ export const Settings = () => {
           label="Google Translate [Unofficial]"
         />
       </ControlledPicker>
-      <Button
-        mode="contained"
-        onPress={handleSubmit(({apiSource}) => saveAPISource(apiSource))}>
+      <Button mode="contained" onPress={handleSubmit(appSettings.setSettings)}>
         {translate('save')}
       </Button>
     </Grid>

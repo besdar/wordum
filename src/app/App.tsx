@@ -50,7 +50,11 @@ function App(): React.JSX.Element {
                 require('../pages/update-collection-form/UpdateCollectionFormContainer')
                   .UpdateCollectionFormContainer
               }
-              options={{title: translate('new_collection')}}
+              options={({route}) => ({
+                title: route.params.collection
+                  ? translate('edit_collection')
+                  : translate('new_collection'),
+              })}
             />
             <Stack.Screen
               name="CollectionLearning"

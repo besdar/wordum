@@ -1,22 +1,30 @@
 import {useState, useMemo, useEffect} from 'react';
 import {
   Collection,
-  CollectionItem,
+  LearningCard,
   LearningType,
 } from '../../../shared/model/collection';
 import {fsrs, Rating} from 'ts-fsrs';
-import {getFsrsRatingFromUserAnswer, getWordsToLearn} from '../lib/learning';
-import {saveCollection} from '../../../shared/api/storage';
+import {
+  getFsrsRatingFromUserAnswer,
+  getCardsToLearn,
+  getWordsToLearn,
+} from '../lib/learning';
 import {Answers} from './types';
+import {
+  deleteCollectionItem,
+  saveCollection,
+} from '../../../shared/model/storage';
 
 export const useTrainingWord = (collection: Collection) => {
   const learingInstance = useMemo(() => fsrs(), []);
   const [isItFinal, setIsItFinal] = useState(false);
-  const [collectionItem, setCollectionItem] = useState<
-    CollectionItem | undefined
+  const [learningCard, setCollectionItem] = useState<
+    LearningCard | undefined
   >();
   const [timer, setTimer] = useState(Date.now());
-  const [wordsToLearn, setWordsToLearn] = useState<CollectionItem[]>([]);
+  const [wordsToLearn, setWordsToLearn] = useState<LearningCard[]>([]);
+  const [wordsCount, setWordsCount] = useState(0);
   const [statistics, setStat] = useState({
     [Rating.Easy]: 0,
     [Rating.Hard]: 0,
@@ -25,51 +33,59 @@ export const useTrainingWord = (collection: Collection) => {
   });
 
   useEffect(() => {
-    if (collection?.words.length) {
-      const result =
-        getWordsToLearn(collection.words)
-          .slice(0, collection.wordsToTrain)
-          .sort(() => Math.random() - 0.5) || [];
+    const listOfCardsMappedToWordsToLearn = getWordsToLearn(collection.words)
+      .slice(0, collection.wordsToTrain)
+      .flat();
 
-      setWordsToLearn(result);
-      setCollectionItem(result[0]);
-      setTimer(Date.now());
-    }
+    const result = getCardsToLearn(listOfCardsMappedToWordsToLearn).sort(
+      () => Math.random() - 0.5,
+    );
+
+    setWordsToLearn(result);
+    setCollectionItem(result[0]);
+    setTimer(Date.now());
   }, [collection?.words, collection?.wordsToTrain]);
 
-  const setNextTrainingWord = (previousAnswer: Answers) => {
+  const setNextTrainingWord = async (previousAnswer: Answers) => {
     let words = wordsToLearn;
-    if (previousAnswer !== Answers.SkipListening) {
+    if ([Answers.Correct, Answers.Incorrect].includes(previousAnswer)) {
       const grade = getFsrsRatingFromUserAnswer(
         previousAnswer,
         Date.now() - timer,
+        learningCard!.learningType,
+        learningCard!.value,
       );
 
       learingInstance.next(
-        collectionItem!.fsrsCard,
+        learningCard!.fsrsCard,
         Date.now(),
         grade,
         ({card}) => {
-          collectionItem!.fsrsCard = card;
+          learningCard!.fsrsCard = card;
         },
       );
 
       setStat(prev => ({...prev, [grade]: prev[grade] + 1}));
-    } else {
+    } else if (previousAnswer === Answers.Delete) {
+      await deleteCollectionItem(learningCard as LearningCard, collection);
+
+      words = words.filter(word => word.value !== learningCard!.value);
+    } else if (previousAnswer === Answers.SkipListening) {
       words = wordsToLearn.filter(
         ({learningType}) => learningType !== LearningType.Listening,
       );
       setWordsToLearn(words);
     }
 
-    const filteredWords = getWordsToLearn(words);
+    const filteredWords = getCardsToLearn(words);
+    setWordsCount(words.length - filteredWords.length);
     const nextWord = filteredWords[0];
 
     if (!nextWord) {
       setIsItFinal(true);
 
       if (wordsToLearn.length && collection) {
-        saveCollection(collection);
+        return saveCollection(collection);
       }
     }
 
@@ -78,16 +94,17 @@ export const useTrainingWord = (collection: Collection) => {
   };
 
   return {
-    trainingWord: collectionItem?.value,
+    trainingWord: learningCard?.value,
     setNextTrainingWord,
-    translation: collectionItem?.translation,
+    translation: learningCard?.translation,
     isItFinal,
-    examples: collectionItem?.examples,
-    learningType: collectionItem?.learningType,
+    examples: learningCard?.examples,
+    learningType: learningCard?.learningType,
     learningLanguage:
       collection?.learningLanguage === 'source'
         ? collection?.sourceLanguage
         : collection?.targetLanguage,
     statistics,
+    progress: wordsCount / wordsToLearn.length,
   };
 };

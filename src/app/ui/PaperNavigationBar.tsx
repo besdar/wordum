@@ -1,11 +1,11 @@
 import {Appbar, Menu} from 'react-native-paper';
-import React from 'react';
+import React, {useState} from 'react';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
-import packageJson from '../../../package.json';
+import packageJSON from '../../../package.json';
 import {Linking} from 'react-native';
-import {useQuery} from '@tanstack/react-query';
 import {translate} from '../../shared/lib/i18n';
+import {appSettings} from '../../shared/config/AppSettings';
 
 export const PaperNavigationBar = ({
   navigation,
@@ -13,19 +13,8 @@ export const PaperNavigationBar = ({
   options,
   back,
 }: NativeStackHeaderProps) => {
-  const [visible, setVisible] = React.useState(false);
-
-  const {data} = useQuery({
-    initialData: packageJson.version,
-    queryFn: () =>
-      fetch(`${packageJson.homepage}/main/package.json`)
-        .then(res => res.json())
-        .then(res => res.version || packageJson.version)
-        .catch(() => packageJson.version),
-    queryKey: ['packageJsonVersion'],
-  });
-
-  const isUpdateReady = packageJson.version !== data;
+  const [visible, setVisible] = useState(false);
+  const isUpdateReady = appSettings.isUpdateAvailable();
 
   return (
     <Appbar.Header>
@@ -46,7 +35,7 @@ export const PaperNavigationBar = ({
           theme={{colors: {primary: 'green'}}}
           onPress={() => {
             setVisible(false);
-            Linking.openURL(packageJson.homepage);
+            Linking.openURL(packageJSON.homepage);
           }}
           title={translate('update')}
           disabled={!isUpdateReady}

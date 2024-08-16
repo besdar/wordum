@@ -4,6 +4,7 @@ export enum Answers {
   Correct = 'Correct',
   Incorrect = 'Incorrect',
   SkipListening = 'SkipListening',
+  Delete = 'Delete',
 }
 
 export type Statistics = {

@@ -1,4 +1,4 @@
-import {Icon, IconButton, Text} from 'react-native-paper';
+import {Icon, IconButton, ProgressBar, Text} from 'react-native-paper';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTrainingWord} from './model/useTrainingWord';
@@ -40,6 +40,7 @@ export const CollectionLearning = ({
     learningType,
     learningLanguage,
     statistics,
+    progress,
   } = useTrainingWord(collection);
 
   if (isItFinal) {
@@ -69,11 +70,14 @@ export const CollectionLearning = ({
       <FlashcardWrapper
         statistics={statistics}
         footer={
-          <FlashcardButtons
-            onAnswerPress={setNextWord}
-            onAnswerShow={() => setAnswerShowing(true)}
-            isAnswerShown={isAnswerShown}
-          />
+          <Grid direction="column" rowGap={5}>
+            <FlashcardButtons
+              onAnswerPress={setNextWord}
+              onAnswerShow={() => setAnswerShowing(true)}
+              isAnswerShown={isAnswerShown}
+            />
+            <ProgressBar visible progress={progress} />
+          </Grid>
         }>
         <Text variant="displayMedium" style={styles.wordText}>
           {trainingWord}
@@ -100,11 +104,14 @@ export const CollectionLearning = ({
       <FlashcardWrapper
         statistics={statistics}
         footer={
-          <WritingLearning
-            onAnswerPress={setNextWord}
-            learningWord={trainingWord as string}
-            learningLanguage={learningLanguage as string}
-          />
+          <Grid direction="column" rowGap={5}>
+            <WritingLearning
+              onAnswerPress={setNextWord}
+              learningWord={trainingWord as string}
+              learningLanguage={learningLanguage as string}
+            />
+            <ProgressBar visible progress={progress} />
+          </Grid>
         }>
         <Text variant="displayMedium" style={styles.wordText}>
           {translation}
@@ -118,11 +125,14 @@ export const CollectionLearning = ({
       <FlashcardWrapper
         statistics={statistics}
         footer={
-          <WritingLearning
-            onAnswerPress={setNextWord}
-            learningWord={translation as string}
-            learningLanguage={learningLanguage as string}
-          />
+          <Grid direction="column" rowGap={5}>
+            <WritingLearning
+              onAnswerPress={setNextWord}
+              learningWord={translation as string}
+              learningLanguage={learningLanguage as string}
+            />
+            <ProgressBar visible progress={progress} />
+          </Grid>
         }>
         <IconButton
           icon="volume-high"

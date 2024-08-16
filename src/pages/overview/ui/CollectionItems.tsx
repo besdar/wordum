@@ -22,7 +22,7 @@ type Props = {
   onUpdateCollection: () => void;
 };
 
-export const CollectionItem = ({
+export const CollectionItems = ({
   collection,
   onAddWord,
   onDelete,

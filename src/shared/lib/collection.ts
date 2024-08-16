@@ -1,6 +1,6 @@
 import {DocumentDirectoryPath, downloadFile} from '@dr.pogodin/react-native-fs';
 import {createEmptyCard} from 'ts-fsrs';
-import {CollectionItem, Collection, LearningType} from '../model/collection';
+import {Collection, LearningType, LearningCard} from '../model/collection';
 
 export const getUUID = () => Math.random().toString(16).slice(2);
 
@@ -23,12 +23,12 @@ export const downloadVoice = async (voiceURL?: string) => {
 };
 
 export const createLearningCardsForCollectionItem = (
-  newItem: Omit<CollectionItem, 'learningType' | 'fsrsCard'>,
+  newItem: Omit<LearningCard, 'learningType' | 'fsrsCard'>,
   learningLanguage: Collection['learningLanguage'],
   sourceVoice?: string,
   targetVoice?: string,
 ) => {
-  const cards: CollectionItem[] = [];
+  const cards: LearningCard[] = [];
   const isLearningSourceLanguage = learningLanguage === 'source';
 
   const learningValue = isLearningSourceLanguage
@@ -37,6 +37,7 @@ export const createLearningCardsForCollectionItem = (
 
   cards.push(
     {
+      id: newItem.id,
       value: newItem.value,
       translation: newItem.translation,
       targetVoice,
@@ -45,6 +46,7 @@ export const createLearningCardsForCollectionItem = (
       learningType: LearningType.Flascards,
     },
     {
+      id: newItem.id,
       value: newItem.translation,
       translation: newItem.value,
       fsrsCard: createEmptyCard(),
@@ -54,6 +56,7 @@ export const createLearningCardsForCollectionItem = (
       sourceVoice: targetVoice,
     },
     {
+      id: newItem.id,
       value: learningValue,
       translation: isLearningSourceLanguage
         ? newItem.translation
@@ -67,6 +70,7 @@ export const createLearningCardsForCollectionItem = (
   const audioValue = isLearningSourceLanguage ? sourceVoice : targetVoice;
   if (audioValue) {
     cards.push({
+      id: newItem.id,
       value: audioValue,
       translation: learningValue,
       fsrsCard: createEmptyCard(),

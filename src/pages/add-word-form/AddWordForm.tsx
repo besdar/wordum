@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
-import {IconButton} from 'react-native-paper';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {addWordToCollection} from '../../shared/api/storage';
 import {getTranslation} from './api/translation';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
 import {Grid} from '../../shared/ui/Grid';
@@ -10,14 +8,22 @@ import {translate} from '../../shared/lib/i18n';
 import {Button} from '../../shared/ui/Button';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {showToastMessage} from '../../shared/lib/message';
+import {IconButton} from '../../shared/ui/IconButton';
+import {addWordToCollection} from '../collection-learning/model/storage';
 
 export const AddWordForm = ({
   route: {
     params: {collection},
   },
 }: NativeStackScreenProps<PagesStackProps, 'AddWordForm'>) => {
-  const [isValueSetted, setFlagIsValueSetted] = useState(false);
-  const {control, getValues, setValue, handleSubmit, reset} = useForm({
+  const {
+    control,
+    getValues,
+    setValue,
+    handleSubmit,
+    reset,
+    formState: {dirtyFields},
+  } = useForm({
     defaultValues: {
       word: '',
       translation: '',
@@ -27,7 +33,7 @@ export const AddWordForm = ({
     },
   });
 
-  const onWordSubmit = () => {
+  const onWordSubmit = () =>
     getTranslation(
       getValues('word'),
       collection.sourceLanguage,
@@ -42,9 +48,7 @@ export const AddWordForm = ({
       })
       .catch(() =>
         showToastMessage(translate('error_retrieving_translation_data')),
-      )
-      .finally(() => setFlagIsValueSetted(true));
-  };
+      );
 
   return (
     <Grid direction="column" rowGap={5} alignItems="stretch">
@@ -54,24 +58,24 @@ export const AddWordForm = ({
           name="word"
           label={`${translate('word')} (${collection.sourceLanguage})`}
           rules={{required: true}}
-          onPress={() => setFlagIsValueSetted(false)}
+          onPress={() => reset()}
           onSubmitEditing={onWordSubmit}
           viewProps={{style: {flexGrow: 1}}}
         />
-        <IconButton icon="check" onPress={onWordSubmit} />
+        <IconButton icon="translate" onPress={onWordSubmit} />
       </Grid>
       <ControlledTextInput
         rules={{required: true}}
         control={control}
         name="translation"
         label={`${translate('translation')} (${collection.targetLanguage})`}
-        disabled={!isValueSetted}
+        disabled={!dirtyFields.word}
       />
       <ControlledTextInput
         control={control}
         name="examples"
         label={translate('usage_examples')}
-        disabled={!isValueSetted}
+        disabled={!dirtyFields.word}
       />
       <Button
         mode="outlined"

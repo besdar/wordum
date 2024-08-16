@@ -13,11 +13,14 @@ export type TranslationResponse = {
   examples?: string;
 };
 
-export type CollectionItem = TranslationResponse & {
+export type LearningCard = TranslationResponse & {
+  id: string; // keyof CollectionItems
   value: string;
   fsrsCard: Card;
   learningType: LearningType;
 };
+
+export type CollectionItems = Record<string, LearningCard[]>;
 
 export enum AppSupportedLanguages {
   ARABIC = 'arabic',
@@ -48,5 +51,5 @@ export type AddCollectionFormFields = {
 
 export type Collection = {
   id: string;
-  words: CollectionItem[];
+  words: CollectionItems;
 } & AddCollectionFormFields;
