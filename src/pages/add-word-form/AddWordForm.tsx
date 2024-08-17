@@ -80,7 +80,7 @@ export const AddWordForm = ({
       <Button
         mode="outlined"
         onPress={handleSubmit(onValid =>
-          addWordToCollection(collection.id, {
+          addWordToCollection(collection, {
             value: onValid.word.trim(),
             examples: onValid.examples.trim(),
             translation: onValid.translation.trim(),

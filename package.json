@@ -1,6 +1,6 @@
 {
   "name": "wordum",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": true,
   "homepage": "https://github.com/besdar/wordum",
   "author": "Beskov Dmitry @besdar",
@@ -13,7 +13,8 @@
     "start": "react-native start",
     "test": "jest",
     "release:android": "cd android && ./gradlew assembleRelease",
-    "check-types": "tsc"
+    "check-types": "tsc",
+    "generate-translations": "node scripts/lang-generating.js"
   },
   "dependencies": {
     "@dr.pogodin/react-native-fs": "^2.27.1",

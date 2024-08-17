@@ -1,10 +1,7 @@
 import {updateCollection} from '../../../shared/model/storage';
-import {
-  AddCollectionFormFields,
-  CollectionItems,
-} from '../../../shared/model/collection';
+import {Collection, CollectionItems} from '../../../shared/model/collection';
 
 export const importCollection = (
-  collection: AddCollectionFormFields,
+  collection: Omit<Collection, 'id'>,
   words: CollectionItems,
 ) => updateCollection({...collection, words});

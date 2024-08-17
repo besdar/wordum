@@ -43,7 +43,7 @@ class AppSettings {
     }
 
     const remoteVersion = await getRemoteAppVersion();
-    this.#isUpdateAvailable = remoteVersion === packageJSON.version;
+    this.#isUpdateAvailable = remoteVersion !== packageJSON.version;
   }
 
   isUpdateAvailable() {

@@ -7,6 +7,7 @@ import {Collection, CollectionItems} from '../../../shared/model/collection';
 export const parseTextToCollectionWords = (
   text: string,
   learningLanguage: Collection['learningLanguage'],
+  cardsToGenerate: Collection['typesOfCardsToGenerate'],
 ) =>
   text
     .split('\n')
@@ -18,11 +19,12 @@ export const parseTextToCollectionWords = (
       const itemId = getUUID();
       acc[itemId] = createLearningCardsForCollectionItem(
         {
-          id: itemId,
+          collectionId: itemId,
           value: value.trim(),
           translation: translation.trim(),
         },
         learningLanguage,
+        cardsToGenerate,
       );
 
       return acc;

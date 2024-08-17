@@ -42,6 +42,10 @@
   "collection_import": "Collection import",
   "import": "Import",
   "text_for_import": "Text for import",
-  "import_rules": "To import a new collection, please paste your text below in the required format. The first word or phrase is considered primary and the one after the semicolon is considered secondary.",
-  "exist_word_message": "This word already exists in this collection"
+  "import_rules": "To import a new collection, please paste your text below in the required format. The first word or phrase is considered primary and the one after the semicolon is considered secondary",
+  "exist_word_message": "This word already exists in this collection",
+  "correct_answer": "Correct answer",
+  "show_additional_settings": "Show additional settings",
+  "hide_additional_settings": "Hide additional settings",
+  "types_of_exercises": "Types of exercises"
 }

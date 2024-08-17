@@ -1,5 +1,5 @@
 import {translate} from '@vitalets/google-translate-api';
-import {GoogleSupportedLanguages} from '../model/googleLanguages';
+import {GoogleSupportedLanguages} from '../../../shared/config/lang';
 
 export const getGoogleTranslation = (
   word: string,

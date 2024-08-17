@@ -1,6 +1,5 @@
 import {
   Collection,
-  AppSupportedLanguages,
   TranslationResponse,
 } from '../../../shared/model/collection';
 import {
@@ -9,9 +8,12 @@ import {
 } from '../lib/convertTranslationResponse';
 import {getReversoTranslation} from './reverso';
 import {getGoogleTranslation} from './google';
-import {appLangToGoogleLangMap} from '../model/appLangToGoogleLangMap';
 import {APISources} from '../../../shared/model/apiSources';
 import {appSettings} from '../../../shared/config/AppSettings';
+import {
+  AppSupportedLanguages,
+  SupportedLanguagesToI18nMap,
+} from '../../../shared/config/lang';
 
 export const getTranslation = async (
   word: string,
@@ -32,8 +34,8 @@ export const getTranslation = async (
   } else if (sourceAPI === APISources.GoogleTranslateUnofficial) {
     const response = await getGoogleTranslation(
       word,
-      appLangToGoogleLangMap[sourceLanguage],
-      appLangToGoogleLangMap[targetLanguage],
+      SupportedLanguagesToI18nMap[sourceLanguage],
+      SupportedLanguagesToI18nMap[targetLanguage],
     );
 
     return convertGoogleTranslateResponse(response);

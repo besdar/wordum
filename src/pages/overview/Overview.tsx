@@ -30,7 +30,7 @@ export const Overview = ({
           }
           onDelete={() =>
             showDeleteConfirmationAlert()
-              .then(() => deleteCollection(collection.id))
+              .then(() => deleteCollection(collection))
               .then(() => refetch())
           }
           onStartLearning={() =>

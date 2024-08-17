@@ -1,4 +1,4 @@
-import {getCollection, saveCollection} from '../../../shared/model/storage';
+import {saveCollection} from '../../../shared/model/storage';
 import {
   downloadVoice,
   createLearningCardsForCollectionItem,
@@ -6,14 +6,16 @@ import {
 } from '../../../shared/lib/collection';
 import {translate} from '../../../shared/lib/i18n';
 import {showToastMessage} from '../../../shared/lib/message';
-import {LearningCard} from '../../../shared/model/collection';
+import {
+  Collection,
+  LearningCard,
+  LearningType,
+} from '../../../shared/model/collection';
 
 export const addWordToCollection = async (
-  collectionId: string,
-  newItem: Omit<LearningCard, 'learningType' | 'fsrsCard' | 'id'>,
+  collection: Collection,
+  newItem: Omit<LearningCard, 'learningType' | 'fsrsCard' | 'collectionId'>,
 ) => {
-  const collection = await getCollection(collectionId);
-
   if (
     Object.values(collection.words)
       .flat()
@@ -25,14 +27,21 @@ export const addWordToCollection = async (
   }
 
   const itemId = getUUID();
-  const sourceVoice = await downloadVoice(newItem.sourceVoice);
-  const targetVoice = await downloadVoice(newItem.targetVoice);
+  const isListeningIncludedInGeneration =
+    collection.typesOfCardsToGenerate.includes(LearningType.Listening);
+  const sourceVoice = isListeningIncludedInGeneration
+    ? await downloadVoice(newItem.sourceVoice)
+    : undefined;
+  const targetVoice = isListeningIncludedInGeneration
+    ? await downloadVoice(newItem.targetVoice)
+    : undefined;
   const newWordCards = await createLearningCardsForCollectionItem(
     {
       ...newItem,
-      id: itemId,
+      collectionId: itemId,
     },
     collection.learningLanguage,
+    collection.typesOfCardsToGenerate,
     sourceVoice,
     targetVoice,
   );

@@ -6,13 +6,13 @@ import {ControlledSegmentedButtons} from '../../../shared/ui/ControlledSegmented
 import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
 import {Grid} from '../../../shared/ui/Grid';
 import {Control, FieldValues} from 'react-hook-form';
-import {AddCollectionFormFields} from '../../../shared/model/collection';
+import {CollectionFormFields} from '../../../shared/model/collection';
 import {translate} from '../../../shared/lib/i18n';
 import {Button} from '../../../shared/ui/Button';
 import {ScrollView} from 'react-native';
 
 type Props = {
-  control: Control<FieldValues & AddCollectionFormFields>;
+  control: Control<FieldValues & CollectionFormFields>;
   handleSubmit: () => void;
   submitText: string;
   children?: React.ReactNode;

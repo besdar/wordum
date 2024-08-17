@@ -1,12 +1,14 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {AppSupportedLanguages} from '../../shared/model/collection';
+import {LearningType} from '../../shared/model/collection';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AddCollectionFormFields} from '../../shared/model/collection';
+import {CollectionFormFields} from '../../shared/model/collection';
 import {updateCollection} from '../../shared/model/storage';
 import {translate} from '../../shared/lib/i18n';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {UpdateCollectionForm} from './ui/UpdateCollectionForm';
+import {CollectionAdditionalSettings} from './ui/CollectionAdditionalSettings';
+import {AppSupportedLanguages} from '../../shared/config/lang';
 
 export const UpdateCollectionFormContainer = ({
   navigation,
@@ -17,7 +19,7 @@ export const UpdateCollectionFormContainer = ({
   PagesStackProps,
   'UpdateCollectionFormContainer'
 >) => {
-  const {control, handleSubmit} = useForm<AddCollectionFormFields>({
+  const {control, handleSubmit} = useForm<CollectionFormFields>({
     defaultValues: {
       name: collection?.name || '',
       sourceLanguage:
@@ -26,6 +28,11 @@ export const UpdateCollectionFormContainer = ({
         collection?.targetLanguage || AppSupportedLanguages.RUSSIAN,
       wordsToTrain: collection?.wordsToTrain || 20,
       learningLanguage: collection?.learningLanguage || 'target',
+      typesOfCardsToGenerate: collection?.typesOfCardsToGenerate || [
+        LearningType.Flascards,
+        LearningType.Listening,
+        LearningType.Writing,
+      ],
     },
   });
 
@@ -37,7 +44,8 @@ export const UpdateCollectionFormContainer = ({
         updateCollection({...(collection || {}), ...data}).then(() =>
           navigation.popToTop(),
         ),
-      )}
-    />
+      )}>
+      <CollectionAdditionalSettings control={control} />
+    </UpdateCollectionForm>
   );
 };

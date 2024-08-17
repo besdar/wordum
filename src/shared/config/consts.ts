@@ -1,5 +1,5 @@
 import SupportedLanguagesOriginal from 'reverso-api/src/enums/languages';
-import {AppSupportedLanguages} from '../model/collection';
+import {AppSupportedLanguages} from './lang';
 
 export const ReversoSupportedLanguages = SupportedLanguagesOriginal;
 export const LANGUAGE_LIST = Object.entries(SupportedLanguagesOriginal);

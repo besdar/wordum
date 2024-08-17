@@ -8,7 +8,7 @@ import {Answers} from './model/types';
 import {StyleSheet} from 'react-native';
 import {FlashcardButtons} from './ui/FlashcardButtons';
 import {FlashcardWrapper} from './ui/FlashcardWrapper';
-import {WritingLearning} from './ui/WritingLearning';
+import {WritingFooter} from './ui/WritingFooter';
 import {playSound} from './lib/sound';
 import {translate} from '../../shared/lib/i18n';
 import {Button} from '../../shared/ui/Button';
@@ -105,7 +105,7 @@ export const CollectionLearning = ({
         statistics={statistics}
         footer={
           <Grid direction="column" rowGap={5}>
-            <WritingLearning
+            <WritingFooter
               onAnswerPress={setNextWord}
               learningWord={trainingWord as string}
               learningLanguage={learningLanguage as string}
@@ -126,7 +126,7 @@ export const CollectionLearning = ({
         statistics={statistics}
         footer={
           <Grid direction="column" rowGap={5}>
-            <WritingLearning
+            <WritingFooter
               onAnswerPress={setNextWord}
               learningWord={translation as string}
               learningLanguage={learningLanguage as string}

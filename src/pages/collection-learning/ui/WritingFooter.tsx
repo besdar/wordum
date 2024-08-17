@@ -1,8 +1,8 @@
-import {IconButton} from 'react-native-paper';
+import {IconButton, Text} from 'react-native-paper';
 import {Grid} from '../../../shared/ui/Grid';
 import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
 import {useForm} from 'react-hook-form';
-import React from 'react';
+import React, {useState} from 'react';
 import {Answers} from '../model/types';
 import {translate} from '../../../shared/lib/i18n';
 
@@ -12,20 +12,49 @@ type Props = {
   learningLanguage: string;
 };
 
-export const WritingLearning = ({
+export const WritingFooter = ({
   onAnswerPress,
   learningWord,
   learningLanguage,
 }: Props) => {
   const {control, handleSubmit, reset} = useForm({defaultValues: {answer: ''}});
-  const submitAnswer = handleSubmit(({answer}) => {
-    onAnswerPress(
-      answer.trim().toLowerCase() === learningWord.toLowerCase()
-        ? Answers.Correct
-        : Answers.Incorrect,
-    );
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
+  const goToNextWord = (answer: Answers) => {
     reset();
-  });
+    setShowCorrectAnswer(false);
+
+    return onAnswerPress(answer);
+  };
+
+  const submitAnswer = () =>
+    handleSubmit(({answer}) => {
+      const isCorrectAnswer =
+        answer.trim().toLowerCase() === learningWord.toLowerCase();
+
+      if (!isCorrectAnswer) {
+        setShowCorrectAnswer(true);
+
+        return;
+      }
+
+      return goToNextWord(Answers.Correct);
+    });
+
+  if (showCorrectAnswer) {
+    return (
+      <Grid columnGap={5} justifyContent="space-between">
+        <Grid direction="column" columnGap={5}>
+          <Text>{translate('correct_answer')}</Text>
+          <Text>{learningWord}</Text>
+        </Grid>
+        <IconButton
+          icon="skip-next"
+          onPress={() => goToNextWord(Answers.Incorrect)}
+          mode="contained"
+        />
+      </Grid>
+    );
+  }
 
   return (
     <Grid columnGap={5}>

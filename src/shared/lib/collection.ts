@@ -25,6 +25,7 @@ export const downloadVoice = async (voiceURL?: string) => {
 export const createLearningCardsForCollectionItem = (
   newItem: Omit<LearningCard, 'learningType' | 'fsrsCard'>,
   learningLanguage: Collection['learningLanguage'],
+  cardsToGenerate: Collection['typesOfCardsToGenerate'],
   sourceVoice?: string,
   targetVoice?: string,
 ) => {
@@ -35,28 +36,33 @@ export const createLearningCardsForCollectionItem = (
     ? newItem.value
     : newItem.translation;
 
-  cards.push(
-    {
-      id: newItem.id,
-      value: newItem.value,
-      translation: newItem.translation,
-      targetVoice,
-      sourceVoice,
-      fsrsCard: createEmptyCard(),
-      learningType: LearningType.Flascards,
-    },
-    {
-      id: newItem.id,
-      value: newItem.translation,
-      translation: newItem.value,
-      fsrsCard: createEmptyCard(),
-      examples: newItem.examples,
-      learningType: LearningType.Flascards,
-      targetVoice: sourceVoice,
-      sourceVoice: targetVoice,
-    },
-    {
-      id: newItem.id,
+  if (cardsToGenerate.includes(LearningType.Flascards)) {
+    cards.push(
+      {
+        collectionId: newItem.collectionId,
+        value: newItem.value,
+        translation: newItem.translation,
+        targetVoice,
+        sourceVoice,
+        fsrsCard: createEmptyCard(),
+        learningType: LearningType.Flascards,
+      },
+      {
+        collectionId: newItem.collectionId,
+        value: newItem.translation,
+        translation: newItem.value,
+        fsrsCard: createEmptyCard(),
+        examples: newItem.examples,
+        learningType: LearningType.Flascards,
+        targetVoice: sourceVoice,
+        sourceVoice: targetVoice,
+      },
+    );
+  }
+
+  if (cardsToGenerate.includes(LearningType.Writing)) {
+    cards.push({
+      collectionId: newItem.collectionId,
       value: learningValue,
       translation: isLearningSourceLanguage
         ? newItem.translation
@@ -64,13 +70,13 @@ export const createLearningCardsForCollectionItem = (
       fsrsCard: createEmptyCard(),
       examples: newItem.examples,
       learningType: LearningType.Writing,
-    },
-  );
+    });
+  }
 
   const audioValue = isLearningSourceLanguage ? sourceVoice : targetVoice;
-  if (audioValue) {
+  if (audioValue && cardsToGenerate.includes(LearningType.Listening)) {
     cards.push({
-      id: newItem.id,
+      collectionId: newItem.collectionId,
       value: audioValue,
       translation: learningValue,
       fsrsCard: createEmptyCard(),

@@ -2,8 +2,8 @@ import React from 'react';
 import {Grid} from '../../shared/ui/Grid';
 import {useForm} from 'react-hook-form';
 import {
-  AddCollectionFormFields,
-  AppSupportedLanguages,
+  CollectionFormFields,
+  LearningType,
 } from '../../shared/model/collection';
 import {translate} from '../../shared/lib/i18n';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
@@ -13,8 +13,10 @@ import {importCollection} from './model/storage';
 import {parseTextToCollectionWords} from './lib/parsing';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {PagesStackProps} from '../../shared/model/navigator';
+import {CollectionAdditionalSettings} from '../update-collection-form/ui/CollectionAdditionalSettings';
+import {AppSupportedLanguages} from '../../shared/config/lang';
 
-type FormValues = AddCollectionFormFields & {text: string};
+type FormValues = CollectionFormFields & {text: string};
 
 export const Import = ({
   navigation,
@@ -27,6 +29,8 @@ export const Import = ({
       wordsToTrain: 20,
       learningLanguage: 'target',
       text: '',
+      words: {},
+      typesOfCardsToGenerate: [LearningType.Flascards, LearningType.Writing],
     },
   });
 
@@ -36,7 +40,11 @@ export const Import = ({
         handleSubmit={handleSubmit(data =>
           importCollection(
             data,
-            parseTextToCollectionWords(data.text, data.learningLanguage),
+            parseTextToCollectionWords(
+              data.text,
+              data.learningLanguage,
+              data.typesOfCardsToGenerate,
+            ),
           ).then(() => navigation.popToTop()),
         )}
         // @ts-ignore - TODO: extend control values to fix typescript issue
@@ -64,6 +72,10 @@ export const Import = ({
           multiline
           numberOfLines={10}
           label={translate('text_for_import')}
+        />
+        <CollectionAdditionalSettings
+          // @ts-ignore - TODO: extend control values to fix typescript issue
+          control={control}
         />
       </UpdateCollectionForm>
     </Grid>

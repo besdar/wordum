@@ -1,4 +1,5 @@
 import {Card} from 'ts-fsrs';
+import {AppSupportedLanguages} from '../config/lang';
 
 export enum LearningType {
   Flascards = 'Flashcards',
@@ -14,7 +15,7 @@ export type TranslationResponse = {
 };
 
 export type LearningCard = TranslationResponse & {
-  id: string; // keyof CollectionItems
+  collectionId: string; // keyof CollectionItems
   value: string;
   fsrsCard: Card;
   learningType: LearningType;
@@ -22,34 +23,16 @@ export type LearningCard = TranslationResponse & {
 
 export type CollectionItems = Record<string, LearningCard[]>;
 
-export enum AppSupportedLanguages {
-  ARABIC = 'arabic',
-  GERMAN = 'german',
-  SPANISH = 'spanish',
-  FRENCH = 'french',
-  HEBREW = 'hebrew',
-  ITALIAN = 'italian',
-  JAPANESE = 'japanese',
-  DUTCH = 'dutch',
-  POLISH = 'polish',
-  PORTUGUESE = 'portuguese',
-  ROMANIAN = 'romanian',
-  RUSSIAN = 'russian',
-  TURKISH = 'turkish',
-  CHINESE = 'chinese',
-  ENGLISH = 'english',
-  UKRAINIAN = 'ukrainian',
-}
-
-export type AddCollectionFormFields = {
+export type CollectionFormFields = {
   name: string;
   sourceLanguage: AppSupportedLanguages;
   targetLanguage: AppSupportedLanguages;
   wordsToTrain: number;
   learningLanguage: 'source' | 'target';
+  words: CollectionItems;
+  typesOfCardsToGenerate: LearningType[];
 };
 
 export type Collection = {
   id: string;
-  words: CollectionItems;
-} & AddCollectionFormFields;
+} & CollectionFormFields;

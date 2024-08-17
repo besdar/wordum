@@ -39,7 +39,7 @@ export enum GoogleSupportedLanguages {
   Gujarati = 'gu',
   Hausa = 'ha',
   Hawaiian = 'haw',
-  Hebrew = 'he or iw',
+  Hebrew = 'he',
   Hindi = 'hi',
   Hmong = 'hmn',
   Hungarian = 'hu',
@@ -50,7 +50,7 @@ export enum GoogleSupportedLanguages {
   Irish = 'ga',
   Italian = 'it',
   Japanese = 'ja',
-  Javanese = 'jv or jw',
+  Javanese = 'jv',
   Kannada = 'kn',
   Kazakh = 'kk',
   Khmer = 'km',
@@ -122,3 +122,44 @@ export enum GoogleSupportedLanguages {
   Zulu = 'zu',
   Portuguese = 'pt',
 }
+
+export enum AppSupportedLanguages {
+  ARABIC = 'arabic',
+  GERMAN = 'german',
+  SPANISH = 'spanish',
+  FRENCH = 'french',
+  HEBREW = 'hebrew',
+  ITALIAN = 'italian',
+  JAPANESE = 'japanese',
+  DUTCH = 'dutch',
+  POLISH = 'polish',
+  PORTUGUESE = 'portuguese',
+  ROMANIAN = 'romanian',
+  RUSSIAN = 'russian',
+  TURKISH = 'turkish',
+  CHINESE = 'chinese',
+  ENGLISH = 'english',
+  UKRAINIAN = 'ukrainian',
+}
+
+export const SupportedLanguagesToI18nMap: Record<
+  AppSupportedLanguages,
+  GoogleSupportedLanguages
+> = {
+  [AppSupportedLanguages.ARABIC]: GoogleSupportedLanguages.Arabic,
+  [AppSupportedLanguages.ENGLISH]: GoogleSupportedLanguages.English,
+  [AppSupportedLanguages.GERMAN]: GoogleSupportedLanguages.German,
+  [AppSupportedLanguages.SPANISH]: GoogleSupportedLanguages.Spanish,
+  [AppSupportedLanguages.FRENCH]: GoogleSupportedLanguages.French,
+  [AppSupportedLanguages.HEBREW]: GoogleSupportedLanguages.Hebrew,
+  [AppSupportedLanguages.ITALIAN]: GoogleSupportedLanguages.Italian,
+  [AppSupportedLanguages.JAPANESE]: GoogleSupportedLanguages.Japanese,
+  [AppSupportedLanguages.DUTCH]: GoogleSupportedLanguages.Dutch,
+  [AppSupportedLanguages.POLISH]: GoogleSupportedLanguages.Polish,
+  [AppSupportedLanguages.PORTUGUESE]: GoogleSupportedLanguages.Portuguese,
+  [AppSupportedLanguages.ROMANIAN]: GoogleSupportedLanguages.Romanian,
+  [AppSupportedLanguages.RUSSIAN]: GoogleSupportedLanguages.Russian,
+  [AppSupportedLanguages.TURKISH]: GoogleSupportedLanguages.Turkish,
+  [AppSupportedLanguages.UKRAINIAN]: GoogleSupportedLanguages.Ukrainian,
+  [AppSupportedLanguages.CHINESE]: GoogleSupportedLanguages.Chinese,
+};

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getUUID} from '../lib/collection';
 import {
   Collection,
-  AddCollectionFormFields,
+  CollectionFormFields,
   LearningType,
   LearningCard,
 } from './collection';
@@ -29,42 +29,7 @@ export const getCollections = (): Promise<Collection[]> =>
     ),
   );
 
-export const deleteCollection = (id: string) =>
-  AsyncStorage.removeItem(StorageKeys.COLLECTIONS + '_' + id);
-
-export const saveCollection = (collection: Collection) =>
-  AsyncStorage.setItem(
-    StorageKeys.COLLECTIONS + '_' + collection.id,
-    JSON.stringify(collection),
-  ).then(() => collection);
-
-export const updateCollection = (
-  data: AddCollectionFormFields & Partial<Pick<Collection, 'id' | 'words'>>,
-) =>
-  saveCollection({
-    id: getUUID(),
-    words: {},
-    ...data,
-  });
-
-export const deleteCollectionItem = async (
-  collectionItem: LearningCard,
-  collection: Collection,
-) => {
-  if (!collection.words[collectionItem.id]) {
-    return;
-  }
-
-  await saveCollection({
-    ...collection,
-    words: {
-      ...collection.words,
-      itemId: collection.words[collectionItem.id].filter(
-        word => word.value !== collectionItem!.value,
-      ),
-    },
-  });
-
+const deleteCollectionItemFiles = async (collectionItem: LearningCard) => {
   if (collectionItem?.learningType === LearningType.Listening) {
     if (collectionItem.value) {
       await unlink(collectionItem.value);
@@ -82,4 +47,63 @@ export const deleteCollectionItem = async (
       await unlink(collectionItem.targetVoice);
     }
   }
+};
+
+export const deleteCollection = (collection: Collection) =>
+  Promise.all(
+    Object.values(collection.words).flat().map(deleteCollectionItemFiles),
+  ).finally(() =>
+    AsyncStorage.removeItem(StorageKeys.COLLECTIONS + '_' + collection.id),
+  );
+
+export const saveCollection = (collection: Collection) =>
+  AsyncStorage.setItem(
+    StorageKeys.COLLECTIONS + '_' + collection.id,
+    JSON.stringify(collection),
+  ).then(() => collection);
+
+export const updateCollection = (
+  data: CollectionFormFields & Partial<Pick<Collection, 'id'>>,
+) => {
+  // const dataToSave: Omit<typeof data, 'cardsForDeletion'> & {
+  //   cardsForDeletion?: CollectionFormFields['cardsForDeletion'];
+  // } = data;
+
+  // if (Object.keys(data.words).length && data.cardsForDeletion.length) {
+  //   data.cardsForDeletion.forEach(card => {
+  //     dataToSave.words[card.collectionId] = dataToSave.words[
+  //       card.collectionId
+  //     ].filter(oldCard => oldCard.value !== card.value);
+
+  //     deleteCollectionItemFiles(card);
+  //   });
+  // }
+
+  // delete dataToSave.cardsForDeletion;
+
+  return saveCollection({
+    id: getUUID(),
+    ...data,
+  });
+};
+
+export const deleteCollectionItem = async (
+  collectionItem: LearningCard,
+  collection: Collection,
+) => {
+  if (!collection.words[collectionItem.collectionId]) {
+    return;
+  }
+
+  await saveCollection({
+    ...collection,
+    words: {
+      ...collection.words,
+      itemId: collection.words[collectionItem.collectionId].filter(
+        word => word.value !== collectionItem!.value,
+      ),
+    },
+  });
+
+  return deleteCollectionItemFiles(collectionItem);
 };
