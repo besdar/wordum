@@ -8,7 +8,7 @@ import {translate} from '../../shared/lib/i18n';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {UpdateCollectionForm} from './ui/UpdateCollectionForm';
 import {CollectionAdditionalSettings} from './ui/CollectionAdditionalSettings';
-import {AppSupportedLanguages} from '../../shared/config/lang';
+import {AppSupportedLanguages} from '../../shared/model/lang';
 
 export const UpdateCollectionFormContainer = ({
   navigation,
@@ -33,6 +33,7 @@ export const UpdateCollectionFormContainer = ({
         LearningType.Listening,
         LearningType.Writing,
       ],
+      words: {},
     },
   });
 

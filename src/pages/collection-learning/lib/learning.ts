@@ -5,6 +5,7 @@ import {
   LearningType,
 } from '../../../shared/model/collection';
 import {Answers} from '../model/types';
+import {appSettings} from '../../../shared/model/AppSettings';
 
 export const getFsrsRatingFromUserAnswer = (
   answer: Answers,
@@ -17,10 +18,18 @@ export const getFsrsRatingFromUserAnswer = (
   }
 
   const typingTime =
-    learningType !== LearningType.Flascards ? word.length * 250 : 0;
-  if (typingTime + 7000 > timeToRespond) {
+    learningType !== LearningType.Flascards
+      ? word.length * appSettings.getSetting('timeTakenPerCharacterInput')
+      : 0;
+  if (
+    typingTime + appSettings.getSetting('timeGradeLimitEasy') >
+    timeToRespond
+  ) {
     return Rating.Easy;
-  } else if (typingTime + 15000 > timeToRespond) {
+  } else if (
+    typingTime + appSettings.getSetting('timeGradeLimitGood') >
+    timeToRespond
+  ) {
     return Rating.Good;
   }
 

@@ -14,7 +14,7 @@ import {parseTextToCollectionWords} from './lib/parsing';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {CollectionAdditionalSettings} from '../update-collection-form/ui/CollectionAdditionalSettings';
-import {AppSupportedLanguages} from '../../shared/config/lang';
+import {AppSupportedLanguages} from '../../shared/model/lang';
 
 type FormValues = CollectionFormFields & {text: string};
 

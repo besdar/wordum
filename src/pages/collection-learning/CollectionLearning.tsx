@@ -13,6 +13,8 @@ import {playSound} from './lib/sound';
 import {translate} from '../../shared/lib/i18n';
 import {Button} from '../../shared/ui/Button';
 import {PagesStackProps} from '../../shared/model/navigator';
+import {FlashcardHeader} from './ui/FlashcardHeader';
+import {AppSupportedLanguages} from '../../shared/model/lang';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -68,7 +70,7 @@ export const CollectionLearning = ({
   if (learningType === LearningType.Flascards) {
     return (
       <FlashcardWrapper
-        statistics={statistics}
+        header={<FlashcardHeader statistics={statistics} />}
         footer={
           <Grid direction="column" rowGap={5}>
             <FlashcardButtons
@@ -102,13 +104,13 @@ export const CollectionLearning = ({
   if (learningType === LearningType.Writing) {
     return (
       <FlashcardWrapper
-        statistics={statistics}
+        header={<FlashcardHeader statistics={statistics} />}
         footer={
           <Grid direction="column" rowGap={5}>
             <WritingFooter
               onAnswerPress={setNextWord}
               learningWord={trainingWord as string}
-              learningLanguage={learningLanguage as string}
+              learningLanguage={learningLanguage as AppSupportedLanguages}
             />
             <ProgressBar visible progress={progress} />
           </Grid>
@@ -123,13 +125,13 @@ export const CollectionLearning = ({
   if (learningType === LearningType.Listening) {
     return (
       <FlashcardWrapper
-        statistics={statistics}
+        header={<FlashcardHeader statistics={statistics} />}
         footer={
           <Grid direction="column" rowGap={5}>
             <WritingFooter
               onAnswerPress={setNextWord}
               learningWord={translation as string}
-              learningLanguage={learningLanguage as string}
+              learningLanguage={learningLanguage as AppSupportedLanguages}
             />
             <ProgressBar visible progress={progress} />
           </Grid>

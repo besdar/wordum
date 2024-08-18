@@ -1,45 +1,19 @@
-import {Linking, View} from 'react-native';
-import {Text} from 'react-native-paper';
+import {Linking, ScrollView} from 'react-native';
+import {Button, Text} from 'react-native-paper';
 import React from 'react';
 import packageJSON from '../../../package.json';
-import {useAppTheme} from '../../app/ui/Material3ThemeProvider';
-import {appSettings} from '../../shared/config/AppSettings';
+import {translate} from '../../shared/lib/i18n';
 
 export const About = () => {
-  const theme = useAppTheme();
-
   return (
-    <View>
+    <ScrollView>
+      <Text>{translate('about_text')}</Text>
+      <Button onPress={() => Linking.openURL(packageJSON.homepage)}>
+        {translate('open_project_page')}
+      </Button>
       <Text>
-        Welcome to Wordum, your go-to app for learning languages and expanding
-        your vocabulary! Simply input a word or phrase, and this app will
-        automatically fill in translations, audio, and usage examples. With
-        engaging listening and writing exercises, Wordum adapts to your learning
-        style using the Open Spaced Repetition algorithm, similar to that of the
-        Anki app. This is{' '}
-        <Text
-          style={{color: theme.colors.primary}}
-          onPress={() => Linking.openURL(packageJSON.homepage)}>
-          an open-source project
-        </Text>{' '}
-        licensed under GPL-3 license with no tracking included. If you encounter
-        any issues or bugs, it would be highly appreciated if you report them by
-        creating an issue on the project's GitHub page. Your feedback is
-        invaluable in helping to improve Wordum!
+        {translate('app_version')}: {`${packageJSON.version} (beta)`}
       </Text>
-      <Text>
-        If you appreciate my work and would like to support the project, please
-        consider making a donation here. Thank you for your support!
-      </Text>
-      <Text>
-        App version: {packageJSON.version}{' '}
-        {appSettings.isUpdateAvailable() && (
-          <Text style={{color: theme.colors.primary}}>
-            {' '}
-            (update available!)
-          </Text>
-        )}
-      </Text>
-    </View>
+    </ScrollView>
   );
 };

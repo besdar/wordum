@@ -13,9 +13,7 @@ type Props = {
 };
 
 export const CollectionAdditionalSettings = ({control}: Props) => (
-  <Details
-    expandedTitle={translate('hide_additional_settings')}
-    collapsedTitle={translate('show_additional_settings')}>
+  <Details>
     <ControlledSegmentedButtons
       label={translate('types_of_exercises')}
       control={control}

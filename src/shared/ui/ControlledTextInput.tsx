@@ -1,7 +1,13 @@
 import {Controller, FieldValues, UseControllerProps} from 'react-hook-form';
 import {HelperText, TextInput} from 'react-native-paper';
 import React from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+
+const styles = StyleSheet.create({
+  view: {
+    flexGrow: 1,
+  },
+});
 
 type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
   Omit<
@@ -25,7 +31,7 @@ export const ControlledTextInput = <T extends FieldValues>({
     control={control}
     disabled={disabled}
     render={({field, fieldState}) => (
-      <View {...viewProps}>
+      <View {...viewProps} style={[styles.view, viewProps.style]}>
         <TextInput
           {...inputProps}
           value={String(field.value)}

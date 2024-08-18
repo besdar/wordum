@@ -5,11 +5,15 @@ import {useForm} from 'react-hook-form';
 import React, {useState} from 'react';
 import {Answers} from '../model/types';
 import {translate} from '../../../shared/lib/i18n';
+import {
+  AppSupportedLanguages,
+  LANGUAGE_FLAGS,
+} from '../../../shared/model/lang';
 
 type Props = {
   onAnswerPress: (answer: Answers) => void;
   learningWord: string;
-  learningLanguage: string;
+  learningLanguage: AppSupportedLanguages;
 };
 
 export const WritingFooter = ({
@@ -20,33 +24,31 @@ export const WritingFooter = ({
   const {control, handleSubmit, reset} = useForm({defaultValues: {answer: ''}});
   const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
   const goToNextWord = (answer: Answers) => {
-    reset();
     setShowCorrectAnswer(false);
+    reset();
 
     return onAnswerPress(answer);
   };
 
-  const submitAnswer = () =>
-    handleSubmit(({answer}) => {
-      const isCorrectAnswer =
-        answer.trim().toLowerCase() === learningWord.toLowerCase();
+  const submitAnswer = handleSubmit(({answer}) => {
+    const isCorrectAnswer =
+      answer.trim().toLowerCase() === learningWord.toLowerCase();
 
-      if (!isCorrectAnswer) {
-        setShowCorrectAnswer(true);
+    if (!isCorrectAnswer) {
+      setShowCorrectAnswer(true);
 
-        return;
-      }
+      return;
+    }
 
-      return goToNextWord(Answers.Correct);
-    });
+    return goToNextWord(Answers.Correct);
+  });
 
   if (showCorrectAnswer) {
     return (
-      <Grid columnGap={5} justifyContent="space-between">
-        <Grid direction="column" columnGap={5}>
-          <Text>{translate('correct_answer')}</Text>
-          <Text>{learningWord}</Text>
-        </Grid>
+      <Grid columnGap={5} justifyContent="space-between" alignItems="center">
+        <Text>
+          {translate('correct_answer')}: {learningWord}
+        </Text>
         <IconButton
           icon="skip-next"
           onPress={() => goToNextWord(Answers.Incorrect)}
@@ -65,16 +67,15 @@ export const WritingFooter = ({
       />
       <IconButton
         icon="skip-next"
-        onPress={() => onAnswerPress(Answers.Incorrect)}
+        onPress={() => setShowCorrectAnswer(true)}
         mode="contained"
       />
       <ControlledTextInput
-        label={`${translate('write_in')} ${learningLanguage}`}
+        label={`${translate('write_in')} ${LANGUAGE_FLAGS[learningLanguage]}`}
         name="answer"
         control={control}
         onSubmitEditing={submitAnswer}
         rules={{required: true}}
-        viewProps={{style: {flexGrow: 1}}}
         autoComplete="off"
         autoCapitalize="none"
       />

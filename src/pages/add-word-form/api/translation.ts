@@ -9,11 +9,11 @@ import {
 import {getReversoTranslation} from './reverso';
 import {getGoogleTranslation} from './google';
 import {APISources} from '../../../shared/model/apiSources';
-import {appSettings} from '../../../shared/config/AppSettings';
+import {appSettings} from '../../../shared/model/AppSettings';
 import {
   AppSupportedLanguages,
   SupportedLanguagesToI18nMap,
-} from '../../../shared/config/lang';
+} from '../../../shared/model/lang';
 
 export const getTranslation = async (
   word: string,

@@ -10,6 +10,7 @@ import {PagesStackProps} from '../../shared/model/navigator';
 import {showToastMessage} from '../../shared/lib/message';
 import {IconButton} from '../../shared/ui/IconButton';
 import {addWordToCollection} from '../collection-learning/model/storage';
+import {FormContainer} from '../../shared/ui/FormContainer';
 
 export const AddWordForm = ({
   route: {
@@ -51,7 +52,7 @@ export const AddWordForm = ({
       );
 
   return (
-    <Grid direction="column" rowGap={5} alignItems="stretch">
+    <FormContainer>
       <Grid alignItems="stretch">
         <ControlledTextInput
           control={control}
@@ -60,7 +61,6 @@ export const AddWordForm = ({
           rules={{required: true}}
           onPress={() => reset()}
           onSubmitEditing={onWordSubmit}
-          viewProps={{style: {flexGrow: 1}}}
         />
         <IconButton icon="translate" onPress={onWordSubmit} />
       </Grid>
@@ -80,7 +80,7 @@ export const AddWordForm = ({
       <Button
         mode="outlined"
         onPress={handleSubmit(onValid =>
-          addWordToCollection(collection, {
+          addWordToCollection(collection.id, {
             value: onValid.word.trim(),
             examples: onValid.examples.trim(),
             translation: onValid.translation.trim(),
@@ -92,6 +92,6 @@ export const AddWordForm = ({
         )}>
         {translate('add_word_to_this_collection')}
       </Button>
-    </Grid>
+    </FormContainer>
   );
 };

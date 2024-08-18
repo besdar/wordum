@@ -5,7 +5,7 @@ import {Grid} from '../../../shared/ui/Grid';
 import React from 'react';
 import {Collection} from '../../../shared/model/collection';
 import {getWordsToLearn} from '../../collection-learning/lib/learning';
-import {LANGUAGE_FLAGS} from '../../../shared/config/consts';
+import {LANGUAGE_FLAGS} from '../../../shared/model/lang';
 
 const styles = StyleSheet.create({
   collectionButton: {

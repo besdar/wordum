@@ -1,40 +1,98 @@
-import {Picker} from '@react-native-picker/picker';
-import {Controller, FieldValues, UseControllerProps} from 'react-hook-form';
+import {
+  Modal,
+  Portal,
+  Text,
+  TextInput,
+  TouchableRipple,
+} from 'react-native-paper';
 import React from 'react';
-import {View} from 'react-native';
-import {Text} from 'react-native-paper';
+import {ControlledTextInput} from './ControlledTextInput';
+import {StyleSheet, View} from 'react-native';
+import {Controller, FieldValues} from 'react-hook-form';
+import {useAppTheme} from '../../app/ui/Material3ThemeProvider';
 
-type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
-  Omit<
-    React.ComponentProps<typeof Picker>,
-    'onValueChange' | 'selectedValue' | 'enabled'
-  > & {label: string};
+const styles = StyleSheet.create({
+  modal: {
+    padding: 20,
+    width: '80%',
+    margin: 'auto',
+    borderRadius: 10,
+    maxHeight: '90%',
+  },
+  item: {
+    padding: 5,
+  },
+});
+
+type PickerItem = {
+  value: string;
+  label: string;
+};
+
+type Props<T extends FieldValues> = {
+  items: PickerItem[];
+} & React.ComponentProps<typeof ControlledTextInput<T>>;
 
 export const ControlledPicker = <T extends FieldValues>({
+  items,
   control,
   name,
   rules,
   disabled,
-  children,
-  label,
-  ...pickerProps
-}: Props<T>) => (
-  <View>
-    <Text>{label}</Text>
+  viewProps = {},
+  ...inputProps
+}: Props<T>) => {
+  const [visible, setVisible] = React.useState(false);
+  const theme = useAppTheme();
+
+  return (
     <Controller
       name={name}
       rules={rules}
       control={control}
       disabled={disabled}
-      render={({field}) => (
-        <Picker
-          {...pickerProps}
-          selectedValue={field.value}
-          onValueChange={field.onChange}
-          enabled={!field.disabled}>
-          {children}
-        </Picker>
+      render={({field, fieldState}) => (
+        <View {...viewProps}>
+          <TextInput
+            {...inputProps}
+            value={items.find(item => item.value === field.value)?.label}
+            disabled={field.disabled}
+            onBlur={field.onBlur}
+            error={Boolean(fieldState.error)}
+            editable={false}
+            mode="outlined"
+            right={
+              <TextInput.Icon
+                icon="arrow-down-drop-circle"
+                onPress={() => setVisible(true)}
+              />
+            }
+          />
+          <Portal>
+            <Modal
+              visible={visible}
+              onDismiss={() => setVisible(false)}
+              contentContainerStyle={[
+                styles.modal,
+                {backgroundColor: theme.colors.background},
+              ]}>
+              {/* TODO: TouchableRipple this is not working when wrapped with ScrollView */}
+              {items.map(item => (
+                <TouchableRipple
+                  key={item.value}
+                  onPress={() => {
+                    field.onChange(item.value);
+                    setVisible(false);
+                  }}>
+                  <Text variant="bodyLarge" style={styles.item}>
+                    {item.label}
+                  </Text>
+                </TouchableRipple>
+              ))}
+            </Modal>
+          </Portal>
+        </View>
       )}
     />
-  </View>
-);
+  );
+};

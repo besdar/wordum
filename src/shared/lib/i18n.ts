@@ -21,7 +21,7 @@ import {findBestLanguageTag} from 'react-native-localize';
 import {
   GoogleSupportedLanguages,
   SupportedLanguagesToI18nMap,
-} from '../config/lang';
+} from '../model/lang';
 
 const languageDetectorPlugin = {
   type: 'languageDetector',
@@ -38,7 +38,7 @@ i18n
   .use(initReactI18next)
   .use(languageDetectorPlugin)
   .init({
-    fallbackLng: 'en',
+    fallbackLng: GoogleSupportedLanguages.English,
     resources: {
       [GoogleSupportedLanguages.English]: {translation: en},
       [GoogleSupportedLanguages.Arabic]: {translation: ar},

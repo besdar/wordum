@@ -1,3 +1,5 @@
+import ReversoSupportedLanguagesLib from 'reverso-api/src/enums/languages';
+
 export enum GoogleSupportedLanguages {
   Afrikaans = 'af',
   Albanian = 'sq',
@@ -163,3 +165,24 @@ export const SupportedLanguagesToI18nMap: Record<
   [AppSupportedLanguages.UKRAINIAN]: GoogleSupportedLanguages.Ukrainian,
   [AppSupportedLanguages.CHINESE]: GoogleSupportedLanguages.Chinese,
 };
+
+export const ReversoSupportedLanguages = ReversoSupportedLanguagesLib;
+export const LANGUAGE_LIST = Object.entries(ReversoSupportedLanguages || {});
+export const LANGUAGE_FLAGS: Record<AppSupportedLanguages, string> = {
+  english: '🇬🇧',
+  spanish: '🇪🇸',
+  french: '🇫🇷',
+  german: '🇩🇪',
+  italian: '🇮🇹',
+  portuguese: '🇧🇷',
+  russian: '🇷🇺',
+  chinese: '🇨🇳',
+  japanese: '🇯🇵',
+  arabic: '🇸🇦',
+  turkish: '🇹🇷',
+  dutch: '🇳🇱',
+  hebrew: '🇮🇱',
+  polish: '🇵🇱',
+  romanian: '🇷🇴',
+  ukrainian: '🇺🇦',
+} as const;

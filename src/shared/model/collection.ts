@@ -1,5 +1,5 @@
 import {Card} from 'ts-fsrs';
-import {AppSupportedLanguages} from '../config/lang';
+import {AppSupportedLanguages} from './lang';
 
 export enum LearningType {
   Flascards = 'Flashcards',

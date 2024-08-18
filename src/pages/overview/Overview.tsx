@@ -31,7 +31,7 @@ export const Overview = ({
           onDelete={() =>
             showDeleteConfirmationAlert()
               .then(() => deleteCollection(collection))
-              .then(() => refetch())
+              .finally(() => refetch())
           }
           onStartLearning={() =>
             navigation.push('CollectionLearning', {

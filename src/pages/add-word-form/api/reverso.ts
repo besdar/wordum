@@ -1,5 +1,5 @@
 import Reverso from 'reverso-api';
-import ReversoSupportedLanguages from 'reverso-api/src/enums/languages';
+import {ReversoSupportedLanguages} from '../../../shared/model/lang';
 
 const reversoAPI = new Reverso();
 

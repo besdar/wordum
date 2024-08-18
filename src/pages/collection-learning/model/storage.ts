@@ -1,4 +1,4 @@
-import {saveCollection} from '../../../shared/model/storage';
+import {getCollection, saveCollection} from '../../../shared/model/storage';
 import {
   downloadVoice,
   createLearningCardsForCollectionItem,
@@ -6,16 +6,14 @@ import {
 } from '../../../shared/lib/collection';
 import {translate} from '../../../shared/lib/i18n';
 import {showToastMessage} from '../../../shared/lib/message';
-import {
-  Collection,
-  LearningCard,
-  LearningType,
-} from '../../../shared/model/collection';
+import {LearningCard, LearningType} from '../../../shared/model/collection';
 
 export const addWordToCollection = async (
-  collection: Collection,
+  collectionId: string,
   newItem: Omit<LearningCard, 'learningType' | 'fsrsCard' | 'collectionId'>,
 ) => {
+  const collection = await getCollection(collectionId);
+
   if (
     Object.values(collection.words)
       .flat()

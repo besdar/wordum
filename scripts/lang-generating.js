@@ -4,14 +4,14 @@ const {exec} = require('child_process');
 const {HttpProxyAgent} = require('http-proxy-agent');
 
 const separator = '\n';
-const pathToLangMap = 'src/shared/config/lang';
+const pathToLangMap = 'src/shared/model/lang';
 
 const writeFile = (pathToFile, fileContent) =>
   fs.writeFile(pathToFile, fileContent, console.log);
 
 const translateTextToFile = async (textToTranslate, langKey, langEntries) => {
   const httpProxyUrl = process.argv[2]; // http://127.0.0.1:80 <- https://free-proxy-list.net/
-  const agent = new HttpProxyAgent(httpProxyUrl);
+  const agent = httpProxyUrl ? new HttpProxyAgent(httpProxyUrl) : undefined;
 
   const {text: translatedText} = await translate(textToTranslate, {
     from: 'en',

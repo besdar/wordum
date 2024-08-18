@@ -1,17 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {APISources} from '../model/apiSources';
-import {StorageKeys} from '../model/storage';
+import {APISources} from './apiSources';
+import {StorageKeys} from './storage';
 import {getRemoteAppVersion} from '../lib/update';
 import packageJSON from '../../../package.json';
 
 export type AppSettingsValues = {
   apiSource: APISources;
+  showAdditionalStat: boolean;
+  timeGradeLimitEasy: number;
+  timeGradeLimitGood: number;
+  timeTakenPerCharacterInput: number;
 };
 
 class AppSettings {
   #isUpdateAvailable: boolean = false;
   #settings: AppSettingsValues = {
     apiSource: APISources.ReversoContextUnofficial,
+    showAdditionalStat: false,
+    timeGradeLimitEasy: 7000,
+    timeGradeLimitGood: 15000,
+    timeTakenPerCharacterInput: 250,
   };
 
   constructor() {
@@ -25,8 +33,12 @@ class AppSettings {
     );
   }
 
-  getSetting(key: keyof AppSettingsValues) {
+  getSetting<T extends keyof AppSettingsValues>(key: T) {
     return this.#settings[key];
+  }
+
+  getSettings(): Readonly<AppSettingsValues> {
+    return {...this.#settings};
   }
 
   setSettings(settings: AppSettingsValues) {
@@ -39,7 +51,7 @@ class AppSettings {
     const settings = await AsyncStorage.getItem(StorageKeys.APP_SETTINGS);
 
     if (settings) {
-      this.#settings = JSON.parse(settings);
+      this.#settings = {...this.#settings, ...JSON.parse(settings)};
     }
 
     const remoteVersion = await getRemoteAppVersion();

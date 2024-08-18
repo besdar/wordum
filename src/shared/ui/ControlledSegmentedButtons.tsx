@@ -1,7 +1,7 @@
 import {Controller, FieldValues, UseControllerProps} from 'react-hook-form';
 import {SegmentedButtons, Text} from 'react-native-paper';
 import React from 'react';
-import {View} from 'react-native';
+import {Grid} from './Grid';
 
 type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
   Omit<
@@ -19,7 +19,7 @@ export const ControlledSegmentedButtons = <T extends FieldValues>({
   label,
   ...segmentedButtonsProps
 }: Props<T>) => (
-  <View>
+  <Grid direction="column" rowGap={5}>
     <Text>{label}</Text>
     <Controller
       name={name}
@@ -34,5 +34,5 @@ export const ControlledSegmentedButtons = <T extends FieldValues>({
         />
       )}
     />
-  </View>
+  </Grid>
 );

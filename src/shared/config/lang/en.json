@@ -37,7 +37,7 @@
   "update": "Update",
   "settings": "Settings",
   "about": "About",
-  "api_source": "API source",
+  "api_source": "API translation source",
   "save": "Save",
   "collection_import": "Collection import",
   "import": "Import",
@@ -47,5 +47,15 @@
   "correct_answer": "Correct answer",
   "show_additional_settings": "Show additional settings",
   "hide_additional_settings": "Hide additional settings",
-  "types_of_exercises": "Types of exercises"
+  "types_of_exercises": "Types of exercises",
+  "show_additional_statistics": "Show additional statistics",
+  "about_text": "Welcome to Wordum, your go-to app for learning languages and expanding your vocabulary! Simply input a word or phrase, and this app will automatically fill in translations, audio, and usage examples. With listening and writing exercises, Wordum adapts to your learning style using the Open Spaced Repetition algorithm, similar to that of the Anki app. This is an open-source project licensed under GPL-3 license with no tracking included. If you encounter any issues or bugs, it would be highly appreciated if you report them by creating an issue on the project's GitHub page. Your feedback is invaluable in helping to improve Wordum!",
+  "open_project_page": "Open project's GitHub page",
+  "donate_text": "If you appreciate my work and would like to support the project, please consider making a donation. Thank you for your support!",
+  "donate": "Donate",
+  "app_version": "App version",
+  "settings_saved": "Settings saved",
+  "time_per_letter_input": "Time taken to write one letter (ms)",
+  "time_easy_grade": "Time to be considered as «easy» grade (ms)",
+  "time_good_grade": "Time to be considered as «good» grade (ms)"
 }
