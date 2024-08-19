@@ -5,6 +5,7 @@ import {StyleSheet} from 'react-native';
 import {translate} from '../../../shared/lib/i18n';
 import {Button} from '../../../shared/ui/Button';
 import {IconButton} from '../../../shared/ui/IconButton';
+import {showConfirmationAlert} from '../../../shared/lib/message';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -42,7 +43,12 @@ export const FlashcardButtons = ({
       <IconButton
         mode="contained"
         icon="delete"
-        onPress={() => onAnswerPress(Answers.Delete)}
+        onPress={() =>
+          showConfirmationAlert(
+            translate('card_deletion'),
+            translate('card_deletion_message'),
+          ).then(() => onAnswerPress(Answers.Delete))
+        }
       />
       <Button
         contentStyle={styles.checkButtonContent}

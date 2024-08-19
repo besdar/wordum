@@ -167,7 +167,7 @@ export const SupportedLanguagesToI18nMap: Record<
 };
 
 export const ReversoSupportedLanguages = ReversoSupportedLanguagesLib;
-export const LANGUAGE_LIST = Object.entries(ReversoSupportedLanguages || {});
+export const LANGUAGE_LIST = Object.entries(AppSupportedLanguages);
 export const LANGUAGE_FLAGS: Record<AppSupportedLanguages, string> = {
   english: '🇬🇧',
   spanish: '🇪🇸',

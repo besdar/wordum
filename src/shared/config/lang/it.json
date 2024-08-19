@@ -57,5 +57,8 @@
   "settings_saved": "Impostazioni salvate",
   "time_per_letter_input": "Tempo impiegato per scrivere una lettera (ms)",
   "time_easy_grade": "Tempo per essere considerato grado «facile» (ms)",
-  "time_good_grade": "Tempo per essere considerato voto «buono» (ms)"
+  "time_good_grade": "Tempo per essere considerato voto «buono» (ms)",
+  "nothing_to_learn": "Non c'è niente da imparare per ora",
+  "card_deletion": "Cancellazione della scheda didattica",
+  "card_deletion_message": "Sei sicuro di voler eliminare questa scheda didattica dalla raccolta?"
 }

@@ -4,9 +4,10 @@ import {deleteCollection, getCollections} from '../../shared/model/storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AddCollectionButton} from './ui/AddCollectionButton';
 import {useQuery} from '../../shared/lib/useQuery';
-import {showDeleteConfirmationAlert} from './ui/showDeleteConfirmationAlert';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {CollectionItems} from './ui/CollectionItems';
+import {showConfirmationAlert} from '../../shared/lib/message';
+import {translate} from '../../shared/lib/i18n';
 
 export const Overview = ({
   navigation,
@@ -29,7 +30,10 @@ export const Overview = ({
             })
           }
           onDelete={() =>
-            showDeleteConfirmationAlert()
+            showConfirmationAlert(
+              translate('collection_deletion'),
+              translate('collection_deletion_message'),
+            )
               .then(() => deleteCollection(collection))
               .finally(() => refetch())
           }

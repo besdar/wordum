@@ -57,5 +57,8 @@
   "settings_saved": "Setările au fost salvate",
   "time_per_letter_input": "Timp necesar pentru a scrie o scrisoare (ms)",
   "time_easy_grade": "Timpul care trebuie considerat ca fiind „ușor” (ms)",
-  "time_good_grade": "Timp pentru a fi considerat ca nota „bună” (ms)"
+  "time_good_grade": "Timp pentru a fi considerat ca nota „bună” (ms)",
+  "nothing_to_learn": "Nu este nimic de învățat deocamdată",
+  "card_deletion": "Ştergerea cardului de învăţare",
+  "card_deletion_message": "Sigur doriți să ștergeți acest card de învățare din colecție?"
 }

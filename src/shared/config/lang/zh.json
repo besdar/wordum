@@ -57,5 +57,8 @@
   "settings_saved": "设置已保存",
   "time_per_letter_input": "写一封信所需的时间（毫秒）",
   "time_easy_grade": "被视为“简单”等级的时间（毫秒）",
-  "time_good_grade": "被视为“好”等级的时间（毫秒）"
+  "time_good_grade": "被视为“好”等级的时间（毫秒）",
+  "nothing_to_learn": "暂时没有什么可学的",
+  "card_deletion": "学习卡删除",
+  "card_deletion_message": "您确定要从收藏中删除这张学习卡吗？"
 }

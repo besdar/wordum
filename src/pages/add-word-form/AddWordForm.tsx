@@ -11,6 +11,7 @@ import {showToastMessage} from '../../shared/lib/message';
 import {IconButton} from '../../shared/ui/IconButton';
 import {addWordToCollection} from '../collection-learning/model/storage';
 import {FormContainer} from '../../shared/ui/FormContainer';
+import {LANGUAGE_FLAGS} from '../../shared/model/lang';
 
 export const AddWordForm = ({
   route: {
@@ -57,7 +58,9 @@ export const AddWordForm = ({
         <ControlledTextInput
           control={control}
           name="word"
-          label={`${translate('word')} (${collection.sourceLanguage})`}
+          label={`${translate('word')} (${
+            LANGUAGE_FLAGS[collection.sourceLanguage]
+          })`}
           rules={{required: true}}
           onPress={() => reset()}
           onSubmitEditing={onWordSubmit}
@@ -68,7 +71,9 @@ export const AddWordForm = ({
         rules={{required: true}}
         control={control}
         name="translation"
-        label={`${translate('translation')} (${collection.targetLanguage})`}
+        label={`${translate('translation')} (${
+          LANGUAGE_FLAGS[collection.targetLanguage]
+        })`}
         disabled={!dirtyFields.word}
       />
       <ControlledTextInput
@@ -76,6 +81,7 @@ export const AddWordForm = ({
         name="examples"
         label={translate('usage_examples')}
         disabled={!dirtyFields.word}
+        multiline
       />
       <Button
         mode="outlined"

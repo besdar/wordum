@@ -57,5 +57,8 @@
   "settings_saved": "Paramètres enregistrés",
   "time_per_letter_input": "Temps nécessaire pour écrire une lettre (ms)",
   "time_easy_grade": "Temps pour être considéré comme un grade « facile » (ms)",
-  "time_good_grade": "Temps pour être considéré comme « bon » (ms)"
+  "time_good_grade": "Temps pour être considéré comme « bon » (ms)",
+  "nothing_to_learn": "Il n'y a rien à apprendre pour l'instant",
+  "card_deletion": "Suppression de la carte d'apprentissage",
+  "card_deletion_message": "Etes-vous sûr de vouloir supprimer cette carte d'apprentissage de la collection ?"
 }

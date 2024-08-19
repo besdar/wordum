@@ -150,6 +150,28 @@ export const CollectionLearning = ({
     );
   }
 
+  if (!trainingWord) {
+    return (
+      <Grid
+        direction="column"
+        fillAwailableSpace
+        alignItems="center"
+        justifyContent="center"
+        rowGap={10}>
+        <Icon source="emoticon-neutral-outline" size={100} />
+        <Text>{translate('nothing_to_learn')}</Text>
+        <Button
+          mode="contained"
+          onPress={() => navigation.navigate('AddWordForm', {collection})}>
+          {translate('add_word_to_this_collection')}
+        </Button>
+        <Button mode="contained" onPress={() => navigation.goBack()}>
+          {translate('return_back')}
+        </Button>
+      </Grid>
+    );
+  }
+
   return (
     <Grid
       direction="column"
@@ -157,7 +179,7 @@ export const CollectionLearning = ({
       alignItems="center"
       justifyContent="center"
       rowGap={10}>
-      <Icon source="emoticon-sad-outline" size={100} color="red" />
+      <Icon source="emoticon-dead-outline" size={100} color="red" />
       <Text>{translate('something_went_wrong')}</Text>
       <Button mode="outlined" onPress={() => navigation.goBack()}>
         {translate('return_back')}

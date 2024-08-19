@@ -57,5 +57,8 @@
   "settings_saved": "Einstellungen gespeichert",
   "time_per_letter_input": "Zeit zum Schreiben eines Briefes (ms)",
   "time_easy_grade": "Zeit bis zur Einstufung als „leichte“ Note (ms)",
-  "time_good_grade": "Zeit bis zur Note „gut“ (ms)"
+  "time_good_grade": "Zeit bis zur Note „gut“ (ms)",
+  "nothing_to_learn": "Es gibt vorerst nichts zu lernen",
+  "card_deletion": "Löschen der Karte lernen",
+  "card_deletion_message": "Möchten Sie diese Lernkarte wirklich aus der Sammlung löschen?"
 }

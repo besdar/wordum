@@ -57,5 +57,8 @@
   "settings_saved": "Ustawienia zostały zapisane",
   "time_per_letter_input": "Czas potrzebny na napisanie jednej litery (ms)",
   "time_easy_grade": "Czas do uznania za ocenę „łatwą” (ms)",
-  "time_good_grade": "Czas, w którym należy uznać ocenę za „dobrą” (ms)"
+  "time_good_grade": "Czas, w którym należy uznać ocenę za „dobrą” (ms)",
+  "nothing_to_learn": "Na razie nie ma się czego uczyć",
+  "card_deletion": "Usunięcie karty edukacyjnej",
+  "card_deletion_message": "Czy na pewno chcesz usunąć tę kartę edukacyjną z kolekcji?"
 }

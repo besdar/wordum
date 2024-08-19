@@ -10,11 +10,10 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 
 ## Demos
 
-![Screenshot 1](path/to/screenshot1.png)
-![Screenshot 2](path/to/screenshot2.png)
-![Screenshot 3](path/to/screenshot3.png)
-![Demo 1](path/to/demo1.gif)
-![Demo 2](path/to/demo2.gif)
+<img src="./assets/demo.gif" alt="demo" width="150"/>
+<img src="./assets/Screenshot2.png" alt="Create collection screen" width="150"/>
+<img src="./assets/Screenshot4.png" alt="Exercises screen" width="150"/>
+<img src="./assets/Screenshot3.png" alt="Collections screen" width="150"/>
 
 ## Main features
 

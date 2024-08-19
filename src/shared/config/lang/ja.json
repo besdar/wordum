@@ -57,5 +57,8 @@
   "settings_saved": "設定が保存されました",
   "time_per_letter_input": "1 文字を書くのにかかる時間 (ミリ秒)",
   "time_easy_grade": "「簡単」グレードとみなされる時間 (ミリ秒)",
-  "time_good_grade": "「良好」グレードとみなされるまでの時間 (ミリ秒)"
+  "time_good_grade": "「良好」グレードとみなされるまでの時間 (ms)",
+  "nothing_to_learn": "今のところ学ぶべきことは何もない",
+  "card_deletion": "学習カードの削除",
+  "card_deletion_message": "この学習カードをコレクションから削除してもよろしいですか?"
 }

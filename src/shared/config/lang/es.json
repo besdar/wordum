@@ -57,5 +57,8 @@
   "settings_saved": "Configuración guardada",
   "time_per_letter_input": "Tiempo necesario para escribir una letra (ms)",
   "time_easy_grade": "Tiempo para ser considerado como grado «fácil» (ms)",
-  "time_good_grade": "Tiempo para ser considerado como nota «buena» (ms)"
+  "time_good_grade": "Tiempo para ser considerado como nota «buena» (ms)",
+  "nothing_to_learn": "No hay nada que aprender por ahora.",
+  "card_deletion": "Eliminación de tarjeta de aprendizaje",
+  "card_deletion_message": "¿Estás seguro de que deseas eliminar esta tarjeta de aprendizaje de la colección?"
 }

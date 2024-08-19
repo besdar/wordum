@@ -9,6 +9,7 @@ import {
   AppSupportedLanguages,
   LANGUAGE_FLAGS,
 } from '../../../shared/model/lang';
+import {showConfirmationAlert} from '../../../shared/lib/message';
 
 type Props = {
   onAnswerPress: (answer: Answers) => void;
@@ -63,7 +64,12 @@ export const WritingFooter = ({
       <IconButton
         mode="contained"
         icon="delete"
-        onPress={() => onAnswerPress(Answers.Delete)}
+        onPress={() =>
+          showConfirmationAlert(
+            translate('card_deletion'),
+            translate('card_deletion_message'),
+          ).then(() => onAnswerPress(Answers.Delete))
+        }
       />
       <IconButton
         icon="skip-next"

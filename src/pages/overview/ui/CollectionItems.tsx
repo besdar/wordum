@@ -28,44 +28,46 @@ export const CollectionItems = ({
   onDelete,
   onStartLearning,
   onUpdateCollection,
-}: Props) => (
-  <CollectionContainer key={collection.id}>
-    <Badge style={styles.badge}>
-      {getWordsToLearn(collection.words).length}
-    </Badge>
-    <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
-      <TouchableRipple onPress={onStartLearning}>
-        <Grid direction="column" alignItems="center">
-          <Text>{collection.name}</Text>
-          <Text>
-            {`${LANGUAGE_FLAGS[collection.sourceLanguage]} -> ${
-              LANGUAGE_FLAGS[collection.targetLanguage]
-            }`}
-          </Text>
-        </Grid>
-      </TouchableRipple>
-    </Grid>
-    <Grid justifyContent="space-between">
-      <IconButton
-        icon="delete"
-        onPress={onDelete}
-        accessibilityLabel="Delete collection"
-        size={15}
-        style={styles.collectionButton}
-      />
-      <IconButton
-        icon="cog"
-        size={15}
-        style={styles.collectionButton}
-        onPress={onUpdateCollection}
-      />
-      <IconButton
-        icon="plus-circle"
-        onPress={onAddWord}
-        accessibilityLabel="Add a word"
-        size={15}
-        style={styles.collectionButton}
-      />
-    </Grid>
-  </CollectionContainer>
-);
+}: Props) => {
+  return (
+    <CollectionContainer key={collection.id}>
+      <Badge style={styles.badge}>
+        {getWordsToLearn(collection.words).length}
+      </Badge>
+      <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
+        <TouchableRipple onPress={onStartLearning}>
+          <Grid direction="column" alignItems="center">
+            <Text>{collection.name}</Text>
+            <Text>
+              {`${LANGUAGE_FLAGS[collection.sourceLanguage]} -> ${
+                LANGUAGE_FLAGS[collection.targetLanguage]
+              }`}
+            </Text>
+          </Grid>
+        </TouchableRipple>
+      </Grid>
+      <Grid justifyContent="space-between">
+        <IconButton
+          icon="delete"
+          onPress={onDelete}
+          accessibilityLabel="Delete collection"
+          size={15}
+          style={styles.collectionButton}
+        />
+        <IconButton
+          icon="cog"
+          size={15}
+          style={styles.collectionButton}
+          onPress={onUpdateCollection}
+        />
+        <IconButton
+          icon="plus-circle"
+          onPress={onAddWord}
+          accessibilityLabel="Add a word"
+          size={15}
+          style={styles.collectionButton}
+        />
+      </Grid>
+    </CollectionContainer>
+  );
+};

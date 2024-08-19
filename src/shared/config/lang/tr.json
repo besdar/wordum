@@ -57,5 +57,8 @@
   "settings_saved": "Ayarlar kaydedildi",
   "time_per_letter_input": "Bir harf yazmak için geçen süre (ms)",
   "time_easy_grade": "«Kolay» not olarak dikkate alınma süresi (ms)",
-  "time_good_grade": "“İyi” not olarak kabul edilme süresi (ms)"
+  "time_good_grade": "“İyi” not olarak kabul edilme süresi (ms)",
+  "nothing_to_learn": "şimdilik öğrenilecek bir şey yok",
+  "card_deletion": "Öğrenme kartının silinmesi",
+  "card_deletion_message": "Bu öğrenme kartını koleksiyondan silmek istediğinizden emin misiniz?"
 }

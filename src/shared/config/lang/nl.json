@@ -57,5 +57,8 @@
   "settings_saved": "Instellingen opgeslagen",
   "time_per_letter_input": "Tijd die nodig is om één letter te schrijven (ms)",
   "time_easy_grade": "Tijd om als “gemakkelijk” cijfer te worden beschouwd (ms)",
-  "time_good_grade": "Tijd om als “goed” cijfer te worden beschouwd (ms)"
+  "time_good_grade": "Tijd om als “goed” cijfer te worden beschouwd (ms)",
+  "nothing_to_learn": "Er valt voorlopig niets te leren",
+  "card_deletion": "Leerkaart verwijderen",
+  "card_deletion_message": "Weet u zeker dat u deze leerkaart uit de collectie wilt verwijderen?"
 }
