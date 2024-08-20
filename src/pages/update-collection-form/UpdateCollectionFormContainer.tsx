@@ -33,7 +33,7 @@ export const UpdateCollectionFormContainer = ({
         LearningType.Listening,
         LearningType.Writing,
       ],
-      words: {},
+      words: collection?.words || {},
     },
   });
 

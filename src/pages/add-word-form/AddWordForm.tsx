@@ -62,10 +62,13 @@ export const AddWordForm = ({
             LANGUAGE_FLAGS[collection.sourceLanguage]
           })`}
           rules={{required: true}}
-          onPress={() => reset()}
           onSubmitEditing={onWordSubmit}
         />
-        <IconButton icon="translate" onPress={onWordSubmit} />
+        <IconButton
+          icon="translate"
+          onPress={onWordSubmit}
+          disabled={!dirtyFields.word}
+        />
       </Grid>
       <ControlledTextInput
         rules={{required: true}}
