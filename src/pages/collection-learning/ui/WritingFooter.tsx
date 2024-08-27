@@ -47,7 +47,7 @@ export const WritingFooter = ({
   if (showCorrectAnswer) {
     return (
       <Grid columnGap={5} justifyContent="space-between" alignItems="center">
-        <Text>
+        <Text style={{flexShrink: 1}}>
           {translate('correct_answer')}: {learningWord}
         </Text>
         <IconButton

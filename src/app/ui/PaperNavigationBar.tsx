@@ -37,7 +37,7 @@ export const PaperNavigationBar = ({
             theme={{colors: {primary: 'green'}}}
             onPress={() => {
               setVisible(false);
-              Linking.openURL(packageJSON.homepage);
+              Linking.openURL(`${packageJSON.homepage}/releases/latest`);
             }}
             title={translate('update')}
           />

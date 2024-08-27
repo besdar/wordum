@@ -41,11 +41,10 @@ export const ControlledTextInput = <T extends FieldValues>({
           error={Boolean(fieldState.error)}
         />
         <HelperText
-          // TODO: long error text moves other elements out of the screen
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             width: '100%',
             display: fieldState.error?.message ? undefined : 'none',
+            flexShrink: 1,
           }}
           type="error"
           visible={Boolean(fieldState.error?.message)}
