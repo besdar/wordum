@@ -6,6 +6,7 @@ import packageJSON from '../../../package.json';
 import {Linking} from 'react-native';
 import {translate} from '../../shared/lib/i18n';
 import {appSettings} from '../../shared/model/AppSettings';
+import {exportData} from '../lib/export';
 
 export const PaperNavigationBar = ({
   navigation,
@@ -49,6 +50,11 @@ export const PaperNavigationBar = ({
             navigation.push('Import');
           }}
           title={translate('collection_import')}
+        />
+        <Menu.Item
+          leadingIcon="tray-arrow-up"
+          onPress={() => exportData().finally(() => setVisible(false))}
+          title={translate('data_export')}
         />
         <Menu.Item
           leadingIcon="cog"

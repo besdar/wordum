@@ -32,7 +32,10 @@ export const CollectionItems = ({
   return (
     <CollectionContainer key={collection.id}>
       <Badge style={styles.badge}>
-        {getWordsToLearn(collection.words).length}
+        {
+          getWordsToLearn(collection.words, collection.typesOfCardsToGenerate)
+            .length
+        }
       </Badge>
       <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
         <TouchableRipple onPress={onStartLearning}>

@@ -39,8 +39,24 @@ export const getFsrsRatingFromUserAnswer = (
 const filterActualCards = (card: LearningCard) =>
   new Date(card.fsrsCard.due) < new Date();
 
-export const getCardsToLearn = (cards: LearningCard[]) =>
-  cards.filter(filterActualCards);
+export const getCardsToLearn = (
+  cards: LearningCard[],
+  typesOfCardsToGenerate: LearningType[],
+) =>
+  cards.filter(
+    card =>
+      filterActualCards(card) &&
+      typesOfCardsToGenerate.includes(card.learningType),
+  );
 
-export const getWordsToLearn = (words: CollectionItems) =>
-  Object.values(words).filter(cards => cards.some(filterActualCards));
+export const getWordsToLearn = (
+  words: CollectionItems,
+  typesOfCardsToGenerate: LearningType[],
+) =>
+  Object.values(words).filter(cards =>
+    cards.some(
+      card =>
+        filterActualCards(card) &&
+        typesOfCardsToGenerate.includes(card.learningType),
+    ),
+  );

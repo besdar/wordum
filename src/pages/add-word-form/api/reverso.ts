@@ -10,18 +10,4 @@ export const getReversoTranslation = (
   word: string,
   sourceLanguage: ReversoSupportedLanguagesType,
   targetLanguage: ReversoSupportedLanguagesType,
-) =>
-  new Promise<ReversoResponse>((resolve, reject) =>
-    reversoAPI.getTranslation(
-      word,
-      sourceLanguage,
-      targetLanguage,
-      (err: any, response: ReversoResponse | PromiseLike<ReversoResponse>) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(response);
-        }
-      },
-    ),
-  );
+) => reversoAPI.getTranslation(word, sourceLanguage, targetLanguage);

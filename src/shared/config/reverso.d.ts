@@ -45,7 +45,7 @@ declare module 'reverso-api' {
       source: string,
       target: string,
       callback?: CallbackFunction,
-    ): ReversoResponse;
+    ): Promise<ReversoResponse>;
   }
 
   export = Reverso;

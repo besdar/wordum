@@ -107,3 +107,8 @@ export const deleteCollectionItem = async (
 
   return deleteCollectionItemFiles(collectionItem);
 };
+
+export const getDataExport = () =>
+  AsyncStorage.getAllKeys().then(keys =>
+    Promise.all(keys.map(key => AsyncStorage.getItem(key))),
+  );

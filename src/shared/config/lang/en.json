@@ -60,5 +60,6 @@
   "time_good_grade": "Time to be considered as «good» grade (ms)",
   "nothing_to_learn": "There is nothing to learn for now",
   "card_deletion": "Learning card deletion",
-  "card_deletion_message": "Are you sure you want to delete this learning card from the collection?"
+  "card_deletion_message": "Are you sure you want to delete this learning card from the collection?",
+  "data_export": "Data export"
 }

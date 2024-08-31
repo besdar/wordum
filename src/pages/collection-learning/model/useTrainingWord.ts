@@ -33,18 +33,26 @@ export const useTrainingWord = (collection: Collection) => {
   });
 
   useEffect(() => {
-    const listOfCardsMappedToWordsToLearn = getWordsToLearn(collection.words)
+    const listOfCardsMappedToWordsToLearn = getWordsToLearn(
+      collection.words,
+      collection.typesOfCardsToGenerate,
+    )
       .slice(0, collection.wordsToTrain)
       .flat();
 
-    const result = getCardsToLearn(listOfCardsMappedToWordsToLearn).sort(
-      () => Math.random() - 0.5,
-    );
+    const result = getCardsToLearn(
+      listOfCardsMappedToWordsToLearn,
+      collection.typesOfCardsToGenerate,
+    ).sort(() => Math.random() - 0.5);
 
     setWordsToLearn(result);
     setCollectionItem(result[0]);
     setTimer(Date.now());
-  }, [collection?.words, collection?.wordsToTrain]);
+  }, [
+    collection.typesOfCardsToGenerate,
+    collection.words,
+    collection.wordsToTrain,
+  ]);
 
   const setNextTrainingWord = async (previousAnswer: Answers) => {
     let words = wordsToLearn;
@@ -77,7 +85,10 @@ export const useTrainingWord = (collection: Collection) => {
       setWordsToLearn(words);
     }
 
-    const filteredWords = getCardsToLearn(words);
+    const filteredWords = getCardsToLearn(
+      words,
+      collection.typesOfCardsToGenerate,
+    );
     setWordsCount(words.length - filteredWords.length);
     const nextWord = filteredWords[0];
 

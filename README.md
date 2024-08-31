@@ -42,7 +42,6 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 - automatic github release pipeline
 - F-Droid publication
 - random emotional support cards during exercises
-- app's data export
 - cloud backup support
 - web support
 - [you name it](https://github.com/besdar/wordum/issues) 😉
