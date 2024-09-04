@@ -5,16 +5,13 @@ import {
   LearningType,
 } from '../../../shared/model/collection';
 import {fsrs, Rating} from 'ts-fsrs';
-import {
-  getFsrsRatingFromUserAnswer,
-  getCardsToLearn,
-  getWordsToLearn,
-} from '../lib/learning';
+import {getFsrsRatingFromUserAnswer, getCardsToLearn} from '../lib/learning';
 import {Answers} from './types';
-import {
-  deleteCollectionItem,
-  saveCollection,
-} from '../../../shared/model/storage';
+import {setLearningVoice} from '../lib/sound';
+import {showToastMessage} from '../../../shared/lib/message';
+import {translate} from '../../../shared/lib/i18n';
+import {appSettings} from '../../../shared/model/AppSettings';
+import {ToastAndroid} from 'react-native';
 
 export const useTrainingWord = (collection: Collection) => {
   const learingInstance = useMemo(() => fsrs(), []);
@@ -33,26 +30,36 @@ export const useTrainingWord = (collection: Collection) => {
   });
 
   useEffect(() => {
-    const listOfCardsMappedToWordsToLearn = getWordsToLearn(
-      collection.words,
-      collection.typesOfCardsToGenerate,
-    )
-      .slice(0, collection.wordsToTrain)
+    const supportedLearningTypes = collection.getProperty(
+      'supportedLearningTypes',
+    );
+    const listOfCardsMappedToWordsToLearn = collection
+      .getWordsToLearn()
+      .slice(0, collection.getProperty('wordsToTrain'))
       .flat();
 
     const result = getCardsToLearn(
       listOfCardsMappedToWordsToLearn,
-      collection.typesOfCardsToGenerate,
+      supportedLearningTypes,
     ).sort(() => Math.random() - 0.5);
 
     setWordsToLearn(result);
     setCollectionItem(result[0]);
+    setIsItFinal(!result[0]);
     setTimer(Date.now());
-  }, [
-    collection.typesOfCardsToGenerate,
-    collection.words,
-    collection.wordsToTrain,
-  ]);
+
+    if (
+      supportedLearningTypes.includes(LearningType.Listening) &&
+      !appSettings.getSetting('useExternalVoiceWhenAvailable')
+    ) {
+      setLearningVoice(collection.getLearningLanguage()).catch(e =>
+        showToastMessage(
+          translate('voice_is_not_set_message'),
+          ToastAndroid.LONG,
+        ),
+      );
+    }
+  }, [collection]);
 
   const setNextTrainingWord = async (previousAnswer: Answers) => {
     let words = wordsToLearn;
@@ -64,6 +71,7 @@ export const useTrainingWord = (collection: Collection) => {
         learningCard!.value,
       );
 
+      // TODO: put this mutating inside Collection class
       learingInstance.next(
         learningCard!.fsrsCard,
         Date.now(),
@@ -75,7 +83,9 @@ export const useTrainingWord = (collection: Collection) => {
 
       setStat(prev => ({...prev, [grade]: prev[grade] + 1}));
     } else if (previousAnswer === Answers.Delete) {
-      await deleteCollectionItem(learningCard as LearningCard, collection);
+      await collection
+        .setCollectionItemForDeletion(learningCard as LearningCard)
+        .saveCollection();
 
       words = words.filter(word => word.value !== learningCard!.value);
     } else if (previousAnswer === Answers.SkipListening) {
@@ -87,7 +97,7 @@ export const useTrainingWord = (collection: Collection) => {
 
     const filteredWords = getCardsToLearn(
       words,
-      collection.typesOfCardsToGenerate,
+      collection.getProperty('supportedLearningTypes'),
     );
     setWordsCount(words.length - filteredWords.length);
     const nextWord = filteredWords[0];
@@ -95,8 +105,8 @@ export const useTrainingWord = (collection: Collection) => {
     if (!nextWord) {
       setIsItFinal(true);
 
-      if (wordsToLearn.length && collection) {
-        return saveCollection(collection);
+      if (wordsToLearn.length) {
+        return collection.saveCollection();
       }
     }
 
@@ -112,10 +122,11 @@ export const useTrainingWord = (collection: Collection) => {
     examples: learningCard?.examples,
     learningType: learningCard?.learningType,
     learningLanguage:
-      collection?.learningLanguage === 'source'
-        ? collection?.sourceLanguage
-        : collection?.targetLanguage,
+      collection.getProperty('learningLanguage') === 'source'
+        ? collection.getProperty('sourceLanguage')
+        : collection.getProperty('targetLanguage'),
     statistics,
     progress: wordsCount / wordsToLearn.length,
+    sound: learningCard?.sound,
   };
 };

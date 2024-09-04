@@ -59,6 +59,15 @@
   "time_easy_grade": "Timpul care trebuie considerat ca fiind „ușor” (ms)",
   "time_good_grade": "Timp pentru a fi considerat ca nota „bună” (ms)",
   "nothing_to_learn": "Nu este nimic de învățat deocamdată",
-  "card_deletion": "Ştergerea cardului de învăţare",
-  "card_deletion_message": "Sigur doriți să ștergeți acest card de învățare din colecție?"
+  "card_deletion": "Ștergerea cardului de învățare",
+  "card_deletion_message": "Sigur doriți să ștergeți acest card de învățare din colecție?",
+  "use_external_audio_when_available": "Folosiți sunet extern atunci când este disponibil",
+  "data_export": "Export de date",
+  "exported_successfully": "Exportat cu succes la",
+  "import_line_error_message": "te rog verifica linia",
+  "target_learning_language_word_addition_warning": "Vă rugăm să rețineți că cuvintele separate prin virgule sunt considerate valori separate de învățare, adică oricare dintre cuvintele separate prin virgule ar fi considerat un răspuns corect în timpul exercițiilor.",
+  "tts_installation_title": "Selectarea vocii din text în vorbire",
+  "tts_installation_message": "Motorul de vorbire pentru această limbă nu este încă instalat sau nu este specificat. Vă rugăm să selectați limba corectă ({{i_lng}}) și vocea preferată pentru această colecție pe ecranul următor",
+  "proceed": "Continuă",
+  "voice_is_not_set_message": "Motorul de vorbire nu este selectat. Ieșirea corectă a vorbirii nu este garantată"
 }

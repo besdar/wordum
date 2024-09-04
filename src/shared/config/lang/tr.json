@@ -19,7 +19,7 @@
   "word": "Kelime",
   "translation": "Çeviri",
   "usage_examples": "Kullanım örnekleri",
-  "error_saving_your_card": "Kartınız kaydedilirken bir şeyler ters gitti",
+  "error_saving_your_card": "Kartınızı kaydederken bir şeyler ters gitti",
   "add_word_to_this_collection": "Bu koleksiyona kelime ekle",
   "incorrect": "Yanlış",
   "correct": "Doğru",
@@ -60,5 +60,14 @@
   "time_good_grade": "“İyi” not olarak kabul edilme süresi (ms)",
   "nothing_to_learn": "şimdilik öğrenilecek bir şey yok",
   "card_deletion": "Öğrenme kartının silinmesi",
-  "card_deletion_message": "Bu öğrenme kartını koleksiyondan silmek istediğinizden emin misiniz?"
+  "card_deletion_message": "Bu öğrenme kartını koleksiyondan silmek istediğinizden emin misiniz?",
+  "use_external_audio_when_available": "Mümkün olduğunda harici ses kullan",
+  "data_export": "Veri aktarımı",
+  "exported_successfully": "Şu tarihte başarıyla dışa aktarıldı:",
+  "import_line_error_message": "lütfen hattı kontrol edin",
+  "target_learning_language_word_addition_warning": "Lütfen virgülle ayrılmış kelimelerin ayrı öğrenme değerleri olarak kabul edildiğini unutmayın; yani virgülle ayrılmış kelimelerden herhangi biri alıştırmalar sırasında doğru cevap olarak kabul edilecektir.",
+  "tts_installation_title": "Metinden Konuşmaya Ses Seçimi",
+  "tts_installation_message": "Bu dilin konuşma motoru henüz kurulmamış veya belirtilmemiştir. Lütfen bir sonraki ekranda bu koleksiyon için doğru dili ({{i_lng}}) ve tercih edilen sesi seçin",
+  "proceed": "İlerlemek",
+  "voice_is_not_set_message": "Konuşma motoru seçilmedi. Doğru konuşma çıkışı garanti edilmez"
 }

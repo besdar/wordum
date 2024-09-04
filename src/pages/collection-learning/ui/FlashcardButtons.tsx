@@ -47,6 +47,7 @@ export const FlashcardButtons = ({
           showConfirmationAlert(
             translate('card_deletion'),
             translate('card_deletion_message'),
+            translate('yes'),
           ).then(() => onAnswerPress(Answers.Delete))
         }
       />

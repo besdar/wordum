@@ -3,8 +3,8 @@ import {getDataExport} from '../../shared/model/storage';
 import {showToastMessage} from '../../shared/lib/message';
 import {translate} from '../../shared/lib/i18n';
 import packageJSON from '../../../package.json';
-import {PermissionsAndroid} from 'react-native';
 import {askForPermission} from '../../shared/lib/permissions';
+import {PermissionsAndroid} from 'react-native';
 
 const EXPORT_PATH = `${DownloadDirectoryPath}/${packageJSON.name}-export-${packageJSON.version}.json`;
 

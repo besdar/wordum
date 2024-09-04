@@ -38,9 +38,9 @@ export const AddWordForm = ({
   const onWordSubmit = () =>
     getTranslation(
       getValues('word'),
-      collection.sourceLanguage,
-      collection.targetLanguage,
-      collection.learningLanguage,
+      collection.getProperty('sourceLanguage'),
+      collection.getProperty('targetLanguage'),
+      collection.getProperty('learningLanguage'),
     )
       .then(translationResponse => {
         setValue('translation', translationResponse.translation);
@@ -59,7 +59,7 @@ export const AddWordForm = ({
           control={control}
           name="word"
           label={`${translate('word')} (${
-            LANGUAGE_FLAGS[collection.sourceLanguage]
+            LANGUAGE_FLAGS[collection.getProperty('sourceLanguage')]
           })`}
           rules={{required: true}}
           onSubmitEditing={onWordSubmit}
@@ -75,9 +75,14 @@ export const AddWordForm = ({
         control={control}
         name="translation"
         label={`${translate('translation')} (${
-          LANGUAGE_FLAGS[collection.targetLanguage]
+          LANGUAGE_FLAGS[collection.getProperty('targetLanguage')]
         })`}
         disabled={!dirtyFields.word}
+        helperText={
+          collection.getProperty('learningLanguage') === 'target'
+            ? translate('target_learning_language_word_addition_warning')
+            : undefined
+        }
       />
       <ControlledTextInput
         control={control}
@@ -89,7 +94,7 @@ export const AddWordForm = ({
       <Button
         mode="outlined"
         onPress={handleSubmit(onValid =>
-          addWordToCollection(collection.id, {
+          addWordToCollection(collection, {
             value: onValid.word.trim(),
             examples: onValid.examples.trim(),
             translation: onValid.translation.trim(),

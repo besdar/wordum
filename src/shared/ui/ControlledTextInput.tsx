@@ -15,6 +15,7 @@ type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
     'onChange' | 'onChangeText' | 'value' | 'disabled' | 'onBlur' | 'error'
   > & {
     viewProps?: React.ComponentProps<typeof View>;
+    helperText?: string;
   };
 
 export const ControlledTextInput = <T extends FieldValues>({
@@ -23,6 +24,7 @@ export const ControlledTextInput = <T extends FieldValues>({
   rules,
   disabled,
   viewProps = {},
+  helperText,
   ...inputProps
 }: Props<T>) => (
   <Controller
@@ -43,13 +45,13 @@ export const ControlledTextInput = <T extends FieldValues>({
         <HelperText
           style={{
             width: '100%',
-            display: fieldState.error?.message ? undefined : 'none',
+            display:
+              fieldState.error?.message || helperText ? undefined : 'none',
             flexShrink: 1,
           }}
-          type="error"
-          visible={Boolean(fieldState.error?.message)}
-          disabled={field.disabled}>
-          {fieldState.error?.message}
+          type={helperText ? 'info' : 'error'}
+          visible={Boolean(fieldState.error?.message || helperText)}>
+          {fieldState.error?.message || helperText}
         </HelperText>
       </View>
     )}

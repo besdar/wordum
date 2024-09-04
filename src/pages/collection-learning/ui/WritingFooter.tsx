@@ -32,8 +32,12 @@ export const WritingFooter = ({
   };
 
   const submitAnswer = handleSubmit(({answer}) => {
-    const isCorrectAnswer =
-      answer.trim().toLowerCase() === learningWord.toLowerCase();
+    const learningWords = learningWord
+      .toLocaleLowerCase()
+      .split(',')
+      .map(el => el.trim());
+
+    const isCorrectAnswer = learningWords.includes(answer.trim().toLowerCase());
 
     if (!isCorrectAnswer) {
       setShowCorrectAnswer(true);
@@ -68,6 +72,7 @@ export const WritingFooter = ({
           showConfirmationAlert(
             translate('card_deletion'),
             translate('card_deletion_message'),
+            translate('yes'),
           ).then(() => onAnswerPress(Answers.Delete))
         }
       />

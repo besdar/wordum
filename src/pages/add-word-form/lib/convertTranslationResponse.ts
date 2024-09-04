@@ -1,12 +1,12 @@
 import {translate} from '@vitalets/google-translate-api';
 import {
-  Collection,
+  CollectionFormFields,
   TranslationResponse,
 } from '../../../shared/model/collection';
 
 export const convertReversoResponse = (
   translationResponse: ReversoResponse,
-  learningLanguage: Collection['learningLanguage'],
+  learningLanguage: CollectionFormFields['learningLanguage'],
 ): TranslationResponse => ({
   translation: Array.from(new Set(translationResponse.translations))
     .slice(0, 3)

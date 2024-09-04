@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {View} from 'react-native';
 import {IconButton, Text} from 'react-native-paper';
 import {Grid} from './Grid';
 import {translate} from '../lib/i18n';
@@ -18,7 +17,7 @@ export const Details = ({
   const [isDetailsShown, setDetailsVisibility] = useState(false);
 
   return (
-    <View>
+    <Grid direction="column" rowGap={10} alignItems="stretch">
       <Grid justifyContent="space-between" columnGap={10} alignItems="center">
         <Text variant="bodyMedium">
           {isDetailsShown ? expandedTitle : collapsedTitle}
@@ -31,6 +30,6 @@ export const Details = ({
         />
       </Grid>
       {isDetailsShown && children}
-    </View>
+    </Grid>
   );
 };

@@ -1,6 +1,10 @@
 import {DocumentDirectoryPath, downloadFile} from '@dr.pogodin/react-native-fs';
 import {createEmptyCard} from 'ts-fsrs';
-import {Collection, LearningType, LearningCard} from '../model/collection';
+import {
+  LearningType,
+  LearningCard,
+  CollectionFormFields,
+} from '../model/collection';
 
 export const getUUID = () => Math.random().toString(16).slice(2);
 
@@ -24,8 +28,8 @@ export const downloadVoice = async (voiceURL?: string) => {
 
 export const createLearningCardsForCollectionItem = (
   newItem: Omit<LearningCard, 'learningType' | 'fsrsCard'>,
-  learningLanguage: Collection['learningLanguage'],
-  cardsToGenerate: Collection['typesOfCardsToGenerate'],
+  learningLanguage: CollectionFormFields['learningLanguage'],
+  cardsToGenerate: CollectionFormFields['supportedLearningTypes'],
   sourceVoice?: string,
   targetVoice?: string,
 ) => {
@@ -39,7 +43,7 @@ export const createLearningCardsForCollectionItem = (
   if (cardsToGenerate.includes(LearningType.Flascards)) {
     cards.push(
       {
-        collectionId: newItem.collectionId,
+        wordId: newItem.wordId,
         value: newItem.value,
         translation: newItem.translation,
         targetVoice,
@@ -48,7 +52,7 @@ export const createLearningCardsForCollectionItem = (
         learningType: LearningType.Flascards,
       },
       {
-        collectionId: newItem.collectionId,
+        wordId: newItem.wordId,
         value: newItem.translation,
         translation: newItem.value,
         fsrsCard: createEmptyCard(),
@@ -62,7 +66,7 @@ export const createLearningCardsForCollectionItem = (
 
   if (cardsToGenerate.includes(LearningType.Writing)) {
     cards.push({
-      collectionId: newItem.collectionId,
+      wordId: newItem.wordId,
       value: learningValue,
       translation: isLearningSourceLanguage
         ? newItem.translation
@@ -74,15 +78,35 @@ export const createLearningCardsForCollectionItem = (
   }
 
   const audioValue = isLearningSourceLanguage ? sourceVoice : targetVoice;
-  if (audioValue && cardsToGenerate.includes(LearningType.Listening)) {
-    cards.push({
-      collectionId: newItem.collectionId,
-      value: audioValue,
-      translation: learningValue,
+  if (cardsToGenerate.includes(LearningType.Listening)) {
+    const audioCards: LearningCard[] = [];
+    const audioCard: LearningCard = {
+      wordId: newItem.wordId,
+      value: learningValue,
+      translation: isLearningSourceLanguage
+        ? newItem.translation
+        : newItem.value,
       fsrsCard: createEmptyCard(),
       examples: newItem.examples,
       learningType: LearningType.Listening,
-    });
+      sourceVoice,
+      targetVoice,
+      sound: audioValue,
+    };
+
+    const learningValues = learningValue.split(',').map(el => el.trim());
+    if (!isLearningSourceLanguage && learningValues.length > 1) {
+      audioCards.push(
+        ...learningValues.map(separateLearningValue => ({
+          ...audioCard,
+          value: separateLearningValue,
+        })),
+      );
+    } else {
+      audioCards.push(audioCard);
+    }
+
+    cards.push(...audioCards);
   }
 
   return cards;

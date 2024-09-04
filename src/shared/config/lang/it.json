@@ -60,5 +60,14 @@
   "time_good_grade": "Tempo per essere considerato voto «buono» (ms)",
   "nothing_to_learn": "Non c'è niente da imparare per ora",
   "card_deletion": "Cancellazione della scheda didattica",
-  "card_deletion_message": "Sei sicuro di voler eliminare questa scheda didattica dalla raccolta?"
+  "card_deletion_message": "Sei sicuro di voler eliminare questa scheda didattica dalla raccolta?",
+  "use_external_audio_when_available": "Utilizza l'audio esterno quando disponibile",
+  "data_export": "Esportazione dei dati",
+  "exported_successfully": "Esportato con successo in",
+  "import_line_error_message": "per favore controlla la linea",
+  "target_learning_language_word_addition_warning": "Tieni presente che le parole separate da virgole sono considerate valori di apprendimento separati, ovvero qualsiasi parola separata da virgole sarà considerata una risposta corretta durante gli esercizi",
+  "tts_installation_title": "Selezione vocale da testo a voce",
+  "tts_installation_message": "Il motore vocale per questa lingua non è ancora installato o non è specificato. Seleziona la lingua corretta ({{i_lng}}) e la voce preferita per questa raccolta nella schermata successiva",
+  "proceed": "Procedere",
+  "voice_is_not_set_message": "Il motore vocale non è selezionato. La corretta produzione vocale non è garantita"
 }

@@ -56,9 +56,18 @@
   "app_version": "Versão do aplicativo",
   "settings_saved": "Configurações salvas",
   "time_per_letter_input": "Tempo necessário para escrever uma carta (ms)",
-  "time_easy_grade": "Tempo para ser considerado como nota «fácil» (ms)",
+  "time_easy_grade": "Tempo para ser considerado nota «fácil» (ms)",
   "time_good_grade": "Tempo para ser considerada nota «boa» (ms)",
   "nothing_to_learn": "Não há nada para aprender por enquanto",
   "card_deletion": "Exclusão do cartão de aprendizagem",
-  "card_deletion_message": "Tem certeza de que deseja excluir este cartão de aprendizagem da coleção?"
+  "card_deletion_message": "Tem certeza de que deseja excluir este cartão de aprendizagem da coleção?",
+  "use_external_audio_when_available": "Use áudio externo quando disponível",
+  "data_export": "Exportação de dados",
+  "exported_successfully": "Exportado com sucesso em",
+  "import_line_error_message": "por favor verifique a linha",
+  "target_learning_language_word_addition_warning": "Observe que as palavras separadas por vírgulas são consideradas valores de aprendizagem separados, ou seja, qualquer uma das palavras separadas por vírgulas seria considerada uma resposta correta durante os exercícios.",
+  "tts_installation_title": "Seleção de voz de conversão de texto em fala",
+  "tts_installation_message": "O mecanismo de fala para este idioma ainda não está instalado ou não foi especificado. Selecione o idioma correto ({{i_lng}}) e a voz preferida para esta coleção na próxima tela",
+  "proceed": "Prosseguir",
+  "voice_is_not_set_message": "O mecanismo de fala não está selecionado. A saída de fala correta não é garantida"
 }

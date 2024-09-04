@@ -5,7 +5,7 @@
   "edit_collection": "Editar colección",
   "exercises": "Ceremonias",
   "collection_name": "Nombre de la colección",
-  "primary_language": "idioma primario",
+  "primary_language": "idioma principal",
   "secondary_language": "Idioma de traducción (secundaria)",
   "primary": "Primario",
   "secondary": "Secundario",
@@ -29,7 +29,7 @@
   "finish": "Finalizar",
   "no_audio_message": "No puedo escuchar audio en este momento",
   "something_went_wrong": "algo salió mal",
-  "return_back": "volver atrás",
+  "return_back": "regresar",
   "collection_deletion": "Eliminación de colección",
   "collection_deletion_message": "¿Estás seguro de que deseas eliminar esta colección?",
   "cancel": "Cancelar",
@@ -60,5 +60,14 @@
   "time_good_grade": "Tiempo para ser considerado como nota «buena» (ms)",
   "nothing_to_learn": "No hay nada que aprender por ahora.",
   "card_deletion": "Eliminación de tarjeta de aprendizaje",
-  "card_deletion_message": "¿Estás seguro de que deseas eliminar esta tarjeta de aprendizaje de la colección?"
+  "card_deletion_message": "¿Estás seguro de que deseas eliminar esta tarjeta de aprendizaje de la colección?",
+  "use_external_audio_when_available": "Utilice audio externo cuando esté disponible",
+  "data_export": "Exportación de datos",
+  "exported_successfully": "Exportado exitosamente en",
+  "import_line_error_message": "por favor revisa la línea",
+  "target_learning_language_word_addition_warning": "Tenga en cuenta que las palabras separadas por comas se consideran valores de aprendizaje separados, es decir, cualquiera de las palabras separadas por comas se considerará una respuesta correcta durante los ejercicios.",
+  "tts_installation_title": "Selección de voz de texto a voz",
+  "tts_installation_message": "El motor de voz para este idioma aún no está instalado o no está especificado. Seleccione el idioma correcto ({{i_lng}}) y la voz preferida para esta colección en la siguiente pantalla.",
+  "proceed": "Proceder",
+  "voice_is_not_set_message": "El motor de voz no está seleccionado. No se garantiza una salida de voz correcta"
 }

@@ -51,7 +51,7 @@
   "show_additional_statistics": "追加の統計を表示する",
   "about_text": "Wordum へようこそ。言語を学習し、語彙を増やすための頼りになるアプリです。単語やフレーズを入力するだけで、このアプリが自動的に翻訳、音声、使用例を入力します。リスニングとライティングの練習では、Wordum は Anki アプリと同様の Open Spaced Repetition アルゴリズムを使用して学習スタイルに適応します。これは GPL-3 ライセンスに基づいてライセンスされたオープンソース プロジェクトであり、追跡は含まれていません。問題やバグが発生した場合は、プロジェクトの GitHub ページで問題を作成して報告していただければ幸いです。あなたのフィードバックは Wordum を改善する上で非常に貴重です。",
   "open_project_page": "プロジェクトの GitHub ページを開く",
-  "donate_text": "私の仕事に感謝し、プロジェクトをサポートしたい場合は、寄付を検討してください。ご支援ありがとうございます！",
+  "donate_text": "私の仕事に感謝し、プロジェクトを支援したい場合は、寄付を検討してください。ご支援ありがとうございます!",
   "donate": "寄付する",
   "app_version": "アプリのバージョン",
   "settings_saved": "設定が保存されました",
@@ -60,5 +60,14 @@
   "time_good_grade": "「良好」グレードとみなされるまでの時間 (ms)",
   "nothing_to_learn": "今のところ学ぶべきことは何もない",
   "card_deletion": "学習カードの削除",
-  "card_deletion_message": "この学習カードをコレクションから削除してもよろしいですか?"
+  "card_deletion_message": "この学習カードをコレクションから削除してもよろしいですか?",
+  "use_external_audio_when_available": "利用可能な場合は外部オーディオを使用する",
+  "data_export": "データのエクスポート",
+  "exported_successfully": "で正常にエクスポートされました",
+  "import_line_error_message": "ラインをチェックしてください",
+  "target_learning_language_word_addition_warning": "カンマで区切られた単語は別個の学習値とみなされます。つまり、カンマで区切られた単語は演習中に正解とみなされます。",
+  "tts_installation_title": "テキスト読み上げの音声選択",
+  "tts_installation_message": "この言語の音声エンジンはまだインストールされていないか、指定されていません。次の画面で、このコレクションの正しい言語 ({{i_lng}}) と優先音声を選択してください",
+  "proceed": "進む",
+  "voice_is_not_set_message": "音声エンジンが選択されていません。正しい音声出力は保証されません"
 }

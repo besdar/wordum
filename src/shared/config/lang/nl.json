@@ -24,7 +24,7 @@
   "incorrect": "Onjuist",
   "correct": "Juist",
   "show_answer": "Toon antwoord",
-  "write_in": "Schrijf binnen",
+  "write_in": "Schrijf erin",
   "all_for_now": "Dat is alles voor nu",
   "finish": "Finish",
   "no_audio_message": "Ik kan momenteel geen audio beluisteren",
@@ -60,5 +60,14 @@
   "time_good_grade": "Tijd om als “goed” cijfer te worden beschouwd (ms)",
   "nothing_to_learn": "Er valt voorlopig niets te leren",
   "card_deletion": "Leerkaart verwijderen",
-  "card_deletion_message": "Weet u zeker dat u deze leerkaart uit de collectie wilt verwijderen?"
+  "card_deletion_message": "Weet u zeker dat u deze leerkaart uit de collectie wilt verwijderen?",
+  "use_external_audio_when_available": "Gebruik externe audio indien beschikbaar",
+  "data_export": "Gegevens exporteren",
+  "exported_successfully": "Succesvol geëxporteerd op",
+  "import_line_error_message": "Controleer de lijn",
+  "target_learning_language_word_addition_warning": "Houd er rekening mee dat woorden gescheiden door komma's als afzonderlijke leerwaarden worden beschouwd, dat wil zeggen dat elk woord gescheiden door komma's tijdens de oefeningen als een correct antwoord wordt beschouwd.",
+  "tts_installation_title": "Tekst-naar-spraak stemselectie",
+  "tts_installation_message": "De spraakengine voor deze taal is nog niet geïnstalleerd of niet gespecificeerd. Selecteer op het volgende scherm de juiste taal ({{i_lng}}) en voorkeursstem voor deze collectie",
+  "proceed": "Doorgaan",
+  "voice_is_not_set_message": "De spraakengine is niet geselecteerd. Een correcte spraakuitvoer kan niet worden gegarandeerd"
 }

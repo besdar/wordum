@@ -2,12 +2,15 @@ import {
   createLearningCardsForCollectionItem,
   getUUID,
 } from '../../../shared/lib/collection';
-import {Collection, CollectionItems} from '../../../shared/model/collection';
+import {
+  CollectionFormFields,
+  CollectionItems,
+} from '../../../shared/model/collection';
 
 export const parseTextToCollectionWords = (
   text: string,
-  learningLanguage: Collection['learningLanguage'],
-  cardsToGenerate: Collection['typesOfCardsToGenerate'],
+  learningLanguage: CollectionFormFields['learningLanguage'],
+  cardsToGenerate: CollectionFormFields['supportedLearningTypes'],
 ) =>
   text
     .split('\n')
@@ -19,7 +22,7 @@ export const parseTextToCollectionWords = (
       const itemId = getUUID();
       acc[itemId] = createLearningCardsForCollectionItem(
         {
-          collectionId: itemId,
+          wordId: itemId,
           value: value.trim(),
           translation: translation.trim(),
         },

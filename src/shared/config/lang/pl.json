@@ -60,5 +60,14 @@
   "time_good_grade": "Czas, w którym należy uznać ocenę za „dobrą” (ms)",
   "nothing_to_learn": "Na razie nie ma się czego uczyć",
   "card_deletion": "Usunięcie karty edukacyjnej",
-  "card_deletion_message": "Czy na pewno chcesz usunąć tę kartę edukacyjną z kolekcji?"
+  "card_deletion_message": "Czy na pewno chcesz usunąć tę kartę edukacyjną z kolekcji?",
+  "use_external_audio_when_available": "Użyj zewnętrznego dźwięku, jeśli jest dostępny",
+  "data_export": "Eksport danych",
+  "exported_successfully": "Wyeksportowano pomyślnie o godz",
+  "import_line_error_message": "proszę sprawdzić linię",
+  "target_learning_language_word_addition_warning": "Należy pamiętać, że słowa oddzielone przecinkami są traktowane jako odrębne wartości edukacyjne, tzn. każde ze słów oddzielonych przecinkami będzie podczas ćwiczeń uznawane za poprawną odpowiedź",
+  "tts_installation_title": "Wybór głosu podczas zamiany tekstu na mowę",
+  "tts_installation_message": "Silnik mowy dla tego języka nie jest jeszcze zainstalowany lub nie został określony. Na następnym ekranie wybierz właściwy język ({{i_lng}}) i preferowany głos dla tej kolekcji",
+  "proceed": "Przystępować",
+  "voice_is_not_set_message": "Nie wybrano silnika mowy. Nie gwarantuje się prawidłowego wypowiadania mowy"
 }

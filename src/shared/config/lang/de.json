@@ -56,9 +56,18 @@
   "app_version": "App-Version",
   "settings_saved": "Einstellungen gespeichert",
   "time_per_letter_input": "Zeit zum Schreiben eines Briefes (ms)",
-  "time_easy_grade": "Zeit bis zur Einstufung als „leichte“ Note (ms)",
+  "time_easy_grade": "Zeit, die als „einfache“ Note gilt (ms)",
   "time_good_grade": "Zeit bis zur Note „gut“ (ms)",
   "nothing_to_learn": "Es gibt vorerst nichts zu lernen",
   "card_deletion": "Löschen der Karte lernen",
-  "card_deletion_message": "Möchten Sie diese Lernkarte wirklich aus der Sammlung löschen?"
+  "card_deletion_message": "Möchten Sie diese Lernkarte wirklich aus der Sammlung löschen?",
+  "use_external_audio_when_available": "Verwenden Sie externes Audio, sofern verfügbar",
+  "data_export": "Datenexport",
+  "exported_successfully": "Erfolgreich exportiert unter",
+  "import_line_error_message": "Bitte überprüfen Sie die Zeile",
+  "target_learning_language_word_addition_warning": "Bitte beachten Sie, dass durch Kommas getrennte Wörter als separate Lernwerte betrachtet werden, d. h. jedes durch Komma getrennte Wort wird in den Übungen als richtige Antwort gewertet",
+  "tts_installation_title": "Auswahl der Text-to-Speech-Stimme",
+  "tts_installation_message": "Die Sprach-Engine für diese Sprache ist noch nicht installiert oder nicht angegeben. Bitte wählen Sie auf dem nächsten Bildschirm die richtige Sprache ({{i_lng}}) und die bevorzugte Stimme für diese Sammlung aus",
+  "proceed": "Fortfahren",
+  "voice_is_not_set_message": "Die Sprach-Engine ist nicht ausgewählt. Eine korrekte Sprachausgabe kann nicht garantiert werden"
 }

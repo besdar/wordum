@@ -1,5 +1,5 @@
 import {
-  Collection,
+  CollectionFormFields,
   TranslationResponse,
 } from '../../../shared/model/collection';
 import {
@@ -19,7 +19,7 @@ export const getTranslation = async (
   word: string,
   sourceLanguage: AppSupportedLanguages,
   targetLanguage: AppSupportedLanguages,
-  learningLanguage: Collection['learningLanguage'],
+  learningLanguage: CollectionFormFields['learningLanguage'],
 ): Promise<TranslationResponse> => {
   const sourceAPI = appSettings.getSetting('apiSource');
 

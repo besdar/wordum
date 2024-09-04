@@ -15,6 +15,9 @@ import {Button} from '../../shared/ui/Button';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {FlashcardHeader} from './ui/FlashcardHeader';
 import {AppSupportedLanguages} from '../../shared/model/lang';
+import {appSettings} from '../../shared/model/AppSettings';
+import Tts from 'react-native-tts';
+import {CenteredActivityIndicator} from '../../shared/ui/CenteredActivityIndicator';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -43,6 +46,7 @@ export const CollectionLearning = ({
     learningLanguage,
     statistics,
     progress,
+    sound,
   } = useTrainingWord(collection);
 
   if (isItFinal) {
@@ -130,7 +134,7 @@ export const CollectionLearning = ({
           <Grid direction="column" rowGap={5}>
             <WritingFooter
               onAnswerPress={setNextWord}
-              learningWord={translation as string}
+              learningWord={trainingWord as string}
               learningLanguage={learningLanguage as AppSupportedLanguages}
             />
             <ProgressBar visible progress={progress} />
@@ -138,7 +142,11 @@ export const CollectionLearning = ({
         }>
         <IconButton
           icon="volume-high"
-          onPress={() => playSound(trainingWord as string)}
+          onPress={() =>
+            appSettings.getSetting('useExternalVoiceWhenAvailable')
+              ? playSound(sound as string)
+              : Tts.speak(trainingWord as string)
+          }
           size={100}
         />
         <Button
@@ -148,6 +156,10 @@ export const CollectionLearning = ({
         </Button>
       </FlashcardWrapper>
     );
+  }
+
+  if (!trainingWord) {
+    return <CenteredActivityIndicator />;
   }
 
   if (!trainingWord) {

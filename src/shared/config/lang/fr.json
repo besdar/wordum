@@ -60,5 +60,14 @@
   "time_good_grade": "Temps pour être considéré comme « bon » (ms)",
   "nothing_to_learn": "Il n'y a rien à apprendre pour l'instant",
   "card_deletion": "Suppression de la carte d'apprentissage",
-  "card_deletion_message": "Etes-vous sûr de vouloir supprimer cette carte d'apprentissage de la collection ?"
+  "card_deletion_message": "Etes-vous sûr de vouloir supprimer cette carte d'apprentissage de la collection ?",
+  "use_external_audio_when_available": "Utiliser l'audio externe lorsqu'il est disponible",
+  "data_export": "Exportation de données",
+  "exported_successfully": "Exporté avec succès à",
+  "import_line_error_message": "s'il te plaît, vérifie la ligne",
+  "target_learning_language_word_addition_warning": "Veuillez noter que les mots séparés par des virgules sont considérés comme des valeurs d'apprentissage distinctes, c'est-à-dire que n'importe quel mot séparé par des virgules sera considéré comme une réponse correcte pendant les exercices.",
+  "tts_installation_title": "Sélection vocale de synthèse vocale",
+  "tts_installation_message": "Le moteur vocal pour cette langue n'est pas encore installé ou n'est pas spécifié. Veuillez sélectionner la bonne langue ({{i_lng}}) et la voix préférée pour cette collection sur l'écran suivant.",
+  "proceed": "Procéder",
+  "voice_is_not_set_message": "Le moteur vocal n'est pas sélectionné. Une sortie vocale correcte n’est pas garantie"
 }

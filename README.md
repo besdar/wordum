@@ -38,7 +38,6 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 
 - notification about exercises
 - rating of a word/phrase (how often it is used)
-- words deletion on the collection's settings page
 - automatic github release pipeline
 - F-Droid publication
 - random emotional support cards during exercises

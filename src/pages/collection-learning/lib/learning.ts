@@ -1,11 +1,8 @@
 import {Grade, Rating} from 'ts-fsrs';
-import {
-  CollectionItems,
-  LearningCard,
-  LearningType,
-} from '../../../shared/model/collection';
+import {LearningCard, LearningType} from '../../../shared/model/collection';
 import {Answers} from '../model/types';
 import {appSettings} from '../../../shared/model/AppSettings';
+import {filterActualCards} from '../../../shared/lib/cards';
 
 export const getFsrsRatingFromUserAnswer = (
   answer: Answers,
@@ -36,27 +33,12 @@ export const getFsrsRatingFromUserAnswer = (
   return Rating.Hard;
 };
 
-const filterActualCards = (card: LearningCard) =>
-  new Date(card.fsrsCard.due) < new Date();
-
 export const getCardsToLearn = (
   cards: LearningCard[],
-  typesOfCardsToGenerate: LearningType[],
+  supportedLearningTypes: readonly LearningType[],
 ) =>
   cards.filter(
     card =>
       filterActualCards(card) &&
-      typesOfCardsToGenerate.includes(card.learningType),
-  );
-
-export const getWordsToLearn = (
-  words: CollectionItems,
-  typesOfCardsToGenerate: LearningType[],
-) =>
-  Object.values(words).filter(cards =>
-    cards.some(
-      card =>
-        filterActualCards(card) &&
-        typesOfCardsToGenerate.includes(card.learningType),
-    ),
+      supportedLearningTypes.includes(card.learningType),
   );

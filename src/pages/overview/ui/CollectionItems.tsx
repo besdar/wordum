@@ -3,9 +3,8 @@ import {TouchableRipple, IconButton, Badge} from 'react-native-paper';
 import {CollectionContainer} from './CollectionContainer';
 import {Grid} from '../../../shared/ui/Grid';
 import React from 'react';
-import {Collection} from '../../../shared/model/collection';
-import {getWordsToLearn} from '../../collection-learning/lib/learning';
 import {LANGUAGE_FLAGS} from '../../../shared/model/lang';
+import {Collection} from '../../../shared/model/collection';
 
 const styles = StyleSheet.create({
   collectionButton: {
@@ -30,21 +29,16 @@ export const CollectionItems = ({
   onUpdateCollection,
 }: Props) => {
   return (
-    <CollectionContainer key={collection.id}>
-      <Badge style={styles.badge}>
-        {
-          getWordsToLearn(collection.words, collection.typesOfCardsToGenerate)
-            .length
-        }
-      </Badge>
+    <CollectionContainer>
+      <Badge style={styles.badge}>{collection.getWordsToLearn().length}</Badge>
       <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
         <TouchableRipple onPress={onStartLearning}>
           <Grid direction="column" alignItems="center">
-            <Text>{collection.name}</Text>
+            <Text>{collection.getProperty('name')}</Text>
             <Text>
-              {`${LANGUAGE_FLAGS[collection.sourceLanguage]} -> ${
-                LANGUAGE_FLAGS[collection.targetLanguage]
-              }`}
+              {`${
+                LANGUAGE_FLAGS[collection.getProperty('sourceLanguage')]
+              } -> ${LANGUAGE_FLAGS[collection.getProperty('targetLanguage')]}`}
             </Text>
           </Grid>
         </TouchableRipple>

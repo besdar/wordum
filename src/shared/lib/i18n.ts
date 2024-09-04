@@ -35,8 +35,8 @@ const languageDetectorPlugin = {
 } as const;
 
 i18n
-  .use(initReactI18next)
   .use(languageDetectorPlugin)
+  .use(initReactI18next)
   .init({
     fallbackLng: GoogleSupportedLanguages.English,
     resources: {

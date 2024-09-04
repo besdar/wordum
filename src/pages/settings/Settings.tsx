@@ -38,6 +38,11 @@ export const Settings = () => {
         name="showAdditionalStat"
         label={translate('show_additional_statistics')}
       />
+      <ControlledSwitcher
+        control={control}
+        name="useExternalVoiceWhenAvailable"
+        label={translate('use_external_audio_when_available')}
+      />
       <Details>
         <ControlledTextInput
           control={control}

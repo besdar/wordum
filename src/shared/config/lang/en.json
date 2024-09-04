@@ -61,5 +61,13 @@
   "nothing_to_learn": "There is nothing to learn for now",
   "card_deletion": "Learning card deletion",
   "card_deletion_message": "Are you sure you want to delete this learning card from the collection?",
-  "data_export": "Data export"
+  "use_external_audio_when_available": "Use external audio when available",
+  "data_export": "Data export",
+  "exported_successfully": "Exported successfully at",
+  "import_line_error_message": "please check the line",
+  "target_learning_language_word_addition_warning": "Please note that words separated by commas are considered separate learning values, i.e. any of the words separated by commas would be considered a correct answer during exercises",
+  "tts_installation_title": "Text-to-Speech Voice Selection",
+  "tts_installation_message": "The speech engine for this language is not yet installed or not specified. Please select the correct language ({{i_lng}}) and preferred voice for this collection on the next screen",
+  "proceed": "Proceed",
+  "voice_is_not_set_message": "The speech engine is not selected. Correct speech output is not guaranteed"
 }
