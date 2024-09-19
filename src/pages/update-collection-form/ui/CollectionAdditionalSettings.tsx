@@ -13,12 +13,12 @@ import {learningTypeToIconMap} from '../model/learningTypeToIconMap';
 
 type Props = {
   control: Control<FieldValues & CollectionFormFields>;
-  collection: Collection;
+  collection?: Collection;
 };
 
 export const CollectionAdditionalSettings = ({control, collection}: Props) => {
   const learningCards = useMemo(
-    () => collection.getLearningCards().flat() || [],
+    () => collection?.getLearningCards().flat() || [],
     [collection],
   );
 
@@ -44,9 +44,9 @@ export const CollectionAdditionalSettings = ({control, collection}: Props) => {
           },
         ]}
       />
-      {!collection.isItNew() && (
+      {Boolean(collection) && !collection!.isItNew() && (
         <WordsTable
-          onDelete={collection.setCollectionItemForDeletion}
+          onDelete={collection!.setCollectionItemForDeletion}
           learningCards={learningCards}
         />
       )}

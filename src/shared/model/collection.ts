@@ -107,12 +107,13 @@ export class Collection {
       };
     }
 
+    const deletionPromises = [];
     if (this.#learningCardsToDelete.length) {
       for (const card of this.#learningCardsToDelete) {
-        this.#deleteCollectionItemFiles(card);
+        deletionPromises.push(this.#deleteCollectionItemFiles(card));
 
         const learningCards = this.#collection.words[card.wordId];
-        if (!learningCards.length) {
+        if (learningCards.length === 1) {
           delete this.#collection.words[card.wordId];
         } else {
           this.#collection.words[card.wordId] = learningCards.filter(
@@ -134,26 +135,20 @@ export class Collection {
 
     this.#learningCardsToDelete = [];
 
-    return this;
+    return Promise.allSettled(deletionPromises).then(() => this);
   }
 
   #deleteCollectionItemFiles = async (collectionItem: LearningCard) => {
-    if (collectionItem?.learningType === LearningType.Listening) {
-      if (collectionItem.value) {
-        await unlink(collectionItem.value);
-      }
+    if (collectionItem?.sourceVoice) {
+      await unlink(collectionItem.sourceVoice);
+    }
 
-      if (collectionItem.translation) {
-        await unlink(collectionItem.translation);
-      }
-    } else {
-      if (collectionItem?.sourceVoice) {
-        await unlink(collectionItem.sourceVoice);
-      }
+    if (collectionItem?.targetVoice) {
+      await unlink(collectionItem.targetVoice);
+    }
 
-      if (collectionItem?.targetVoice) {
-        await unlink(collectionItem.targetVoice);
-      }
+    if (collectionItem?.sound) {
+      await unlink(collectionItem.sound);
     }
   };
 
@@ -247,18 +242,22 @@ export class Collection {
     return this.saveCollection();
   }
 
-  deleteWord(wordId: string) {
+  async deleteWord(wordId: string) {
     if (!this.#collection.words[wordId]) {
-      return;
+      return this;
     }
 
-    this.#collection.words[wordId].forEach(card =>
-      this.#deleteCollectionItemFiles(card),
+    const deletionPromise = Promise.allSettled(
+      this.#collection.words[wordId].map(card =>
+        this.#deleteCollectionItemFiles(card),
+      ),
     );
 
     delete this.#collection.words[wordId];
 
-    return this.saveCollection();
+    const savingPromise = this.saveCollection();
+
+    return deletionPromise.then(() => savingPromise);
   }
 
   dangerouslyGetInnerObject() {

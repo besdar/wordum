@@ -1,4 +1,4 @@
-import {Icon, IconButton, ProgressBar, Text} from 'react-native-paper';
+import {Icon, ProgressBar, Text} from 'react-native-paper';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTrainingWord} from './model/useTrainingWord';
@@ -18,6 +18,7 @@ import {AppSupportedLanguages} from '../../shared/model/lang';
 import {appSettings} from '../../shared/model/AppSettings';
 import Tts from 'react-native-tts';
 import {CenteredActivityIndicator} from '../../shared/ui/CenteredActivityIndicator';
+import {IconButton} from '../../shared/ui/IconButton';
 
 const styles = StyleSheet.create({
   checkButtonContent: {

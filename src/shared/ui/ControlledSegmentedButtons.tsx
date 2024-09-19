@@ -6,7 +6,7 @@ import {Grid} from './Grid';
 type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
   Omit<
     React.ComponentProps<typeof SegmentedButtons>,
-    'onValueChange' | 'value'
+    'onValueChange' | 'value' | 'disabled'
   > & {
     label: string;
   };
@@ -15,7 +15,6 @@ export const ControlledSegmentedButtons = <T extends FieldValues>({
   name,
   rules,
   control,
-  disabled,
   label,
   ...segmentedButtonsProps
 }: Props<T>) => (
@@ -25,7 +24,6 @@ export const ControlledSegmentedButtons = <T extends FieldValues>({
       name={name}
       rules={rules}
       control={control}
-      disabled={disabled}
       render={({field}) => (
         <SegmentedButtons
           {...segmentedButtonsProps}

@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import {IconButton, Text} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import {Grid} from './Grid';
 import {translate} from '../lib/i18n';
+import {IconButton} from './IconButton';
 
 type Props = {
   children: React.ReactNode;

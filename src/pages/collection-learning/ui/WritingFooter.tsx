@@ -1,4 +1,4 @@
-import {IconButton, Text} from 'react-native-paper';
+import {Text} from 'react-native-paper';
 import {Grid} from '../../../shared/ui/Grid';
 import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
 import {useForm} from 'react-hook-form';
@@ -10,6 +10,7 @@ import {
   LANGUAGE_FLAGS,
 } from '../../../shared/model/lang';
 import {showConfirmationAlert} from '../../../shared/lib/message';
+import {IconButton} from '../../../shared/ui/IconButton';
 
 type Props = {
   onAnswerPress: (answer: Answers) => void;

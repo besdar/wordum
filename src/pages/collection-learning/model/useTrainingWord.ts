@@ -52,7 +52,7 @@ export const useTrainingWord = (collection: Collection) => {
       supportedLearningTypes.includes(LearningType.Listening) &&
       !appSettings.getSetting('useExternalVoiceWhenAvailable')
     ) {
-      setLearningVoice(collection.getLearningLanguage()).catch(e =>
+      setLearningVoice(collection.getLearningLanguage()).catch(() =>
         showToastMessage(
           translate('voice_is_not_set_message'),
           ToastAndroid.LONG,

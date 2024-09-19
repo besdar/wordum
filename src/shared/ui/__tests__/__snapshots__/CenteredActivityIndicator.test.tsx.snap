@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CenteredActivityIndicator should match the snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "display": "flex",
+        "width": "100%",
+      },
+      {
+        "alignItems": "center",
+        "columnGap": undefined,
+        "flexBasis": undefined,
+        "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "gap": undefined,
+        "justifyContent": "center",
+        "padding": undefined,
+        "rowGap": undefined,
+      },
+      {
+        "flexGrow": 1,
+      },
+    ]
+  }
+>
+  <View
+    accessibilityRole="progressbar"
+    accessibilityState={
+      {
+        "busy": true,
+      }
+    }
+    accessible={true}
+    style={
+      [
+        {
+          "alignItems": "center",
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      collapsable={false}
+      style={
+        {
+          "height": 48,
+          "opacity": 1,
+          "width": 48,
+        }
+      }
+    >
+      <View
+        collapsable={false}
+        style={
+          {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <View
+          collapsable={false}
+          style={
+            {
+              "height": 48,
+              "transform": [
+                {
+                  "rotate": "45deg",
+                },
+              ],
+              "width": 48,
+            }
+          }
+        >
+          <View
+            collapsable={false}
+            style={
+              {
+                "height": 24,
+                "overflow": "hidden",
+                "width": 48,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "height": 48,
+                  "transform": [
+                    {
+                      "translateY": 0,
+                    },
+                    {
+                      "rotate": "-165deg",
+                    },
+                  ],
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "height": 24,
+                    "overflow": "hidden",
+                    "width": 48,
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    {
+                      "borderColor": "rgba(103, 80, 164, 1)",
+                      "borderRadius": 24,
+                      "borderWidth": 4.8,
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        collapsable={false}
+        style={
+          {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <View
+          collapsable={false}
+          style={
+            {
+              "height": 48,
+              "transform": [
+                {
+                  "rotate": "45deg",
+                },
+              ],
+              "width": 48,
+            }
+          }
+        >
+          <View
+            collapsable={false}
+            style={
+              {
+                "height": 24,
+                "overflow": "hidden",
+                "top": 24,
+                "width": 48,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                {
+                  "height": 48,
+                  "transform": [
+                    {
+                      "translateY": -24,
+                    },
+                    {
+                      "rotate": "345deg",
+                    },
+                  ],
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  {
+                    "height": 24,
+                    "overflow": "hidden",
+                    "width": 48,
+                  }
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    {
+                      "borderColor": "rgba(103, 80, 164, 1)",
+                      "borderRadius": 24,
+                      "borderWidth": 4.8,
+                      "height": 48,
+                      "width": 48,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

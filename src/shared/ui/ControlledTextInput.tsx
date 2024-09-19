@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
   view: {
     flexGrow: 1,
   },
+  helperText: {
+    width: '100%',
+    flexShrink: 1,
+  },
 });
 
 type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
@@ -43,12 +47,13 @@ export const ControlledTextInput = <T extends FieldValues>({
           error={Boolean(fieldState.error)}
         />
         <HelperText
-          style={{
-            width: '100%',
-            display:
-              fieldState.error?.message || helperText ? undefined : 'none',
-            flexShrink: 1,
-          }}
+          style={[
+            styles.helperText,
+            {
+              display:
+                fieldState.error?.message || helperText ? undefined : 'none',
+            },
+          ]}
           type={helperText ? 'info' : 'error'}
           visible={Boolean(fieldState.error?.message || helperText)}>
           {fieldState.error?.message || helperText}

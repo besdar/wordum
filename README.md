@@ -26,11 +26,9 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 - no tablet resolution support
 - There is a possibility to press the system's back button on an android phone
 - An android keyboard suggests words for autocompletion during writing practice
-- When an input's helper text is too long, it breaks CSS on the page
 - Values in selects are not translated
 - app's icon (is too generic and also) doesn't support Android Adaptive icons
 - translation script is incompatible with text formattings/links
-- there are no unit tests
 - no accessibility support
 - [you name it](https://github.com/besdar/wordum/issues)
 
@@ -43,6 +41,7 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 - random emotional support cards during exercises
 - cloud backup support
 - web support
+- predefined collections after the installations like: 100 most popular words
 - [you name it](https://github.com/besdar/wordum/issues) 😉
 
 ## License

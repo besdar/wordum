@@ -3,7 +3,7 @@ import {
   Material3Theme,
   useMaterial3Theme,
 } from '@pchmn/expo-material3-theme';
-import {createContext, useContext} from 'react';
+import {createContext} from 'react';
 import {useColorScheme} from 'react-native';
 import {
   MD3DarkTheme,
@@ -78,16 +78,6 @@ export function Material3ThemeProvider({
       </PaperProvider>
     </Material3ThemeProviderContext.Provider>
   );
-}
-
-export function useMaterial3ThemeContext() {
-  const ctx = useContext(Material3ThemeProviderContext);
-  if (!ctx) {
-    throw new Error(
-      'useMaterial3ThemeContext must be used inside Material3ThemeProvider',
-    );
-  }
-  return ctx;
 }
 
 export const useAppTheme = useTheme<

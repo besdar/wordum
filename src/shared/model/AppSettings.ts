@@ -13,7 +13,8 @@ export type AppSettingsValues = {
   useExternalVoiceWhenAvailable: boolean;
 };
 
-class AppSettings {
+export class AppSettings {
+  #initPromise = Promise.resolve();
   #isUpdateAvailable: boolean = false;
   #settings: AppSettingsValues = {
     apiSource: APISources.ReversoContextUnofficial,
@@ -25,7 +26,11 @@ class AppSettings {
   };
 
   constructor() {
-    this.#init();
+    this.#initPromise = this.#init();
+  }
+
+  isReady() {
+    return this.#initPromise;
   }
 
   #saveSettings() {
