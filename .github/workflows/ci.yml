@@ -29,6 +29,9 @@ jobs:
     needs: setup
 
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
       - name: Lint
         run: npm run lint:check
 
@@ -38,6 +41,9 @@ jobs:
     needs: setup
 
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
       - name: Types
         run: npm run types:check
 
@@ -47,5 +53,8 @@ jobs:
     needs: setup
 
     steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+
       - name: Tests
         run: npm run tests
