@@ -20,6 +20,11 @@ jobs:
           node-version-file: package.json
           cache: 'npm'
 
+      - uses: actions/cache/save@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install Node.js dependencies
         run: npm ci
 
@@ -37,6 +42,11 @@ jobs:
         with:
           node-version-file: package.json
           cache: 'npm'
+
+      - uses: actions/cache/restore@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Lint
         run: npm run lint:check
@@ -56,6 +66,11 @@ jobs:
           node-version-file: package.json
           cache: 'npm'
 
+      - uses: actions/cache/restore@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: Types
         run: npm run types:check
 
@@ -73,6 +88,11 @@ jobs:
         with:
           node-version-file: package.json
           cache: 'npm'
+
+      - uses: actions/cache/restore@v4
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Tests
         run: npm run tests
