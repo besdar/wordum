@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
-          cache: npm
+          cache: 'npm'
 
       - name: Install Node.js dependencies
         run: npm ci
@@ -29,8 +29,10 @@ jobs:
     needs: setup
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
+      - uses: actions/cache/restore@v4
+        with:
+          path: wordum/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Lint
         run: npm run lint:check
@@ -43,6 +45,11 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v4
+
+      - uses: actions/cache/restore@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Types
         run: npm run types:check
