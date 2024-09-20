@@ -20,13 +20,13 @@ jobs:
           node-version-file: package.json
           cache: 'npm'
 
+      - name: Install Node.js dependencies
+        run: npm ci
+
       - uses: actions/cache/save@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
-
-      - name: Install Node.js dependencies
-        run: npm ci
 
   run-linters:
     name: Run linters
