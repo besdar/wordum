@@ -30,7 +30,6 @@ describe('ControlledPicker', () => {
     expect(input).toBeOnTheScreen();
   });
 
-  // TODO: this test fails, but only on ci pipeline
   it.skip('displays selected item label', async () => {
     render(
       <MockWrapperProvider>
