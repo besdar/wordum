@@ -23,7 +23,8 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
-      - uses: actions/cache/save@v4
+      - name: Save node_modules to cache
+        uses: actions/cache/save@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
@@ -43,7 +44,8 @@ jobs:
           node-version-file: package.json
           cache: 'npm'
 
-      - uses: actions/cache/restore@v4
+      - name: Restore node_modules from cache
+        uses: actions/cache/restore@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
@@ -66,7 +68,8 @@ jobs:
           node-version-file: package.json
           cache: 'npm'
 
-      - uses: actions/cache/restore@v4
+      - name: Restore node_modules from cache
+        uses: actions/cache/restore@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
@@ -89,7 +92,8 @@ jobs:
           node-version-file: package.json
           cache: 'npm'
 
-      - uses: actions/cache/restore@v4
+      - name: Restore node_modules from cache
+        uses: actions/cache/restore@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
