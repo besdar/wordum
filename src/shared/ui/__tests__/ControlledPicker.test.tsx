@@ -30,7 +30,7 @@ describe('ControlledPicker', () => {
     expect(input).toBeOnTheScreen();
   });
 
-  it.skip('displays selected item label', async () => {
+  it('displays selected item label', async () => {
     render(
       <MockWrapperProvider>
         <MockFormProvider>

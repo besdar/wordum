@@ -39,7 +39,7 @@ describe('ControlledSegmentedButtons', () => {
     });
   });
 
-  it.skip('selects an option when clicked', async () => {
+  it('selects an option when clicked', async () => {
     render(
       <MockWrapperProvider>
         <MockFormProvider>
