@@ -5,20 +5,18 @@ import {
   LearningType,
 } from '../../../shared/model/collection';
 import {fsrs, Rating} from 'ts-fsrs';
-import {getFsrsRatingFromUserAnswer, getCardsToLearn} from '../lib/learning';
+import {
+  getFsrsRatingFromUserAnswer,
+  getCardsToLearn,
+  getInitialWordsToLearn,
+  setLearningVoiceOfTheCollection,
+} from '../lib/learning';
 import {Answers} from './types';
-import {setLearningVoice} from '../lib/sound';
-import {showToastMessage} from '../../../shared/lib/message';
-import {translate} from '../../../shared/lib/i18n';
-import {appSettings} from '../../../shared/model/AppSettings';
-import {ToastAndroid} from 'react-native';
 
 export const useTrainingWord = (collection: Collection) => {
   const learingInstance = useMemo(() => fsrs(), []);
   const [isItFinal, setIsItFinal] = useState(false);
-  const [learningCard, setCollectionItem] = useState<
-    LearningCard | undefined
-  >();
+  const [learningCard, setLearningCard] = useState<LearningCard | undefined>();
   const [timer, setTimer] = useState(Date.now());
   const [wordsToLearn, setWordsToLearn] = useState<LearningCard[]>([]);
   const [wordsCount, setWordsCount] = useState(0);
@@ -30,35 +28,14 @@ export const useTrainingWord = (collection: Collection) => {
   });
 
   useEffect(() => {
-    const supportedLearningTypes = collection.getProperty(
-      'supportedLearningTypes',
-    );
-    const listOfCardsMappedToWordsToLearn = collection
-      .getWordsToLearn()
-      .slice(0, collection.getProperty('wordsToTrain'))
-      .flat();
+    const initilaWordsToLearn = getInitialWordsToLearn(collection);
 
-    const result = getCardsToLearn(
-      listOfCardsMappedToWordsToLearn,
-      supportedLearningTypes,
-    ).sort(() => Math.random() - 0.5);
-
-    setWordsToLearn(result);
-    setCollectionItem(result[0]);
-    setIsItFinal(!result[0]);
+    setWordsToLearn(initilaWordsToLearn);
+    setLearningCard(initilaWordsToLearn[0]);
+    setIsItFinal(!initilaWordsToLearn[0]);
     setTimer(Date.now());
 
-    if (
-      supportedLearningTypes.includes(LearningType.Listening) &&
-      !appSettings.getSetting('useExternalVoiceWhenAvailable')
-    ) {
-      setLearningVoice(collection.getLearningLanguage()).catch(() =>
-        showToastMessage(
-          translate('voice_is_not_set_message'),
-          ToastAndroid.LONG,
-        ),
-      );
-    }
+    setLearningVoiceOfTheCollection(collection);
   }, [collection]);
 
   const setNextTrainingWord = async (previousAnswer: Answers) => {
@@ -83,9 +60,7 @@ export const useTrainingWord = (collection: Collection) => {
 
       setStat(prev => ({...prev, [grade]: prev[grade] + 1}));
     } else if (previousAnswer === Answers.Delete) {
-      await collection
-        .setCollectionItemForDeletion(learningCard as LearningCard)
-        .saveCollection();
+      collection.setCollectionItemForDeletion(learningCard as LearningCard);
 
       words = words.filter(word => word.value !== learningCard!.value);
     } else if (previousAnswer === Answers.SkipListening) {
@@ -100,8 +75,8 @@ export const useTrainingWord = (collection: Collection) => {
       collection.getProperty('supportedLearningTypes'),
     );
     setWordsCount(words.length - filteredWords.length);
-    const nextWord = filteredWords[0];
 
+    const nextWord = filteredWords[0];
     if (!nextWord) {
       setIsItFinal(true);
 
@@ -110,7 +85,7 @@ export const useTrainingWord = (collection: Collection) => {
       }
     }
 
-    setCollectionItem(nextWord);
+    setLearningCard(nextWord);
     setTimer(Date.now());
   };
 

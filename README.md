@@ -41,7 +41,7 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 - random emotional support cards during exercises
 - cloud backup support
 - web support
-- predefined collections after the installations like: 100 most popular words
+- predefined collections after installations like "100 most popular words"
 - [you name it](https://github.com/besdar/wordum/issues) 😉
 
 ## License

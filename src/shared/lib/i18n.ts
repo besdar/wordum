@@ -2,11 +2,9 @@ import 'intl-pluralrules';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
 import en from '../config/lang/en.json';
-import ar from '../config/lang/ar.json';
 import de from '../config/lang/de.json';
 import es from '../config/lang/es.json';
 import fr from '../config/lang/fr.json';
-import he from '../config/lang/he.json';
 import it from '../config/lang/it.json';
 import ja from '../config/lang/ja.json';
 import nl from '../config/lang/nl.json';
@@ -41,11 +39,9 @@ i18n
     fallbackLng: GoogleSupportedLanguages.English,
     resources: {
       [GoogleSupportedLanguages.English]: {translation: en},
-      [GoogleSupportedLanguages.Arabic]: {translation: ar},
       [GoogleSupportedLanguages.German]: {translation: de},
       [GoogleSupportedLanguages.Spanish]: {translation: es},
       [GoogleSupportedLanguages.French]: {translation: fr},
-      [GoogleSupportedLanguages.Hebrew]: {translation: he},
       [GoogleSupportedLanguages.Italian]: {translation: it},
       [GoogleSupportedLanguages.Japanese]: {translation: ja},
       [GoogleSupportedLanguages.Dutch]: {translation: nl},

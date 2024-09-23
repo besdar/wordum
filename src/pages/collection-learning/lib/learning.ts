@@ -1,8 +1,16 @@
 import {Grade, Rating} from 'ts-fsrs';
-import {LearningCard, LearningType} from '../../../shared/model/collection';
+import {
+  Collection,
+  LearningCard,
+  LearningType,
+} from '../../../shared/model/collection';
 import {Answers} from '../model/types';
 import {appSettings} from '../../../shared/model/AppSettings';
 import {filterActualCards} from '../../../shared/lib/cards';
+import {setLearningVoice} from './sound';
+import {showToastMessage} from '../../../shared/lib/message';
+import {translate} from '../../../shared/lib/i18n';
+import {ToastAndroid} from 'react-native';
 
 export const getFsrsRatingFromUserAnswer = (
   answer: Answers,
@@ -42,3 +50,36 @@ export const getCardsToLearn = (
       filterActualCards(card) &&
       supportedLearningTypes.includes(card.learningType),
   );
+
+export const getInitialWordsToLearn = (collection: Collection) => {
+  const supportedLearningTypes = collection.getProperty(
+    'supportedLearningTypes',
+  );
+  const listOfCardsMappedToWordsToLearn = collection
+    .getWordsToLearn()
+    .slice(0, collection.getProperty('wordsToTrain'))
+    .flat();
+
+  return getCardsToLearn(
+    listOfCardsMappedToWordsToLearn,
+    supportedLearningTypes,
+  ).sort(() => Math.random() - 0.5);
+};
+
+export const setLearningVoiceOfTheCollection = (collection: Collection) => {
+  const supportedLearningTypes = collection.getProperty(
+    'supportedLearningTypes',
+  );
+
+  if (
+    supportedLearningTypes.includes(LearningType.Listening) &&
+    !appSettings.getSetting('useExternalVoiceWhenAvailable')
+  ) {
+    setLearningVoice(collection.getLearningLanguage()).catch(() =>
+      showToastMessage(
+        translate('voice_is_not_set_message'),
+        ToastAndroid.LONG,
+      ),
+    );
+  }
+};

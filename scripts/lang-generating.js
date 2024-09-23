@@ -52,10 +52,20 @@ exec(`tsc ${pathToLangMap}.ts`, (error, stdout, stderr) => {
     const textToTranslate = langEntries
       .map(([_, value]) => value)
       .join(separator);
-    const {SupportedLanguagesToI18nMap} = require(`../${pathToLangMap}.js`);
+    const {SupportedLanguagesToI18nMap, GoogleSupportedLanguages} = require(
+      `../${pathToLangMap}.js`,
+    );
 
     Object.values(SupportedLanguagesToI18nMap)
-      .filter(value => !['en', 'ru'].includes(value))
+      .filter(
+        value =>
+          ![
+            GoogleSupportedLanguages.English,
+            GoogleSupportedLanguages.Russian,
+            GoogleSupportedLanguages.Arabic,
+            GoogleSupportedLanguages.Hebrew,
+          ].includes(value),
+      )
       .forEach((langKey, index) => {
         setTimeout(
           () => translateTextToFile(textToTranslate, langKey, langEntries),

@@ -149,6 +149,7 @@ export const CollectionLearning = ({
               : Tts.speak(trainingWord as string)
           }
           size={100}
+          noLoading
         />
         <Button
           onPress={() => setNextWord(Answers.SkipListening)}

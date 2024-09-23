@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
 import {IconButton as PaperButton} from 'react-native-paper';
 
-type Props = React.ComponentProps<typeof PaperButton>;
+type Props = React.ComponentProps<typeof PaperButton> & {
+  noLoading?: boolean;
+};
 
-export const IconButton = ({onPress, disabled, loading, ...props}: Props) => {
+export const IconButton = ({
+  onPress,
+  disabled,
+  loading,
+  noLoading,
+  ...props
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -13,7 +21,7 @@ export const IconButton = ({onPress, disabled, loading, ...props}: Props) => {
         setIsLoading(true);
         Promise.resolve(onPress?.(e)).finally(() => setIsLoading(false));
       }}
-      loading={loading || isLoading}
+      loading={!noLoading && (loading || isLoading)}
       disabled={disabled || isLoading}
     />
   );
