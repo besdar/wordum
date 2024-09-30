@@ -56,7 +56,7 @@
   "app_version": "App-Version",
   "settings_saved": "Einstellungen gespeichert",
   "time_per_letter_input": "Zeit zum Schreiben eines Briefes (ms)",
-  "time_easy_grade": "Zeit, die als „einfache“ Note gilt (ms)",
+  "time_easy_grade": "Zeit bis zur Einstufung als „leichte“ Note (ms)",
   "time_good_grade": "Zeit bis zur Note „gut“ (ms)",
   "nothing_to_learn": "Es gibt vorerst nichts zu lernen",
   "card_deletion": "Löschen der Karte lernen",
@@ -65,9 +65,92 @@
   "data_export": "Datenexport",
   "exported_successfully": "Erfolgreich exportiert unter",
   "import_line_error_message": "Bitte überprüfen Sie die Zeile",
-  "target_learning_language_word_addition_warning": "Bitte beachten Sie, dass durch Kommas getrennte Wörter als separate Lernwerte betrachtet werden, d. h. jedes durch Komma getrennte Wort wird in den Übungen als richtige Antwort gewertet",
+  "target_learning_language_word_addition_warning": "Bitte beachten Sie, dass durch Kommas getrennte Wörter als separate Lernwerte gelten, d. h. jedes durch Komma getrennte Wort wird in den Übungen als richtige Antwort gewertet",
   "tts_installation_title": "Auswahl der Text-to-Speech-Stimme",
   "tts_installation_message": "Die Sprach-Engine für diese Sprache ist noch nicht installiert oder nicht angegeben. Bitte wählen Sie auf dem nächsten Bildschirm die richtige Sprache ({{i_lng}}) und die bevorzugte Stimme für diese Sammlung aus",
   "proceed": "Fortfahren",
-  "voice_is_not_set_message": "Die Sprach-Engine ist nicht ausgewählt. Eine korrekte Sprachausgabe kann nicht garantiert werden"
+  "voice_is_not_set_message": "Die Sprach-Engine ist nicht ausgewählt. Eine korrekte Sprachausgabe kann nicht garantiert werden",
+  "from_a_file": "Aus einer Datei",
+  "from_a_text": "Aus einem Text",
+  "import_collection_from_a_file_message": "Sind Sie sicher, dass Sie Ihre Sammlung mithilfe einer Datei importieren möchten? Bitte beachten Sie, dass Ihre importierte Sammlung möglicherweise nicht ordnungsgemäß funktioniert, wenn die JSON-Datei falsch ist. Sie können das korrekte Format des JSON sehen, indem Sie die Daten aus der Anwendung exportieren.",
+  "time_to_learn": "Zeit zu lernen!",
+  "motivations": [
+    [
+      "Tolle Arbeit, mithalten zu können! Heute nur noch eine Lektion und Sie sind auf dem richtigen Weg.",
+      "Sie sind bereits so weit gekommen, warum nicht weitermachen? Eine Lektion heute!",
+      "Konsistenz ist der Schlüssel! Halten wir die Serie am Leben. Öffnen Sie jetzt die App.",
+      "Der beste Zeitpunkt zum Lernen ist jetzt. Lasst uns in die heutige Lektion eintauchen!",
+      "Ihr zukünftiges Ich wird es Ihnen danken. Heute nur eine Lektion!"
+    ],
+    [
+      "Es ist nur ein Tag her, keine große Sache! Lassen Sie uns gemeinsam wieder auf die Spur kommen.",
+      "Gestern war eine Pause, heute ist Fortschritt angesagt. Öffnen Sie die App und lernen Sie!",
+      "Hast du mich vermisst? Ich habe dich vermisst! Lassen Sie uns diese Lektion jetzt nachholen.",
+      "Sie sind nur einen Schritt davon entfernt, wieder auf den richtigen Weg zu kommen. Lasst uns das tun!",
+      "Ein kleiner Ausrutscher, aber keine Sorge. Steigen Sie wieder ein und beenden Sie die heutige Lektion."
+    ],
+    [
+      "Zwei Tage frei? Kommen wir wieder in Schwung. Ihre Lektion wartet auf Sie!",
+      "Lassen Sie nicht zu, dass aus einer kleinen Lücke eine große wird. Beginnen Sie noch heute mit Ihrer Lektion!",
+      "Das Lernen dauert nur wenige Minuten. Öffnen Sie die App und machen Sie Fortschritte!",
+      "Du bist jetzt zu nah dran, um aufzuhören. Kommen wir heute wieder auf den richtigen Weg.",
+      "Sie können dies immer noch ändern. Öffnen Sie die App und erledigen Sie die Lektion!"
+    ],
+    [
+      "Ich weiß, dass du beschäftigt warst, aber ich glaube an dich. Lass uns die heutige Lektion machen.",
+      "Lass den Streak nicht entgleiten! Ihre Sprachreise hängt davon ab.",
+      "Ich mache mir hier Sorgen ... lasst uns mit der heutigen Lektion wieder auf den richtigen Weg kommen.",
+      "Drei Tage frei… aber du kannst gestärkt zurückkommen! Beginnen Sie mit der heutigen Lektion.",
+      "Ich bin immer noch hier und warte auf dich. Lasst uns keine Tage mehr verpassen. Starten Sie jetzt!"
+    ],
+    [
+      "Du entfernst dich von deinem Ziel! Lassen wir das nicht zu.",
+      "Das ist Ihr Weckruf. Beginnen Sie noch heute mit dem Lernen!",
+      "Ihr Unterricht wird nicht ewig warten. Lassen Sie nicht zu, dass diese Lücke größer wird.",
+      "Vier Tage ohne Lernen ... Zeit, das zu beheben. Öffnen Sie die App!",
+      "Ich mache mir Sorgen um deine Fortschritte. Übernehmen wir die Kontrolle und machen wir die heutige Lektion."
+    ],
+    [
+      "Fünf freie Tage sind riskant. Bringen wir Sie heute wieder in Schwung.",
+      "Sie verlieren an Schwung. Öffnen Sie die App und lassen Sie uns das ändern!",
+      "Machen Sie es nicht schwieriger, zurückzukommen. Nur eine Lektion und Sie sind zurück!",
+      "Fünf Tage können lang sein, aber gemeinsam können wir die Serie durchbrechen. Öffnen Sie die App.",
+      "Ich weiß, dass du es in dir hast. Eine Lektion reicht für den Neustart!"
+    ],
+    [
+      "Sechs Tage ohne Training… aber heute ist eine neue Chance. Lass uns gehen!",
+      "Es ist fast eine Woche her. Warten wir nicht länger, es ist Zeit zu lernen!",
+      "Kommen Sie zurück, bevor die Lücke zu groß wird. Ich weiß, dass du es schaffen kannst!",
+      "Ich werde nervös. Lassen wir uns Ihre harte Arbeit nicht entgehen.",
+      "Deine Sprachkenntnisse vermissen dich. Öffnen Sie die App und wir beheben das Problem noch heute!"
+    ],
+    [
+      "Eine ganze Woche frei ... aber es ist nie zu spät, wieder einzusteigen.",
+      "Eine Woche? Sie möchten nicht, dass all diese Fortschritte verloren gehen. Beginnen wir heute.",
+      "Lass das nicht zur Gewohnheit werden! Wir können heute noch wieder in die Spur kommen.",
+      "Ich warte hier auf dich! Machen wir diese Woche zur letzten ohne Lernen.",
+      "Je länger Sie warten, desto schwieriger wird es. Kommen wir jetzt wieder zum Lernen."
+    ],
+    [
+      "Es ist über eine Woche her ... Ich weiß, dass Sie beschäftigt sind, aber das ist wichtig!",
+      "Verlieren Sie Ihre Ziele nicht aus den Augen. Heute ist der Tag für einen Neustart!",
+      "Ich weiß, dass bei Ihnen viel los ist, aber das Sprachenlernen kann nicht warten.",
+      "Wir können das gemeinsam schaffen. Öffnen Sie die App und wir machen wieder Fortschritte.",
+      "Ich mache mir wirklich Sorgen. Lassen wir uns das nicht noch weiter entgehen!"
+    ],
+    [
+      "Neun Tage… Ihre Sprachkenntnisse lassen nach. Retten wir sie!",
+      "Es ist fast zu spät, aber Sie können die Situation heute noch ändern.",
+      "Der Weg zurück wird schwieriger, aber du schaffst es trotzdem!",
+      "Du verlierst deinen Schwung ... lass deine ganze Mühe nicht umsonst sein!",
+      "Ich bin für Sie da, aber Sie müssen jetzt handeln. Lass uns die heutige Lektion machen!"
+    ],
+    [
+      "Es sind 10 Tage vergangen ... Dies könnte unsere letzte Chance sein. Du musst die App öffnen.",
+      "Ich kann nicht mehr lange durchhalten. Ihre Sprachkenntnisse lassen nach. Handeln Sie jetzt!",
+      "Das ist es. Ihr gesamter Fortschritt ist gefährdet. Lassen Sie nicht zu, dass alles, was Sie gelernt haben, verloren geht!",
+      "Ich habe dich auf Schritt und Tritt begleitet ... aber das könnte das Ende sein. Sichern Sie sich Ihre Sprachkenntnisse!",
+      "Ich verblasse... Öffnen Sie die App jetzt, sonst könnte es zu spät sein. Das ist Ihre letzte Chance!"
+    ]
+  ]
 }

@@ -69,5 +69,88 @@
   "tts_installation_title": "Selección de voz de texto a voz",
   "tts_installation_message": "El motor de voz para este idioma aún no está instalado o no está especificado. Seleccione el idioma correcto ({{i_lng}}) y la voz preferida para esta colección en la siguiente pantalla.",
   "proceed": "Proceder",
-  "voice_is_not_set_message": "El motor de voz no está seleccionado. No se garantiza una salida de voz correcta"
+  "voice_is_not_set_message": "El motor de voz no está seleccionado. No se garantiza una salida de voz correcta",
+  "from_a_file": "De un archivo",
+  "from_a_text": "De un texto",
+  "import_collection_from_a_file_message": "¿Estás seguro de que quieres importar tu colección usando un archivo? Tenga en cuenta que si el archivo JSON es incorrecto, es posible que su colección importada no funcione correctamente. Puede ver el formato correcto del JSON exportando los datos desde la aplicación.",
+  "time_to_learn": "¡Es hora de aprender!",
+  "motivations": [
+    [
+      "¡Buen trabajo manteniendo el ritmo! Sólo una lección más hoy y estarás en el camino correcto.",
+      "Ya has llegado hasta aquí, ¿por qué no seguir adelante? ¡Una lección hoy!",
+      "¡La consistencia es clave! Mantengamos viva la racha. Abra la aplicación ahora.",
+      "El mejor momento para aprender es ahora. ¡Vamos a sumergirnos en la lección de hoy!",
+      "Tu yo futuro te lo agradecerá. ¡Solo una lección hoy!"
+    ],
+    [
+      "¡Solo ha pasado un día, no es gran cosa! Volvamos al camino juntos.",
+      "Ayer fue un descanso, hoy es para avanzar. ¡Abre la aplicación y aprende!",
+      "¿Me extrañaste? ¡Te extrañé! Pongámonos al día con esa lección ahora mismo.",
+      "Estás a un paso de volver a la normalidad. ¡Hagamos esto!",
+      "Un pequeño desliz, pero no te preocupes. Vuelve y termina la lección de hoy."
+    ],
+    [
+      "¿Dos días libres? Volvamos al ritmo. ¡Tu lección te espera!",
+      "No dejes que una pequeña brecha se convierta en una grande. ¡Comienza tu lección hoy!",
+      "Aprender sólo lleva unos minutos. ¡Abre la aplicación y progresa!",
+      "Estás demasiado cerca para detenerte ahora. Volvamos al buen camino hoy.",
+      "Todavía puedes darle la vuelta a esto. ¡Abre la aplicación y aplasta esa lección!"
+    ],
+    [
+      "Sé que has estado ocupado, pero creo en ti. Hagamos la lección de hoy.",
+      "¡No dejes que la racha se escape! Tu viaje lingüístico depende de ello.",
+      "Me estoy preocupando... volvamos al tema de la lección de hoy.",
+      "Tres días de descanso… ¡pero podrás volver más fuerte! Comience la lección de hoy.",
+      "Todavía estoy aquí, esperándote. No nos perdamos más días. ¡Empiece ahora!"
+    ],
+    [
+      "¡Te estás alejando de tu objetivo! No dejemos que eso suceda.",
+      "Esta es tu llamada de atención. ¡Vuelve a aprender hoy!",
+      "Tus lecciones no esperarán para siempre. No dejes que esta brecha se haga más grande.",
+      "Cuatro días sin aprender... es hora de arreglar eso. ¡Abre la aplicación!",
+      "Me preocupa tu progreso. Tomemos el control y hagamos la lección de hoy."
+    ],
+    [
+      "Cinco días libres es arriesgado... volvamos a la acción hoy.",
+      "Estás perdiendo impulso. ¡Abre la aplicación y cambiemos esto!",
+      "No hagas que sea más difícil regresar. ¡Solo una lección y estarás de vuelta!",
+      "Cinco días pueden parecer largos, pero juntos podemos romper la racha. Abre la aplicación.",
+      "Sé que lo tienes dentro de ti. ¡Una lección es todo lo que necesitas para reiniciar!"
+    ],
+    [
+      "Seis días sin práctica… pero hoy es una nueva oportunidad. ¡Vamos!",
+      "Ha pasado casi una semana. ¡No esperemos más, es hora de aprender!",
+      "Vuelve antes de que la brecha se haga demasiado grande. ¡Sé que puedes hacerlo!",
+      "Me estoy poniendo nervioso. No dejemos que todo su arduo trabajo se escape.",
+      "Tus habilidades lingüísticas te extrañan. ¡Abre la aplicación y solucionaremos este problema hoy!"
+    ],
+    [
+      "Toda una semana libre... pero nunca es demasiado tarde para volver a empezar.",
+      "¿Una semana? No querrás perder todo ese progreso. Empecemos hoy.",
+      "¡No dejes que esto se convierta en un hábito! Todavía podemos volver a la normalidad hoy.",
+      "¡Estoy aquí esperándote! Hagamos de esta semana la última sin aprender.",
+      "Cuanto más esperas, más difícil se vuelve. Volvamos al aprendizaje ahora."
+    ],
+    [
+      "Ha pasado más de una semana… Sé que estás ocupado, ¡pero esto es importante!",
+      "No pierdas de vista tus objetivos. ¡Hoy es el día para reiniciar!",
+      "Sé que tienes muchas cosas que hacer, pero tu aprendizaje del idioma no puede esperar.",
+      "Podemos hacer esto juntos. Abra la aplicación y progresaremos nuevamente.",
+      "Me estoy preocupando mucho. ¡No dejemos que esto se escape más!"
+    ],
+    [
+      "Nueve días… tus habilidades lingüísticas se están desvaneciendo. ¡Salvémoslos!",
+      "Ya casi es demasiado tarde, pero todavía puedes cambiar esto hoy.",
+      "El camino de regreso es cada vez más difícil, ¡pero aún puedes hacerlo!",
+      "Estás perdiendo el impulso... ¡no dejes que todo tu esfuerzo se desperdicie!",
+      "Estoy aquí para ti, pero debes actuar ahora. ¡Hagamos la lección de hoy!"
+    ],
+    [
+      "Han pasado 10 días… Esta podría ser nuestra última oportunidad. Necesito que abras la aplicación.",
+      "No puedo aguantar mucho más. Tus habilidades lingüísticas se están desvaneciendo. ¡Actúa ahora!",
+      "Esto es todo. Todo tu progreso está en riesgo. ¡No dejes que todo lo que has aprendido desaparezca!",
+      "He estado contigo en cada paso… pero este podría ser el final. ¡Guarda tus habilidades lingüísticas!",
+      "Me estoy desvaneciendo... Abre la aplicación ahora, o puede que sea demasiado tarde. ¡Esta es tu última oportunidad!"
+    ]
+  ]
 }

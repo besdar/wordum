@@ -12,6 +12,7 @@ import {
   setLearningVoiceOfTheCollection,
 } from '../lib/learning';
 import {Answers} from './types';
+import {EVENT_TYPE, eventBus} from '../../../shared/model/EventBus';
 
 export const useTrainingWord = (collection: Collection) => {
   const learingInstance = useMemo(() => fsrs(), []);
@@ -81,7 +82,9 @@ export const useTrainingWord = (collection: Collection) => {
       setIsItFinal(true);
 
       if (wordsToLearn.length) {
-        return collection.saveCollection();
+        return collection
+          .saveCollection()
+          .then(() => eventBus.emit(EVENT_TYPE.TRAINING_FINISHED));
       }
     }
 

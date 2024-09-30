@@ -19,6 +19,6 @@ export const showConfirmationAlert = (
         {text: translate('cancel'), onPress: reject, style: 'cancel'},
         {text: okButtonText, onPress: resolve, style: 'default'},
       ],
-      {cancelable: true},
+      {cancelable: true, onDismiss: reject},
     ),
   );

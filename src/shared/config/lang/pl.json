@@ -57,7 +57,7 @@
   "settings_saved": "Ustawienia zostały zapisane",
   "time_per_letter_input": "Czas potrzebny na napisanie jednej litery (ms)",
   "time_easy_grade": "Czas do uznania za ocenę „łatwą” (ms)",
-  "time_good_grade": "Czas, w którym należy uznać ocenę za „dobrą” (ms)",
+  "time_good_grade": "Czas do uznania za ocenę «dobrą» (ms)",
   "nothing_to_learn": "Na razie nie ma się czego uczyć",
   "card_deletion": "Usunięcie karty edukacyjnej",
   "card_deletion_message": "Czy na pewno chcesz usunąć tę kartę edukacyjną z kolekcji?",
@@ -69,5 +69,88 @@
   "tts_installation_title": "Wybór głosu podczas zamiany tekstu na mowę",
   "tts_installation_message": "Silnik mowy dla tego języka nie jest jeszcze zainstalowany lub nie został określony. Na następnym ekranie wybierz właściwy język ({{i_lng}}) i preferowany głos dla tej kolekcji",
   "proceed": "Przystępować",
-  "voice_is_not_set_message": "Nie wybrano silnika mowy. Nie gwarantuje się prawidłowego wypowiadania mowy"
+  "voice_is_not_set_message": "Nie wybrano silnika mowy. Nie gwarantuje się prawidłowego wypowiadania mowy",
+  "from_a_file": "Z pliku",
+  "from_a_text": "Z tekstu",
+  "import_collection_from_a_file_message": "Czy na pewno chcesz zaimportować swoją kolekcję za pomocą pliku? Pamiętaj, że jeśli plik JSON jest nieprawidłowy, zaimportowana kolekcja może nie działać poprawnie. Poprawny format JSON możesz zobaczyć eksportując dane z aplikacji.",
+  "time_to_learn": "Czas się uczyć!",
+  "motivations": [
+    [
+      "Świetna robota, nadążasz! Jeszcze tylko jedna lekcja dzisiaj i jesteś na dobrej drodze.",
+      "Zaszedłeś już tak daleko, dlaczego nie pójść dalej? Jedna lekcja dzisiaj!",
+      "Spójność jest kluczem! Podtrzymajmy passę. Otwórz aplikację teraz.",
+      "Najlepszy czas na naukę jest teraz. Przejdźmy do dzisiejszej lekcji!",
+      "Twoje przyszłe ja będzie Ci za to wdzięczne. Tylko jedna lekcja dzisiaj!"
+    ],
+    [
+      "To tylko jeden dzień, nic wielkiego! Wróćmy razem na właściwe tory.",
+      "Wczoraj była przerwa, dzisiaj jest postęp. Otwórz aplikację i ucz się!",
+      "Tęskniłeś za mną? Tęskniłem za tobą! Nadróbmy teraz tę lekcję.",
+      "Jesteś o krok od powrotu na właściwe tory. Zróbmy to!",
+      "Mała pomyłka, ale bez obaw. Wskocz ponownie i dokończ dzisiejszą lekcję."
+    ],
+    [
+      "Dwa dni wolnego? Wróćmy do rowu. Twoja lekcja czeka!",
+      "Nie pozwól, aby mała luka stała się dużą. Rozpocznij lekcję już dziś!",
+      "Nauka zajmuje tylko kilka minut. Otwórz aplikację i rób postępy!",
+      "Jesteś zbyt blisko, aby się teraz zatrzymać. Wróćmy dziś na właściwe tory.",
+      "Nadal możesz to odwrócić. Otwórz aplikację i zmiażdż tę lekcję!"
+    ],
+    [
+      "Wiem, że jesteś zajęty, ale wierzę w ciebie. Odróbmy dzisiejszą lekcję.",
+      "Nie pozwól, aby passa się zepsuła! Od tego zależy Twoja podróż językowa.",
+      "Zaczynam się martwić… Wróćmy do dzisiejszej lekcji.",
+      "Trzy dni wolnego… ale możesz wrócić silniejszy! Rozpocznij dzisiejszą lekcję.",
+      "Wciąż tu jestem i czekam na ciebie. Nie przegapmy już żadnego dnia. Zacznij teraz!"
+    ],
+    [
+      "Oddalasz się od celu! Nie dopuśćmy do tego.",
+      "To jest twoja pobudka. Wróć do nauki już dziś!",
+      "Twoje lekcje nie będą czekać wiecznie. Nie pozwól, aby ta przepaść się powiększała.",
+      "Cztery dni bez nauki... czas to naprawić. Otwórz aplikację!",
+      "Martwię się o twoje postępy. Przejmijmy kontrolę i odróbmy dzisiejszą lekcję."
+    ],
+    [
+      "Pięć dni wolnego jest ryzykowne… przywróćmy Cię dzisiaj do działania.",
+      "Tracisz dynamikę. Otwórz aplikację i odwróćmy sytuację!",
+      "Nie utrudniaj powrotu. Tylko jedna lekcja i wrócisz!",
+      "Pięć dni może wydawać się długie, ale razem możemy przełamać tę passę. Otwórz aplikację.",
+      "Wiem, że masz to w sobie. Wystarczy jedna lekcja, aby zacząć od nowa!"
+    ],
+    [
+      "Sześć dni bez ćwiczeń… ale dziś jest nowa szansa. Chodźmy!",
+      "Minął prawie tydzień. Nie czekajmy dłużej, czas się uczyć!",
+      "Wróć, zanim różnica stanie się zbyt duża. Wiem, że możesz to zrobić!",
+      "Zaczynam się denerwować. Nie pozwólmy, aby cała Twoja ciężka praca poszła na marne.",
+      "Twoje umiejętności językowe tęsknią za tobą. Otwórz aplikację, a naprawimy to już dziś!"
+    ],
+    [
+      "Cały tydzień wolnego... ale nigdy nie jest za późno, żeby wskoczyć ponownie.",
+      "Tydzień? Nie chcesz stracić całego tego postępu. Zacznijmy dzisiaj.",
+      "Nie pozwól, aby stało się to nawykiem! Jeszcze dziś możemy wrócić na właściwe tory.",
+      "Jestem tu i czekam na Ciebie! Sprawmy, aby ten tydzień był ostatnim bez nauki.",
+      "Im dłużej czekasz, tym staje się to trudniejsze. Wróćmy teraz do nauki."
+    ],
+    [
+      "Minął ponad tydzień… Wiem, że jesteś zajęty, ale to ważne!",
+      "Nie trać z oczu swoich celów. Dziś jest dzień na restart!",
+      "Wiem, że masz dużo na głowie, ale Twoja nauka języka nie może czekać.",
+      "Możemy to zrobić razem. Otwórz aplikację, a my ponownie zrobimy postęp.",
+      "Zaczynam się naprawdę martwić. Nie pozwólmy, żeby to się dalej ślizgało!"
+    ],
+    [
+      "Dziewięć dni… Twoje umiejętności językowe zanikają. Ratujmy ich!",
+      "Jest już prawie za późno, ale jeszcze dziś możesz to zmienić.",
+      "Droga powrotna jest coraz trudniejsza, ale nadal możesz to zrobić!",
+      "Tracisz impet... nie pozwól, aby cały Twój wysiłek poszedł na marne!",
+      "Jestem tu dla ciebie, ale musisz działać teraz. Odróbmy dzisiejszą lekcję!"
+    ],
+    [
+      "Minęło 10 dni… To może być nasza ostatnia szansa. Musisz otworzyć aplikację.",
+      "Nie mogę wytrzymać dłużej. Twoje umiejętności językowe zanikają. Działaj teraz!",
+      "To jest to. Cały Twój postęp jest zagrożony. Nie pozwól, aby wszystko, czego się nauczyłeś, zniknęło!",
+      "Byłem z tobą na każdym kroku… ale to może być koniec. Zapisz swoje umiejętności językowe!",
+      "Znikam... Otwórz aplikację teraz, bo może być za późno. To Twoja ostatnia szansa!"
+    ]
+  ]
 }

@@ -43,7 +43,7 @@ export type CollectionFormFields = {
   supportedLearningTypes: LearningType[];
 };
 
-type CollectionType = {
+export type CollectionType = {
   id: string;
 } & CollectionFormFields;
 
@@ -275,13 +275,28 @@ export class Collection {
   }
 }
 
-export const getCollections = (): Promise<Collection[]> =>
+const getCollectionsKeys = () =>
   AsyncStorage.getAllKeys().then(result =>
-    Promise.all(
-      result
-        .filter(key => key.startsWith(StorageKeys.COLLECTIONS))
-        .flatMap(key =>
-          new Collection().init(key.replace(StorageKeys.COLLECTIONS + '_', '')),
-        ),
-    ),
+    result
+      .filter(key => key.startsWith(StorageKeys.COLLECTIONS))
+      .map(key => key.replace(StorageKeys.COLLECTIONS + '_', '')),
   );
+
+export const getCollections = (): Promise<Collection[]> =>
+  getCollectionsKeys().then(keys =>
+    Promise.all(keys.map(key => new Collection().init(key))),
+  );
+
+export const isThereAnyWordsToLearn = async () => {
+  const collectionsKeys = await getCollectionsKeys();
+
+  for (const collectionKey of collectionsKeys) {
+    const collection = await new Collection().init(collectionKey);
+
+    if (collection.getWordsToLearn().length) {
+      return true;
+    }
+  }
+
+  return false;
+};

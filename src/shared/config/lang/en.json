@@ -69,5 +69,88 @@
   "tts_installation_title": "Text-to-Speech Voice Selection",
   "tts_installation_message": "The speech engine for this language is not yet installed or not specified. Please select the correct language ({{i_lng}}) and preferred voice for this collection on the next screen",
   "proceed": "Proceed",
-  "voice_is_not_set_message": "The speech engine is not selected. Correct speech output is not guaranteed"
+  "voice_is_not_set_message": "The speech engine is not selected. Correct speech output is not guaranteed",
+  "from_a_file": "From a file",
+  "from_a_text": "From a text",
+  "import_collection_from_a_file_message": "Are you sure you want to import your collection using a file? Please note that if the JSON file is incorrect, your imported collection may not work correctly. You can see the correct format of the JSON by exporting the data from the application.",
+  "time_to_learn": "Time to learn!",
+  "motivations": [
+    [
+      "Great job keeping up! Just one more lesson today and you're on track.",
+      "You’ve already come this far, why not keep going? One lesson today!",
+      "Consistency is key! Let’s keep the streak alive. Open the app now.",
+      "The best time to learn is right now. Let’s dive into today’s lesson!",
+      "Your future self will thank you for this. Just one lesson today!"
+    ],
+    [
+      "It’s only been a day, no big deal! Let’s get back on track together.",
+      "Yesterday was a break, today is for progress. Open the app and learn!",
+      "Missed me? I missed you! Let’s catch up on that lesson right now.",
+      "You’re one step away from getting back on track. Let’s do this!",
+      "A small slip, but no worries. Jump back in and finish today’s lesson."
+    ],
+    [
+      "Two days off? Let’s get back in the groove. Your lesson awaits!",
+      "Don’t let a small gap become a big one. Start your lesson today!",
+      "Learning only takes a few minutes. Open the app and make progress!",
+      "You’re too close to stop now. Let’s get back on track today.",
+      "You can still turn this around. Open the app and crush that lesson!"
+    ],
+    [
+      "I know you’ve been busy, but I believe in you. Let’s do today’s lesson.",
+      "Don’t let the streak slip! Your language journey depends on it.",
+      "I’m getting worried here... let’s get back on track with today’s lesson.",
+      "Three days off… but you can come back stronger! Start today’s lesson.",
+      "I’m still here, waiting for you. Let’s not miss any more days. Start now!"
+    ],
+    [
+      "You’re slipping away from your goal! Let’s not let that happen.",
+      "This is your wake-up call. Get back to learning today!",
+      "Your lessons won’t wait forever. Don’t let this gap get bigger.",
+      "Four days without learning... time to fix that. Open the app!",
+      "I’m worried for your progress. Let’s take control and do today’s lesson."
+    ],
+    [
+      "Five days off is risky… let’s get you back into action today.",
+      "You’re losing momentum. Open the app and let’s turn this around!",
+      "Don’t make it harder to come back. Just one lesson and you’re back!",
+      "Five days can feel long, but we can break the streak together. Open the app.",
+      "I know you’ve got it in you. One lesson is all it takes to restart!"
+    ],
+    [
+      "Six days without practice… but today is a new chance. Let’s go!",
+      "It’s been almost a week. Let’s not wait any longer, time to learn!",
+      "Come back before the gap gets too big. I know you can do it!",
+      "I’m getting nervous. Let’s not let all your hard work slip away.",
+      "Your language skills miss you. Open the app and we’ll fix this today!"
+    ],
+    [
+      "A whole week off... but it’s never too late to jump back in.",
+      "One week? You don’t want to lose all that progress. Let’s start today.",
+      "Don’t let this become a habit! We can still get back on track today.",
+      "I’m here waiting for you! Let’s make this week the last without learning.",
+      "The longer you wait, the harder it gets. Let’s get back to learning now."
+    ],
+    [
+      "It’s been over a week… I know you’re busy, but this is important!",
+      "Don’t lose sight of your goals. Today’s the day to restart!",
+      "I know you’ve got a lot going on, but your language learning can’t wait.",
+      "We can do this together. Open the app, and we’ll make progress again.",
+      "I’m getting really worried. Let’s not let this slip any further!"
+    ],
+    [
+      "Nine days… your language skills are fading. Let’s save them!",
+      "It’s almost too late, but you can still turn this around today.",
+      "The path back is getting harder, but you can still do it!",
+      "You’re losing your momentum... don’t let all your effort go to waste!",
+      "I’m here for you, but you need to act now. Let’s do today’s lesson!"
+    ],
+    [
+      "It’s been 10 days… This might be our last chance. I need you to open the app.",
+      "I can’t hold on much longer. Your language skills are fading. Act now!",
+      "This is it. All your progress is at risk. Don’t let everything you’ve learned disappear!",
+      "I’ve been with you every step… but this could be the end. Save your language skills!",
+      "I’m fading away... Open the app now, or it might be too late. This is your last chance!"
+    ]
+  ]
 }

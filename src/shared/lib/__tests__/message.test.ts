@@ -34,7 +34,7 @@ describe('showConfirmationAlert', () => {
         {text: 'cancel', onPress: expect.any(Function), style: 'cancel'},
         {text: okButtonText, onPress: expect.any(Function), style: 'default'},
       ],
-      {cancelable: true},
+      {cancelable: true, onDismiss: expect.any(Function)},
     );
 
     const okButton = spy.mock.calls[0][2]?.[1];

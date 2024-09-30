@@ -24,7 +24,7 @@
   "incorrect": "Onjuist",
   "correct": "Juist",
   "show_answer": "Toon antwoord",
-  "write_in": "Schrijf erin",
+  "write_in": "Schrijf binnen",
   "all_for_now": "Dat is alles voor nu",
   "finish": "Finish",
   "no_audio_message": "Ik kan momenteel geen audio beluisteren",
@@ -69,5 +69,88 @@
   "tts_installation_title": "Tekst-naar-spraak stemselectie",
   "tts_installation_message": "De spraakengine voor deze taal is nog niet geïnstalleerd of niet gespecificeerd. Selecteer op het volgende scherm de juiste taal ({{i_lng}}) en voorkeursstem voor deze collectie",
   "proceed": "Doorgaan",
-  "voice_is_not_set_message": "De spraakengine is niet geselecteerd. Een correcte spraakuitvoer kan niet worden gegarandeerd"
+  "voice_is_not_set_message": "De spraakengine is niet geselecteerd. Correcte spraakuitvoer is niet gegarandeerd",
+  "from_a_file": "Uit een bestand",
+  "from_a_text": "Uit een tekst",
+  "import_collection_from_a_file_message": "Weet u zeker dat u uw verzameling wilt importeren met behulp van een bestand? Houd er rekening mee dat als het JSON-bestand onjuist is, uw geïmporteerde verzameling mogelijk niet correct werkt. U kunt het juiste formaat van de JSON zien door de gegevens uit de applicatie te exporteren.",
+  "time_to_learn": "Tijd om te leren!",
+  "motivations": [
+    [
+      "Geweldig werk volhouden! Nog één les vandaag en je bent op de goede weg.",
+      "Je bent al zo ver gekomen, waarom zou je niet doorgaan? Vandaag één les!",
+      "Consistentie is de sleutel! Laten we de streak levend houden. Open nu de app.",
+      "De beste tijd om te leren is nu. Laten we in de les van vandaag duiken!",
+      "Je toekomstige zelf zal je hiervoor dankbaar zijn. Vandaag maar één les!"
+    ],
+    [
+      "Het is maar een dag, geen probleem! Laten we samen weer op het goede spoor gaan.",
+      "Gisteren was een pauze, vandaag is voor vooruitgang. Open de app en leer!",
+      "Heb je mij gemist? Ik heb je gemist! Laten we die les nu meteen inhalen.",
+      "Je bent nog maar één stap verwijderd van weer op het goede spoor komen. Laten we dit doen!",
+      "Een klein foutje, maar geen zorgen. Spring er weer in en voltooi de les van vandaag."
+    ],
+    [
+      "Twee dagen vrij? Laten we terug in de groef gaan. Je les wacht op je!",
+      "Laat een klein gat niet groot worden. Begin vandaag nog met je les!",
+      "Het leren duurt slechts een paar minuten. Open de app en boek vooruitgang!",
+      "Je bent te dichtbij om nu te stoppen. Laten we vandaag weer op het goede spoor gaan.",
+      "Je kunt dit nog steeds omdraaien. Open de app en verpletter die les!"
+    ],
+    [
+      "Ik weet dat je het druk hebt gehad, maar ik geloof in je. Laten we de les van vandaag doen.",
+      "Laat de streak niet wegglippen! Jouw taalreis hangt ervan af.",
+      "Ik begin me zorgen te maken... laten we weer verder gaan met de les van vandaag.",
+      "Drie dagen vrij... maar je kunt sterker terugkomen! Begin met de les van vandaag.",
+      "Ik ben er nog steeds en wacht op je. Laten we geen dagen meer missen. Begin nu!"
+    ],
+    [
+      "Je glijdt weg van je doel! Laten we dat niet laten gebeuren.",
+      "Dit is je wake-up call. Ga vandaag nog leren!",
+      "Je lessen zullen niet eeuwig wachten. Laat deze kloof niet groter worden.",
+      "Vier dagen zonder te leren... tijd om dat op te lossen. Open de app!",
+      "Ik maak me zorgen over je voortgang. Laten we de controle overnemen en de les van vandaag doen."
+    ],
+    [
+      "Vijf dagen vrij is riskant... laten we je vandaag weer in actie brengen.",
+      "Je verliest momentum. Open de app en laten we dit omdraaien!",
+      "Maak het niet moeilijker om terug te komen. Nog maar één les en je bent terug!",
+      "Vijf dagen kunnen lang aanvoelen, maar we kunnen de streak samen doorbreken. Open de app.",
+      "Ik weet dat je het in je hebt. Eén les is voldoende om opnieuw op te starten!"
+    ],
+    [
+      "Zes dagen zonder training… maar vandaag is een nieuwe kans. Laten we gaan!",
+      "Het is bijna een week geleden. Laten we niet langer wachten, tijd om te leren!",
+      "Kom terug voordat de kloof te groot wordt. Ik weet dat je het kunt!",
+      "Ik word zenuwachtig. Laten we al uw harde werk niet laten wegglippen.",
+      "Je taalvaardigheid mist je. Open de app en we lossen dit vandaag nog op!"
+    ],
+    [
+      "Een hele week vrij... maar het is nooit te laat om er weer in te springen.",
+      "Eén week? Je wilt al die vooruitgang niet verliezen. Laten we vandaag beginnen.",
+      "Laat dit geen gewoonte worden! Vandaag kunnen we nog steeds op het goede spoor komen.",
+      "Ik wacht hier op je! Laten we van deze week de laatste maken zonder te leren.",
+      "Hoe langer je wacht, hoe moeilijker het wordt. Laten we nu weer gaan leren."
+    ],
+    [
+      "Het is al meer dan een week geleden... Ik weet dat je het druk hebt, maar dit is belangrijk!",
+      "Verlies uw doelen niet uit het oog. Vandaag is de dag om opnieuw op te starten!",
+      "Ik weet dat je veel te doen hebt, maar het leren van de taal kan niet wachten.",
+      "Wij kunnen dit samen doen. Open de app en we boeken weer vooruitgang.",
+      "Ik maak me echt zorgen. Laten we dit niet verder laten glippen!"
+    ],
+    [
+      "Negen dagen… je taalvaardigheid vervaagt. Laten we ze redden!",
+      "Het is bijna te laat, maar je kunt dit vandaag nog omdraaien.",
+      "De weg terug wordt steeds moeilijker, maar je kunt het nog steeds doen!",
+      "Je verliest je momentum... laat niet al je inspanningen verloren gaan!",
+      "Ik ben er voor je, maar je moet nu handelen. Laten we de les van vandaag doen!"
+    ],
+    [
+      "Het is al 10 dagen geleden... Dit zou onze laatste kans kunnen zijn. Ik wil dat je de app opent.",
+      "Ik kan het niet veel langer volhouden. Je taalvaardigheid gaat achteruit. Handel nu!",
+      "Dit is het. Al uw voortgang loopt gevaar. Laat niet alles wat je hebt geleerd verdwijnen!",
+      "Ik ben bij elke stap bij je geweest... maar dit zou het einde kunnen zijn. Bespaar je taalvaardigheid!",
+      "Ik verdwijn weg... Open de app nu, anders is het misschien te laat. Dit is je laatste kans!"
+    ]
+  ]
 }

@@ -17,7 +17,7 @@ export const parseTextToCollectionWords = (
     .filter(Boolean)
     .flat()
     .reduce<CollectionItems>((acc, line) => {
-      const [value, translation] = line.split(';');
+      const [value, translation, examples] = line.split(';');
 
       const itemId = getUUID();
       acc[itemId] = createLearningCardsForCollectionItem(
@@ -25,6 +25,7 @@ export const parseTextToCollectionWords = (
           wordId: itemId,
           value: value.trim(),
           translation: translation.trim(),
+          examples,
         },
         learningLanguage,
         cardsToGenerate,

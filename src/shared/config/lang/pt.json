@@ -56,7 +56,7 @@
   "app_version": "Versão do aplicativo",
   "settings_saved": "Configurações salvas",
   "time_per_letter_input": "Tempo necessário para escrever uma carta (ms)",
-  "time_easy_grade": "Tempo para ser considerado nota «fácil» (ms)",
+  "time_easy_grade": "Tempo para ser considerado como nota «fácil» (ms)",
   "time_good_grade": "Tempo para ser considerada nota «boa» (ms)",
   "nothing_to_learn": "Não há nada para aprender por enquanto",
   "card_deletion": "Exclusão do cartão de aprendizagem",
@@ -69,5 +69,88 @@
   "tts_installation_title": "Seleção de voz de conversão de texto em fala",
   "tts_installation_message": "O mecanismo de fala para este idioma ainda não está instalado ou não foi especificado. Selecione o idioma correto ({{i_lng}}) e a voz preferida para esta coleção na próxima tela",
   "proceed": "Prosseguir",
-  "voice_is_not_set_message": "O mecanismo de fala não está selecionado. A saída de fala correta não é garantida"
+  "voice_is_not_set_message": "O mecanismo de fala não está selecionado. A saída de fala correta não é garantida",
+  "from_a_file": "De um arquivo",
+  "from_a_text": "De um texto",
+  "import_collection_from_a_file_message": "Tem certeza de que deseja importar sua coleção usando um arquivo? Observe que se o arquivo JSON estiver incorreto, sua coleção importada poderá não funcionar corretamente. Você pode ver o formato correto do JSON exportando os dados do aplicativo.",
+  "time_to_learn": "Hora de aprender!",
+  "motivations": [
+    [
+      "Ótimo trabalho mantendo-se atualizado! Só mais uma lição hoje e você estará no caminho certo.",
+      "Você já chegou até aqui, por que não continuar? Uma lição hoje!",
+      "Consistência é a chave! Vamos manter a sequência viva. Abra o aplicativo agora.",
+      "A melhor hora para aprender é agora. Vamos mergulhar na lição de hoje!",
+      "Seu eu futuro agradecerá por isso. Apenas uma lição hoje!"
+    ],
+    [
+      "Faz apenas um dia, não é grande coisa! Vamos voltar ao caminho juntos.",
+      "Ontem foi uma pausa, hoje é para o progresso. Abra o aplicativo e aprenda!",
+      "Sentiu minha falta? Senti a sua falta! Vamos acompanhar essa lição agora.",
+      "Você está a um passo de voltar aos trilhos. Vamos fazer isso!",
+      "Um pequeno deslize, mas não se preocupe. Volte e termine a lição de hoje."
+    ],
+    [
+      "Dois dias de folga? Vamos voltar ao ritmo. Sua lição o aguarda!",
+      "Não deixe que uma pequena lacuna se torne uma grande. Comece sua aula hoje!",
+      "Aprender leva apenas alguns minutos. Abra o aplicativo e progrida!",
+      "Você está muito perto para parar agora. Vamos voltar aos trilhos hoje.",
+      "Você ainda pode reverter isso. Abra o aplicativo e arrase nessa lição!"
+    ],
+    [
+      "Eu sei que você tem estado ocupado, mas acredito em você. Vamos fazer a lição de hoje.",
+      "Não deixe a sequência escapar! Sua jornada linguística depende disso.",
+      "Estou ficando preocupado aqui... vamos voltar ao assunto com a lição de hoje.",
+      "Três dias de folga… mas você pode voltar mais forte! Comece a lição de hoje.",
+      "Ainda estou aqui, esperando por você. Não vamos perder mais nenhum dia. Comece agora!"
+    ],
+    [
+      "Você está se afastando do seu objetivo! Não vamos deixar isso acontecer.",
+      "Este é o seu chamado para despertar. Volte a aprender hoje!",
+      "Suas lições não vão esperar para sempre. Não deixe essa lacuna aumentar.",
+      "Quatro dias sem aprender... é hora de consertar isso. Abra o aplicativo!",
+      "Estou preocupado com seu progresso. Vamos assumir o controle e fazer a lição de hoje."
+    ],
+    [
+      "Cinco dias de folga são arriscados... vamos colocá-lo de volta à ação hoje.",
+      "Você está perdendo impulso. Abra o aplicativo e vamos mudar isso!",
+      "Não torne mais difícil voltar. Basta uma lição e você está de volta!",
+      "Cinco dias podem parecer longos, mas podemos quebrar essa seqüência juntos. Abra o aplicativo.",
+      "Eu sei que você tem isso dentro de você. Basta uma lição para reiniciar!"
+    ],
+    [
+      "Seis dias sem treino… mas hoje é uma nova chance. Vamos!",
+      "Já faz quase uma semana. Não vamos esperar mais, é hora de aprender!",
+      "Volte antes que a diferença fique muito grande. Eu sei que você consegue!",
+      "Estou ficando nervoso. Não vamos deixar todo o seu trabalho duro escapar.",
+      "Suas habilidades linguísticas sentem sua falta. Abra o aplicativo e resolveremos isso hoje!"
+    ],
+    [
+      "Uma semana inteira de folga... mas nunca é tarde para voltar.",
+      "Uma semana? Você não quer perder todo esse progresso. Vamos começar hoje.",
+      "Não deixe isso se tornar um hábito! Ainda podemos voltar aos trilhos hoje.",
+      "Estou aqui esperando por você! Vamos fazer desta semana a última sem aprendizado.",
+      "Quanto mais você espera, mais difícil fica. Vamos voltar a aprender agora."
+    ],
+    [
+      "Já faz mais de uma semana… sei que você está ocupado, mas isso é importante!",
+      "Não perca de vista seus objetivos. Hoje é dia de recomeçar!",
+      "Eu sei que você tem muita coisa acontecendo, mas seu aprendizado de idiomas não pode esperar.",
+      "Podemos fazer isso juntos. Abra o aplicativo e progrediremos novamente.",
+      "Estou ficando muito preocupado. Não vamos deixar isso escapar mais!"
+    ],
+    [
+      "Nove dias… suas habilidades linguísticas estão desaparecendo. Vamos salvá-los!",
+      "É quase tarde demais, mas você ainda pode reverter isso hoje.",
+      "O caminho de volta está ficando mais difícil, mas você ainda pode fazer isso!",
+      "Você está perdendo o ímpeto... não desperdice todo o seu esforço!",
+      "Estou aqui para ajudá-lo, mas você precisa agir agora. Vamos fazer a lição de hoje!"
+    ],
+    [
+      "Já se passaram 10 dias… Esta pode ser nossa última chance. Preciso que você abra o aplicativo.",
+      "Não posso aguentar muito mais. Suas habilidades linguísticas estão desaparecendo. Aja agora!",
+      "É isso. Todo o seu progresso está em risco. Não deixe tudo que você aprendeu desaparecer!",
+      "Estive com você em cada passo... mas isso pode ser o fim. Salve suas habilidades no idioma!",
+      "Estou desaparecendo... Abra o aplicativo agora ou pode ser tarde demais. Esta é sua última chance!"
+    ]
+  ]
 }

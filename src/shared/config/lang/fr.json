@@ -49,7 +49,7 @@
   "hide_additional_settings": "Masquer les paramètres supplémentaires",
   "types_of_exercises": "Types d'exercices",
   "show_additional_statistics": "Afficher des statistiques supplémentaires",
-  "about_text": "Bienvenue sur Wordum, votre application incontournable pour apprendre les langues et élargir votre vocabulaire ! Saisissez simplement un mot ou une phrase et cette application remplira automatiquement les traductions, l'audio et les exemples d'utilisation. Avec des exercices d'écoute et d'écriture, Wordum s'adapte à votre style d'apprentissage grâce à l'algorithme Open Spaced Repetition, similaire à celui de l'application Anki. Il s'agit d'un projet open source sous licence GPL-3 sans suivi inclus. Si vous rencontrez des problèmes ou des bugs, il serait très apprécié que vous les signaliez en créant un problème sur la page GitHub du projet. Vos commentaires sont inestimables pour contribuer à améliorer Wordum !",
+  "about_text": "Bienvenue sur Wordum, votre application incontournable pour apprendre les langues et élargir votre vocabulaire ! Saisissez simplement un mot ou une phrase et cette application remplira automatiquement les traductions, l'audio et les exemples d'utilisation. Avec des exercices d’écoute et d’écriture, Wordum s’adapte à votre style d’apprentissage grâce à l’algorithme Open Spaced Repetition, similaire à celui de l’application Anki. Il s'agit d'un projet open source sous licence GPL-3 sans suivi inclus. Si vous rencontrez des problèmes ou des bugs, il serait très apprécié que vous les signaliez en créant un problème sur la page GitHub du projet. Vos commentaires sont inestimables pour contribuer à améliorer Wordum !",
   "open_project_page": "Ouvrir la page GitHub du projet",
   "donate_text": "Si vous appréciez mon travail et souhaitez soutenir le projet, pensez à faire un don. Merci pour votre soutien !",
   "donate": "Faire un don",
@@ -69,5 +69,88 @@
   "tts_installation_title": "Sélection vocale de synthèse vocale",
   "tts_installation_message": "Le moteur vocal pour cette langue n'est pas encore installé ou n'est pas spécifié. Veuillez sélectionner la bonne langue ({{i_lng}}) et la voix préférée pour cette collection sur l'écran suivant.",
   "proceed": "Procéder",
-  "voice_is_not_set_message": "Le moteur vocal n'est pas sélectionné. Une sortie vocale correcte n’est pas garantie"
+  "voice_is_not_set_message": "Le moteur vocal n'est pas sélectionné. Une sortie vocale correcte n’est pas garantie",
+  "from_a_file": "A partir d'un fichier",
+  "from_a_text": "D'un texte",
+  "import_collection_from_a_file_message": "Etes-vous sûr de vouloir importer votre collection à l'aide d'un fichier ? Veuillez noter que si le fichier JSON est incorrect, votre collection importée risque de ne pas fonctionner correctement. Vous pouvez voir le format correct du JSON en exportant les données depuis l'application.",
+  "time_to_learn": "Il est temps d'apprendre !",
+  "motivations": [
+    [
+      "Excellent travail à suivre ! Encore une leçon aujourd'hui et vous êtes sur la bonne voie.",
+      "Vous êtes déjà arrivé jusqu’ici, pourquoi ne pas continuer ? Une leçon aujourd'hui !",
+      "La cohérence est la clé ! Gardons la séquence en vie. Ouvrez l'application maintenant.",
+      "Le meilleur moment pour apprendre, c’est maintenant. Passons à la leçon d’aujourd’hui !",
+      "Votre futur moi vous en remerciera. Juste une leçon aujourd'hui !"
+    ],
+    [
+      "Cela ne fait qu'un jour, ce n'est pas grave ! Reprenons le chemin ensemble.",
+      "Hier c'était une pause, aujourd'hui c'est le progrès. Ouvrez l'application et apprenez !",
+      "Je t'ai manqué ? Tu m'as manqué! Rattrapeons cette leçon dès maintenant.",
+      "Vous êtes sur le point de revenir sur la bonne voie. Faisons ça !",
+      "Un petit dérapage, mais pas de soucis. Revenez et terminez la leçon d’aujourd’hui."
+    ],
+    [
+      "Deux jours de repos ? Revenons dans le groove. Votre leçon vous attend !",
+      "Ne laissez pas un petit écart devenir grand. Commencez votre cours aujourd'hui !",
+      "L'apprentissage ne prend que quelques minutes. Ouvrez l'application et progressez !",
+      "Vous êtes trop près pour vous arrêter maintenant. Reprenons le chemin aujourd'hui.",
+      "Vous pouvez toujours inverser la tendance. Ouvrez l'application et écrasez cette leçon !"
+    ],
+    [
+      "Je sais que tu as été occupé, mais je crois en toi. Faisons la leçon d’aujourd’hui.",
+      "Ne laissez pas la séquence s'échapper ! Votre parcours linguistique en dépend.",
+      "Je commence à m'inquiéter... revenons sur la bonne voie avec la leçon d'aujourd'hui.",
+      "Trois jours de repos… mais vous pouvez revenir plus fort ! Commencez la leçon d’aujourd’hui.",
+      "Je suis toujours là, je t'attends. Ne manquons plus aucun jour. Commencez maintenant !"
+    ],
+    [
+      "Vous vous éloignez de votre objectif ! Ne laissons pas cela arriver.",
+      "C'est votre signal d'alarme. Reprenez l'apprentissage aujourd'hui !",
+      "Vos cours n’attendront pas éternellement. Ne laissez pas cet écart se creuser.",
+      "Quatre jours sans apprendre... il est temps de régler ça. Ouvrez l'application !",
+      "Je m'inquiète pour vos progrès. Prenons le contrôle et faisons la leçon d’aujourd’hui."
+    ],
+    [
+      "Cinq jours de congé, c’est risqué… remettons-nous à l’action aujourd’hui.",
+      "Vous perdez votre élan. Ouvrez l'application et changeons la donne !",
+      "Ne compliquez pas le retour. Juste une leçon et vous êtes de retour !",
+      "Cinq jours peuvent sembler longs, mais nous pouvons mettre un terme à cette séquence ensemble. Ouvrez l'application.",
+      "Je sais que tu l'as en toi. Une leçon suffit pour redémarrer !"
+    ],
+    [
+      "Six jours sans entraînement… mais aujourd'hui c'est une nouvelle chance. Allons-y!",
+      "Cela fait presque une semaine. N’attendons plus, il est temps d’apprendre !",
+      "Revenez avant que l'écart ne devienne trop grand. Je sais que tu peux le faire !",
+      "Je deviens nerveux. Ne laissons pas s’échapper tout votre travail acharné.",
+      "Vos compétences linguistiques vous manquent. Ouvrez l'application et nous allons résoudre ce problème aujourd'hui !"
+    ],
+    [
+      "Une semaine entière de congé... mais il n'est jamais trop tard pour y retourner.",
+      "Une semaine ? Vous ne voulez pas perdre tous ces progrès. Commençons aujourd'hui.",
+      "Ne laissez pas cela devenir une habitude ! Nous pouvons encore nous remettre sur les rails aujourd'hui.",
+      "Je t'attends ici ! Faisons de cette semaine la dernière sans apprendre.",
+      "Plus vous attendez, plus cela devient difficile. Revenons maintenant à l’apprentissage."
+    ],
+    [
+      "Cela fait plus d’une semaine… Je sais que tu es occupé, mais c’est important !",
+      "Ne perdez pas de vue vos objectifs. C’est aujourd’hui le jour pour redémarrer !",
+      "Je sais que vous avez beaucoup de choses à faire, mais votre apprentissage des langues ne peut pas attendre.",
+      "Nous pouvons le faire ensemble. Ouvrez l'application et nous progresserons à nouveau.",
+      "Je commence vraiment à m'inquiéter. Ne laissons pas cela échapper davantage !"
+    ],
+    [
+      "Neuf jours… vos compétences linguistiques s'estompent. Sauvons-les !",
+      "Il est presque trop tard, mais vous pouvez encore inverser la tendance aujourd’hui.",
+      "Le chemin du retour devient de plus en plus difficile, mais vous pouvez toujours le faire !",
+      "Vous perdez votre élan... ne laissez pas tous vos efforts être vains !",
+      "Je suis là pour toi, mais tu dois agir maintenant. Faisons la leçon d'aujourd'hui !"
+    ],
+    [
+      "Cela fait 10 jours… C’est peut-être notre dernière chance. J'ai besoin que vous ouvriez l'application.",
+      "Je ne peux pas tenir plus longtemps. Vos compétences linguistiques s’estompent. Agissez maintenant !",
+      "C'est ça. Tous vos progrès sont en danger. Ne laissez pas tout ce que vous avez appris disparaître !",
+      "J'ai été avec toi à chaque étape… mais cela pourrait être la fin. Sauvegardez vos compétences linguistiques !",
+      "Je disparais... Ouvrez l'application maintenant, ou il sera peut-être trop tard. C'est votre dernière chance !"
+    ]
+  ]
 }

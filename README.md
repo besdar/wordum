@@ -1,7 +1,5 @@
 # Wordum 
 
-## Overview
-
 Wordum is a powerful language learning application designed to help users expand their vocabulary through interactive flashcards. Built with [React Native](https://reactnative.dev), Wordum offers a seamless experience for learners of all levels. 
 
 ### Current Status
@@ -34,7 +32,6 @@ Wordum is currently in public beta. Any contributions to expand the app to other
 
 ## Features wishlist
 
-- notification about exercises
 - rating of a word/phrase (how often it is used)
 - automatic github release pipeline
 - F-Droid publication

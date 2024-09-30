@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import {ControlledTextInput} from './ControlledTextInput';
 import {StyleSheet, View} from 'react-native';
-import {Controller, FieldValues} from 'react-hook-form';
+import {Controller, FieldPath, FieldValues} from 'react-hook-form';
 import {useAppTheme} from '../../app/ui/Material3ThemeProvider';
 
 const styles = StyleSheet.create({
@@ -29,11 +29,14 @@ type PickerItem = {
   label: string;
 };
 
-type Props<T extends FieldValues> = {
+type Props<T extends FieldValues, TName extends FieldPath<T>> = {
   items: PickerItem[];
-} & React.ComponentProps<typeof ControlledTextInput<T>>;
+} & React.ComponentProps<typeof ControlledTextInput<T, TName>>;
 
-export const ControlledPicker = <T extends FieldValues>({
+export const ControlledPicker = <
+  T extends FieldValues,
+  TName extends FieldPath<T>,
+>({
   items,
   control,
   name,
@@ -41,7 +44,7 @@ export const ControlledPicker = <T extends FieldValues>({
   disabled,
   viewProps = {},
   ...inputProps
-}: Props<T>) => {
+}: Props<T, TName>) => {
   const [visible, setVisible] = React.useState(false);
   const theme = useAppTheme();
 

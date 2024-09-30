@@ -69,5 +69,88 @@
   "tts_installation_title": "Metinden Konuşmaya Ses Seçimi",
   "tts_installation_message": "Bu dilin konuşma motoru henüz kurulmamış veya belirtilmemiştir. Lütfen bir sonraki ekranda bu koleksiyon için doğru dili ({{i_lng}}) ve tercih edilen sesi seçin",
   "proceed": "İlerlemek",
-  "voice_is_not_set_message": "Konuşma motoru seçilmedi. Doğru konuşma çıkışı garanti edilmez"
+  "voice_is_not_set_message": "Konuşma motoru seçilmedi. Doğru konuşma çıkışı garanti edilmez",
+  "from_a_file": "Bir dosyadan",
+  "from_a_text": "Bir metinden",
+  "import_collection_from_a_file_message": "Koleksiyonunuzu bir dosya kullanarak içe aktarmak istediğinizden emin misiniz? JSON dosyası hatalıysa içe aktarılan koleksiyonunuzun düzgün çalışmayabileceğini lütfen unutmayın. Verileri uygulamadan dışa aktararak JSON'un doğru biçimini görebilirsiniz.",
+  "time_to_learn": "Öğrenme zamanı!",
+  "motivations": [
+    [
+      "Takip etmek harika bir iş! Bugün sadece bir ders daha ve doğru yoldasın.",
+      "Zaten buraya kadar geldin, neden devam etmiyorsun? Bugün bir ders!",
+      "Tutarlılık çok önemlidir! Seriyi canlı tutalım. Şimdi uygulamayı açın.",
+      "Öğrenmek için en iyi zaman şu an. Hadi bugünün dersine dalalım!",
+      "Gelecekteki benliğiniz bunun için size teşekkür edecek. Bugün sadece bir ders!"
+    ],
+    [
+      "Sadece bir gün oldu, önemli değil! Gelin birlikte yolumuza geri dönelim.",
+      "Dün bir araydı, bugün ilerleme içindir. Uygulamayı açın ve öğrenin!",
+      "Beni özledin mi? Seni özledim! Şimdilik bu derse geçelim.",
+      "Tekrar yola koyulmanıza bir adım kaldı. Haydi bunu yapalım!",
+      "Küçük bir kayma ama endişelenmeyin. Geri dönün ve bugünkü dersi bitirin."
+    ],
+    [
+      "İki gün izin mi? Hadi oluğa geri dönelim. Dersin seni bekliyor!",
+      "Küçük bir boşluğun büyük bir fark olmasına izin vermeyin. Dersinize bugün başlayın!",
+      "Öğrenme yalnızca birkaç dakika sürer. Uygulamayı açın ve ilerleme kaydedin!",
+      "Artık durmak için çok yakınsın. Bugün tekrar yolumuza devam edelim.",
+      "Bunu hâlâ tersine çevirebilirsin. Uygulamayı açın ve o dersi ezin!"
+    ],
+    [
+      "Meşgul olduğunu biliyorum ama sana inanıyorum. Bugünün dersini yapalım.",
+      "Serinin kaymasına izin vermeyin! Dil yolculuğunuz buna bağlıdır.",
+      "Burada endişelenmeye başladım... Haydi bugünkü dersimize geri dönelim.",
+      "Üç gün izin… ama daha güçlü bir şekilde geri dönebilirsin! Bugünün dersine başlayın.",
+      "Hala buradayım, seni bekliyorum. Daha fazla günü kaçırmayalım. Şimdi başla!"
+    ],
+    [
+      "Hedefinden uzaklaşıyorsun! Bunun olmasına izin vermeyelim.",
+      "Bu senin uyandırma çağrın. Bugün öğrenmeye geri dönün!",
+      "Dersleriniz sonsuza kadar beklemeyecek. Bu farkın daha da büyümesine izin vermeyin.",
+      "Öğrenmeden geçen dört gün... bunu düzeltmenin zamanı geldi. Uygulamayı açın!",
+      "İlerlemeniz için endişeleniyorum. Haydi kontrolü ele alalım ve bugünün dersini yapalım."
+    ],
+    [
+      "Beş günlük izin risklidir… hadi bugün sizi yeniden harekete geçirelim.",
+      "İvme kaybediyorsun. Uygulamayı açın ve bu durumu tersine çevirelim!",
+      "Geri dönmeyi zorlaştırma. Sadece bir ders ve geri döndün!",
+      "Beş gün uzun gelebilir ama bu seriyi birlikte kırabiliriz. Uygulamayı açın.",
+      "Bunu senin içinde taşıdığını biliyorum. Yeniden başlamak için tek bir ders yeterli!"
+    ],
+    [
+      "Altı gün antrenmansız… ama bugün yeni bir şans. Haydi gidelim!",
+      "Neredeyse bir hafta oldu. Daha fazla beklemeyin, öğrenme zamanı!",
+      "Aradaki fark çok fazla büyümeden geri gelin. Yapabileceğini biliyorum!",
+      "Sinirlenmeye başladım. Tüm emeklerinizin elimizden kayıp gitmesine izin vermeyelim.",
+      "Dil becerileriniz sizi özlüyor. Uygulamayı açın ve bu sorunu bugün düzeltelim!"
+    ],
+    [
+      "Bütün bir hafta izin... ama tekrar başlamak için asla geç değildir.",
+      "Bir hafta mı? Tüm bu ilerlemeyi kaybetmek istemezsiniz. Bugün başlayalım.",
+      "Bunun alışkanlık haline gelmesine izin vermeyin! Bugün hâlâ yolumuza devam edebiliriz.",
+      "Burada seni bekliyorum! Bu haftayı öğrenmeden geçireceğimiz son hafta yapalım.",
+      "Ne kadar beklersen o kadar zorlaşır. Şimdi öğrenmeye geri dönelim."
+    ],
+    [
+      "Bir haftadan fazla oldu… Meşgul olduğunu biliyorum ama bu önemli!",
+      "Hedeflerinizi gözden kaçırmayın. Bugün yeniden başlama günü!",
+      "Yapacak çok şeyin olduğunu biliyorum ama dil öğrenmen için sabırsızlanıyorum.",
+      "Bunu birlikte yapabiliriz. Uygulamayı açın, tekrar ilerleme kaydedeceğiz.",
+      "Gerçekten endişelenmeye başladım. Bu konunun daha fazla kaymasına izin vermeyelim!"
+    ],
+    [
+      "Dokuz gün... Dil becerileriniz zayıflıyor. Onları kurtaralım!",
+      "Neredeyse çok geç, ancak bugün bunu hâlâ tersine çevirebilirsiniz.",
+      "Geri dönüş yolu zorlaşıyor ama yine de yapabilirsiniz!",
+      "İvmeyi kaybediyorsun... tüm çabanın boşa gitmesine izin verme!",
+      "Senin için buradayım ama şimdi harekete geçmen gerekiyor. Hadi bugünün dersini yapalım!"
+    ],
+    [
+      "10 gün oldu… Bu son şansımız olabilir. Uygulamayı açmana ihtiyacım var.",
+      "Daha fazla dayanamayacağım. Dil becerileriniz zayıflıyor. Şimdi harekete geçin!",
+      "İşte bu. Tüm ilerlemeniz risk altında. Öğrendiğiniz her şeyin kaybolmasına izin vermeyin!",
+      "Her adımda yanında oldum... ama bu son olabilir. Dil becerilerinizi kaydedin!",
+      "Soluyorum... Şimdi uygulamayı açın, yoksa çok geç olabilir. Bu senin son şansın!"
+    ]
+  ]
 }

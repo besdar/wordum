@@ -1,4 +1,9 @@
-import {Controller, FieldValues, UseControllerProps} from 'react-hook-form';
+import {
+  Controller,
+  FieldPath,
+  FieldValues,
+  UseControllerProps,
+} from 'react-hook-form';
 import {HelperText, TextInput} from 'react-native-paper';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -13,7 +18,10 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
+type Props<T extends FieldValues, TName extends FieldPath<T>> = Omit<
+  UseControllerProps<T, TName>,
+  'render'
+> &
   Omit<
     React.ComponentProps<typeof TextInput>,
     'onChange' | 'onChangeText' | 'value' | 'disabled' | 'onBlur' | 'error'
@@ -22,7 +30,10 @@ type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &
     helperText?: string;
   };
 
-export const ControlledTextInput = <T extends FieldValues>({
+export const ControlledTextInput = <
+  T extends FieldValues,
+  TName extends FieldPath<T>,
+>({
   control,
   name,
   rules,
@@ -30,7 +41,7 @@ export const ControlledTextInput = <T extends FieldValues>({
   viewProps = {},
   helperText,
   ...inputProps
-}: Props<T>) => (
+}: Props<T, TName>) => (
   <Controller
     name={name}
     rules={rules}

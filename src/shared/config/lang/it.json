@@ -69,5 +69,88 @@
   "tts_installation_title": "Selezione vocale da testo a voce",
   "tts_installation_message": "Il motore vocale per questa lingua non è ancora installato o non è specificato. Seleziona la lingua corretta ({{i_lng}}) e la voce preferita per questa raccolta nella schermata successiva",
   "proceed": "Procedere",
-  "voice_is_not_set_message": "Il motore vocale non è selezionato. La corretta produzione vocale non è garantita"
+  "voice_is_not_set_message": "Il motore vocale non è selezionato. La corretta produzione vocale non è garantita",
+  "from_a_file": "Da un fascicolo",
+  "from_a_text": "Da un testo",
+  "import_collection_from_a_file_message": "Sei sicuro di voler importare la tua raccolta utilizzando un file? Tieni presente che se il file JSON non è corretto, la raccolta importata potrebbe non funzionare correttamente. Puoi vedere il formato corretto del JSON esportando i dati dall'applicazione.",
+  "time_to_learn": "È ora di imparare!",
+  "motivations": [
+    [
+      "Ottimo lavoro tenere il passo! Solo un'altra lezione oggi e sei sulla buona strada.",
+      "Sei già arrivato fin qui, perché non andare avanti? Una lezione oggi!",
+      "La coerenza è la chiave! Manteniamo viva la serie di vittorie. Apri l'app adesso.",
+      "Il momento migliore per imparare è proprio adesso. Immergiamoci nella lezione di oggi!",
+      "Il tuo sé futuro ti ringrazierà per questo. Solo una lezione oggi!"
+    ],
+    [
+      "È passato solo un giorno, niente di grave! Rimettiamoci in carreggiata insieme.",
+      "Ieri è stata una pausa, oggi è il progresso. Apri l'app e impara!",
+      "Mi sono mancato? Mi sei mancato! Riprendiamo subito quella lezione.",
+      "Sei a un passo dal tornare in carreggiata. Facciamolo!",
+      "Un piccolo errore, ma non preoccupatevi. Torna indietro e finisci la lezione di oggi."
+    ],
+    [
+      "Due giorni liberi? Torniamo nel solco. La tua lezione ti aspetta!",
+      "Non lasciare che un piccolo divario diventi grande. Inizia la tua lezione oggi!",
+      "L'apprendimento richiede solo pochi minuti. Apri l'app e fai progressi!",
+      "Sei troppo vicino per fermarti adesso. Torniamo in pista oggi.",
+      "Puoi ancora cambiare la situazione. Apri l'app e completa quella lezione!"
+    ],
+    [
+      "So che sei stato impegnato, ma credo in te. Facciamo la lezione di oggi.",
+      "Non lasciare che la striscia scivoli via! Il tuo viaggio linguistico dipende da questo.",
+      "Mi sto preoccupando... torniamo in pista con la lezione di oggi.",
+      "Tre giorni di riposo… ma puoi tornare più forte! Inizia la lezione di oggi.",
+      "Sono ancora qui, ti aspetto. Non perdiamo altri giorni. Inizia ora!"
+    ],
+    [
+      "Ti stai allontanando dal tuo obiettivo! Non lasciamo che ciò accada.",
+      "Questo è il tuo campanello d'allarme. Torna a imparare oggi!",
+      "Le tue lezioni non aspetteranno per sempre. Non lasciare che questo divario aumenti.",
+      "Quattro giorni senza imparare... è ora di rimediare. Apri l'app!",
+      "Sono preoccupato per i tuoi progressi. Prendiamo il controllo e seguiamo la lezione di oggi."
+    ],
+    [
+      "Cinque giorni liberi sono rischiosi... torniamo in azione oggi.",
+      "Stai perdendo slancio. Apri l'app e cambiamo la situazione!",
+      "Non rendere più difficile il ritorno. Solo una lezione e sei tornato!",
+      "Cinque giorni possono sembrare lunghi, ma insieme possiamo interrompere il record. Apri l'applicazione.",
+      "So che ce l'hai dentro di te. Basta una lezione per ripartire!"
+    ],
+    [
+      "Sei giorni senza allenamenti... ma oggi c'è una nuova possibilità. Andiamo!",
+      "È passata quasi una settimana. Non aspettiamo oltre, è tempo di imparare!",
+      "Torna prima che il divario diventi troppo grande. So che puoi farcela!",
+      "Mi sto innervosendo. Non lasciamo che tutto il tuo duro lavoro svanisca.",
+      "Le tue abilità linguistiche ti mancano. Apri l'app e sistemeremo il problema oggi stesso!"
+    ],
+    [
+      "Un'intera settimana libera... ma non è mai troppo tardi per rimettersi in gioco.",
+      "Una settimana? Non vuoi perdere tutti quei progressi. Iniziamo oggi.",
+      "Non lasciare che questa diventi un’abitudine! Possiamo ancora rimetterci in carreggiata oggi.",
+      "Sono qui che ti aspetto! Facciamo in modo che questa settimana sia l’ultima senza imparare.",
+      "Più aspetti, più diventa difficile. Torniamo a imparare ora."
+    ],
+    [
+      "È passata più di una settimana... so che sei occupato, ma questo è importante!",
+      "Non perdere di vista i tuoi obiettivi. Oggi è il giorno per ripartire!",
+      "So che hai molto da fare, ma il tuo apprendimento della lingua non può aspettare.",
+      "Possiamo farlo insieme. Apri l'app e faremo di nuovo progressi.",
+      "Mi sto davvero preoccupando. Non lasciamoci sfuggire ulteriormente questa cosa!"
+    ],
+    [
+      "Nove giorni... le tue abilità linguistiche stanno svanendo. Salviamoli!",
+      "È quasi troppo tardi, ma puoi ancora cambiare la situazione oggi.",
+      "Il percorso del ritorno sta diventando sempre più difficile, ma puoi ancora farcela!",
+      "Stai perdendo lo slancio... non lasciare che tutti i tuoi sforzi vadano sprecati!",
+      "Sono qui per te, ma devi agire adesso. Facciamo la lezione di oggi!"
+    ],
+    [
+      "Sono passati 10 giorni... Questa potrebbe essere la nostra ultima possibilità. Ho bisogno che tu apra l'app.",
+      "Non posso resistere ancora a lungo. Le tue abilità linguistiche stanno svanendo. Agisci ora!",
+      "Questo è tutto. Tutti i tuoi progressi sono a rischio. Non lasciare che tutto ciò che hai imparato scompaia!",
+      "Sono stato con te in ogni tuo passo... ma questa potrebbe essere la fine. Salva le tue abilità linguistiche!",
+      "Sto svanendo... Apri l'app adesso, altrimenti potrebbe essere troppo tardi. Questa è la tua ultima possibilità!"
+    ]
+  ]
 }

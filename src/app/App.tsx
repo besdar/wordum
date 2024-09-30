@@ -7,13 +7,19 @@ import {PaperNavigationBar} from './ui/PaperNavigationBar';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {PagesStackProps} from '../shared/model/navigator';
 import {useTranslation} from 'react-i18next';
-
+import {useNotifications} from './model/useNotifications';
+import {createNotificationsBackgroundListener} from '../shared/lib/notifications';
 import '../shared/lib/i18n';
+
+createNotificationsBackgroundListener();
+
 const Stack = createNativeStackNavigator<PagesStackProps>();
 const queryClient = new QueryClient();
 
 function App(): React.JSX.Element {
   const {t} = useTranslation();
+
+  useNotifications();
 
   return (
     <Material3ThemeProvider>

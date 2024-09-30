@@ -3,7 +3,10 @@ import {Permission, PermissionsAndroid, Platform} from 'react-native';
 export const askForPermission = async (permission: Permission) => {
   if (
     Number(Platform.Version) >= 33 &&
-    permission === PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+    [
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    ].includes(permission)
   ) {
     return true;
   }

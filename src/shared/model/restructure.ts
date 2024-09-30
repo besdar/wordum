@@ -1,7 +1,57 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {StorageKeys} from './storage';
-import {getCollections, LearningType} from './collection';
+import {CollectionFormFields, getCollections, LearningType} from './collection';
 import packageJSON from '../../../package.json';
+
+const collectionRestructureV020 = (innerObject: CollectionFormFields) => {
+  if (innerObject.supportedLearningTypes) {
+    return false;
+  }
+
+  // @ts-ignore
+  innerObject.supportedLearningTypes = innerObject.typesOfCardsToGenerate;
+
+  const wordsEntries = Object.entries(innerObject.words);
+  for (const [wordKey, learningCards] of wordsEntries) {
+    learningCards.forEach(el => {
+      // @ts-ignore
+      el.wordId = el.collectionId;
+    });
+
+    const listeningCard = learningCards.find(
+      card => card.learningType === LearningType.Listening,
+    );
+
+    if (!listeningCard) {
+      continue;
+    }
+
+    const writingCard = learningCards.find(
+      card => card.learningType === LearningType.Writing,
+    );
+
+    if (!writingCard) {
+      delete innerObject.words[wordKey];
+
+      continue;
+    }
+
+    listeningCard.sound = listeningCard.value;
+    listeningCard.value = listeningCard.translation;
+    listeningCard.translation = writingCard.translation;
+  }
+
+  return true;
+};
+
+export const restructureOldCollection = (
+  data: CollectionFormFields,
+  version: {major: number; middle: number; minor: number},
+) => {
+  if (version.middle < 2) {
+    return collectionRestructureV020(data);
+  }
+};
 
 class DataRestructure {
   promise: Promise<void> | undefined;
@@ -41,37 +91,8 @@ class DataRestructure {
     for (const collection of collections) {
       const innerObject = collection.dangerouslyGetInnerObject();
 
-      // @ts-ignore
-      innerObject.supportedLearningTypes = innerObject.typesOfCardsToGenerate;
-
-      const wordsEntries = Object.entries(innerObject.words);
-      for (const [wordKey, learningCards] of wordsEntries) {
-        learningCards.forEach(el => {
-          // @ts-ignore
-          el.wordId = el.collectionId;
-        });
-
-        const listeningCard = learningCards.find(
-          card => card.learningType === LearningType.Listening,
-        );
-
-        if (!listeningCard) {
-          continue;
-        }
-
-        const writingCard = learningCards.find(
-          card => card.learningType === LearningType.Writing,
-        );
-
-        if (!writingCard) {
-          delete innerObject.words[wordKey];
-
-          continue;
-        }
-
-        listeningCard.sound = listeningCard.value;
-        listeningCard.value = listeningCard.translation;
-        listeningCard.translation = writingCard.translation;
+      if (!collectionRestructureV020(innerObject)) {
+        continue;
       }
 
       await collection.saveCollection();

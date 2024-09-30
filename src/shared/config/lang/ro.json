@@ -69,5 +69,88 @@
   "tts_installation_title": "Selectarea vocii din text în vorbire",
   "tts_installation_message": "Motorul de vorbire pentru această limbă nu este încă instalat sau nu este specificat. Vă rugăm să selectați limba corectă ({{i_lng}}) și vocea preferată pentru această colecție pe ecranul următor",
   "proceed": "Continuă",
-  "voice_is_not_set_message": "Motorul de vorbire nu este selectat. Ieșirea corectă a vorbirii nu este garantată"
+  "voice_is_not_set_message": "Motorul de vorbire nu este selectat. Ieșirea corectă a vorbirii nu este garantată",
+  "from_a_file": "Dintr-un dosar",
+  "from_a_text": "Dintr-un text",
+  "import_collection_from_a_file_message": "Sigur doriți să vă importați colecția folosind un fișier? Vă rugăm să rețineți că, dacă fișierul JSON este incorect, colecția dvs. importată poate să nu funcționeze corect. Puteți vedea formatul corect al JSON exportând datele din aplicație.",
+  "time_to_learn": "E timpul să înveți!",
+  "motivations": [
+    [
+      "Mare treabă să țin pasul! Încă o lecție astăzi și ești pe drumul cel bun.",
+      "Ai ajuns deja până aici, de ce să nu continui? O lecție azi!",
+      "Consecvența este cheia! Haideți să menținem șirul în viață. Deschideți aplicația acum.",
+      "Cel mai bun moment pentru a învăța este chiar acum. Să intrăm în lecția de azi!",
+      "Sinele tău viitor îți va mulțumi pentru asta. O singură lecție astăzi!"
+    ],
+    [
+      "A trecut doar o zi, nu e mare lucru! Să revenim împreună pe drumul cel bun.",
+      "Ieri a fost o pauză, azi este pentru progres. Deschide aplicația și învață!",
+      "Mi-a fost dor de mine? Mi-a fost dor de tine! Să ajungem din urmă cu acea lecție chiar acum.",
+      "Ești la un pas de a reveni pe drumul cel bun. Să facem asta!",
+      "O mică alunecare, dar fără griji. Sari înapoi și termină lecția de astăzi."
+    ],
+    [
+      "Două zile libere? Să revenim în șanț. Lecția ta așteaptă!",
+      "Nu lăsați un mic decalaj să devină unul mare. Începeți-vă lecția astăzi!",
+      "Învățarea durează doar câteva minute. Deschide aplicația și progresează!",
+      "Ești prea aproape ca să te oprești acum. Să ne întoarcem astăzi pe drumul cel bun.",
+      "Încă puteți întoarce acest lucru. Deschide aplicația și zdrobește acea lecție!"
+    ],
+    [
+      "Știu că ai fost ocupat, dar cred în tine. Să facem lecția de azi.",
+      "Nu lăsați stria să alunece! Călătoria ta lingvistică depinde de asta.",
+      "Devin îngrijorat aici... hai să revenim pe drumul cel bun cu lecția de astăzi.",
+      "Trei zile libere... dar te poți întoarce mai puternic! Începe lecția de astăzi.",
+      "Sunt încă aici, te aștept. Să nu mai ratam nicio zi. Începe acum!"
+    ],
+    [
+      "Te îndepărtezi de obiectivul tău! Să nu lăsăm asta să se întâmple.",
+      "Acesta este apelul tău de trezire. Reveniți la învățare astăzi!",
+      "Lecțiile tale nu vor aștepta pentru totdeauna. Nu lăsați acest decalaj să devină mai mare.",
+      "Patru zile fără să înveți... timpul să rezolvi asta. Deschide aplicația!",
+      "Sunt îngrijorat pentru progresul tău. Să preluăm controlul și să facem lecția de astăzi."
+    ],
+    [
+      "Cinci zile libere sunt riscante... haideți să vă readucem la acțiune astăzi.",
+      "Pierzi impuls. Deschideți aplicația și haideți să o întoarcem!",
+      "Nu face mai greu să te întorci. O singură lecție și te-ai întors!",
+      "Cinci zile pot fi lungi, dar putem întrerupe șirul împreună. Deschideți aplicația.",
+      "Știu că o ai în tine. Este nevoie de o singură lecție pentru a reporni!"
+    ],
+    [
+      "Șase zile fără antrenament... dar astăzi este o nouă șansă. Să mergem!",
+      "A trecut aproape o săptămână. Să nu mai așteptăm, este timpul să învățăm!",
+      "Reveniți înainte ca decalajul să devină prea mare. Știu că poți să o faci!",
+      "devin nervos. Să nu lăsăm toată munca ta grea să scape.",
+      "Abilitățile tale lingvistice te lipsesc. Deschideți aplicația și vom remedia asta astăzi!"
+    ],
+    [
+      "O săptămână întreagă liberă... dar niciodată nu este prea târziu pentru a reveni.",
+      "O săptămână? Nu vrei să pierzi tot acel progres. Să începem astăzi.",
+      "Nu lăsa asta să devină un obicei! Putem încă să ne întoarcem pe drumul cel bun astăzi.",
+      "Sunt aici te astept! Să facem din această săptămână ultima fără să învățăm.",
+      "Cu cât aștepți mai mult, cu atât devine mai greu. Să ne întoarcem acum la învățare."
+    ],
+    [
+      "A trecut peste o săptămână... Știu că ești ocupat, dar acest lucru este important!",
+      "Nu pierde din vedere obiectivele tale. Azi este ziua de repornire!",
+      "Știu că ai multe de făcut, dar învățarea limbilor tale nu poate aștepta.",
+      "Putem face asta împreună. Deschideți aplicația și vom face progrese din nou.",
+      "devin foarte îngrijorat. Să nu lăsăm asta să alunece mai departe!"
+    ],
+    [
+      "Nouă zile... abilitățile tale lingvistice se estompează. Să-i salvăm!",
+      "Este aproape prea târziu, dar poți să schimbi asta și astăzi.",
+      "Drumul înapoi devine din ce în ce mai greu, dar încă o poți face!",
+      "Îți pierzi avântul... nu-ți irosește tot efortul!",
+      "Sunt aici pentru tine, dar trebuie să acționezi acum. Hai să facem lecția de azi!"
+    ],
+    [
+      "Au trecut 10 zile... Aceasta ar putea fi ultima noastră șansă. Am nevoie să deschizi aplicația.",
+      "nu mai pot rezista mult. Abilitățile tale lingvistice se estompează. Acționează acum!",
+      "Asta este. Tot progresul tău este în pericol. Nu lăsa să dispară tot ce ai învățat!",
+      "Am fost cu tine la fiecare pas... dar acesta ar putea fi sfârșitul. Salvează-ți abilitățile lingvistice!",
+      "Dispar... Deschideți aplicația acum sau poate fi prea târziu. Aceasta este ultima ta șansă!"
+    ]
+  ]
 }

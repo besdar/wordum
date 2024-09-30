@@ -5,12 +5,13 @@ const {HttpProxyAgent} = require('http-proxy-agent');
 
 const separator = '\n';
 const pathToLangMap = 'src/shared/model/lang';
+const commandArgs = process.argv.slice(2);
 
 const writeFile = (pathToFile, fileContent) =>
   fs.writeFile(pathToFile, fileContent, console.log);
 
 const translateTextToFile = async (textToTranslate, langKey, langEntries) => {
-  const httpProxyUrl = process.argv[2]; // http://127.0.0.1:80 <- https://free-proxy-list.net/
+  const httpProxyUrl = commandArgs.find(arg => arg.startsWith('http')); // http://127.0.0.1:80 <- https://free-proxy-list.net/
   const agent = httpProxyUrl ? new HttpProxyAgent(httpProxyUrl) : undefined;
 
   const {text: translatedText} = await translate(textToTranslate, {
@@ -27,10 +28,70 @@ const translateTextToFile = async (textToTranslate, langKey, langEntries) => {
       return acc;
     }, {});
 
+  return translatedJSON;
+};
+
+const writeTranslationToFile = (translatedJSON, langKey) => {
   return writeFile(
     `src/shared/config/lang/${langKey}.json`,
     JSON.stringify(translatedJSON),
   );
+};
+
+const translateTexts = async langData => {
+  const langEntries = Object.entries(langData).filter(
+    ([_, value]) => !Array.isArray(value),
+  );
+  const textToTranslate = langEntries
+    .map(([_, value]) => value)
+    .join(separator);
+  const {SupportedLanguagesToI18nMap, GoogleSupportedLanguages} = require(
+    `../${pathToLangMap}.js`,
+  );
+
+  const testLanguage = commandArgs
+    .find(arg => arg.startsWith('lang='))
+    ?.replace('--lang=', '');
+  const langKeys = Object.values(SupportedLanguagesToI18nMap).filter(
+    value =>
+      ![
+        GoogleSupportedLanguages.English,
+        GoogleSupportedLanguages.Russian,
+        GoogleSupportedLanguages.Arabic,
+        GoogleSupportedLanguages.Hebrew,
+      ].includes(value) &&
+      (value === testLanguage || !testLanguage),
+  );
+
+  for (const langKey of langKeys) {
+    const translatedJSON = await translateTextToFile(
+      textToTranslate,
+      langKey,
+      langEntries,
+    );
+
+    const motivationsLines = langData.motivations.flat();
+    const motivations = await translateTextToFile(
+      motivationsLines.join(separator),
+      langKey,
+      [...Array(motivationsLines.length).keys()].map(index => [index]),
+    );
+
+    translatedJSON.motivations = Object.entries(motivations)
+      .sort(([a], [b]) => a - b)
+      .reduce((acc, [key, text]) => {
+        const index = Math.floor(Number(key) / 5);
+        if (!acc[index]) {
+          acc[index] = [];
+        }
+
+        acc[index].push(text);
+
+        return acc;
+      }, []);
+
+    writeTranslationToFile(translatedJSON, langKey);
+  }
 };
 
 exec(`tsc ${pathToLangMap}.ts`, (error, stdout, stderr) => {
@@ -48,29 +109,6 @@ exec(`tsc ${pathToLangMap}.ts`, (error, stdout, stderr) => {
     }
 
     const langData = JSON.parse(data);
-    const langEntries = Object.entries(langData);
-    const textToTranslate = langEntries
-      .map(([_, value]) => value)
-      .join(separator);
-    const {SupportedLanguagesToI18nMap, GoogleSupportedLanguages} = require(
-      `../${pathToLangMap}.js`,
-    );
-
-    Object.values(SupportedLanguagesToI18nMap)
-      .filter(
-        value =>
-          ![
-            GoogleSupportedLanguages.English,
-            GoogleSupportedLanguages.Russian,
-            GoogleSupportedLanguages.Arabic,
-            GoogleSupportedLanguages.Hebrew,
-          ].includes(value),
-      )
-      .forEach((langKey, index) => {
-        setTimeout(
-          () => translateTextToFile(textToTranslate, langKey, langEntries),
-          index * 1000,
-        );
-      });
+    translateTexts(langData);
   });
 });
