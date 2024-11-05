@@ -56,6 +56,7 @@ export const WritingFooter = ({
           {translate('correct_answer')}: {learningWord}
         </Text>
         <IconButton
+          accessibilityLabel={translate('skip')}
           icon="skip-next"
           onPress={() => goToNextWord(Answers.Incorrect)}
           mode="contained"
@@ -67,6 +68,7 @@ export const WritingFooter = ({
   return (
     <Grid columnGap={5}>
       <IconButton
+        accessibilityLabel={translate('card_deletion')}
         mode="contained"
         icon="delete"
         onPress={() =>
@@ -78,6 +80,7 @@ export const WritingFooter = ({
         }
       />
       <IconButton
+        accessibilityLabel={translate('skip')}
         icon="skip-next"
         onPress={() => setShowCorrectAnswer(true)}
         mode="contained"
@@ -91,7 +94,12 @@ export const WritingFooter = ({
         autoComplete="off"
         autoCapitalize="none"
       />
-      <IconButton icon="check" mode="contained" onPress={submitAnswer} />
+      <IconButton
+        accessibilityLabel={translate('proceed')}
+        icon="check"
+        mode="contained"
+        onPress={submitAnswer}
+      />
     </Grid>
   );
 };

@@ -73,6 +73,7 @@
   "from_a_file": "From a file",
   "from_a_text": "From a text",
   "import_collection_from_a_file_message": "Are you sure you want to import your collection using a file? Please note that if the JSON file is incorrect, your imported collection may not work correctly. You can see the correct format of the JSON by exporting the data from the application.",
+  "skip": "Skip",
   "time_to_learn": "Time to learn!",
   "motivations": [
     [

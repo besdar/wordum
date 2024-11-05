@@ -49,6 +49,10 @@ const createLearningReminder = async () => {
         channelId,
         category: AndroidCategory.REMINDER,
         visibility: AndroidVisibility.PUBLIC,
+        pressAction: {
+          id: 'default',
+        },
+        smallIcon: 'ic_launcher',
       },
     },
     trigger,
@@ -93,10 +97,7 @@ export const resetLearningReminder = async () => {
 
 export const createNotificationsBackgroundListener = () =>
   notifee.onBackgroundEvent(async ({type}) => {
-    if (type === EventType.DISMISSED) {
-      await notifee.cancelAllNotifications();
+    if (type === EventType.DELIVERED) {
       await setNextLearningReminder();
-    } else if (type === EventType.PRESS) {
-      await notifee.cancelAllNotifications();
     }
   });

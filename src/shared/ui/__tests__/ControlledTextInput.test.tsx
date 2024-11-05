@@ -22,7 +22,7 @@ describe('ControlledTextInput', () => {
       </MockWrapperProvider>,
     );
 
-    const input = screen.getByTestId('text-input-flat');
+    const input = screen.getByTestId('input_testInput');
 
     expect(input).toBeOnTheScreen();
   });
@@ -70,7 +70,7 @@ describe('ControlledTextInput', () => {
         </MockFormProvider>
       </MockWrapperProvider>,
     );
-    const input = screen.getByTestId('text-input-flat');
+    const input = screen.getByTestId('input_testInput');
 
     fireEvent.changeText(input, 'New Value');
     expect(input.props.value).toBe('New Value');

@@ -1,4 +1,5 @@
 jest.mock('ts-fsrs', () => ({
+  Rating: jest.requireActual('ts-fsrs').Rating,
   createEmptyCard: jest.fn(() => ({
     stability: 1,
     difficulty: 1,
@@ -9,4 +10,5 @@ jest.mock('ts-fsrs', () => ({
     state: 1,
     due: new Date(),
   })),
+  fsrs: jest.fn(),
 }));

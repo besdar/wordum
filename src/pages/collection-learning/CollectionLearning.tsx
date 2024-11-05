@@ -50,6 +50,11 @@ export const CollectionLearning = ({
     sound,
   } = useTrainingWord(collection);
 
+  const setNextWord = (answer: Answers) => {
+    setNextTrainingWord(answer);
+    setAnswerShowing(false);
+  };
+
   if (isItFinal) {
     return (
       <Grid
@@ -66,11 +71,6 @@ export const CollectionLearning = ({
       </Grid>
     );
   }
-
-  const setNextWord = (answer: Answers) => {
-    setNextTrainingWord(answer);
-    setAnswerShowing(false);
-  };
 
   if (learningType === LearningType.Flascards) {
     return (
@@ -160,11 +160,10 @@ export const CollectionLearning = ({
     );
   }
 
-  if (!trainingWord) {
+  if (!trainingWord && !isItFinal) {
     return <CenteredActivityIndicator />;
-  }
-
-  if (!trainingWord) {
+  } else if (!trainingWord) {
+    // not reachable
     return (
       <Grid
         direction="column"

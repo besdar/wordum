@@ -9,7 +9,7 @@ import {showConfirmationAlert} from '../../../shared/lib/message';
 import {translate} from '../../../shared/lib/i18n';
 
 const getFileName = (filePath: string) =>
-  filePath.substring(filePath.lastIndexOf('/'), filePath.lastIndexOf('.'));
+  filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.'));
 
 export const playSound = (filePath: string) =>
   SoundPlayer.playSoundFile(getFileName(filePath), 'mp3');

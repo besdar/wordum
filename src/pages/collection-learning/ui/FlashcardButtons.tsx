@@ -41,6 +41,7 @@ export const FlashcardButtons = ({
         {translate('incorrect')}
       </Button>
       <IconButton
+        accessibilityLabel={translate('card_deletion')}
         mode="contained"
         icon="delete"
         onPress={() =>

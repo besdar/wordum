@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlashcardContainer should match the snapshot 1`] = `
+<View
+  collapsable={false}
+  style={
+    {
+      "backgroundColor": "rgb(247, 243, 249)",
+      "borderRadius": 10,
+      "flexGrow": 1,
+      "shadowColor": "#000",
+      "shadowOffset": {
+        "height": 1,
+        "width": 0,
+      },
+      "shadowOpacity": 0.15,
+      "shadowRadius": 3,
+      "width": "100%",
+    }
+  }
+  testID="surface-outer-layer"
+>
+  <View
+    collapsable={false}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "rgb(247, 243, 249)",
+        "borderColor": undefined,
+        "borderRadius": 10,
+        "columnGap": undefined,
+        "display": "flex",
+        "flex": undefined,
+        "flexBasis": undefined,
+        "flexDirection": "column",
+        "flexWrap": "nowrap",
+        "gap": undefined,
+        "justifyContent": "center",
+        "padding": undefined,
+        "rowGap": 10,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 1,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 1,
+      }
+    }
+    testID="surface"
+  >
+    <View />
+  </View>
+</View>
+`;

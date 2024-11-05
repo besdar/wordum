@@ -3,9 +3,9 @@ import {getRemoteAppVersion} from '../update';
 
 describe('getRemoteAppVersion', () => {
   it('should return the version from the remote package.json', async () => {
-    const mockVersion = '1.0.0';
+    const mockVersion = 'v1.0.0';
     const mockResponse = {
-      version: mockVersion,
+      tag_name: mockVersion,
     };
 
     (fetch as jest.Mock).mockResolvedValueOnce({
@@ -15,9 +15,9 @@ describe('getRemoteAppVersion', () => {
     const version = await getRemoteAppVersion();
 
     expect(global.fetch).toHaveBeenCalledWith(
-      `https://raw.githubusercontent.com/${packageJSON.repository}/main/package.json`,
+      `https://api.github.com/repos/${packageJSON.repository}/releases/latest`,
     );
-    expect(version).toBe(mockVersion);
+    expect(version).toBe(mockVersion.replace('v', ''));
   });
 
   it('should throw an error if the fetch fails', async () => {

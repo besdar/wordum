@@ -66,7 +66,9 @@ export const getInitialWordsToLearn = (collection: Collection) => {
   ).sort(() => Math.random() - 0.5);
 };
 
-export const setLearningVoiceOfTheCollection = (collection: Collection) => {
+export const setLearningVoiceOfTheCollection = async (
+  collection: Collection,
+) => {
   const supportedLearningTypes = collection.getProperty(
     'supportedLearningTypes',
   );
@@ -75,7 +77,7 @@ export const setLearningVoiceOfTheCollection = (collection: Collection) => {
     supportedLearningTypes.includes(LearningType.Listening) &&
     !appSettings.getSetting('useExternalVoiceWhenAvailable')
   ) {
-    setLearningVoice(collection.getLearningLanguage()).catch(() =>
+    return setLearningVoice(collection.getLearningLanguage()).catch(() =>
       showToastMessage(
         translate('voice_is_not_set_message'),
         ToastAndroid.LONG,

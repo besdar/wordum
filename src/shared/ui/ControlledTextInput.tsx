@@ -56,6 +56,7 @@ export const ControlledTextInput = <
           disabled={field.disabled}
           onBlur={field.onBlur}
           error={Boolean(fieldState.error)}
+          testID={`input_${name}`}
         />
         <HelperText
           style={[
