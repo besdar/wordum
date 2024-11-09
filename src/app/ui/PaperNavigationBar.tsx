@@ -1,4 +1,4 @@
-import {Appbar, Menu} from 'react-native-paper';
+import {Appbar, Divider, Menu} from 'react-native-paper';
 import React, {useState} from 'react';
 import {getHeaderTitle} from '@react-navigation/elements';
 import {NativeStackHeaderProps} from '@react-navigation/native-stack';
@@ -64,13 +64,14 @@ export const PaperNavigationBar = ({
           }}
           title={translate('settings')}
         />
+        <Divider />
         <Menu.Item
           leadingIcon="information"
           onPress={() => {
             setVisible(false);
-            navigation.push('About');
+            Linking.openURL(packageJSON.homepage);
           }}
-          title={translate('about')}
+          title={`${translate('app_version')}: ${packageJSON.version}`}
         />
       </Menu>
     </Appbar.Header>

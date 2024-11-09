@@ -1,6 +1,5 @@
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {Text} from 'react-native';
 import {
   getInitialCollection,
   Collection,
@@ -14,6 +13,7 @@ import {parseTextToCollectionWords} from '../lib/parsing';
 import {translate} from '../../../shared/lib/i18n';
 import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 import {ImportTabs} from '../model/navigation';
+import {Text} from 'react-native-paper';
 
 type Props = MaterialTopTabScreenProps<ImportTabs>;
 

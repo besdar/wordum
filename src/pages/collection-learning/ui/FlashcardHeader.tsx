@@ -1,9 +1,9 @@
-import {Text} from 'react-native';
 import {Rating} from 'ts-fsrs';
 import {appSettings} from '../../../shared/model/AppSettings';
 import {Grid} from '../../../shared/ui/Grid';
 import {Statistics} from '../model/types';
 import React from 'react';
+import {Text} from 'react-native-paper';
 
 type Props = {
   statistics: Statistics;

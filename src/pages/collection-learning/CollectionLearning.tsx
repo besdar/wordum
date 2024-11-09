@@ -83,7 +83,7 @@ export const CollectionLearning = ({
               onAnswerShow={() => setAnswerShowing(true)}
               isAnswerShown={isAnswerShown}
             />
-            <ProgressBar visible progress={progress} />
+            <ProgressBar visible animatedValue={progress} />
           </Grid>
         }>
         <Text variant="displayMedium" style={styles.wordText}>
@@ -117,7 +117,7 @@ export const CollectionLearning = ({
               learningWord={trainingWord as string}
               learningLanguage={learningLanguage as AppSupportedLanguages}
             />
-            <ProgressBar visible progress={progress} />
+            <ProgressBar visible animatedValue={progress} />
           </Grid>
         }>
         <Text variant="displayMedium" style={styles.wordText}>
@@ -138,7 +138,7 @@ export const CollectionLearning = ({
               learningWord={trainingWord as string}
               learningLanguage={learningLanguage as AppSupportedLanguages}
             />
-            <ProgressBar visible progress={progress} />
+            <ProgressBar visible animatedValue={progress} />
           </Grid>
         }>
         <IconButton

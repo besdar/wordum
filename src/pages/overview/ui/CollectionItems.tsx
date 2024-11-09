@@ -1,5 +1,5 @@
-import {StyleSheet, Text} from 'react-native';
-import {TouchableRipple, Badge} from 'react-native-paper';
+import {StyleSheet} from 'react-native';
+import {TouchableRipple, Badge, Text} from 'react-native-paper';
 import {CollectionContainer} from './CollectionContainer';
 import {Grid} from '../../../shared/ui/Grid';
 import React from 'react';

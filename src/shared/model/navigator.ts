@@ -11,7 +11,6 @@ export type PagesStackProps = {
   CollectionLearning: {
     collection: Collection;
   };
-  About: undefined;
   Settings: undefined;
   Import: undefined;
 };

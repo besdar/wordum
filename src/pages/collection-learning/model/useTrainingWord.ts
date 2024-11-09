@@ -104,7 +104,7 @@ export const useTrainingWord = (collection: Collection) => {
         ? collection.getProperty('sourceLanguage')
         : collection.getProperty('targetLanguage'),
     statistics,
-    progress: wordsCount / wordsToLearn.length,
+    progress: Number((wordsCount / wordsToLearn.length).toFixed(2)),
     sound: learningCard?.sound,
   };
 };

@@ -77,11 +77,6 @@ function App(): React.JSX.Element {
               }}
             />
             <Stack.Screen
-              name="About"
-              getComponent={() => require('../pages/about/About').About}
-              options={{title: t('about')}}
-            />
-            <Stack.Screen
               name="Settings"
               getComponent={() =>
                 require('../pages/settings/Settings').Settings
