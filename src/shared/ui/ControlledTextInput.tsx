@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import {HelperText, TextInput} from 'react-native-paper';
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TextStyle, View} from 'react-native';
 
 const styles = StyleSheet.create({
   view: {
@@ -59,12 +59,13 @@ export const ControlledTextInput = <
           testID={`input_${name}`}
         />
         <HelperText
+          // @ts-ignore - TODO: Bug after package updates
           style={[
             styles.helperText,
             {
               display:
                 fieldState.error?.message || helperText ? undefined : 'none',
-            },
+            } as TextStyle,
           ]}
           type={helperText ? 'info' : 'error'}
           visible={Boolean(fieldState.error?.message || helperText)}>

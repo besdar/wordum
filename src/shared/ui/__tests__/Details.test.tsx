@@ -27,6 +27,7 @@ describe('Details Component', () => {
     expect(
       screen.queryByText('Additional Settings Content'),
     ).not.toBeOnTheScreen();
+    expect(screen.getByText('show_additional_settings')).toBeOnTheScreen();
 
     const button = screen.getByRole('button');
 
