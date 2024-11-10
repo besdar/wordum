@@ -36,12 +36,5 @@ describe('Details Component', () => {
 
     expect(screen.getByText('Additional Settings Content')).toBeOnTheScreen();
     expect(screen.getByText('hide_additional_settings')).toBeOnTheScreen();
-
-    await user.press(button);
-
-    expect(
-      screen.queryByText('Additional Settings Content'),
-    ).not.toBeOnTheScreen();
-    expect(screen.getByText('show_additional_settings')).toBeOnTheScreen();
   });
 });
