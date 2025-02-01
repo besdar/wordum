@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, FlexAlignType, FlexStyle} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlexAlignType,
+  FlexStyle,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import {Surface} from 'react-native-paper';
 
 const styles = StyleSheet.create({
@@ -24,7 +31,10 @@ type Props = {
   padding?: number;
   flexBasis?: FlexStyle['flexBasis'];
   wrap?: boolean;
-  surfaceProps?: Omit<React.ComponentProps<typeof Surface>, 'children'>;
+  surfaceProps?: Omit<
+    React.ComponentProps<typeof Surface>,
+    'children' | 'style'
+  > & {style?: StyleProp<ViewStyle>};
 };
 
 export const Grid = ({
