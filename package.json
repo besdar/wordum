@@ -9,7 +9,7 @@
   "scripts": {
     "lint:check": "eslint ./src && prettier src/ --check",
     "lint:fix": "eslint --fix ./src && prettier --write src/",
-    "start": "react-native start",
+    "start": "react-native run-android",
     "tests": "jest",
     "release:android": "cd android && ./gradlew assembleRelease",
     "types:check": "tsc",
