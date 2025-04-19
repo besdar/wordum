@@ -20,6 +20,26 @@ const {LightTheme, DarkTheme} = adaptNavigationTheme({
   reactNavigationDark: NavigationDarkTheme,
 });
 
+const fonts = {
+  ...NavigationDefaultTheme.fonts,
+  // Define all expected variants, falling back to 'regular' or another existing variant
+  displayLarge: NavigationDefaultTheme.fonts.regular,
+  displayMedium: NavigationDefaultTheme.fonts.regular,
+  displaySmall: NavigationDefaultTheme.fonts.regular,
+  headlineLarge: NavigationDefaultTheme.fonts.regular,
+  headlineMedium: NavigationDefaultTheme.fonts.regular,
+  headlineSmall: NavigationDefaultTheme.fonts.regular,
+  titleLarge: NavigationDefaultTheme.fonts.regular, // remove this object after closing https://github.com/callstack/react-native-paper/issues/4589
+  titleMedium: NavigationDefaultTheme.fonts.medium, // Example using medium for title variants
+  titleSmall: NavigationDefaultTheme.fonts.medium,
+  labelLarge: NavigationDefaultTheme.fonts.medium,
+  labelMedium: NavigationDefaultTheme.fonts.medium,
+  labelSmall: NavigationDefaultTheme.fonts.medium,
+  bodyLarge: NavigationDefaultTheme.fonts.regular,
+  bodyMedium: NavigationDefaultTheme.fonts.regular,
+  bodySmall: NavigationDefaultTheme.fonts.regular,
+};
+
 const CombinedDefaultTheme = {
   ...MD3LightTheme,
   ...LightTheme,
@@ -27,6 +47,7 @@ const CombinedDefaultTheme = {
     ...MD3LightTheme.colors,
     ...LightTheme.colors,
   },
+  fonts,
 };
 const CombinedDarkTheme = {
   ...MD3DarkTheme,
@@ -35,6 +56,7 @@ const CombinedDarkTheme = {
     ...MD3DarkTheme.colors,
     ...DarkTheme.colors,
   },
+  fonts,
 };
 
 export function Material3ThemeProvider({

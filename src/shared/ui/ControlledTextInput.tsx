@@ -65,7 +65,7 @@ export const ControlledTextInput = <
             {
               display:
                 fieldState.error?.message || helperText ? undefined : 'none',
-            } as TextStyle,
+            },
           ]}
           type={helperText ? 'info' : 'error'}
           visible={Boolean(fieldState.error?.message || helperText)}>

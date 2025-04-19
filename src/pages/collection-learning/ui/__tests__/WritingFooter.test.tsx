@@ -1,7 +1,7 @@
 import {
-  fireEvent,
   render,
   screen,
+  userEvent,
   waitFor,
 } from '@testing-library/react-native';
 import {WritingFooter} from '../WritingFooter';
@@ -42,9 +42,11 @@ describe('WritingFooter', () => {
       />,
     );
 
+    const user = userEvent.setup();
+
     const input = screen.getByTestId(`input_answer`);
-    fireEvent.changeText(input, 'apple');
-    fireEvent.press(screen.getByLabelText('proceed'));
+    await user.type(input, 'apple');
+    await user.press(screen.getByLabelText('proceed'));
 
     await waitFor(() => {
       expect(mockOnAnswerPress).toHaveBeenCalledWith(Answers.Correct);
@@ -53,16 +55,18 @@ describe('WritingFooter', () => {
 
   it('shows the correct answer when the answer is incorrect', async () => {
     render(
-      <WritingFooter
-        onAnswerPress={mockOnAnswerPress}
-        learningWord={learningWord}
-        learningLanguage={learningLanguage}
-      />,
+        <WritingFooter
+          onAnswerPress={mockOnAnswerPress}
+          learningWord={learningWord}
+          learningLanguage={learningLanguage}
+        />,
     );
 
+    const user = userEvent.setup();
+
     const input = screen.getByTestId(`input_answer`);
-    fireEvent.changeText(input, 'orange');
-    fireEvent.press(screen.getByLabelText('proceed'));
+    await user.type(input, 'orange');
+    await user.press(screen.getByLabelText('proceed'));
 
     await waitFor(() => {
       expect(
@@ -82,7 +86,9 @@ describe('WritingFooter', () => {
       />,
     );
 
-    fireEvent.press(screen.getByLabelText('card_deletion'));
+    const user = userEvent.setup();
+
+    await user.press(screen.getByLabelText('card_deletion'));
 
     await waitFor(() => {
       expect(showConfirmationAlert).toHaveBeenCalled();
@@ -102,12 +108,14 @@ describe('WritingFooter', () => {
       />,
     );
 
+    const user = userEvent.setup();
+
     const input = screen.getByTestId(`input_answer`);
-    fireEvent.changeText(input, 'orange');
-    fireEvent.press(screen.getByLabelText('proceed'));
+    await user.type(input, 'orange');
+    await user.press(screen.getByLabelText('proceed'));
 
     const skipButton = await screen.findByLabelText('skip');
-    fireEvent.press(skipButton);
+    await user.press(skipButton);
 
     await waitFor(() => {
       expect(mockOnAnswerPress).toHaveBeenCalledWith(Answers.Incorrect);

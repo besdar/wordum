@@ -1,27 +1,30 @@
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Grid} from '../../shared/ui/Grid';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AddCollectionButton} from './ui/AddCollectionButton';
-import {useQuery} from '../../shared/lib/useQuery';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {CollectionItems} from './ui/CollectionItems';
 import {showConfirmationAlert} from '../../shared/lib/message';
 import {translate} from '../../shared/lib/i18n';
 import {dataRestructure} from '../../shared/model/restructure';
-import {getCollections} from '../../shared/model/collection';
+import {Collection, getCollections} from '../../shared/model/collection';
 
 export const Overview = ({
   navigation,
 }: NativeStackScreenProps<PagesStackProps, 'Overview'>) => {
-  const {data, refetch} = useQuery({
-    queryFn: () => dataRestructure.init().then(getCollections),
-    initialData: [],
-    queryKey: ['collections'],
-  });
+  const [collections, setCollections] = useState<Collection[]>([]);
+
+  const refetchCallBack = useCallback(() => {
+    dataRestructure.init().then(getCollections).then(setCollections);
+  }, []);
+
+  useEffect(() => {
+    refetchCallBack();
+  }, [refetchCallBack]);
 
   return (
     <Grid gap={20} wrap justifyContent="space-around">
-      {data.map(collection => (
+      {collections.map(collection => (
         <CollectionItems
           key={collection.getProperty('id')}
           collection={collection}
@@ -37,7 +40,7 @@ export const Overview = ({
               translate('yes'),
             )
               .then(collection.deleteCollection)
-              .finally(() => refetch())
+              .finally(refetchCallBack)
           }
           onStartLearning={() =>
             navigation.push('CollectionLearning', {

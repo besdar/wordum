@@ -56,15 +56,17 @@ exports[`CenteredActivityIndicator should match the snapshot 1`] = `
       <View
         collapsable={false}
         style={
-          {
-            "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
+          [
+            {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          ]
         }
       >
         <View
@@ -84,11 +86,14 @@ exports[`CenteredActivityIndicator should match the snapshot 1`] = `
           <View
             collapsable={false}
             style={
-              {
-                "height": 24,
-                "overflow": "hidden",
-                "width": 48,
-              }
+              [
+                {
+                  "height": 24,
+                  "overflow": "hidden",
+                  "width": 48,
+                },
+                null,
+              ]
             }
           >
             <View
@@ -138,15 +143,17 @@ exports[`CenteredActivityIndicator should match the snapshot 1`] = `
       <View
         collapsable={false}
         style={
-          {
-            "alignItems": "center",
-            "bottom": 0,
-            "justifyContent": "center",
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          }
+          [
+            {
+              "alignItems": "center",
+              "bottom": 0,
+              "justifyContent": "center",
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+          ]
         }
       >
         <View
@@ -166,12 +173,16 @@ exports[`CenteredActivityIndicator should match the snapshot 1`] = `
           <View
             collapsable={false}
             style={
-              {
-                "height": 24,
-                "overflow": "hidden",
-                "top": 24,
-                "width": 48,
-              }
+              [
+                {
+                  "height": 24,
+                  "overflow": "hidden",
+                  "width": 48,
+                },
+                {
+                  "top": 24,
+                },
+              ]
             }
           >
             <View

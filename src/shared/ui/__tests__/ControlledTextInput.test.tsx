@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  render,
-  fireEvent,
-  screen,
-  userEvent,
-} from '@testing-library/react-native';
+import {render, screen, userEvent} from '@testing-library/react-native';
 import {ControlledTextInput} from '../ControlledTextInput';
 import {
   MockFormProvider,
@@ -70,9 +65,11 @@ describe('ControlledTextInput', () => {
         </MockFormProvider>
       </MockWrapperProvider>,
     );
+
+    const user = userEvent.setup();
     const input = screen.getByTestId('input_testInput');
 
-    fireEvent.changeText(input, 'New Value');
+    user.type(input, 'New Value');
     expect(input.props.value).toBe('New Value');
   });
 });
