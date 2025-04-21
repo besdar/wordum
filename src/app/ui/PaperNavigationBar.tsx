@@ -18,7 +18,7 @@ export const PaperNavigationBar = ({
   const isUpdateReady = appSettings.isUpdateAvailable();
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{backgroundColor: 'transparent'}}>
       {back ? <Appbar.BackAction onPress={navigation.popToTop} /> : null}
       <Appbar.Content title={getHeaderTitle(options, route.name)} />
       <Menu

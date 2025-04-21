@@ -6,11 +6,14 @@ jest.mock(
     );
 
     return {
-      ...PermissionsAndroid,
-      check: jest.fn(() => Promise.resolve(true)),
-      request: jest.fn(() =>
-        Promise.resolve(PermissionsAndroid.RESULTS.GRANTED),
-      ),
+      default: {
+        check: jest.fn(() => Promise.resolve(true)),
+        request: jest.fn(() =>
+          Promise.resolve(PermissionsAndroid.RESULTS.GRANTED),
+        ),
+        PERMISSIONS: PermissionsAndroid.default.PERMISSIONS,
+        RESULTS: PermissionsAndroid.default.RESULTS,
+      },
     };
   },
 );

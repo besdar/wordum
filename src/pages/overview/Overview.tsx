@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Grid} from '../../shared/ui/Grid';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AddCollectionButton} from './ui/AddCollectionButton';
@@ -8,6 +8,7 @@ import {showConfirmationAlert} from '../../shared/lib/message';
 import {translate} from '../../shared/lib/i18n';
 import {dataRestructure} from '../../shared/model/restructure';
 import {Collection, getCollections} from '../../shared/model/collection';
+import {useFocusEffect} from '@react-navigation/native';
 
 export const Overview = ({
   navigation,
@@ -18,9 +19,9 @@ export const Overview = ({
     dataRestructure.init().then(getCollections).then(setCollections);
   }, []);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     refetchCallBack();
-  }, [refetchCallBack]);
+  });
 
   return (
     <Grid gap={20} wrap justifyContent="space-around">

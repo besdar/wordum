@@ -1,4 +1,5 @@
 import {
+  act,
   render,
   screen,
   userEvent,
@@ -42,7 +43,7 @@ describe('WritingFooter', () => {
       />,
     );
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime});
 
     const input = screen.getByTestId(`input_answer`);
     await user.type(input, 'apple');
@@ -55,24 +56,20 @@ describe('WritingFooter', () => {
 
   it('shows the correct answer when the answer is incorrect', async () => {
     render(
-        <WritingFooter
-          onAnswerPress={mockOnAnswerPress}
-          learningWord={learningWord}
-          learningLanguage={learningLanguage}
-        />,
+      <WritingFooter
+        onAnswerPress={mockOnAnswerPress}
+        learningWord={learningWord}
+        learningLanguage={learningLanguage}
+      />,
     );
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime});
 
     const input = screen.getByTestId(`input_answer`);
     await user.type(input, 'orange');
-    await user.press(screen.getByLabelText('proceed'));
+    await act(() => user.press(screen.getByLabelText('proceed')));
 
-    await waitFor(() => {
-      expect(
-        screen.getByText('correct_answer: apple,banana'),
-      ).toBeOnTheScreen(); // Check if the correct answer message is displayed
-    });
+    expect(screen.getByText('correct_answer: apple,banana')).toBeOnTheScreen();
   });
 
   it('calls onAnswerPress with Answers.Delete when delete button is pressed', async () => {
@@ -90,13 +87,9 @@ describe('WritingFooter', () => {
 
     await user.press(screen.getByLabelText('card_deletion'));
 
-    await waitFor(() => {
-      expect(showConfirmationAlert).toHaveBeenCalled();
-    });
+    expect(showConfirmationAlert).toHaveBeenCalled();
 
-    await waitFor(() => {
-      expect(mockOnAnswerPress).toHaveBeenCalledWith(Answers.Delete);
-    });
+    expect(mockOnAnswerPress).toHaveBeenCalledWith(Answers.Delete);
   });
 
   it('calls onAnswerPress with Answers.Incorrect when skip button is pressed after an incorrect answer', async () => {
@@ -117,8 +110,6 @@ describe('WritingFooter', () => {
     const skipButton = await screen.findByLabelText('skip');
     await user.press(skipButton);
 
-    await waitFor(() => {
-      expect(mockOnAnswerPress).toHaveBeenCalledWith(Answers.Incorrect);
-    });
+    expect(mockOnAnswerPress).toHaveBeenCalledWith(Answers.Incorrect);
   });
 });

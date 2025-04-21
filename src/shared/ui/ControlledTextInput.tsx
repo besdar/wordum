@@ -6,7 +6,7 @@ import {
 } from 'react-hook-form';
 import {HelperText, TextInput} from 'react-native-paper';
 import React from 'react';
-import {StyleSheet, TextStyle, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 const styles = StyleSheet.create({
   view: {

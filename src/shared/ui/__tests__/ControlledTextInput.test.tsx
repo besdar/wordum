@@ -1,19 +1,26 @@
 import React from 'react';
-import {render, screen, userEvent} from '@testing-library/react-native';
-import {ControlledTextInput} from '../ControlledTextInput';
 import {
-  MockFormProvider,
-  MockWrapperProvider,
-  SUBMIT_TEST_BUTTON,
-} from '../../config/mocks/MockWrapperProvider';
+  act,
+  render,
+  screen,
+  userEvent,
+  waitFor,
+} from '@testing-library/react-native';
+import {ControlledTextInput} from '../ControlledTextInput';
+import {MockWrapperProvider} from '../../config/mocks/MockWrapperProvider';
+import {createFormControl} from 'react-hook-form';
 
 describe('ControlledTextInput', () => {
   it('renders correctly', () => {
+    const {register, control} = createFormControl({
+      defaultValues: {
+        testInput: '',
+      },
+    });
+
     render(
       <MockWrapperProvider>
-        <MockFormProvider>
-          <ControlledTextInput name="testInput" />
-        </MockFormProvider>
+        <ControlledTextInput {...register('testInput')} control={control} />
       </MockWrapperProvider>,
     );
 
@@ -23,14 +30,19 @@ describe('ControlledTextInput', () => {
   });
 
   it('displays helper text when provided', () => {
+    const {register, control} = createFormControl({
+      defaultValues: {
+        testInput: '',
+      },
+    });
+
     render(
       <MockWrapperProvider>
-        <MockFormProvider>
-          <ControlledTextInput
-            name="testInput"
-            helperText="This is helper text"
-          />
-        </MockFormProvider>
+        <ControlledTextInput
+          {...register('testInput')}
+          control={control}
+          helperText="This is helper text"
+        />
       </MockWrapperProvider>,
     );
 
@@ -38,31 +50,40 @@ describe('ControlledTextInput', () => {
   });
 
   it('displays error message when validation fails', async () => {
+    const {handleSubmit, register, control} = createFormControl({
+      defaultValues: {
+        testInput: '',
+      },
+    });
+
     render(
       <MockWrapperProvider>
-        <MockFormProvider>
-          <ControlledTextInput
-            name="testInput"
-            rules={{required: 'This field is required'}}
-          />
-        </MockFormProvider>
+        <ControlledTextInput
+          {...register('testInput', {
+            required: 'This field is required',
+          })}
+          control={control}
+        />
       </MockWrapperProvider>,
     );
 
-    const button = screen.getByTestId(SUBMIT_TEST_BUTTON);
-    const user = userEvent.setup();
-    await user.press(button);
+    await act(() => handleSubmit(() => {})());
 
     const errorMessage = await screen.findByText('This field is required');
-    expect(errorMessage).toBeOnTheScreen();
+
+    await waitFor(() => expect(errorMessage).toBeOnTheScreen());
   });
 
   it('calls onChange when input value changes', () => {
+    const {register, control} = createFormControl({
+      defaultValues: {
+        testInput: '',
+      },
+    });
+
     render(
       <MockWrapperProvider>
-        <MockFormProvider>
-          <ControlledTextInput name="testInput" />
-        </MockFormProvider>
+        <ControlledTextInput {...register('testInput')} control={control} />
       </MockWrapperProvider>,
     );
 
@@ -70,6 +91,7 @@ describe('ControlledTextInput', () => {
     const input = screen.getByTestId('input_testInput');
 
     user.type(input, 'New Value');
-    expect(input.props.value).toBe('New Value');
+
+    return waitFor(() => expect(input.props.value).toBe('New Value'));
   });
 });
