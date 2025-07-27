@@ -21,7 +21,9 @@ jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter', () => {
 
     emit(eventType: string, ...args: any[]) {
       const eventListeners = listeners.get(eventType) || [];
-      eventListeners.forEach((listener: (...args: any[]) => void) => listener(...args));
+      eventListeners.forEach((listener: (...args: any[]) => void) =>
+        listener(...args),
+      );
     }
   }
 
