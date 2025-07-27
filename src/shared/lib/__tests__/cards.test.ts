@@ -22,6 +22,8 @@ const mockCard: LearningCard = {
     lapses: 1,
     state: 1,
     due: new Date(Date.now() - 1000 * 60 * 60 * 24),
+    // FSRSParameters.learning_steps array is ["1m", "10m"] (i.e. repeating intervals) and learning_steps here is an index of that array
+    learning_steps: 0,
   },
   sound: 'someSound.mp3',
 };
