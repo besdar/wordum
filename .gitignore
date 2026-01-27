@@ -76,3 +76,7 @@ yarn-error.log
 
 # JS files in src
 src/**/*.js
+# Expo
+.expo
+dist/
+web-build/

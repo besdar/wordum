@@ -28,7 +28,6 @@ export type LearningCard = TranslationResponse & {
   value: string;
   fsrsCard: Card;
   learningType: LearningType;
-  sound?: string;
 };
 
 export type CollectionItems = Record<string, LearningCard[]>;
@@ -145,10 +144,6 @@ export class Collection {
 
     if (collectionItem?.targetVoice) {
       await unlink(collectionItem.targetVoice);
-    }
-
-    if (collectionItem?.sound) {
-      await unlink(collectionItem.sound);
     }
   };
 

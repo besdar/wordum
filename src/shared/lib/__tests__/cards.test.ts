@@ -28,31 +28,6 @@ const mockCard: LearningCard = {
   sound: 'someSound.mp3',
 };
 
-describe('filterListeningCards', () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should return true if useExternalVoiceWhenAvailable is false', () => {
-    (appSettings.getSetting as jest.Mock).mockReturnValue(false);
-
-    expect(filterActualCards(mockCard)).toBe(true);
-  });
-
-  it('should return true if useExternalVoiceWhenAvailable is true and card has sound', () => {
-    (appSettings.getSetting as jest.Mock).mockReturnValue(true);
-
-    expect(filterActualCards(mockCard)).toBe(true);
-  });
-
-  it('should return false if useExternalVoiceWhenAvailable is true and card does not have sound', () => {
-    (appSettings.getSetting as jest.Mock).mockReturnValue(true);
-    const cardWithoutSound: LearningCard = {...mockCard, sound: undefined};
-
-    expect(filterActualCards(cardWithoutSound)).toBe(false);
-  });
-});
-
 describe('filterActualCards', () => {
   afterEach(() => {
     jest.clearAllMocks();

@@ -9,13 +9,12 @@ import {
   getFsrsRatingFromUserAnswer,
   getCardsToLearn,
   getInitialWordsToLearn,
-  setLearningVoiceOfTheCollection,
 } from '../lib/learning';
 import {Answers} from './types';
 import {EVENT_TYPE, eventBus} from '../../../shared/model/EventBus';
 
 export const useTrainingWord = (collection: Collection) => {
-  const learingInstance = useMemo(() => fsrs(), []);
+  const learningInstance = useMemo(() => fsrs(), []);
   const [isItFinal, setIsItFinal] = useState(false);
   const [learningCard, setLearningCard] = useState<LearningCard | undefined>();
   const [timer, setTimer] = useState(Date.now());
@@ -35,8 +34,6 @@ export const useTrainingWord = (collection: Collection) => {
     setLearningCard(initilaWordsToLearn[0]);
     setIsItFinal(!initilaWordsToLearn[0]);
     setTimer(Date.now());
-
-    setLearningVoiceOfTheCollection(collection);
   }, [collection]);
 
   const setNextTrainingWord = async (previousAnswer: Answers) => {
@@ -50,7 +47,7 @@ export const useTrainingWord = (collection: Collection) => {
       );
 
       // TODO: put this mutating inside Collection class
-      learingInstance.next(
+      learningInstance.next(
         learningCard!.fsrsCard,
         Date.now(),
         grade,
@@ -105,6 +102,5 @@ export const useTrainingWord = (collection: Collection) => {
         : collection.getProperty('targetLanguage'),
     statistics,
     progress: Number((wordsCount / wordsToLearn.length).toFixed(2)),
-    sound: learningCard?.sound,
   };
 };

@@ -10,16 +10,8 @@ import {
   getCardsToLearn,
   getFsrsRatingFromUserAnswer,
   getInitialWordsToLearn,
-  setLearningVoiceOfTheCollection,
 } from '../learning';
 import {filterActualCards} from '../../../../shared/lib/cards';
-import {setLearningVoice} from '../sound';
-import {showToastMessage} from '../../../../shared/lib/message';
-import {ToastAndroid} from 'react-native';
-
-jest.mock('../sound', () => ({
-  setLearningVoice: jest.fn(),
-}));
 
 jest.mock('../../../../shared/lib/cards', () => ({
   filterActualCards: jest.fn(),
@@ -148,61 +140,5 @@ describe('getInitialWordsToLearn', () => {
 
     const result = getInitialWordsToLearn(collection);
     expect(result).toEqual([]); // Should return an empty array
-  });
-});
-
-describe('setLearningVoiceOfTheCollection', () => {
-  it('should set the learning voice if supported learning type is Listening and external voice is not used', async () => {
-    (setLearningVoice as jest.Mock).mockResolvedValue(undefined);
-
-    const collection = {
-      getProperty: jest.fn(() => [LearningType.Listening]),
-      getLearningLanguage: jest.fn(() => 'English'),
-    } as unknown as Collection;
-
-    jest.spyOn(appSettings, 'getSetting').mockImplementation(key => {
-      if (key === 'useExternalVoiceWhenAvailable') return false;
-
-      return true; // Default to true for other settings
-    });
-
-    await setLearningVoiceOfTheCollection(collection);
-
-    expect(setLearningVoice).toHaveBeenCalledWith('English'); // Ensure setLearningVoice is called with the correct language
-  });
-
-  it('should not set the learning voice if external voice is used', async () => {
-    const collection = {
-      getProperty: jest.fn(() => [LearningType.Listening]),
-      getLearningLanguage: jest.fn(() => 'English'),
-    } as unknown as Collection;
-
-    jest.spyOn(appSettings, 'getSetting').mockImplementation(key => {
-      if (key === 'useExternalVoiceWhenAvailable') return true; // Simulate using external voice
-      return true; // Default to true for other settings
-    });
-
-    await setLearningVoiceOfTheCollection(collection);
-    expect(setLearningVoice).not.toHaveBeenCalled(); // Ensure setLearningVoice is not called
-  });
-
-  it('should show a toast message if setting the learning voice fails', async () => {
-    const collection = {
-      getProperty: jest.fn(() => [LearningType.Listening]),
-      getLearningLanguage: jest.fn(() => 'English'),
-    } as unknown as Collection;
-
-    jest.spyOn(appSettings, 'getSetting').mockImplementation(key => {
-      if (key === 'useExternalVoiceWhenAvailable') return false;
-      return true; // Default to true for other settings
-    });
-
-    (setLearningVoice as jest.Mock).mockRejectedValue(undefined); // Simulate failure
-
-    await setLearningVoiceOfTheCollection(collection);
-    expect(showToastMessage).toHaveBeenCalledWith(
-      'voice_is_not_set_message',
-      ToastAndroid.LONG,
-    ); // Ensure the toast message is shown
   });
 });

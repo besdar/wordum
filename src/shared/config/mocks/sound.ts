@@ -1,7 +1,3 @@
-jest.mock('react-native-sound-player', () => ({
-  playSoundFile: jest.fn(),
-}));
-
 jest.mock('react-native-tts', () => ({
   voices: jest.fn(),
   requestInstallData: jest.fn(),

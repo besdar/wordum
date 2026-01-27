@@ -7,10 +7,6 @@ import {
 import {Answers} from '../model/types';
 import {appSettings} from '../../../shared/model/AppSettings';
 import {filterActualCards} from '../../../shared/lib/cards';
-import {setLearningVoice} from './sound';
-import {showToastMessage} from '../../../shared/lib/message';
-import {translate} from '../../../shared/lib/i18n';
-import {ToastAndroid} from 'react-native';
 
 export const getFsrsRatingFromUserAnswer = (
   answer: Answers,
@@ -64,24 +60,4 @@ export const getInitialWordsToLearn = (collection: Collection) => {
     listOfCardsMappedToWordsToLearn,
     supportedLearningTypes,
   ).sort(() => Math.random() - 0.5);
-};
-
-export const setLearningVoiceOfTheCollection = async (
-  collection: Collection,
-) => {
-  const supportedLearningTypes = collection.getProperty(
-    'supportedLearningTypes',
-  );
-
-  if (
-    supportedLearningTypes.includes(LearningType.Listening) &&
-    !appSettings.getSetting('useExternalVoiceWhenAvailable')
-  ) {
-    return setLearningVoice(collection.getLearningLanguage()).catch(() =>
-      showToastMessage(
-        translate('voice_is_not_set_message'),
-        ToastAndroid.LONG,
-      ),
-    );
-  }
 };

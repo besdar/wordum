@@ -10,7 +10,6 @@ export type AppSettingsValues = {
   timeGradeLimitEasy: number;
   timeGradeLimitGood: number;
   timeTakenPerCharacterInput: number;
-  useExternalVoiceWhenAvailable: boolean;
 };
 
 export class AppSettings {
@@ -22,7 +21,6 @@ export class AppSettings {
     timeGradeLimitEasy: 7000,
     timeGradeLimitGood: 15000,
     timeTakenPerCharacterInput: 250,
-    useExternalVoiceWhenAvailable: false,
   };
 
   constructor() {

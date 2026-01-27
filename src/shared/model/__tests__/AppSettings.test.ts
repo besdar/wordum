@@ -25,7 +25,6 @@ describe('AppSettings', () => {
         timeGradeLimitEasy: 7000,
         timeGradeLimitGood: 15000,
         timeTakenPerCharacterInput: 250,
-        useExternalVoiceWhenAvailable: false,
       });
     });
   });
@@ -61,7 +60,6 @@ describe('AppSettings', () => {
         timeGradeLimitEasy: 7000,
         timeGradeLimitGood: 15000,
         timeTakenPerCharacterInput: 250,
-        useExternalVoiceWhenAvailable: false,
       });
       expect(settings).not.toBe(appSettings.getSettings()); // Ensure it's a copy
     });
@@ -78,7 +76,6 @@ describe('AppSettings', () => {
         timeGradeLimitEasy: 5000,
         timeGradeLimitGood: 10000,
         timeTakenPerCharacterInput: 200,
-        useExternalVoiceWhenAvailable: true,
       };
 
       await appSettings.setSettings(newSettings);
@@ -118,7 +115,6 @@ describe('AppSettings', () => {
         timeGradeLimitEasy: 6000,
         timeGradeLimitGood: 12000,
         timeTakenPerCharacterInput: 300,
-        useExternalVoiceWhenAvailable: true,
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(
         JSON.stringify(mockSettings),

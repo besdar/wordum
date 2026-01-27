@@ -74,7 +74,7 @@ describe('ControlledTextInput', () => {
     await waitFor(() => expect(errorMessage).toBeOnTheScreen());
   });
 
-  it('calls onChange when input value changes', () => {
+  it('calls onChange when input value changes', async () => {
     const {register, control} = createFormControl({
       defaultValues: {
         testInput: '',
@@ -90,7 +90,7 @@ describe('ControlledTextInput', () => {
     const user = userEvent.setup();
     const input = screen.getByTestId('input_testInput');
 
-    user.type(input, 'New Value');
+    await user.type(input, 'New Value');
 
     return waitFor(() => expect(input.props.value).toBe('New Value'));
   });

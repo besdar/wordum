@@ -36,11 +36,15 @@ export const CollectionItems = ({
         <TouchableRipple onPress={onStartLearning}>
           <Grid direction="column" alignItems="center">
             <Text>{collection.getProperty('name')}</Text>
-            <Text>
-              {`${
-                LANGUAGE_FLAGS[collection.getProperty('sourceLanguage')]
-              } -> ${LANGUAGE_FLAGS[collection.getProperty('targetLanguage')]}`}
-            </Text>
+            <Grid>
+              <Text>
+                {LANGUAGE_FLAGS[collection.getProperty('sourceLanguage')]}
+              </Text>
+              <Text>{' -> '}</Text>
+              <Text>
+                {LANGUAGE_FLAGS[collection.getProperty('targetLanguage')]}
+              </Text>
+            </Grid>
           </Grid>
         </TouchableRipple>
       </Grid>

@@ -9,16 +9,13 @@ import {StyleSheet} from 'react-native';
 import {FlashcardButtons} from './ui/FlashcardButtons';
 import {FlashcardWrapper} from './ui/FlashcardWrapper';
 import {WritingFooter} from './ui/WritingFooter';
-import {playSound} from './lib/sound';
 import {translate} from '../../shared/lib/i18n';
 import {Button} from '../../shared/ui/Button';
 import {PagesStackProps} from '../../shared/model/navigator';
 import {FlashcardHeader} from './ui/FlashcardHeader';
-import {AppSupportedLanguages} from '../../shared/model/lang';
-import {appSettings} from '../../shared/model/AppSettings';
-import Tts from 'react-native-tts';
 import {CenteredActivityIndicator} from '../../shared/ui/CenteredActivityIndicator';
 import {IconButton} from '../../shared/ui/IconButton';
+import {speak} from 'expo-speech';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -47,7 +44,6 @@ export const CollectionLearning = ({
     learningLanguage,
     statistics,
     progress,
-    sound,
   } = useTrainingWord(collection);
 
   const setNextWord = (answer: Answers) => {
@@ -114,8 +110,8 @@ export const CollectionLearning = ({
           <Grid direction="column" rowGap={5}>
             <WritingFooter
               onAnswerPress={setNextWord}
-              learningWord={trainingWord as string}
-              learningLanguage={learningLanguage as AppSupportedLanguages}
+              learningWord={trainingWord!}
+              learningLanguage={learningLanguage}
             />
             <ProgressBar visible animatedValue={progress} />
           </Grid>
@@ -135,19 +131,15 @@ export const CollectionLearning = ({
           <Grid direction="column" rowGap={5}>
             <WritingFooter
               onAnswerPress={setNextWord}
-              learningWord={trainingWord as string}
-              learningLanguage={learningLanguage as AppSupportedLanguages}
+              learningWord={trainingWord!}
+              learningLanguage={learningLanguage}
             />
             <ProgressBar visible animatedValue={progress} />
           </Grid>
         }>
         <IconButton
           icon="volume-high"
-          onPress={() =>
-            appSettings.getSetting('useExternalVoiceWhenAvailable')
-              ? playSound(sound as string)
-              : Tts.speak(trainingWord as string)
-          }
+          onPress={() => speak(trainingWord!, {language: learningLanguage})}
           size={100}
           noLoading
         />
