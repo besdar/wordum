@@ -25,7 +25,6 @@ const mockCard: LearningCard = {
     // FSRSParameters.learning_steps array is ["1m", "10m"] (i.e. repeating intervals) and learning_steps here is an index of that array
     learning_steps: 0,
   },
-  sound: 'someSound.mp3',
 };
 
 describe('filterActualCards', () => {
@@ -39,13 +38,6 @@ describe('filterActualCards', () => {
     expect(filterActualCards(mockCard)).toBe(true);
   });
 
-  it('should return false for a card that is due but has no sound', () => {
-    (appSettings.getSetting as jest.Mock).mockReturnValue(true);
-    const cardWithoutSound: LearningCard = {...mockCard, sound: undefined};
-
-    expect(filterActualCards(cardWithoutSound)).toBe(false);
-  });
-
   it('should return false for a card that is not due', () => {
     const cardNotDue: LearningCard = {
       ...mockCard,
@@ -53,7 +45,6 @@ describe('filterActualCards', () => {
         ...mockCard.fsrsCard,
         due: new Date(Date.now() + 1000 * 60 * 60 * 24),
       },
-      sound: 'someSound.mp3',
     };
     (appSettings.getSetting as jest.Mock).mockReturnValue(true);
 

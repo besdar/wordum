@@ -30,8 +30,6 @@ export const AddWordForm = ({
       word: '',
       translation: '',
       examples: '',
-      targetVoice: '',
-      sourceVoice: '',
     },
   });
 
@@ -45,8 +43,6 @@ export const AddWordForm = ({
       .then(translationResponse => {
         setValue('translation', translationResponse.translation);
         setValue('examples', translationResponse.examples || '');
-        setValue('targetVoice', translationResponse.targetVoice || '');
-        setValue('sourceVoice', translationResponse.sourceVoice || '');
       })
       .catch(() =>
         showToastMessage(translate('error_retrieving_translation_data')),
@@ -98,8 +94,6 @@ export const AddWordForm = ({
             value: onValid.word.trim(),
             examples: onValid.examples.trim(),
             translation: onValid.translation.trim(),
-            targetVoice: onValid.targetVoice,
-            sourceVoice: onValid.sourceVoice,
           })
             .then(() => reset())
             .catch(() => showToastMessage(translate('error_saving_your_card'))),

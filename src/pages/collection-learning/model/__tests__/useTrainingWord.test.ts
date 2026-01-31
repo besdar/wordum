@@ -38,7 +38,6 @@ describe('useTrainingWord', () => {
       translation: 'testTranslation',
       learningType: LearningType.Listening,
       fsrsCard: createEmptyCard(),
-      sound: '',
     };
 
     (getCardsToLearn as jest.Mock).mockReturnValue([learningCard]);

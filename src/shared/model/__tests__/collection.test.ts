@@ -6,10 +6,8 @@ import {
   getCollections,
   getInitialCollection,
 } from '../collection';
-import {unlink} from '@dr.pogodin/react-native-fs';
 import {
   getUUID,
-  downloadVoice,
   createLearningCardsForCollectionItem,
 } from '../../lib/collection';
 import {AppSupportedLanguages} from '../lang';
@@ -18,7 +16,6 @@ import {createEmptyCard} from 'ts-fsrs';
 
 jest.mock('../../lib/collection', () => ({
   getUUID: jest.fn(),
-  downloadVoice: jest.fn(),
   createLearningCardsForCollectionItem: jest.fn(),
 }));
 
@@ -86,9 +83,6 @@ describe('Collection', () => {
         learningType: LearningType.Flascards,
         translation: 'translation',
         fsrsCard: createEmptyCard(),
-        sourceVoice: 'sourceVoice',
-        targetVoice: 'targetVoice',
-        sound: 'sound',
       };
 
       collection.dangerouslyGetInnerObject().words = {wordl: [cardToDelete]};
@@ -96,9 +90,6 @@ describe('Collection', () => {
 
       await collection.saveCollection();
 
-      expect(unlink).toHaveBeenCalledWith(cardToDelete.sourceVoice);
-      expect(unlink).toHaveBeenCalledWith(cardToDelete.targetVoice);
-      expect(unlink).toHaveBeenCalledWith(cardToDelete.sound);
       expect(
         collection.dangerouslyGetInnerObject().words.wordl,
       ).toBeUndefined();
@@ -111,8 +102,6 @@ describe('Collection', () => {
       const newWord: LearningCard = {
         wordId: 'word1',
         value: 'newWord',
-        sourceVoice: 'source.mp3',
-        targetVoice: 'target.mp3',
         translation: 'translation',
         fsrsCard: createEmptyCard(),
         learningType: LearningType.Flascards,
@@ -121,7 +110,6 @@ describe('Collection', () => {
       (createLearningCardsForCollectionItem as jest.Mock).mockReturnValueOnce([
         newWord,
       ]);
-      (downloadVoice as jest.Mock).mockResolvedValueOnce('mockedVoice');
 
       await collection.addWord(newWord);
 
@@ -137,7 +125,6 @@ describe('Collection', () => {
       const collection = new Collection();
       const existingWord: LearningCard = {
         value: 'existingWord',
-        sourceVoice: 'source.mp3',
         fsrsCard: createEmptyCard(),
         learningType: LearningType.Flascards,
         wordId: 'word1',
@@ -165,9 +152,6 @@ describe('Collection', () => {
         translation: 'translation',
         fsrsCard: createEmptyCard(),
         learningType: LearningType.Flascards,
-        sourceVoice: 'sourceVoice',
-        targetVoice: 'targetVoice',
-        sound: 'sound',
       };
       collection.dangerouslyGetInnerObject().words = {word1: [wordToDelete]};
 
@@ -176,9 +160,6 @@ describe('Collection', () => {
       expect(collection.dangerouslyGetInnerObject().words).not.toHaveProperty(
         'word1',
       );
-      expect(unlink).toHaveBeenCalledWith(wordToDelete.sourceVoice);
-      expect(unlink).toHaveBeenCalledWith(wordToDelete.targetVoice);
-      expect(unlink).toHaveBeenCalledWith(wordToDelete.sound);
     });
 
     it('should not throw an error if the word does not exist', async () => {

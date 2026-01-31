@@ -14,7 +14,7 @@ describe('getRemoteAppVersion', () => {
 
     const version = await getRemoteAppVersion();
 
-    expect(global.fetch).toHaveBeenCalledWith(
+    expect(fetch).toHaveBeenCalledWith(
       `https://api.github.com/repos/${packageJSON.repository}/releases/latest`,
     );
     expect(version).toBe(mockVersion.replace('v', ''));

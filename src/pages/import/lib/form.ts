@@ -47,9 +47,6 @@ const fixCollectionObjectFromFileAndImport = (
       learningCard.wordId = wordKey;
       learningCard.learningType =
         learningCard.learningType || LearningType.Flascards;
-      learningCard.sourceVoice = undefined;
-      learningCard.targetVoice = undefined;
-      learningCard.sound = undefined;
     }
   }
 

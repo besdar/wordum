@@ -36,7 +36,6 @@ const collectionRestructureV020 = (innerObject: CollectionFormFields) => {
       continue;
     }
 
-    listeningCard.sound = listeningCard.value;
     listeningCard.value = listeningCard.translation;
     listeningCard.translation = writingCard.translation;
   }

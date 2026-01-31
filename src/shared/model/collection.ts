@@ -2,12 +2,7 @@ import {Card} from 'ts-fsrs';
 import {AppSupportedLanguages} from './lang';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {StorageKeys} from './storage';
-import {unlink} from '@dr.pogodin/react-native-fs';
-import {
-  createLearningCardsForCollectionItem,
-  downloadVoice,
-  getUUID,
-} from '../lib/collection';
+import {createLearningCardsForCollectionItem, getUUID} from '../lib/collection';
 import {filterActualCards} from '../lib/cards';
 
 export enum LearningType {
@@ -18,8 +13,6 @@ export enum LearningType {
 
 export type TranslationResponse = {
   translation: string;
-  targetVoice?: string;
-  sourceVoice?: string;
   examples?: string;
 };
 
@@ -106,11 +99,8 @@ export class Collection {
       };
     }
 
-    const deletionPromises = [];
     if (this.#learningCardsToDelete.length) {
       for (const card of this.#learningCardsToDelete) {
-        deletionPromises.push(this.#deleteCollectionItemFiles(card));
-
         const learningCards = this.#collection.words[card.wordId];
         if (learningCards.length === 1) {
           delete this.#collection.words[card.wordId];
@@ -134,28 +124,10 @@ export class Collection {
 
     this.#learningCardsToDelete = [];
 
-    return Promise.allSettled(deletionPromises).then(() => this);
+    return this;
   }
 
-  #deleteCollectionItemFiles = async (collectionItem: LearningCard) => {
-    if (collectionItem?.sourceVoice) {
-      await unlink(collectionItem.sourceVoice);
-    }
-
-    if (collectionItem?.targetVoice) {
-      await unlink(collectionItem.targetVoice);
-    }
-  };
-
   deleteCollection = async () => {
-    try {
-      await Promise.all(
-        Object.values(this.#collection.words)
-          .flat()
-          .map(this.#deleteCollectionItemFiles),
-      );
-    } catch {}
-
     await AsyncStorage.removeItem(
       StorageKeys.COLLECTIONS + '_' + this.#collection.id,
     );
@@ -209,14 +181,6 @@ export class Collection {
     }
 
     const itemId = getUUID();
-    const isListeningIncludedInGeneration =
-      this.#collection.supportedLearningTypes.includes(LearningType.Listening);
-    const sourceVoice = isListeningIncludedInGeneration
-      ? await downloadVoice(newItem.sourceVoice)
-      : undefined;
-    const targetVoice = isListeningIncludedInGeneration
-      ? await downloadVoice(newItem.targetVoice)
-      : undefined;
 
     const newWordCards = createLearningCardsForCollectionItem(
       {
@@ -225,8 +189,6 @@ export class Collection {
       },
       this.#collection.learningLanguage,
       this.#collection.supportedLearningTypes,
-      sourceVoice,
-      targetVoice,
     );
 
     this.#collection = {
@@ -242,17 +204,9 @@ export class Collection {
       return this;
     }
 
-    const deletionPromise = Promise.allSettled(
-      this.#collection.words[wordId].map(card =>
-        this.#deleteCollectionItemFiles(card),
-      ),
-    );
-
     delete this.#collection.words[wordId];
 
-    const savingPromise = this.saveCollection();
-
-    return deletionPromise.then(() => savingPromise);
+    return this.saveCollection();
   }
 
   dangerouslyGetInnerObject() {

@@ -15,8 +15,6 @@ export const convertReversoResponse = (
     .slice(0, 3)
     .map(result => result[learningLanguage])
     .join(' '),
-  targetVoice: translationResponse.voice,
-  sourceVoice: translationResponse.sourceVoice,
 });
 
 export const convertGoogleTranslateResponse = (

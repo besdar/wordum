@@ -1,44 +1,11 @@
-import {downloadFile} from '@dr.pogodin/react-native-fs';
 import {CollectionFormFields, LearningType} from '../../model/collection';
-import {
-  createLearningCardsForCollectionItem,
-  downloadVoice,
-  getUUID,
-} from '../collection';
+import {createLearningCardsForCollectionItem, getUUID} from '../collection';
 
 describe('getUUID', () => {
   it('should generate a UUID string', () => {
     const uuid = getUUID();
 
     expect(uuid).toMatch(/^[0-9a-f]{12,}$/);
-  });
-});
-
-describe('downloadVoice', () => {
-  it('should return an empty string if no voiceURL is provided', async () => {
-    const result = await downloadVoice();
-
-    expect(result).toBe('');
-  });
-
-  it('should return an empty string if download fails', async () => {
-    (downloadFile as jest.Mock).mockReturnValueOnce({
-      promise: Promise.resolve({statusCode: 404}),
-    });
-
-    const result = await downloadVoice('http://example.com/voice.mp3');
-
-    expect(result).toBe('');
-  });
-
-  it('should return the file path if download is successful', async () => {
-    (downloadFile as jest.Mock).mockReturnValueOnce({
-      promise: Promise.resolve({statusCode: 200}),
-    });
-
-    const result = await downloadVoice('http://example.com/voice.mp3');
-
-    expect(result).toContain('.mp3');
   });
 });
 
@@ -97,14 +64,10 @@ describe('createLearningCardsForCollectionItem', () => {
   });
 
   it('should create listening cards correctly', () => {
-    const sourceVoice = 'sourceVoice.mp3';
-    const targetVoice = 'targetVoice.mp3';
     const cards = createLearningCardsForCollectionItem(
       newItem,
       learningLanguage,
       cardsToGenerate,
-      sourceVoice,
-      targetVoice,
     );
 
     expect(cards).toContainEqual(
@@ -113,8 +76,6 @@ describe('createLearningCardsForCollectionItem', () => {
         value: 'hello',
         translation: 'hola',
         learningType: LearningType.Listening,
-        sourceVoice,
-        targetVoice,
       }),
     );
   });
