@@ -4,6 +4,6 @@ import React from 'react';
 
 export const CenteredActivityIndicator = () => (
   <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
-    <ActivityIndicator animating size="large" />
+    <ActivityIndicator animating size="large" testID="activity-indicator" />
   </Grid>
 );

@@ -96,4 +96,50 @@ describe('createLearningCardsForCollectionItem', () => {
       cards.filter(card => card.learningType === LearningType.Listening),
     ).toHaveLength(1);
   });
+
+  it('should create multiple listening cards for comma-separated translations when learning target language', () => {
+    const newItemWithMultipleTranslations = {
+      wordId: '1',
+      value: 'hello',
+      translation: 'hola, saludo',
+      examples: 'example1',
+    };
+    const cards = createLearningCardsForCollectionItem(
+      newItemWithMultipleTranslations,
+      'target',
+      [LearningType.Listening],
+    );
+
+    const listeningCards = cards.filter(
+      card => card.learningType === LearningType.Listening,
+    );
+
+    expect(listeningCards).toHaveLength(2);
+    expect(listeningCards[0].value).toBe('hola');
+    expect(listeningCards[1].value).toBe('saludo');
+    expect(listeningCards[0].translation).toBe('hello');
+    expect(listeningCards[1].translation).toBe('hello');
+  });
+
+  it('should create single listening card for target language when translation has no comma', () => {
+    const newItemWithSingleTranslation = {
+      wordId: '1',
+      value: 'hello',
+      translation: 'hola',
+      examples: 'example1',
+    };
+    const cards = createLearningCardsForCollectionItem(
+      newItemWithSingleTranslation,
+      'target',
+      [LearningType.Listening],
+    );
+
+    const listeningCards = cards.filter(
+      card => card.learningType === LearningType.Listening,
+    );
+
+    expect(listeningCards).toHaveLength(1);
+    expect(listeningCards[0].value).toBe('hola');
+    expect(listeningCards[0].translation).toBe('hello');
+  });
 });

@@ -10,6 +10,7 @@ export const IconButton = ({
   disabled,
   loading,
   noLoading,
+  icon,
   ...props
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +18,8 @@ export const IconButton = ({
   return (
     <PaperButton
       {...props}
+      icon={icon}
+      testID={`icon-button-${icon}`}
       onPress={e => {
         setIsLoading(true);
         Promise.resolve(onPress?.(e)).finally(() => setIsLoading(false));

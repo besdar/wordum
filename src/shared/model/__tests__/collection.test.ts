@@ -5,6 +5,7 @@ import {
   LearningType,
   getCollections,
   getInitialCollection,
+  isThereAnyWordsToLearn,
 } from '../collection';
 import {
   getUUID,
@@ -93,6 +94,70 @@ describe('Collection', () => {
       expect(
         collection.dangerouslyGetInnerObject().words.wordl,
       ).toBeUndefined();
+    });
+
+    it('should filter out specific card when word has multiple learning cards', async () => {
+      const collection = new Collection();
+      const cardToDelete: LearningCard = {
+        wordId: 'word1',
+        value: 'test',
+        learningType: LearningType.Flascards,
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+      };
+      const cardToKeep: LearningCard = {
+        wordId: 'word1',
+        value: 'test',
+        learningType: LearningType.Writing,
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+      };
+
+      collection.dangerouslyGetInnerObject().words = {
+        word1: [cardToDelete, cardToKeep],
+      };
+      collection.setCollectionItemForDeletion(cardToDelete);
+
+      await collection.saveCollection();
+
+      expect(collection.dangerouslyGetInnerObject().words.word1).toHaveLength(
+        1,
+      );
+      expect(collection.dangerouslyGetInnerObject().words.word1[0]).toEqual(
+        cardToKeep,
+      );
+    });
+
+    it('should filter out card by value when word has multiple cards of same type', async () => {
+      const collection = new Collection();
+      const cardToDelete: LearningCard = {
+        wordId: 'word1',
+        value: 'test1',
+        learningType: LearningType.Flascards,
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+      };
+      const cardToKeep: LearningCard = {
+        wordId: 'word1',
+        value: 'test2',
+        learningType: LearningType.Flascards,
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+      };
+
+      collection.dangerouslyGetInnerObject().words = {
+        word1: [cardToDelete, cardToKeep],
+      };
+      collection.setCollectionItemForDeletion(cardToDelete);
+
+      await collection.saveCollection();
+
+      expect(collection.dangerouslyGetInnerObject().words.word1).toHaveLength(
+        1,
+      );
+      expect(collection.dangerouslyGetInnerObject().words.word1[0]).toEqual(
+        cardToKeep,
+      );
     });
   });
 
@@ -403,5 +468,84 @@ describe('getCollections', () => {
 
     expect(result).toEqual([]);
     expect(AsyncStorage.getAllKeys).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('isThereAnyWordsToLearn', () => {
+  it('should return true if there is a collection with words to learn', async () => {
+    const mockKeys = ['COLLECTIONS_testid'];
+    const pastDate = new Date(Date.now() - 1000);
+
+    const mockCollection = new Collection({
+      id: 'testid',
+      name: 'Test',
+      sourceLanguage: AppSupportedLanguages.ENGLISH,
+      targetLanguage: AppSupportedLanguages.SPANISH,
+      learningLanguage: 'source',
+      wordsToTrain: 10,
+      supportedLearningTypes: [LearningType.Flascards],
+      words: {
+        word1: [
+          {
+            wordId: 'word1',
+            value: 'test',
+            translation: 'prueba',
+            learningType: LearningType.Flascards,
+            fsrsCard: {...createEmptyCard(), due: pastDate},
+          },
+        ],
+      },
+    });
+
+    (AsyncStorage.getAllKeys as jest.Mock).mockResolvedValue(mockKeys);
+    jest.spyOn(Collection.prototype, 'init').mockResolvedValue(mockCollection);
+
+    const result = await isThereAnyWordsToLearn();
+
+    expect(result).toBe(true);
+  });
+
+  it('should return false if no collections have words to learn', async () => {
+    const mockKeys = ['COLLECTIONS_testid'];
+    const futureDate = new Date(Date.now() + 100000000);
+
+    const mockCollection = new Collection({
+      id: 'testid',
+      name: 'Test',
+      sourceLanguage: AppSupportedLanguages.ENGLISH,
+      targetLanguage: AppSupportedLanguages.SPANISH,
+      learningLanguage: 'source',
+      wordsToTrain: 10,
+      supportedLearningTypes: [LearningType.Flascards],
+      words: {
+        word1: [
+          {
+            wordId: 'word1',
+            value: 'test',
+            translation: 'prueba',
+            learningType: LearningType.Flascards,
+            fsrsCard: {
+              ...createEmptyCard(),
+              due: futureDate,
+            },
+          },
+        ],
+      },
+    });
+
+    (AsyncStorage.getAllKeys as jest.Mock).mockResolvedValue(mockKeys);
+    jest.spyOn(Collection.prototype, 'init').mockResolvedValue(mockCollection);
+
+    const result = await isThereAnyWordsToLearn();
+
+    expect(result).toBe(false);
+  });
+
+  it('should return false if there are no collections', async () => {
+    (AsyncStorage.getAllKeys as jest.Mock).mockResolvedValue([]);
+
+    const result = await isThereAnyWordsToLearn();
+
+    expect(result).toBe(false);
   });
 });
