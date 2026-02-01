@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IconButton should match the snapshot 1`] = `
 <View
@@ -19,7 +19,9 @@ exports[`IconButton should match the snapshot 1`] = `
       "width": 40,
     }
   }
-  testID="icon-button-container-outer-layer"
+  testID="icon-button-function icon() {
+          return (0, _jsxRuntime.jsx)(_reactNative2.View, {});
+        }-container-outer-layer"
 >
   <View
     collapsable={false}
@@ -41,7 +43,9 @@ exports[`IconButton should match the snapshot 1`] = `
         "shadowRadius": 0,
       }
     }
-    testID="icon-button-container"
+    testID="icon-button-function icon() {
+          return (0, _jsxRuntime.jsx)(_reactNative2.View, {});
+        }-container"
   >
     <View
       accessibilityComponentType="button"
@@ -100,7 +104,9 @@ exports[`IconButton should match the snapshot 1`] = `
           ],
         ]
       }
-      testID="icon-button"
+      testID="icon-button-function icon() {
+          return (0, _jsxRuntime.jsx)(_reactNative2.View, {});
+        }"
     >
       <View />
     </View>

@@ -42,6 +42,7 @@ exports[`CenteredActivityIndicator should match the snapshot 1`] = `
         undefined,
       ]
     }
+    testID="activity-indicator"
   >
     <View
       collapsable={false}
