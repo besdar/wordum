@@ -51,7 +51,7 @@ jobs:
           key: ${{ runner.os }}-npm-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Lint
-        run: npm run lint:check
+        run: npm run lint:check && npm run align-deps
 
   run-typecheck:
     name: Run typecheck

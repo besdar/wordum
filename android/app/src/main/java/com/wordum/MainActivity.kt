@@ -1,7 +1,8 @@
 package com.wordum
 import expo.modules.ReactActivityDelegateWrapper
 
-import android.os.Bundle;
+import android.os.Bundle
+import com.swmansion.rnscreens.fragment.restoration.RNScreensFragmentFactory
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -23,6 +24,7 @@ class MainActivity : ReactActivity() {
       ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED, DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled))
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(null)
+      supportFragmentManager.fragmentFactory = RNScreensFragmentFactory()
+      super.onCreate(savedInstanceState)
   }
 }
