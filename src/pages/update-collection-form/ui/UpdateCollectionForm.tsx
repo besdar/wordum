@@ -3,14 +3,14 @@ import {LANGUAGE_FLAGS, LANGUAGE_LIST} from '../../../shared/model/lang';
 import {ControlledPicker} from '../../../shared/ui/ControlledPicker';
 import {ControlledSegmentedButtons} from '../../../shared/ui/ControlledSegmentedButtons';
 import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
-import {Control, FieldValues} from 'react-hook-form';
+import {Control} from 'react-hook-form';
 import {CollectionFormFields} from '../../../shared/model/collection';
 import {translate} from '../../../shared/lib/i18n';
 import {Button} from '../../../shared/ui/Button';
 import {FormContainer} from '../../../shared/ui/FormContainer';
 
 type Props = {
-  control: Control<FieldValues & CollectionFormFields>;
+  control: Control<CollectionFormFields>;
   handleSubmit: () => void;
   submitText: string;
   children?: React.ReactNode;

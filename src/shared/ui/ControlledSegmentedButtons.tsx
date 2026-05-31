@@ -24,13 +24,15 @@ export const ControlledSegmentedButtons = <T extends FieldValues>({
       name={name}
       rules={rules}
       control={control}
-      render={({field}) => (
-        <SegmentedButtons
-          {...segmentedButtonsProps}
-          value={field.value}
-          onValueChange={field.onChange}
-        />
-      )}
+      render={({field}) => {
+        const fieldProps = {
+          ...segmentedButtonsProps,
+          value: field.value,
+          onValueChange: field.onChange,
+        } as React.ComponentProps<typeof SegmentedButtons>;
+
+        return <SegmentedButtons {...fieldProps} />;
+      }}
     />
   </Grid>
 );

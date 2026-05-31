@@ -5,14 +5,14 @@ import {
   LearningType,
 } from '../../../shared/model/collection';
 import {Details} from '../../../shared/ui/Details';
-import {Control, FieldValues} from 'react-hook-form';
+import {Control} from 'react-hook-form';
 import {translate} from '../../../shared/lib/i18n';
 import {ControlledSegmentedButtons} from '../../../shared/ui/ControlledSegmentedButtons';
 import {WordsTable} from './WordsTable';
 import {learningTypeToIconMap} from '../model/learningTypeToIconMap';
 
 type Props = {
-  control: Control<FieldValues & CollectionFormFields>;
+  control: Control<CollectionFormFields>;
   collection?: Collection;
 };
 
@@ -46,7 +46,9 @@ export const CollectionAdditionalSettings = ({control, collection}: Props) => {
       />
       {Boolean(collection) && !collection!.isItNew() && (
         <WordsTable
-          onDelete={collection!.setCollectionItemForDeletion}
+          onDelete={collectionItem =>
+            collection!.setCollectionItemForDeletion(collectionItem)
+          }
           learningCards={learningCards}
         />
       )}

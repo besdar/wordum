@@ -1,8 +1,7 @@
-import {PermissionsAndroid} from 'react-native';
 import {translate} from '../../../shared/lib/i18n';
-import {askForPermission} from '../../../shared/lib/permissions';
 import {showConfirmationAlert} from '../../../shared/lib/message';
-import {pickFile, readFile} from '@dr.pogodin/react-native-fs';
+import * as DocumentPicker from 'expo-document-picker';
+import {File} from 'expo-file-system';
 import {
   Collection,
   CollectionFormFields,
@@ -73,16 +72,24 @@ const fixCollectionObjectFromFileAndImport = (
 };
 
 export const importCollectionFromFile = (version: string) =>
-  askForPermission(PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE)
+  showConfirmationAlert(
+    translate('collection_import'),
+    translate('import_collection_from_a_file_message'),
+    translate('proceed'),
+  )
     .then(() =>
-      showConfirmationAlert(
-        translate('collection_import'),
-        translate('import_collection_from_a_file_message'),
-        translate('proceed'),
-      ),
+      DocumentPicker.getDocumentAsync({
+        type: 'application/json',
+        copyToCacheDirectory: true,
+      }),
     )
-    .then(() => pickFile({mimeTypes: ['application/json']}))
-    .then(([filePath]) => readFile(filePath))
+    .then(result => {
+      if (result.canceled || !result.assets.length) {
+        throw new Error();
+      }
+
+      return new File(result.assets[0].uri).text();
+    })
     .then(jsonString => JSON.parse(jsonString) as CollectionType | string[])
     .then((collectionData): Promise<Collection | Collection[]> => {
       const versions = version.split('.').map(Number);

@@ -5,10 +5,10 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {translate} from '../../shared/lib/i18n';
 import {ImportTabs} from './model/navigation';
 
-const Tab = createMaterialTopTabNavigator<ImportTabs>();
+const Tab = createMaterialTopTabNavigator<ImportTabs, undefined>();
 
 export const Import = () => (
-  <Tab.Navigator>
+  <Tab.Navigator id={undefined}>
     <Tab.Screen
       name="TextToCollectionImportForm"
       component={TextToCollectionImportForm}

@@ -1,5 +1,5 @@
 module.exports = {
-  presets: ['babel-preset-expo', '@babel/preset-typescript'],
+  presets: ['babel-preset-expo'],
   env: {
     production: {
       plugins: ['react-native-paper/babel'],

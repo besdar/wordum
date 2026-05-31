@@ -1,9 +1,6 @@
 import {createEmptyCard} from 'ts-fsrs';
-import {
-  LearningType,
-  LearningCard,
-  CollectionFormFields,
-} from '../model/collection';
+import type {LearningCard, CollectionFormFields} from '../model/collection';
+import {LearningType} from '../model/learningType';
 
 export const getUUID = () => Math.random().toString(16).slice(2);
 

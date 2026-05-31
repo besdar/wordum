@@ -9,10 +9,10 @@ const { mergeConfig } = require('@react-native/metro-config');
  */
 const config = {
   resolver: {
-    blacklistRE: /node_modules\/jsdom\/.*/,
+    blockList: /node_modules\/jsdom\/.*/,
     extraNodeModules: {
       jsdom: require.resolve('./emptyModule.js'),
-    }
+    },
   },
 };
 

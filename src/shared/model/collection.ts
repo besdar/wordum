@@ -4,12 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {StorageKeys} from './storage';
 import {createLearningCardsForCollectionItem, getUUID} from '../lib/collection';
 import {filterActualCards} from '../lib/cards';
+import {LearningType} from './learningType';
 
-export enum LearningType {
-  Flascards = 'Flashcards',
-  Writing = 'Writing',
-  Listening = 'Listening',
-}
+export {LearningType};
 
 export type TranslationResponse = {
   translation: string;
@@ -127,15 +124,15 @@ export class Collection {
     return this;
   }
 
-  deleteCollection = async () => {
+  async deleteCollection() {
     await AsyncStorage.removeItem(
       StorageKeys.COLLECTIONS + '_' + this.#collection.id,
     );
 
     this.#reset();
-  };
+  }
 
-  setCollectionItemForDeletion = (collectionItem: LearningCard) => {
+  setCollectionItemForDeletion(collectionItem: LearningCard) {
     if (!this.#collection.words[collectionItem.wordId]) {
       return this;
     }
@@ -143,7 +140,7 @@ export class Collection {
     this.#learningCardsToDelete.push(collectionItem);
 
     return this;
-  };
+  }
 
   getLearningCards() {
     return Object.values(this.#collection.words);

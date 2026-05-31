@@ -1,5 +1,6 @@
 module.exports = {
-  preset: 'react-native',
+  preset: '@react-native/jest-preset',
+  watchman: false,
   setupFiles: [
     './src/shared/config/mocks/lang.ts',
     './src/shared/config/mocks/async-storage.ts',
@@ -18,6 +19,6 @@ module.exports = {
   },
   resetMocks: true,
   transformIgnorePatterns: [
-    'node_modules/(?!(@react-native|react-native|@react-navigation)/)',
+    'node_modules/(?!(@react-native|react-native|@react-navigation|expo|expo-.+|@expo)/)',
   ],
 };

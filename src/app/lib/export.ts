@@ -1,20 +1,34 @@
-import {writeFile, DownloadDirectoryPath} from '@dr.pogodin/react-native-fs';
+import {File, Paths} from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
 import {getDataExport} from '../../shared/model/storage';
 import {showToastMessage} from '../../shared/lib/message';
 import {translate} from '../../shared/lib/i18n';
 import packageJSON from '../../../package.json';
-import {askForPermission} from '../../shared/lib/permissions';
-import {PermissionsAndroid} from 'react-native';
 
-const EXPORT_PATH = `${DownloadDirectoryPath}/${packageJSON.name}-export-${packageJSON.version}.json`;
+const EXPORT_FILE_NAME = `${packageJSON.name}-export-${packageJSON.version}.json`;
+
+const createExportFile = (data: unknown) => {
+  const exportFile = new File(Paths.cache, EXPORT_FILE_NAME);
+
+  exportFile.create({overwrite: true});
+  exportFile.write(JSON.stringify(data));
+
+  return exportFile;
+};
 
 export const exportData = () =>
-  askForPermission(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE)
-    .then(() => getDataExport())
-    .then(data => writeFile(EXPORT_PATH, JSON.stringify(data), 'utf8'))
-    .then(() =>
+  getDataExport()
+    .then(createExportFile)
+    .then(async exportFile => {
+      if (await Sharing.isAvailableAsync()) {
+        await Sharing.shareAsync(exportFile.uri, {
+          mimeType: 'application/json',
+          dialogTitle: translate('exported_successfully'),
+        });
+      }
+
       showToastMessage(
-        `${translate('exported_successfully')} "${EXPORT_PATH}"`,
-      ),
-    )
+        `${translate('exported_successfully')} "${exportFile.uri}"`,
+      );
+    })
     .catch(() => showToastMessage(translate('something_went_wrong')));

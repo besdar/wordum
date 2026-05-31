@@ -15,7 +15,7 @@ import ru from '../config/lang/ru.json';
 import tr from '../config/lang/tr.json';
 import uk from '../config/lang/uk.json';
 import zh from '../config/lang/zh.json';
-import {findBestLanguageTag} from 'react-native-localize';
+import {getLocales} from 'expo-localization';
 import {
   GoogleSupportedLanguages,
   SupportedLanguagesToI18nMap,
@@ -25,10 +25,22 @@ const languageDetectorPlugin = {
   type: 'languageDetector',
   async: true, // If this is set to true, your detect function receives a callback function that you should call with your language, useful to retrieve your language stored in AsyncStorage for example
   detect: async () => {
-    return (
-      findBestLanguageTag(Object.values(SupportedLanguagesToI18nMap))
-        ?.languageTag || SupportedLanguagesToI18nMap.english
-    );
+    const supportedLanguages = Object.values(SupportedLanguagesToI18nMap);
+
+    for (const locale of getLocales()) {
+      const languageCode = locale.languageCode as GoogleSupportedLanguages;
+      const languageTag = locale.languageTag as GoogleSupportedLanguages;
+
+      if (supportedLanguages.includes(languageTag)) {
+        return languageTag;
+      }
+
+      if (supportedLanguages.includes(languageCode)) {
+        return languageCode;
+      }
+    }
+
+    return SupportedLanguagesToI18nMap.english;
   },
 } as const;
 

@@ -40,7 +40,7 @@ export const Overview = ({
               translate('collection_deletion_message'),
               translate('yes'),
             )
-              .then(collection.deleteCollection)
+              .then(() => collection.deleteCollection())
               .finally(refetchCallBack)
           }
           onStartLearning={() =>

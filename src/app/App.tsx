@@ -12,7 +12,7 @@ import '../shared/lib/i18n';
 
 createNotificationsBackgroundListener();
 
-const Stack = createNativeStackNavigator<PagesStackProps>();
+const Stack = createNativeStackNavigator<PagesStackProps, undefined>();
 
 function App(): React.JSX.Element {
   const {t} = useTranslation();
@@ -23,6 +23,7 @@ function App(): React.JSX.Element {
     <Material3ThemeProvider>
       <AppNavigator>
         <Stack.Navigator
+          id={undefined}
           initialRouteName="Overview"
           // TODO: prevent android hardware button back
           // screenListeners={{

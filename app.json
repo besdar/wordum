@@ -1,4 +1,22 @@
 {
-  "name": "Wordum",
-  "displayName": "Wordum"
+  "expo": {
+    "name": "Wordum",
+    "slug": "wordum",
+    "version": "0.7.0",
+    "orientation": "portrait",
+    "scheme": "wordum",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "com.wordum",
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "com.wordum",
+      "versionCode": 1,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
 }

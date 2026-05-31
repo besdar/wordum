@@ -18,5 +18,13 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        maven {
+            url("$rootDir/../node_modules/@notifee/react-native/android/libs")
+        }
+    }
+}
+
 apply plugin: "com.facebook.react.rootproject"
 apply plugin: "expo-root-project"
