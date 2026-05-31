@@ -1,9 +1,6 @@
 import {createEmptyCard} from 'ts-fsrs';
 import {showToastMessage} from '../../../../shared/lib/message';
-import {
-  Collection,
-  LearningCard,
-} from '../../../../shared/model/collection';
+import {Collection, LearningCard} from '../../../../shared/model/collection';
 import {addWordToCollection} from '../storage';
 import {LearningType} from '../../../../shared/model/learningType';
 

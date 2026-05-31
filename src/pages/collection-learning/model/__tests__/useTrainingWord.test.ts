@@ -1,8 +1,5 @@
 import {renderHook} from '@testing-library/react-native';
-import {
-  Collection,
-  LearningCard,
-} from '../../../../shared/model/collection';
+import {Collection, LearningCard} from '../../../../shared/model/collection';
 import {
   getCardsToLearn,
   getFsrsRatingFromUserAnswer,
