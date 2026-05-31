@@ -59,7 +59,6 @@ export const ControlledTextInput = <
           testID={`input_${name}`}
         />
         <HelperText
-          // @ts-ignore - TODO: Bug after package updates
           style={[
             styles.helperText,
             {
