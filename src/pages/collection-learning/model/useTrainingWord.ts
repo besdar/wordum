@@ -1,9 +1,5 @@
 import {useState, useMemo, useEffect} from 'react';
-import {
-  Collection,
-  LearningCard,
-  LearningType,
-} from '../../../shared/model/collection';
+import {Collection, LearningCard} from '../../../shared/model/collection';
 import {fsrs, Rating} from 'ts-fsrs';
 import {
   getFsrsRatingFromUserAnswer,
@@ -12,6 +8,7 @@ import {
 } from '../lib/learning';
 import {Answers} from './types';
 import {EVENT_TYPE, eventBus} from '../../../shared/model/EventBus';
+import {LearningType} from '../../../shared/model/learningType';
 
 export const useTrainingWord = (collection: Collection) => {
   const learningInstance = useMemo(() => fsrs(), []);

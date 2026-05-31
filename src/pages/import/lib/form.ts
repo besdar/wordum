@@ -6,10 +6,10 @@ import {
   Collection,
   CollectionFormFields,
   CollectionType,
-  LearningType,
 } from '../../../shared/model/collection';
 import {createEmptyCard} from 'ts-fsrs';
 import {restructureOldCollection} from '../../../shared/model/restructure';
+import {LearningType} from '../../../shared/model/learningType';
 
 export const validateTextForTheImport = (value: string) => {
   const lines = value.toString().split('\n').filter(Boolean);

@@ -6,8 +6,6 @@ import {createLearningCardsForCollectionItem, getUUID} from '../lib/collection';
 import {filterActualCards} from '../lib/cards';
 import {LearningType} from './learningType';
 
-export {LearningType};
-
 export type TranslationResponse = {
   translation: string;
   examples?: string;

@@ -2,7 +2,7 @@ import {Icon, ProgressBar, Text} from 'react-native-paper';
 import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTrainingWord} from './model/useTrainingWord';
-import {LearningType} from '../../shared/model/collection';
+import {LearningType} from '../../shared/model/learningType';
 import {Grid} from '../../shared/ui/Grid';
 import {Answers} from './model/types';
 import {StyleSheet} from 'react-native';

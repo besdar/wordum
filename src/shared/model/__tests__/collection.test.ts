@@ -2,7 +2,6 @@ import {
   Collection,
   CollectionFormFields,
   LearningCard,
-  LearningType,
   getCollections,
   getInitialCollection,
   isThereAnyWordsToLearn,
@@ -14,6 +13,7 @@ import {
 import {AppSupportedLanguages} from '../lang';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createEmptyCard} from 'ts-fsrs';
+import {LearningType} from '../learningType';
 
 jest.mock('../../lib/collection', () => ({
   getUUID: jest.fn(),

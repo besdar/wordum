@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {StorageKeys} from './storage';
-import {CollectionFormFields, getCollections, LearningType} from './collection';
+import {CollectionFormFields, getCollections} from './collection';
+import {LearningType} from './learningType';
 import packageJSON from '../../../package.json';
 
 const collectionRestructureV020 = (innerObject: CollectionFormFields) => {

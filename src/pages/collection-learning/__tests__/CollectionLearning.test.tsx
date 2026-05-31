@@ -1,11 +1,12 @@
 import {render, screen, fireEvent} from '@testing-library/react-native';
-import {Collection, LearningType} from '../../../shared/model/collection';
+import {Collection} from '../../../shared/model/collection';
 import {CollectionLearning} from '../CollectionLearning';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {PagesStackProps} from '../../../shared/model/navigator';
 import {useTrainingWord} from '../model/useTrainingWord';
 import {speak} from 'expo-speech';
+import {LearningType} from '../../../shared/model/learningType';
 
 jest.mock('../model/useTrainingWord', () => ({
   useTrainingWord: jest.fn(),

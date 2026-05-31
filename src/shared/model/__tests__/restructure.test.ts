@@ -3,11 +3,11 @@ import {createEmptyCard, Card} from 'ts-fsrs';
 import {restructureOldCollection, dataRestructure} from '../restructure';
 import {
   CollectionFormFields,
-  LearningType,
   getCollections,
   LearningCard,
 } from '../collection';
 import {StorageKeys} from '../storage';
+import {LearningType} from '../learningType';
 
 jest.mock('../collection', () => ({
   ...jest.requireActual('../collection'),

@@ -2,7 +2,6 @@ import {renderHook} from '@testing-library/react-native';
 import {
   Collection,
   LearningCard,
-  LearningType,
 } from '../../../../shared/model/collection';
 import {
   getCardsToLearn,
@@ -14,6 +13,7 @@ import {Answers} from '../types';
 import {createEmptyCard, fsrs, Rating} from 'ts-fsrs';
 import {EVENT_TYPE, eventBus} from '../../../../shared/model/EventBus';
 import {act} from 'react';
+import {LearningType} from '../../../../shared/model/learningType';
 
 // Mocking dependencies
 jest.mock('../../lib/learning', () => ({

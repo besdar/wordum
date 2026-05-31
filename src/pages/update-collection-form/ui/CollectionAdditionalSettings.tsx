@@ -2,7 +2,6 @@ import React, {useMemo} from 'react';
 import {
   Collection,
   CollectionFormFields,
-  LearningType,
 } from '../../../shared/model/collection';
 import {Details} from '../../../shared/ui/Details';
 import {Control} from 'react-hook-form';
@@ -10,6 +9,7 @@ import {translate} from '../../../shared/lib/i18n';
 import {ControlledSegmentedButtons} from '../../../shared/ui/ControlledSegmentedButtons';
 import {WordsTable} from './WordsTable';
 import {learningTypeToIconMap} from '../model/learningTypeToIconMap';
+import {LearningType} from '../../../shared/model/learningType';
 
 type Props = {
   control: Control<CollectionFormFields>;

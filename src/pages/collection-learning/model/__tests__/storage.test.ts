@@ -3,9 +3,9 @@ import {showToastMessage} from '../../../../shared/lib/message';
 import {
   Collection,
   LearningCard,
-  LearningType,
 } from '../../../../shared/model/collection';
 import {addWordToCollection} from '../storage';
+import {LearningType} from '../../../../shared/model/learningType';
 
 jest.mock('../../../../shared/lib/message', () => ({
   showToastMessage: jest.fn(),

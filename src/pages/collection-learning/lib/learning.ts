@@ -1,12 +1,9 @@
 import {Grade, Rating} from 'ts-fsrs';
-import {
-  Collection,
-  LearningCard,
-  LearningType,
-} from '../../../shared/model/collection';
+import {Collection, LearningCard} from '../../../shared/model/collection';
 import {Answers} from '../model/types';
 import {appSettings} from '../../../shared/model/AppSettings';
 import {filterActualCards} from '../../../shared/lib/cards';
+import {LearningType} from '../../../shared/model/learningType';
 
 export const getFsrsRatingFromUserAnswer = (
   answer: Answers,
