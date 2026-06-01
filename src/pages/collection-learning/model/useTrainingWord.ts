@@ -1,14 +1,19 @@
 import {useState, useMemo, useEffect} from 'react';
-import {Collection, LearningCard} from '../../../shared/model/collection';
 import {fsrs, Rating} from 'ts-fsrs';
+import {Collection, LearningCard} from '../../../shared/model/collection';
+import {EVENT_TYPE, eventBus} from '../../../shared/model/EventBus';
+import {LearningType} from '../../../shared/model/learningType';
+import {
+  getRandomEmotionalSupportCard,
+  shouldShowEmotionalSupportCard,
+} from '../lib/emotional-support';
 import {
   getFsrsRatingFromUserAnswer,
   getCardsToLearn,
   getInitialWordsToLearn,
 } from '../lib/learning';
 import {Answers} from './types';
-import {EVENT_TYPE, eventBus} from '../../../shared/model/EventBus';
-import {LearningType} from '../../../shared/model/learningType';
+import type {EmotionalSupportCard} from './types';
 
 export const useTrainingWord = (collection: Collection) => {
   const learningInstance = useMemo(() => fsrs(), []);
@@ -17,6 +22,10 @@ export const useTrainingWord = (collection: Collection) => {
   const [timer, setTimer] = useState(Date.now());
   const [wordsToLearn, setWordsToLearn] = useState<LearningCard[]>([]);
   const [wordsCount, setWordsCount] = useState(0);
+  const [answeredCardsSinceSupportCard, setAnsweredCardsSinceSupportCard] =
+    useState(0);
+  const [emotionalSupportCard, setEmotionalSupportCard] =
+    useState<EmotionalSupportCard>();
   const [statistics, setStat] = useState({
     [Rating.Easy]: 0,
     [Rating.Hard]: 0,
@@ -30,12 +39,22 @@ export const useTrainingWord = (collection: Collection) => {
     setWordsToLearn(initilaWordsToLearn);
     setLearningCard(initilaWordsToLearn[0]);
     setIsItFinal(!initilaWordsToLearn[0]);
+    setAnsweredCardsSinceSupportCard(0);
+    setEmotionalSupportCard(undefined);
     setTimer(Date.now());
   }, [collection]);
 
+  const hideEmotionalSupportCard = () => {
+    setEmotionalSupportCard(undefined);
+    setTimer(Date.now());
+  };
+
   const setNextTrainingWord = async (previousAnswer: Answers) => {
     let words = wordsToLearn;
-    if ([Answers.Correct, Answers.Incorrect].includes(previousAnswer)) {
+    const isCardAnswered = [Answers.Correct, Answers.Incorrect].includes(
+      previousAnswer,
+    );
+    if (isCardAnswered) {
       const grade = getFsrsRatingFromUserAnswer(
         previousAnswer,
         Date.now() - timer,
@@ -43,13 +62,12 @@ export const useTrainingWord = (collection: Collection) => {
         learningCard!.value,
       );
 
-      // TODO: put this mutating inside Collection class
       learningInstance.next(
         learningCard!.fsrsCard,
         Date.now(),
         grade,
         ({card}) => {
-          learningCard!.fsrsCard = card;
+          collection.updateLearningCardFsrsCard(learningCard!, card);
         },
       );
 
@@ -83,7 +101,21 @@ export const useTrainingWord = (collection: Collection) => {
     }
 
     setLearningCard(nextWord);
-    setTimer(Date.now());
+    const nextAnsweredCardsSinceSupportCard = isCardAnswered
+      ? answeredCardsSinceSupportCard + 1
+      : answeredCardsSinceSupportCard;
+
+    if (
+      isCardAnswered &&
+      shouldShowEmotionalSupportCard(nextAnsweredCardsSinceSupportCard)
+    ) {
+      setAnsweredCardsSinceSupportCard(0);
+      setEmotionalSupportCard(getRandomEmotionalSupportCard());
+    } else {
+      setAnsweredCardsSinceSupportCard(nextAnsweredCardsSinceSupportCard);
+      setEmotionalSupportCard(undefined);
+      setTimer(Date.now());
+    }
   };
 
   return {
@@ -99,5 +131,7 @@ export const useTrainingWord = (collection: Collection) => {
         : collection.getProperty('targetLanguage'),
     statistics,
     progress: Number((wordsCount / wordsToLearn.length).toFixed(2)),
+    emotionalSupportCard,
+    hideEmotionalSupportCard,
   };
 };

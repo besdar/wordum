@@ -1,10 +1,10 @@
-import {Card} from 'ts-fsrs';
-import {AppSupportedLanguages} from './lang';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StorageKeys} from './storage';
-import {createLearningCardsForCollectionItem, getUUID} from '../lib/collection';
+import {Card} from 'ts-fsrs';
 import {filterActualCards} from '../lib/cards';
+import {createLearningCardsForCollectionItem, getUUID} from '../lib/collection';
+import {AppSupportedLanguages} from './lang';
 import {LearningType} from './learningType';
+import {StorageKeys} from './storage';
 
 export type TranslationResponse = {
   translation: string;
@@ -136,6 +136,26 @@ export class Collection {
     }
 
     this.#learningCardsToDelete.push(collectionItem);
+
+    return this;
+  }
+
+  updateLearningCardFsrsCard(collectionItem: LearningCard, fsrsCard: Card) {
+    const learningCards = this.#collection.words[collectionItem.wordId];
+
+    if (!learningCards) {
+      return this;
+    }
+
+    const cardToUpdate = learningCards.find(
+      card =>
+        card.value === collectionItem.value &&
+        card.learningType === collectionItem.learningType,
+    );
+
+    if (cardToUpdate) {
+      cardToUpdate.fsrsCard = fsrsCard;
+    }
 
     return this;
   }

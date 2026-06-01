@@ -5,11 +5,11 @@ import {
   userEvent,
   waitFor,
 } from '@testing-library/react-native';
-import {WritingFooter} from '../WritingFooter';
-import {showConfirmationAlert} from '../../../../shared/lib/message';
-import {Answers} from '../../model/types';
-import {AppSupportedLanguages} from '../../../../shared/model/lang';
 import React from 'react';
+import {showConfirmationAlert} from '../../../../shared/lib/message';
+import {AppSupportedLanguages} from '../../../../shared/model/lang';
+import {Answers} from '../../model/types';
+import {WritingFooter} from '../WritingFooter';
 
 jest.mock('../../../../shared/lib/message', () => ({
   showConfirmationAlert: jest.fn(),

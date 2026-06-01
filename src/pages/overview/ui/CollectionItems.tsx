@@ -1,11 +1,11 @@
+import React from 'react';
 import {StyleSheet} from 'react-native';
 import {TouchableRipple, Badge, Text} from 'react-native-paper';
-import {CollectionContainer} from './CollectionContainer';
-import {Grid} from '../../../shared/ui/Grid';
-import React from 'react';
-import {LANGUAGE_FLAGS} from '../../../shared/model/lang';
 import {Collection} from '../../../shared/model/collection';
+import {LANGUAGE_FLAGS} from '../../../shared/model/lang';
+import {Grid} from '../../../shared/ui/Grid';
 import {IconButton} from '../../../shared/ui/IconButton';
+import {CollectionContainer} from './CollectionContainer';
 
 const styles = StyleSheet.create({
   collectionButton: {

@@ -1,6 +1,6 @@
+import React from 'react';
 import {Controller, FieldValues, UseControllerProps} from 'react-hook-form';
 import {SegmentedButtons, Text} from 'react-native-paper';
-import React from 'react';
 import {Grid} from './Grid';
 
 type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'render'> &

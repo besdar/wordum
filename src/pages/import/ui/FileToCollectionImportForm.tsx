@@ -1,14 +1,16 @@
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
+import {useForm} from 'react-hook-form';
 import {ToastAndroid} from 'react-native';
+import packageJSON from '../../../../package.json';
+import {translate} from '../../../shared/lib/i18n';
 import {showToastMessage} from '../../../shared/lib/message';
+import {PagesStackProps} from '../../../shared/model/navigator';
 import {Button} from '../../../shared/ui/Button';
+import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
 import {FormContainer} from '../../../shared/ui/FormContainer';
 import {importCollectionFromFile} from '../lib/form';
-import {translate} from '../../../shared/lib/i18n';
-import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
-import {useForm} from 'react-hook-form';
-import packageJSON from '../../../../package.json';
-import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 import {ImportTabs} from '../model/navigation';
 
 type Props = MaterialTopTabScreenProps<ImportTabs>;
@@ -32,8 +34,11 @@ export const FileToCollectionImportForm = ({navigation}: Props) => {
         mode="contained"
         onPress={handleSubmit(({version}) =>
           importCollectionFromFile(version)
-            // @ts-expect-error: TODO: add parent navigation types to this nested one
-            .then(() => navigation.popToTop())
+            .then(() =>
+              navigation
+                .getParent<NativeStackNavigationProp<PagesStackProps>>()
+                ?.popToTop(),
+            )
             .catch(() =>
               showToastMessage(
                 translate('something_went_wrong'),

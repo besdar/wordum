@@ -13,3 +13,9 @@ export type Statistics = {
   [Rating.Good]: number;
   [Rating.Again]: number;
 };
+
+export type EmotionalSupportCard = {
+  icon: string;
+  titleKey: string;
+  messageKey: string;
+};

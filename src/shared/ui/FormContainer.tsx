@@ -1,6 +1,6 @@
 import React from 'react';
-import {Grid} from './Grid';
 import {ScrollView} from 'react-native';
+import {Grid} from './Grid';
 
 type Props = {
   children: React.ReactNode;

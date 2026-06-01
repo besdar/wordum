@@ -1,12 +1,12 @@
+import React from 'react';
 import {
   Controller,
   FieldPath,
   FieldValues,
   UseControllerProps,
 } from 'react-hook-form';
-import {HelperText, TextInput} from 'react-native-paper';
-import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {HelperText, TextInput} from 'react-native-paper';
 
 const styles = StyleSheet.create({
   view: {
@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
   helperText: {
     width: '100%',
     flexShrink: 1,
+  },
+  hiddenHelperText: {
+    display: 'none',
   },
 });
 
@@ -61,10 +64,8 @@ export const ControlledTextInput = <
         <HelperText
           style={[
             styles.helperText,
-            {
-              display:
-                fieldState.error?.message || helperText ? undefined : 'none',
-            },
+            !(fieldState.error?.message || helperText) &&
+              styles.hiddenHelperText,
           ]}
           type={helperText ? 'info' : 'error'}
           visible={Boolean(fieldState.error?.message || helperText)}>

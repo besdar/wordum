@@ -1,15 +1,15 @@
-import {translate} from '../../../shared/lib/i18n';
-import {showConfirmationAlert} from '../../../shared/lib/message';
 import * as DocumentPicker from 'expo-document-picker';
 import {File} from 'expo-file-system';
+import {createEmptyCard} from 'ts-fsrs';
+import {translate} from '../../../shared/lib/i18n';
+import {showConfirmationAlert} from '../../../shared/lib/message';
 import {
   Collection,
   CollectionFormFields,
   CollectionType,
 } from '../../../shared/model/collection';
-import {createEmptyCard} from 'ts-fsrs';
-import {restructureOldCollection} from '../../../shared/model/restructure';
 import {LearningType} from '../../../shared/model/learningType';
+import {restructureOldCollection} from '../../../shared/model/restructure';
 
 export const validateTextForTheImport = (value: string) => {
   const lines = value.toString().split('\n').filter(Boolean);

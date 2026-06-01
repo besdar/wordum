@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text} from 'react-native-paper';
-import {Grid} from './Grid';
 import {translate} from '../lib/i18n';
+import {Grid} from './Grid';
 import {IconButton} from './IconButton';
 
 type Props = {

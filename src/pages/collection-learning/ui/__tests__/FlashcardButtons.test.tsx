@@ -4,10 +4,10 @@ import {
   userEvent,
   waitFor,
 } from '@testing-library/react-native';
-import {FlashcardButtons} from '../FlashcardButtons';
 import React from 'react';
-import {Answers} from '../../model/types';
 import {showConfirmationAlert} from '../../../../shared/lib/message';
+import {Answers} from '../../model/types';
+import {FlashcardButtons} from '../FlashcardButtons';
 
 jest.mock('../../../../shared/lib/message', () => ({
   showConfirmationAlert: jest.fn(),

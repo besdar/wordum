@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import packageJSON from '../../../package.json';
+import {getRemoteAppVersion} from '../lib/update';
 import {APISources} from './apiSources';
 import {StorageKeys} from './storage';
-import {getRemoteAppVersion} from '../lib/update';
-import packageJSON from '../../../package.json';
 
 export type AppSettingsValues = {
   apiSource: APISources;

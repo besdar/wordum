@@ -1,14 +1,14 @@
-import React, {useCallback, useState} from 'react';
-import {Grid} from '../../shared/ui/Grid';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {AddCollectionButton} from './ui/AddCollectionButton';
-import {PagesStackProps} from '../../shared/model/navigator';
-import {CollectionItems} from './ui/CollectionItems';
-import {showConfirmationAlert} from '../../shared/lib/message';
-import {translate} from '../../shared/lib/i18n';
-import {dataRestructure} from '../../shared/model/restructure';
-import {Collection, getCollections} from '../../shared/model/collection';
 import {useFocusEffect} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React, {useCallback, useState} from 'react';
+import {translate} from '../../shared/lib/i18n';
+import {showConfirmationAlert} from '../../shared/lib/message';
+import {Collection, getCollections} from '../../shared/model/collection';
+import {PagesStackProps} from '../../shared/model/navigator';
+import {dataRestructure} from '../../shared/model/restructure';
+import {Grid} from '../../shared/ui/Grid';
+import {AddCollectionButton} from './ui/AddCollectionButton';
+import {CollectionItems} from './ui/CollectionItems';
 
 export const Overview = ({
   navigation,

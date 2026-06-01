@@ -1,12 +1,12 @@
-import React from 'react';
 import {render, screen, userEvent} from '@testing-library/react-native';
-import {ControlledPicker} from '../ControlledPicker';
+import React from 'react';
 import {
   MockFormProvider,
   MockWrapperProvider,
 } from '../../config/mocks/MockWrapperProvider';
+import {ControlledPicker} from '../ControlledPicker';
 
-jest.mock('../../../app/ui/Material3ThemeProvider', () => ({
+jest.mock('../theme', () => ({
   useAppTheme: () => ({colors: {background: 'background'}}),
 }));
 

@@ -1,7 +1,7 @@
 import {appSettings} from '../../model/AppSettings';
 import {LearningCard} from '../../model/collection';
-import {filterActualCards} from '../cards';
 import {LearningType} from '../../model/learningType';
+import {filterActualCards} from '../cards';
 
 jest.mock('../../model/AppSettings', () => ({
   appSettings: {

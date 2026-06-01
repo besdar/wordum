@@ -1,7 +1,7 @@
-import {Text} from 'react-native-paper';
-import {Details} from '../Details';
 import {render, screen, userEvent} from '@testing-library/react-native';
 import React from 'react';
+import {Text} from 'react-native-paper';
+import {Details} from '../Details';
 
 describe('Details Component', () => {
   it('renders with collapsed title by default', () => {

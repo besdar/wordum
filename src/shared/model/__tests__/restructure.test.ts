@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {createEmptyCard, Card} from 'ts-fsrs';
-import {restructureOldCollection, dataRestructure} from '../restructure';
 import {
   CollectionFormFields,
   getCollections,
   LearningCard,
 } from '../collection';
-import {StorageKeys} from '../storage';
 import {LearningType} from '../learningType';
+import {restructureOldCollection, dataRestructure} from '../restructure';
+import {StorageKeys} from '../storage';
 
 jest.mock('../collection', () => ({
   ...jest.requireActual('../collection'),

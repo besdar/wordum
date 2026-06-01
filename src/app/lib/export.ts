@@ -1,9 +1,9 @@
 import {File, Paths} from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
-import {getDataExport} from '../../shared/model/storage';
-import {showToastMessage} from '../../shared/lib/message';
-import {translate} from '../../shared/lib/i18n';
 import packageJSON from '../../../package.json';
+import {translate} from '../../shared/lib/i18n';
+import {showToastMessage} from '../../shared/lib/message';
+import {getDataExport} from '../../shared/model/storage';
 
 const EXPORT_FILE_NAME = `${packageJSON.name}-export-${packageJSON.version}.json`;
 

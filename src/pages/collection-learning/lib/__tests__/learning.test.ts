@@ -1,14 +1,14 @@
 import {createEmptyCard, Rating} from 'ts-fsrs';
+import {filterActualCards} from '../../../../shared/lib/cards';
 import {appSettings} from '../../../../shared/model/AppSettings';
 import {Collection, LearningCard} from '../../../../shared/model/collection';
+import {LearningType} from '../../../../shared/model/learningType';
 import {Answers} from '../../model/types';
 import {
   getCardsToLearn,
   getFsrsRatingFromUserAnswer,
   getInitialWordsToLearn,
 } from '../learning';
-import {filterActualCards} from '../../../../shared/lib/cards';
-import {LearningType} from '../../../../shared/model/learningType';
 
 jest.mock('../../../../shared/lib/cards', () => ({
   filterActualCards: jest.fn(),

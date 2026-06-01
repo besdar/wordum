@@ -1,6 +1,6 @@
 import {render} from '@testing-library/react-native';
-import {FormContainer} from '../FormContainer';
 import React from 'react';
+import {FormContainer} from '../FormContainer';
 
 describe('FormContainer', () => {
   it('should match the snapshot', () => {

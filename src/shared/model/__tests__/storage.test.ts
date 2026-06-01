@@ -1,5 +1,5 @@
-import {getDataExport} from '../storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getDataExport} from '../storage';
 
 describe('getDataExport', () => {
   it('should return all stored data', async () => {

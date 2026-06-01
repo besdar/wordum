@@ -1,12 +1,12 @@
-import {render, screen, fireEvent} from '@testing-library/react-native';
-import {Collection} from '../../../shared/model/collection';
-import {CollectionLearning} from '../CollectionLearning';
-import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {PagesStackProps} from '../../../shared/model/navigator';
-import {useTrainingWord} from '../model/useTrainingWord';
+import {render, screen, fireEvent} from '@testing-library/react-native';
 import {speak} from 'expo-speech';
+import React from 'react';
+import {Collection} from '../../../shared/model/collection';
 import {LearningType} from '../../../shared/model/learningType';
+import {PagesStackProps} from '../../../shared/model/navigator';
+import {CollectionLearning} from '../CollectionLearning';
+import {useTrainingWord} from '../model/useTrainingWord';
 
 jest.mock('../model/useTrainingWord', () => ({
   useTrainingWord: jest.fn(),
@@ -251,6 +251,43 @@ describe('CollectionLearning', () => {
     fireEvent.press(screen.getByText('no_audio_message'));
 
     expect(mockSetNextTrainingWord).toHaveBeenCalled();
+  });
+
+  it('should render emotional support card and continue learning', () => {
+    const mockHideEmotionalSupportCard = jest.fn();
+    (useTrainingWord as jest.Mock).mockReturnValue({
+      trainingWord: 'testWord',
+      setNextTrainingWord: jest.fn(),
+      translation: 'testTranslation',
+      isItFinal: false,
+      examples: [],
+      learningType: LearningType.Flascards,
+      learningLanguage: '',
+      statistics: {},
+      progress: 0.5,
+      emotionalSupportCard: {
+        icon: 'heart-outline',
+        titleKey: 'emotional_support_small_wins_title',
+        messageKey: 'emotional_support_small_wins_message',
+      },
+      hideEmotionalSupportCard: mockHideEmotionalSupportCard,
+    });
+
+    render(
+      <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
+    );
+
+    expect(screen.queryByText('testWord')).not.toBeOnTheScreen();
+    expect(
+      screen.getByText('emotional_support_small_wins_title'),
+    ).toBeOnTheScreen();
+    expect(
+      screen.getByText('emotional_support_small_wins_message'),
+    ).toBeOnTheScreen();
+
+    fireEvent.press(screen.getByText('keep_learning'));
+
+    expect(mockHideEmotionalSupportCard).toHaveBeenCalled();
   });
 
   it('should render loading indicator when no training word and not final', () => {

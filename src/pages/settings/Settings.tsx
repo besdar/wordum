@@ -1,15 +1,15 @@
 import React from 'react';
-import {ControlledPicker} from '../../shared/ui/ControlledPicker';
 import {useForm} from 'react-hook-form';
 import {translate} from '../../shared/lib/i18n';
-import {Button} from '../../shared/ui/Button';
+import {showToastMessage} from '../../shared/lib/message';
 import {APISources} from '../../shared/model/apiSources';
 import {appSettings, AppSettingsValues} from '../../shared/model/AppSettings';
+import {Button} from '../../shared/ui/Button';
+import {ControlledPicker} from '../../shared/ui/ControlledPicker';
 import {ControlledSwitcher} from '../../shared/ui/ControlledSwitcher';
-import {FormContainer} from '../../shared/ui/FormContainer';
-import {Details} from '../../shared/ui/Details';
 import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
-import {showToastMessage} from '../../shared/lib/message';
+import {Details} from '../../shared/ui/Details';
+import {FormContainer} from '../../shared/ui/FormContainer';
 
 export const Settings = () => {
   const {control, handleSubmit} = useForm<AppSettingsValues>({

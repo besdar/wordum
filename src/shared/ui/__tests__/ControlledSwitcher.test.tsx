@@ -1,10 +1,10 @@
-import React from 'react';
 import {render, fireEvent, screen} from '@testing-library/react-native';
-import {ControlledSwitcher} from '../ControlledSwitcher';
+import React from 'react';
 import {
   MockFormProvider,
   MockWrapperProvider,
 } from '../../config/mocks/MockWrapperProvider';
+import {ControlledSwitcher} from '../ControlledSwitcher';
 
 describe('ControlledSwitcher', () => {
   it('renders correctly', () => {

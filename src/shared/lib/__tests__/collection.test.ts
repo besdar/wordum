@@ -1,6 +1,6 @@
 import {CollectionFormFields} from '../../model/collection';
-import {createLearningCardsForCollectionItem, getUUID} from '../collection';
 import {LearningType} from '../../model/learningType';
+import {createLearningCardsForCollectionItem, getUUID} from '../collection';
 
 describe('getUUID', () => {
   it('should generate a UUID string', () => {

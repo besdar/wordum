@@ -1,11 +1,11 @@
-import {Grid} from '../../../shared/ui/Grid';
-import {Answers} from '../model/types';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {translate} from '../../../shared/lib/i18n';
-import {Button} from '../../../shared/ui/Button';
-import {IconButton} from '../../../shared/ui/IconButton';
 import {showConfirmationAlert} from '../../../shared/lib/message';
+import {Button} from '../../../shared/ui/Button';
+import {Grid} from '../../../shared/ui/Grid';
+import {IconButton} from '../../../shared/ui/IconButton';
+import {Answers} from '../model/types';
 
 const styles = StyleSheet.create({
   checkButtonContent: {

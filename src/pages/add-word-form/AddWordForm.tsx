@@ -1,17 +1,17 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {getTranslation} from './api/translation';
-import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
-import {Grid} from '../../shared/ui/Grid';
 import {translate} from '../../shared/lib/i18n';
-import {Button} from '../../shared/ui/Button';
-import {PagesStackProps} from '../../shared/model/navigator';
 import {showToastMessage} from '../../shared/lib/message';
-import {IconButton} from '../../shared/ui/IconButton';
-import {addWordToCollection} from '../collection-learning/model/storage';
-import {FormContainer} from '../../shared/ui/FormContainer';
 import {LANGUAGE_FLAGS} from '../../shared/model/lang';
+import {PagesStackProps} from '../../shared/model/navigator';
+import {Button} from '../../shared/ui/Button';
+import {ControlledTextInput} from '../../shared/ui/ControlledTextInput';
+import {FormContainer} from '../../shared/ui/FormContainer';
+import {Grid} from '../../shared/ui/Grid';
+import {IconButton} from '../../shared/ui/IconButton';
+import {getTranslation} from './api/translation';
+import {addWordToCollection} from './model/add-word';
 
 export const AddWordForm = ({
   route: {

@@ -1,21 +1,8 @@
 import 'intl-pluralrules';
+import {getLocales} from 'expo-localization';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import en from '../config/lang/en.json';
-import de from '../config/lang/de.json';
-import es from '../config/lang/es.json';
-import fr from '../config/lang/fr.json';
-import it from '../config/lang/it.json';
-import ja from '../config/lang/ja.json';
-import nl from '../config/lang/nl.json';
-import pl from '../config/lang/pl.json';
-import pt from '../config/lang/pt.json';
-import ro from '../config/lang/ro.json';
-import ru from '../config/lang/ru.json';
-import tr from '../config/lang/tr.json';
-import uk from '../config/lang/uk.json';
-import zh from '../config/lang/zh.json';
-import {getLocales} from 'expo-localization';
+import {translations} from '../config/lang';
 import {
   GoogleSupportedLanguages,
   SupportedLanguagesToI18nMap,
@@ -50,20 +37,20 @@ i18n
   .init({
     fallbackLng: GoogleSupportedLanguages.English,
     resources: {
-      [GoogleSupportedLanguages.English]: {translation: en},
-      [GoogleSupportedLanguages.German]: {translation: de},
-      [GoogleSupportedLanguages.Spanish]: {translation: es},
-      [GoogleSupportedLanguages.French]: {translation: fr},
-      [GoogleSupportedLanguages.Italian]: {translation: it},
-      [GoogleSupportedLanguages.Japanese]: {translation: ja},
-      [GoogleSupportedLanguages.Dutch]: {translation: nl},
-      [GoogleSupportedLanguages.Polish]: {translation: pl},
-      [GoogleSupportedLanguages.Portuguese]: {translation: pt},
-      [GoogleSupportedLanguages.Romanian]: {translation: ro},
-      [GoogleSupportedLanguages.Russian]: {translation: ru},
-      [GoogleSupportedLanguages.Turkish]: {translation: tr},
-      [GoogleSupportedLanguages.Ukrainian]: {translation: uk},
-      [GoogleSupportedLanguages.Chinese]: {translation: zh},
+      [GoogleSupportedLanguages.English]: {translation: translations.en},
+      [GoogleSupportedLanguages.German]: {translation: translations.de},
+      [GoogleSupportedLanguages.Spanish]: {translation: translations.es},
+      [GoogleSupportedLanguages.French]: {translation: translations.fr},
+      [GoogleSupportedLanguages.Italian]: {translation: translations.it},
+      [GoogleSupportedLanguages.Japanese]: {translation: translations.ja},
+      [GoogleSupportedLanguages.Dutch]: {translation: translations.nl},
+      [GoogleSupportedLanguages.Polish]: {translation: translations.pl},
+      [GoogleSupportedLanguages.Portuguese]: {translation: translations.pt},
+      [GoogleSupportedLanguages.Romanian]: {translation: translations.ro},
+      [GoogleSupportedLanguages.Russian]: {translation: translations.ru},
+      [GoogleSupportedLanguages.Turkish]: {translation: translations.tr},
+      [GoogleSupportedLanguages.Ukrainian]: {translation: translations.uk},
+      [GoogleSupportedLanguages.Chinese]: {translation: translations.zh},
     },
   });
 

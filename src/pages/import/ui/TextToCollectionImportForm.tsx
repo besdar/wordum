@@ -1,19 +1,23 @@
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {useForm} from 'react-hook-form';
+import {Text} from 'react-native-paper';
+import {
+  CollectionExerciseSettings,
+  CollectionForm,
+} from '../../../features/collection-form';
+import {translate} from '../../../shared/lib/i18n';
 import {
   getInitialCollection,
   Collection,
   CollectionFormFields,
 } from '../../../shared/model/collection';
+import {PagesStackProps} from '../../../shared/model/navigator';
 import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
-import {CollectionAdditionalSettings} from '../../update-collection-form/ui/CollectionAdditionalSettings';
-import {UpdateCollectionForm} from '../../update-collection-form/ui/UpdateCollectionForm';
 import {validateTextForTheImport} from '../lib/form';
 import {parseTextToCollectionWords} from '../lib/parsing';
-import {translate} from '../../../shared/lib/i18n';
-import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 import {ImportTabs} from '../model/navigation';
-import {Text} from 'react-native-paper';
 
 type Props = MaterialTopTabScreenProps<ImportTabs>;
 
@@ -25,21 +29,23 @@ export const TextToCollectionImportForm = ({navigation}: Props) => {
   });
 
   return (
-    <UpdateCollectionForm
-      handleSubmit={handleSubmit(data =>
+    <CollectionForm
+      handleSubmit={handleSubmit(({text, ...collectionData}) =>
         new Collection()
           .saveCollection({
-            ...data,
+            ...collectionData,
             words: parseTextToCollectionWords(
-              data.text,
-              data.learningLanguage,
-              data.supportedLearningTypes,
+              text,
+              collectionData.learningLanguage,
+              collectionData.supportedLearningTypes,
             ),
           })
-          // @ts-expect-error: TODO: add parent navigation types to this nested one
-          .then(() => navigation.popToTop()),
+          .then(() =>
+            navigation
+              .getParent<NativeStackNavigationProp<PagesStackProps>>()
+              ?.popToTop(),
+          ),
       )}
-      // @ts-ignore - TODO: extend control values to fix typescript issue
       control={control}
       submitText={translate('import')}>
       <Text>{translate('import_rules')}</Text>
@@ -59,10 +65,7 @@ export const TextToCollectionImportForm = ({navigation}: Props) => {
         numberOfLines={10}
         label={translate('text_for_import')}
       />
-      <CollectionAdditionalSettings
-        // @ts-ignore - TODO: extend control values to fix typescript issue
-        control={control}
-      />
-    </UpdateCollectionForm>
+      <CollectionExerciseSettings control={control} />
+    </CollectionForm>
   );
 };

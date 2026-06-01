@@ -1,9 +1,9 @@
-import React from 'react';
-import {FileToCollectionImportForm} from './ui/FileToCollectionImportForm';
-import {TextToCollectionImportForm} from './ui/TextToCollectionImportForm';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import React from 'react';
 import {translate} from '../../shared/lib/i18n';
 import {ImportTabs} from './model/navigation';
+import {FileToCollectionImportForm} from './ui/FileToCollectionImportForm';
+import {TextToCollectionImportForm} from './ui/TextToCollectionImportForm';
 
 const Tab = createMaterialTopTabNavigator<ImportTabs, undefined>();
 

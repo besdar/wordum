@@ -1,0 +1,76 @@
+import React from 'react';
+import {Control, FieldPath, FieldValues} from 'react-hook-form';
+import {translate} from '../../../shared/lib/i18n';
+import {CollectionFormFields} from '../../../shared/model/collection';
+import {LANGUAGE_FLAGS, LANGUAGE_LIST} from '../../../shared/model/lang';
+import {Button} from '../../../shared/ui/Button';
+import {ControlledPicker} from '../../../shared/ui/ControlledPicker';
+import {ControlledSegmentedButtons} from '../../../shared/ui/ControlledSegmentedButtons';
+import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
+import {FormContainer} from '../../../shared/ui/FormContainer';
+
+type Props<T extends CollectionFormFields & FieldValues> = {
+  control: Control<T>;
+  handleSubmit: () => void;
+  submitText: string;
+  children?: React.ReactNode;
+};
+
+export const CollectionForm = <T extends CollectionFormFields & FieldValues>({
+  control,
+  handleSubmit,
+  submitText,
+  children = null,
+}: Props<T>) => (
+  <FormContainer>
+    <ControlledTextInput
+      name={'name' as FieldPath<T>}
+      label={translate('collection_name')}
+      control={control}
+      rules={{required: true, maxLength: 15}}
+      maxLength={15}
+    />
+    <ControlledPicker
+      items={LANGUAGE_LIST.map(([label, value]) => ({
+        value,
+        label: `${LANGUAGE_FLAGS[value]} ${label}`,
+      }))}
+      name={'sourceLanguage' as FieldPath<T>}
+      control={control}
+      label={translate('primary_language')}
+    />
+    <ControlledPicker
+      items={LANGUAGE_LIST.map(([label, value]) => ({
+        value,
+        label: `${LANGUAGE_FLAGS[value]} ${label}`,
+      }))}
+      name={'targetLanguage' as FieldPath<T>}
+      control={control}
+      label={translate('secondary_language')}
+    />
+    <ControlledTextInput
+      mode="outlined"
+      name={'wordsToTrain' as FieldPath<T>}
+      label={translate('words_to_learn_in_a_day')}
+      control={control}
+      rules={{
+        required: true,
+        validate: value => Number(value) > 0,
+      }}
+      keyboardType="numeric"
+    />
+    <ControlledSegmentedButtons
+      label={translate('learning_language')}
+      name={'learningLanguage' as FieldPath<T>}
+      control={control}
+      buttons={[
+        {value: 'source', label: translate('primary')},
+        {value: 'target', label: translate('secondary')},
+      ]}
+    />
+    {children}
+    <Button mode="contained" onPress={handleSubmit}>
+      {submitText}
+    </Button>
+  </FormContainer>
+);

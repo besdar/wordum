@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: [
+    '@feature-sliced',
     'eslint:recommended',
     '@react-native',
     'plugin:prettier/recommended',

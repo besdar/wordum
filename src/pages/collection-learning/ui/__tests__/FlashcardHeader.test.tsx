@@ -1,8 +1,8 @@
+import {render, screen} from '@testing-library/react-native';
+import React from 'react';
 import {Rating} from 'ts-fsrs';
 import {appSettings} from '../../../../shared/model/AppSettings';
-import {render, screen} from '@testing-library/react-native';
 import {FlashcardHeader} from '../FlashcardHeader';
-import React from 'react';
 
 jest.mock('../../../../shared/model/AppSettings', () => ({
   appSettings: {

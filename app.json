@@ -2,7 +2,7 @@
   "expo": {
     "name": "Wordum",
     "slug": "wordum",
-    "version": "0.7.0",
+    "version": "0.8.0",
     "orientation": "portrait",
     "scheme": "wordum",
     "userInterfaceStyle": "automatic",

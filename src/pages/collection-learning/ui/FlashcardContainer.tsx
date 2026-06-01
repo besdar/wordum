@@ -1,6 +1,6 @@
 import React from 'react';
-import {Grid} from '../../../shared/ui/Grid';
 import {ViewStyle} from 'react-native';
+import {Grid} from '../../../shared/ui/Grid';
 
 type Props = {
   children: React.ReactNode;

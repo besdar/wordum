@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
-import {EVENT_TYPE, eventBus} from '../../shared/model/EventBus';
 import {
   initLearningReminder,
   resetLearningReminder,
 } from '../../shared/lib/notifications';
+import {EVENT_TYPE, eventBus} from '../../shared/model/EventBus';
 
 export const useNotifications = () => {
   useEffect(() => {

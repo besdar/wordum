@@ -1,3 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {createEmptyCard} from 'ts-fsrs';
+import {
+  getUUID,
+  createLearningCardsForCollectionItem,
+} from '../../lib/collection';
 import {
   Collection,
   CollectionFormFields,
@@ -6,13 +12,7 @@ import {
   getInitialCollection,
   isThereAnyWordsToLearn,
 } from '../collection';
-import {
-  getUUID,
-  createLearningCardsForCollectionItem,
-} from '../../lib/collection';
 import {AppSupportedLanguages} from '../lang';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {createEmptyCard} from 'ts-fsrs';
 import {LearningType} from '../learningType';
 
 jest.mock('../../lib/collection', () => ({
@@ -265,6 +265,53 @@ describe('Collection', () => {
       collection.setCollectionItemForDeletion(cardToDelete);
 
       expect(collection.dangerouslyGetInnerObject().words).toEqual({});
+    });
+  });
+
+  describe('updateLearningCardFsrsCard', () => {
+    it('should update only the matching learning card FSRS data', () => {
+      const collection = new Collection();
+      const cardToUpdate: LearningCard = {
+        wordId: 'word1',
+        value: 'test',
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+        learningType: LearningType.Flascards,
+      };
+      const cardToKeep: LearningCard = {
+        wordId: 'word1',
+        value: 'test',
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+        learningType: LearningType.Writing,
+      };
+      const updatedFsrsCard = {
+        ...createEmptyCard(),
+        due: new Date('2030-01-01T00:00:00.000Z'),
+      };
+      collection.dangerouslyGetInnerObject().words = {
+        word1: [cardToUpdate, cardToKeep],
+      };
+
+      collection.updateLearningCardFsrsCard(cardToUpdate, updatedFsrsCard);
+
+      expect(cardToUpdate.fsrsCard).toEqual(updatedFsrsCard);
+      expect(cardToKeep.fsrsCard).not.toEqual(updatedFsrsCard);
+    });
+
+    it('should not throw when the learning card is not in the collection', () => {
+      const collection = new Collection();
+      const missingCard: LearningCard = {
+        wordId: 'missing-word',
+        value: 'test',
+        translation: 'translation',
+        fsrsCard: createEmptyCard(),
+        learningType: LearningType.Flascards,
+      };
+
+      expect(() =>
+        collection.updateLearningCardFsrsCard(missingCard, createEmptyCard()),
+      ).not.toThrow();
     });
   });
 

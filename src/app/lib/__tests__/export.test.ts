@@ -1,9 +1,9 @@
 import {File} from 'expo-file-system';
 import * as Sharing from 'expo-sharing';
-import {getDataExport} from '../../../shared/model/storage';
-import {showToastMessage} from '../../../shared/lib/message';
-import {exportData} from '../export';
 import packageJSON from '../../../../package.json';
+import {showToastMessage} from '../../../shared/lib/message';
+import {getDataExport} from '../../../shared/model/storage';
+import {exportData} from '../export';
 
 jest.mock('../../../shared/model/storage', () => ({
   getDataExport: jest.fn(),

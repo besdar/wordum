@@ -1,7 +1,7 @@
 import {render} from '@testing-library/react-native';
-import {FlashcardWrapper} from '../FlashcardWrapper';
-import {View} from 'react-native';
 import React from 'react';
+import {View} from 'react-native';
+import {FlashcardWrapper} from '../FlashcardWrapper';
 
 describe('FlashcardWrapper', () => {
   it('should match the snapshot', () => {

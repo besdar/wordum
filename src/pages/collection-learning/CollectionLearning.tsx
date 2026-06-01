@@ -1,21 +1,22 @@
-import {Icon, ProgressBar, Text} from 'react-native-paper';
-import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useTrainingWord} from './model/useTrainingWord';
-import {LearningType} from '../../shared/model/learningType';
-import {Grid} from '../../shared/ui/Grid';
-import {Answers} from './model/types';
+import {speak} from 'expo-speech';
+import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
+import {Icon, ProgressBar, Text} from 'react-native-paper';
+import {translate} from '../../shared/lib/i18n';
+import {LearningType} from '../../shared/model/learningType';
+import {PagesStackProps} from '../../shared/model/navigator';
+import {Button} from '../../shared/ui/Button';
+import {CenteredActivityIndicator} from '../../shared/ui/CenteredActivityIndicator';
+import {Grid} from '../../shared/ui/Grid';
+import {IconButton} from '../../shared/ui/IconButton';
+import {Answers} from './model/types';
+import {useTrainingWord} from './model/useTrainingWord';
+import {EmotionalSupportCard} from './ui/EmotionalSupportCard';
 import {FlashcardButtons} from './ui/FlashcardButtons';
+import {FlashcardHeader} from './ui/FlashcardHeader';
 import {FlashcardWrapper} from './ui/FlashcardWrapper';
 import {WritingFooter} from './ui/WritingFooter';
-import {translate} from '../../shared/lib/i18n';
-import {Button} from '../../shared/ui/Button';
-import {PagesStackProps} from '../../shared/model/navigator';
-import {FlashcardHeader} from './ui/FlashcardHeader';
-import {CenteredActivityIndicator} from '../../shared/ui/CenteredActivityIndicator';
-import {IconButton} from '../../shared/ui/IconButton';
-import {speak} from 'expo-speech';
 
 const styles = StyleSheet.create({
   checkButtonContent: {
@@ -44,6 +45,8 @@ export const CollectionLearning = ({
     learningLanguage,
     statistics,
     progress,
+    emotionalSupportCard,
+    hideEmotionalSupportCard,
   } = useTrainingWord(collection);
 
   const setNextWord = (answer: Answers) => {
@@ -65,6 +68,26 @@ export const CollectionLearning = ({
           {translate('finish')}
         </Button>
       </Grid>
+    );
+  }
+
+  if (emotionalSupportCard) {
+    return (
+      <FlashcardWrapper
+        header={<FlashcardHeader statistics={statistics} />}
+        footer={
+          <Grid direction="column" rowGap={5}>
+            <Button
+              mode="contained"
+              icon="arrow-right"
+              onPress={hideEmotionalSupportCard}>
+              {translate('keep_learning')}
+            </Button>
+            <ProgressBar visible animatedValue={progress} />
+          </Grid>
+        }>
+        <EmotionalSupportCard card={emotionalSupportCard} />
+      </FlashcardWrapper>
     );
   }
 

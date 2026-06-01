@@ -1,0 +1,1 @@
+export {UpdateCollectionFormContainer} from './UpdateCollectionFormContainer';

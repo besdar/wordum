@@ -1,22 +1,33 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {StorageKeys} from './storage';
+import packageJSON from '../../../package.json';
 import {CollectionFormFields, getCollections} from './collection';
 import {LearningType} from './learningType';
-import packageJSON from '../../../package.json';
+import {StorageKeys} from './storage';
+
+type LegacyCollectionFormFields = CollectionFormFields & {
+  typesOfCardsToGenerate?: LearningType[];
+};
+
+type LegacyLearningCard = CollectionFormFields['words'][string][number] & {
+  collectionId?: string;
+};
 
 const collectionRestructureV020 = (innerObject: CollectionFormFields) => {
-  if (innerObject.supportedLearningTypes) {
+  const legacyInnerObject = innerObject as LegacyCollectionFormFields;
+
+  if (legacyInnerObject.supportedLearningTypes) {
     return false;
   }
 
-  // @ts-ignore
-  innerObject.supportedLearningTypes = innerObject.typesOfCardsToGenerate;
+  legacyInnerObject.supportedLearningTypes =
+    legacyInnerObject.typesOfCardsToGenerate || [];
 
   const wordsEntries = Object.entries(innerObject.words);
   for (const [wordKey, learningCards] of wordsEntries) {
     learningCards.forEach(el => {
-      // @ts-ignore
-      el.wordId = el.collectionId;
+      const legacyCard = el as LegacyLearningCard;
+
+      legacyCard.wordId = legacyCard.collectionId || legacyCard.wordId;
     });
 
     const listeningCard = learningCards.find(

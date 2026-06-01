@@ -1,19 +1,19 @@
+import {APISources} from '../../../shared/model/apiSources';
+import {appSettings} from '../../../shared/model/AppSettings';
 import {
   CollectionFormFields,
   TranslationResponse,
 } from '../../../shared/model/collection';
 import {
-  convertGoogleTranslateResponse,
-  convertReversoResponse,
-} from '../lib/convertTranslationResponse';
-import {getReversoTranslation} from './reverso';
-import {getGoogleTranslation} from './google';
-import {APISources} from '../../../shared/model/apiSources';
-import {appSettings} from '../../../shared/model/AppSettings';
-import {
   AppSupportedLanguages,
   SupportedLanguagesToI18nMap,
 } from '../../../shared/model/lang';
+import {
+  convertGoogleTranslateResponse,
+  convertReversoResponse,
+} from '../lib/convertTranslationResponse';
+import {getGoogleTranslation} from './google';
+import {getReversoTranslation} from './reverso';
 
 export const getTranslation = async (
   word: string,

@@ -1,10 +1,10 @@
 import {renderHook} from '@testing-library/react-native';
-import {useNotifications} from '../useNotifications';
 import {
   initLearningReminder,
   resetLearningReminder,
 } from '../../../shared/lib/notifications';
 import {EVENT_TYPE, eventBus} from '../../../shared/model/EventBus';
+import {useNotifications} from '../useNotifications';
 
 jest.mock('../../../shared/lib/notifications', () => ({
   initLearningReminder: jest.fn(),

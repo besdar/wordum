@@ -1,6 +1,6 @@
+import React from 'react';
 import {ActivityIndicator} from 'react-native-paper';
 import {Grid} from './Grid';
-import React from 'react';
 
 export const CenteredActivityIndicator = () => (
   <Grid alignItems="center" justifyContent="center" fillAwailableSpace>

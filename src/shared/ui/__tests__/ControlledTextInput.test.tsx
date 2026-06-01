@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   act,
   render,
@@ -6,9 +5,10 @@ import {
   userEvent,
   waitFor,
 } from '@testing-library/react-native';
-import {ControlledTextInput} from '../ControlledTextInput';
-import {MockWrapperProvider} from '../../config/mocks/MockWrapperProvider';
+import React from 'react';
 import {createFormControl} from 'react-hook-form';
+import {MockWrapperProvider} from '../../config/mocks/MockWrapperProvider';
+import {ControlledTextInput} from '../ControlledTextInput';
 
 describe('ControlledTextInput', () => {
   it('renders correctly', () => {

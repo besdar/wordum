@@ -1,11 +1,11 @@
-import React from 'react';
 import {render, screen, within, userEvent} from '@testing-library/react-native';
-import {ControlledSegmentedButtons} from '../ControlledSegmentedButtons';
+import React from 'react';
 import {
   MockFormProvider,
   MockWrapperProvider,
   SUBMIT_TEST_BUTTON,
 } from '../../config/mocks/MockWrapperProvider';
+import {ControlledSegmentedButtons} from '../ControlledSegmentedButtons';
 
 describe('ControlledSegmentedButtons', () => {
   const options = [

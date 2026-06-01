@@ -1,15 +1,15 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {useForm} from 'react-hook-form';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {CollectionForm} from '../../features/collection-form';
 import {translate} from '../../shared/lib/i18n';
-import {PagesStackProps} from '../../shared/model/navigator';
-import {UpdateCollectionForm} from './ui/UpdateCollectionForm';
-import {CollectionAdditionalSettings} from './ui/CollectionAdditionalSettings';
 import {
   Collection,
   CollectionFormFields,
   getInitialCollection,
 } from '../../shared/model/collection';
+import {PagesStackProps} from '../../shared/model/navigator';
+import {CollectionAdditionalSettings} from './ui/CollectionAdditionalSettings';
 
 export const UpdateCollectionFormContainer = ({
   navigation,
@@ -30,7 +30,7 @@ export const UpdateCollectionFormContainer = ({
   });
 
   return (
-    <UpdateCollectionForm
+    <CollectionForm
       submitText={
         collection.isItNew() ? translate('create') : translate('update')
       }
@@ -39,6 +39,6 @@ export const UpdateCollectionFormContainer = ({
         collection.saveCollection(data).then(() => navigation.popToTop()),
       )}>
       <CollectionAdditionalSettings control={control} collection={collection} />
-    </UpdateCollectionForm>
+    </CollectionForm>
   );
 };

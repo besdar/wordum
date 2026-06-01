@@ -1,16 +1,17 @@
 import {renderHook} from '@testing-library/react-native';
+import {act} from 'react';
+import {createEmptyCard, fsrs, Rating} from 'ts-fsrs';
 import {Collection, LearningCard} from '../../../../shared/model/collection';
+import {EVENT_TYPE, eventBus} from '../../../../shared/model/EventBus';
+import {LearningType} from '../../../../shared/model/learningType';
+import {emotionalSupportCards} from '../../lib/emotional-support';
 import {
   getCardsToLearn,
   getFsrsRatingFromUserAnswer,
   getInitialWordsToLearn,
 } from '../../lib/learning';
-import {useTrainingWord} from '../useTrainingWord';
 import {Answers} from '../types';
-import {createEmptyCard, fsrs, Rating} from 'ts-fsrs';
-import {EVENT_TYPE, eventBus} from '../../../../shared/model/EventBus';
-import {act} from 'react';
-import {LearningType} from '../../../../shared/model/learningType';
+import {useTrainingWord} from '../useTrainingWord';
 
 // Mocking dependencies
 jest.mock('../../lib/learning', () => ({
@@ -24,6 +25,7 @@ describe('useTrainingWord', () => {
   const collection = {
     getProperty: jest.fn(),
     setCollectionItemForDeletion: jest.fn(),
+    updateLearningCardFsrsCard: jest.fn(),
     saveCollection: jest.fn(),
   } as unknown as Collection;
   let learningCard: LearningCard;
@@ -82,6 +84,23 @@ describe('useTrainingWord', () => {
     await act(() => result.current.setNextTrainingWord(Answers.SkipListening));
 
     expect(result.current.isItFinal).toBe(true); // Assuming it leads to final state
+  });
+
+  it('should show and hide emotional support cards during learning', async () => {
+    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0);
+    const {result} = renderHook(() => useTrainingWord(collection));
+
+    await act(() => result.current.setNextTrainingWord(Answers.Correct));
+    await act(() => result.current.setNextTrainingWord(Answers.Correct));
+    await act(() => result.current.setNextTrainingWord(Answers.Correct));
+
+    expect(result.current.emotionalSupportCard).toBe(emotionalSupportCards[0]);
+
+    act(() => result.current.hideEmotionalSupportCard());
+
+    expect(result.current.emotionalSupportCard).toBeUndefined();
+
+    randomSpy.mockRestore();
   });
 
   it('should emit training finished event when no more words are left', async () => {

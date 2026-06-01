@@ -1,7 +1,7 @@
-import React from 'react';
 import {render, screen, userEvent} from '@testing-library/react-native';
-import {IconButton} from '../IconButton';
+import React from 'react';
 import {View} from 'react-native';
+import {IconButton} from '../IconButton';
 
 describe('IconButton', () => {
   it('should match the snapshot', () => {

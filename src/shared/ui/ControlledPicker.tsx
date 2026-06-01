@@ -1,3 +1,6 @@
+import React from 'react';
+import {Controller, FieldPath, FieldValues} from 'react-hook-form';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {
   Modal,
   Portal,
@@ -5,11 +8,8 @@ import {
   TextInput,
   TouchableRipple,
 } from 'react-native-paper';
-import React from 'react';
 import {ControlledTextInput} from './ControlledTextInput';
-import {StyleSheet, View} from 'react-native';
-import {Controller, FieldPath, FieldValues} from 'react-hook-form';
-import {useAppTheme} from '../../app/ui/Material3ThemeProvider';
+import {useAppTheme} from './theme';
 
 const styles = StyleSheet.create({
   modal: {
@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 5,
+  },
+  items: {
+    width: '100%',
   },
 });
 
@@ -79,19 +82,22 @@ export const ControlledPicker = <
                 styles.modal,
                 {backgroundColor: theme.colors.background},
               ]}>
-              {/* TODO: TouchableRipple this is not working when wrapped with ScrollView */}
-              {items.map(item => (
-                <TouchableRipple
-                  key={item.value}
-                  onPress={() => {
-                    field.onChange(item.value);
-                    setVisible(false);
-                  }}>
-                  <Text variant="bodyLarge" style={styles.item}>
-                    {item.label}
-                  </Text>
-                </TouchableRipple>
-              ))}
+              <ScrollView
+                style={styles.items}
+                keyboardShouldPersistTaps="handled">
+                {items.map(item => (
+                  <TouchableRipple
+                    key={item.value}
+                    onPress={() => {
+                      field.onChange(item.value);
+                      setVisible(false);
+                    }}>
+                    <Text variant="bodyLarge" style={styles.item}>
+                      {item.label}
+                    </Text>
+                  </TouchableRipple>
+                ))}
+              </ScrollView>
             </Modal>
           </Portal>
         </View>

@@ -1,16 +1,23 @@
-import {Text} from 'react-native-paper';
-import {Grid} from '../../../shared/ui/Grid';
-import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
-import {useForm} from 'react-hook-form';
 import React, {useState} from 'react';
-import {Answers} from '../model/types';
+import {useForm} from 'react-hook-form';
+import {StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
 import {translate} from '../../../shared/lib/i18n';
+import {showConfirmationAlert} from '../../../shared/lib/message';
 import {
   AppSupportedLanguages,
   LANGUAGE_FLAGS,
 } from '../../../shared/model/lang';
-import {showConfirmationAlert} from '../../../shared/lib/message';
+import {ControlledTextInput} from '../../../shared/ui/ControlledTextInput';
+import {Grid} from '../../../shared/ui/Grid';
 import {IconButton} from '../../../shared/ui/IconButton';
+import {Answers} from '../model/types';
+
+const styles = StyleSheet.create({
+  correctAnswer: {
+    flexShrink: 1,
+  },
+});
 
 type Props = {
   onAnswerPress: (answer: Answers) => void;
@@ -52,7 +59,7 @@ export const WritingFooter = ({
   if (showCorrectAnswer) {
     return (
       <Grid columnGap={5} justifyContent="space-between" alignItems="center">
-        <Text style={{flexShrink: 1}}>
+        <Text style={styles.correctAnswer}>
           {translate('correct_answer')}: {learningWord}
         </Text>
         <IconButton

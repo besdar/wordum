@@ -7,10 +7,10 @@ import notifee, {
 } from '@notifee/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {PermissionsAndroid} from 'react-native';
+import {isThereAnyWordsToLearn} from '../model/collection';
 import {StorageKeys} from '../model/storage';
 import {translate} from './i18n';
 import {askForPermission} from './permissions';
-import {isThereAnyWordsToLearn} from '../model/collection';
 
 const createLearningReminder = async () => {
   const isThereWordsToLearn = await isThereAnyWordsToLearn();

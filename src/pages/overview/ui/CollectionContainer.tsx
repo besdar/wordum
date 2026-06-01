@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlexAlignType, FlexStyle, StyleSheet} from 'react-native';
 import {Surface} from 'react-native-paper';
-import {useAppTheme} from '../../../app/ui/Material3ThemeProvider';
+import {useAppTheme} from '../../../shared/ui/theme';
 
 const styles = StyleSheet.create({
   surface: {
