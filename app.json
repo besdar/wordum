@@ -3,12 +3,12 @@
     "name": "Wordum",
     "slug": "wordum",
     "version": "0.9.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "scheme": "wordum",
     "userInterfaceStyle": "automatic",
     "ios": {
       "bundleIdentifier": "com.wordum",
-      "supportsTablet": false
+      "supportsTablet": true
     },
     "android": {
       "package": "com.wordum",

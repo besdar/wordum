@@ -19,6 +19,15 @@ exports[`FlashcardWrapper should match the snapshot 1`] = `
         "padding": undefined,
         "rowGap": 20,
       },
+      [
+        {
+          "alignSelf": "center",
+          "width": "100%",
+        },
+        {
+          "maxWidth": 840,
+        },
+      ],
       {
         "flexGrow": 1,
       },

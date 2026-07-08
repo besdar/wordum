@@ -9,6 +9,7 @@ import {
   TouchableRipple,
 } from 'react-native-paper';
 import {ControlledTextInput} from './ControlledTextInput';
+import {useResponsiveLayout} from './responsive';
 import {useAppTheme} from './theme';
 
 const styles = StyleSheet.create({
@@ -50,6 +51,7 @@ export const ControlledPicker = <
 }: Props<T, TName>) => {
   const [visible, setVisible] = React.useState(false);
   const theme = useAppTheme();
+  const {pickerModalMaxWidth} = useResponsiveLayout();
 
   return (
     <Controller
@@ -80,7 +82,10 @@ export const ControlledPicker = <
               onDismiss={() => setVisible(false)}
               contentContainerStyle={[
                 styles.modal,
-                {backgroundColor: theme.colors.background},
+                {
+                  backgroundColor: theme.colors.background,
+                  maxWidth: pickerModalMaxWidth,
+                },
               ]}>
               <ScrollView
                 style={styles.items}

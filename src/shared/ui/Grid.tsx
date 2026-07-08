@@ -30,6 +30,7 @@ type Props = {
   columnGap?: number;
   padding?: number;
   flexBasis?: FlexStyle['flexBasis'];
+  style?: StyleProp<ViewStyle>;
   wrap?: boolean;
   surfaceProps?: Omit<
     React.ComponentProps<typeof Surface>,
@@ -48,6 +49,7 @@ export const Grid = ({
   gap,
   padding,
   flexBasis,
+  style,
   wrap,
   surfaceProps,
 }: Props) => {
@@ -70,6 +72,7 @@ export const Grid = ({
           flexBasis,
           flexWrap: wrap ? ('wrap' as const) : ('nowrap' as const),
         },
+        style,
         fillAwailableSpace && styles.growed,
       ].filter(Boolean)}>
       {children}

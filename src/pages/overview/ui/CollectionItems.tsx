@@ -5,6 +5,7 @@ import {Collection} from '../../../shared/model/collection';
 import {LANGUAGE_FLAGS} from '../../../shared/model/lang';
 import {Grid} from '../../../shared/ui/Grid';
 import {IconButton} from '../../../shared/ui/IconButton';
+import {CollectionColumns} from '../../../shared/ui/responsive';
 import {CollectionContainer} from './CollectionContainer';
 
 const styles = StyleSheet.create({
@@ -20,17 +21,19 @@ type Props = {
   onAddWord: () => void;
   onDelete: () => void;
   onUpdateCollection: () => void;
+  collectionColumns: CollectionColumns;
 };
 
 export const CollectionItems = ({
   collection,
+  collectionColumns,
   onAddWord,
   onDelete,
   onStartLearning,
   onUpdateCollection,
 }: Props) => {
   return (
-    <CollectionContainer>
+    <CollectionContainer collectionColumns={collectionColumns}>
       <Badge style={styles.badge}>{collection.getWordsToLearn().length}</Badge>
       <Grid alignItems="center" justifyContent="center" fillAwailableSpace>
         <TouchableRipple onPress={onStartLearning}>

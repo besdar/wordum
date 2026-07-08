@@ -5,6 +5,7 @@ import {BackHandler, Platform} from 'react-native';
 import {Overview} from '../pages/overview';
 import {createNotificationsBackgroundListener} from '../shared/lib/notifications';
 import {PagesStackProps} from '../shared/model/navigator';
+import {useResponsiveLayout} from '../shared/ui/responsive';
 import {useNotifications} from './model/useNotifications';
 import {AppNavigator} from './ui/AppNavigator';
 import {Material3ThemeProvider} from './ui/Material3ThemeProvider';
@@ -17,6 +18,7 @@ const Stack = createNativeStackNavigator<PagesStackProps, undefined>();
 
 function App(): React.JSX.Element {
   const {t} = useTranslation();
+  const {screenPadding} = useResponsiveLayout();
 
   useNotifications();
 
@@ -40,10 +42,9 @@ function App(): React.JSX.Element {
           id={undefined}
           initialRouteName="Overview"
           screenOptions={{
-            orientation: 'portrait',
             header: PaperNavigationBar,
             contentStyle: {
-              padding: 10,
+              padding: screenPadding,
             },
           }}>
           <Stack.Screen
