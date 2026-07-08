@@ -1,5 +1,4 @@
 import {
-  act,
   render,
   screen,
   userEvent,
@@ -20,8 +19,8 @@ describe('WritingFooter', () => {
   const learningWord = 'apple,banana';
   const learningLanguage = AppSupportedLanguages.ENGLISH;
 
-  it('renders correctly', () => {
-    render(
+  it('renders correctly', async () => {
+    await render(
       <WritingFooter
         onAnswerPress={mockOnAnswerPress}
         learningWord={learningWord}
@@ -35,7 +34,7 @@ describe('WritingFooter', () => {
   });
 
   it('submits the correct answer', async () => {
-    render(
+    await render(
       <WritingFooter
         onAnswerPress={mockOnAnswerPress}
         learningWord={learningWord}
@@ -55,7 +54,7 @@ describe('WritingFooter', () => {
   });
 
   it('shows the correct answer when the answer is incorrect', async () => {
-    render(
+    await render(
       <WritingFooter
         onAnswerPress={mockOnAnswerPress}
         learningWord={learningWord}
@@ -67,7 +66,7 @@ describe('WritingFooter', () => {
 
     const input = screen.getByTestId(`input_answer`);
     await user.type(input, 'orange');
-    await act(() => user.press(screen.getByLabelText('proceed')));
+    await user.press(screen.getByLabelText('proceed'));
 
     expect(screen.getByText('correct_answer: apple,banana')).toBeOnTheScreen();
   });
@@ -75,7 +74,7 @@ describe('WritingFooter', () => {
   it('calls onAnswerPress with Answers.Delete when delete button is pressed', async () => {
     (showConfirmationAlert as jest.Mock).mockResolvedValue(undefined);
 
-    render(
+    await render(
       <WritingFooter
         onAnswerPress={mockOnAnswerPress}
         learningWord={learningWord}
@@ -83,7 +82,7 @@ describe('WritingFooter', () => {
       />,
     );
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime});
 
     await user.press(screen.getByLabelText('card_deletion'));
 
@@ -93,7 +92,7 @@ describe('WritingFooter', () => {
   });
 
   it('calls onAnswerPress with Answers.Incorrect when skip button is pressed after an incorrect answer', async () => {
-    render(
+    await render(
       <WritingFooter
         onAnswerPress={mockOnAnswerPress}
         learningWord={learningWord}
@@ -101,7 +100,7 @@ describe('WritingFooter', () => {
       />,
     );
 
-    const user = userEvent.setup();
+    const user = userEvent.setup({advanceTimers: jest.advanceTimersByTime});
 
     const input = screen.getByTestId(`input_answer`);
     await user.type(input, 'orange');

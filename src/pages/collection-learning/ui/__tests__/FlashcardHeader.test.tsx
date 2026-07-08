@@ -18,10 +18,10 @@ describe('FlashcardHeader', () => {
     [Rating.Easy]: 7,
   };
 
-  it('should render statistics when showAdditionalStat is true', () => {
+  it('should render statistics when showAdditionalStat is true', async () => {
     (appSettings.getSetting as jest.Mock).mockReturnValue(true);
 
-    render(<FlashcardHeader statistics={mockStatistics} />);
+    await render(<FlashcardHeader statistics={mockStatistics} />);
 
     expect(screen.getByText('2')).toBeOnTheScreen(); // Rating.Again
     expect(screen.getByText('3')).toBeOnTheScreen(); // Rating.Hard
@@ -29,10 +29,10 @@ describe('FlashcardHeader', () => {
     expect(screen.getByText('7')).toBeOnTheScreen(); // Rating.Easy
   });
 
-  it('should not render anything when showAdditionalStat is false', () => {
+  it('should not render anything when showAdditionalStat is false', async () => {
     (appSettings.getSetting as jest.Mock).mockReturnValue(false);
 
-    render(<FlashcardHeader statistics={mockStatistics} />);
+    await render(<FlashcardHeader statistics={mockStatistics} />);
 
     expect(screen.queryByText('2')).not.toBeOnTheScreen();
     expect(screen.queryByText('3')).not.toBeOnTheScreen();

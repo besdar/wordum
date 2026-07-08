@@ -4,8 +4,8 @@ import {View} from 'react-native';
 import {FlashcardWrapper} from '../FlashcardWrapper';
 
 describe('FlashcardWrapper', () => {
-  it('should match the snapshot', () => {
-    const {toJSON} = render(
+  it('should match the snapshot', async () => {
+    const {toJSON} = await render(
       <FlashcardWrapper header={<View />} footer={<View />}>
         <View />
       </FlashcardWrapper>,

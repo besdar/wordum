@@ -17,8 +17,8 @@ describe('ControlledPicker', () => {
     {value: '3', label: 'Item 3'},
   ];
 
-  it('renders correctly', () => {
-    render(
+  it('renders correctly', async () => {
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledPicker name="testPicker" items={mockItems} />
@@ -31,7 +31,7 @@ describe('ControlledPicker', () => {
   });
 
   it('displays selected item label', async () => {
-    render(
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledPicker name="testPicker" items={mockItems} />
@@ -51,7 +51,7 @@ describe('ControlledPicker', () => {
   });
 
   it('opens modal when icon is pressed', async () => {
-    render(
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledPicker name="testPicker" items={mockItems} />
@@ -69,7 +69,7 @@ describe('ControlledPicker', () => {
   });
 
   it('calls onChange when an item is selected', async () => {
-    render(
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledPicker name="testPicker" items={mockItems} />

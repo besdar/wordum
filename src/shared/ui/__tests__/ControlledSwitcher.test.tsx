@@ -7,8 +7,8 @@ import {
 import {ControlledSwitcher} from '../ControlledSwitcher';
 
 describe('ControlledSwitcher', () => {
-  it('renders correctly', () => {
-    render(
+  it('renders correctly', async () => {
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledSwitcher name="testSwitch" label="Test Switch" />
@@ -23,8 +23,8 @@ describe('ControlledSwitcher', () => {
     expect(switchComponent).toBeOnTheScreen();
   });
 
-  it('toggles switch value', () => {
-    render(
+  it('toggles switch value', async () => {
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledSwitcher name="testSwitch" label="Test Switch" />
@@ -36,15 +36,15 @@ describe('ControlledSwitcher', () => {
 
     expect(switchComponent.props.value).not.toBe(true);
 
-    fireEvent(switchComponent, 'valueChange', true);
+    await fireEvent(switchComponent, 'valueChange', true);
     expect(switchComponent.props.value).toBe(true);
 
-    fireEvent(switchComponent, 'valueChange', false);
+    await fireEvent(switchComponent, 'valueChange', false);
     expect(switchComponent.props.value).toBe(false);
   });
 
-  it('disables the switch when disabled prop is true', () => {
-    render(
+  it('disables the switch when disabled prop is true', async () => {
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledSwitcher name="testSwitch" label="Test Switch" disabled />

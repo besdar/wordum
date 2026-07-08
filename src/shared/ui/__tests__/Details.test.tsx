@@ -4,8 +4,8 @@ import {Text} from 'react-native-paper';
 import {Details} from '../Details';
 
 describe('Details Component', () => {
-  it('renders with collapsed title by default', () => {
-    render(
+  it('renders with collapsed title by default', async () => {
+    await render(
       <Details>
         <Text>Additional Settings Content</Text>
       </Details>,
@@ -18,7 +18,7 @@ describe('Details Component', () => {
   });
 
   it('toggles details visibility when button is pressed', async () => {
-    render(
+    await render(
       <Details>
         <Text>Additional Settings Content</Text>
       </Details>,

@@ -4,8 +4,8 @@ import {View} from 'react-native';
 import {IconButton} from '../IconButton';
 
 describe('IconButton', () => {
-  it('should match the snapshot', () => {
-    const {toJSON} = render(<IconButton icon={() => <View />} />);
+  it('should match the snapshot', async () => {
+    const {toJSON} = await render(<IconButton icon={() => <View />} />);
 
     expect(toJSON()).toMatchSnapshot();
   });
@@ -13,7 +13,9 @@ describe('IconButton', () => {
   it('should not call onPress when disabled', async () => {
     const mockOnPress = jest.fn();
 
-    render(<IconButton onPress={mockOnPress} disabled icon={() => <View />} />);
+    await render(
+      <IconButton onPress={mockOnPress} disabled icon={() => <View />} />,
+    );
 
     const button = screen.getByRole('button');
 

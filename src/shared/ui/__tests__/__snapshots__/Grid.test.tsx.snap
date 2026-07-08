@@ -22,6 +22,8 @@ exports[`FormContainer should match the snapshot 1`] = `
     ]
   }
 >
-  Test
+  <Text>
+    Test
+  </Text>
 </View>
 `;

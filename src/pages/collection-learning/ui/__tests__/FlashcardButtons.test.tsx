@@ -17,8 +17,8 @@ describe('FlashcardButtons', () => {
   const mockOnAnswerPress = jest.fn();
   const mockOnAnswerShow = jest.fn();
 
-  it('should render show answer button when isAnswerShown is false', () => {
-    render(
+  it('should render show answer button when isAnswerShown is false', async () => {
+    await render(
       <FlashcardButtons
         onAnswerPress={mockOnAnswerPress}
         onAnswerShow={mockOnAnswerShow}
@@ -29,8 +29,8 @@ describe('FlashcardButtons', () => {
     expect(screen.getByText('show_answer')).toBeOnTheScreen(); // Check if the button to show the answer is rendered
   });
 
-  it('should render answer buttons when isAnswerShown is true', () => {
-    render(
+  it('should render answer buttons when isAnswerShown is true', async () => {
+    await render(
       <FlashcardButtons
         onAnswerPress={mockOnAnswerPress}
         onAnswerShow={mockOnAnswerShow}
@@ -44,7 +44,7 @@ describe('FlashcardButtons', () => {
   });
 
   it('should call onAnswerShow when show answer button is pressed', async () => {
-    render(
+    await render(
       <FlashcardButtons
         onAnswerPress={mockOnAnswerPress}
         onAnswerShow={mockOnAnswerShow}
@@ -59,7 +59,7 @@ describe('FlashcardButtons', () => {
   });
 
   it('should call onAnswerPress with Answers.Incorrect when incorrect button is pressed', async () => {
-    render(
+    await render(
       <FlashcardButtons
         onAnswerPress={mockOnAnswerPress}
         onAnswerShow={mockOnAnswerShow}
@@ -74,7 +74,7 @@ describe('FlashcardButtons', () => {
   });
 
   it('should call showConfirmationAlert when delete button is pressed', async () => {
-    render(
+    await render(
       <FlashcardButtons
         onAnswerPress={mockOnAnswerPress}
         onAnswerShow={mockOnAnswerShow}
@@ -99,7 +99,7 @@ describe('FlashcardButtons', () => {
   });
 
   it('should call onAnswerPress with Answers.Correct when correct button is pressed', async () => {
-    render(
+    await render(
       <FlashcardButtons
         onAnswerPress={mockOnAnswerPress}
         onAnswerShow={mockOnAnswerShow}

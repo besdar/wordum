@@ -19,8 +19,8 @@ describe('ControlledSegmentedButtons', () => {
       .getAllByRole('button')
       .filter(button => Boolean(within(button).queryByText(optionName)))[0];
 
-  it('renders correctly', () => {
-    render(
+  it('renders correctly', async () => {
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledSegmentedButtons
@@ -40,7 +40,7 @@ describe('ControlledSegmentedButtons', () => {
   });
 
   it('selects an option when clicked', async () => {
-    render(
+    await render(
       <MockWrapperProvider>
         <MockFormProvider>
           <ControlledSegmentedButtons
@@ -68,7 +68,7 @@ describe('ControlledSegmentedButtons', () => {
   it('displays error message when validation fails', async () => {
     const onSubmit = jest.fn();
 
-    render(
+    await render(
       <MockWrapperProvider>
         <MockFormProvider onSubmit={onSubmit}>
           <ControlledSegmentedButtons

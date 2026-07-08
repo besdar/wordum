@@ -11,14 +11,14 @@ import {MockWrapperProvider} from '../../config/mocks/MockWrapperProvider';
 import {ControlledTextInput} from '../ControlledTextInput';
 
 describe('ControlledTextInput', () => {
-  it('renders correctly', () => {
+  it('renders correctly', async () => {
     const {register, control} = createFormControl({
       defaultValues: {
         testInput: '',
       },
     });
 
-    render(
+    await render(
       <MockWrapperProvider>
         <ControlledTextInput {...register('testInput')} control={control} />
       </MockWrapperProvider>,
@@ -29,14 +29,14 @@ describe('ControlledTextInput', () => {
     expect(input).toBeOnTheScreen();
   });
 
-  it('displays helper text when provided', () => {
+  it('displays helper text when provided', async () => {
     const {register, control} = createFormControl({
       defaultValues: {
         testInput: '',
       },
     });
 
-    render(
+    await render(
       <MockWrapperProvider>
         <ControlledTextInput
           {...register('testInput')}
@@ -56,7 +56,7 @@ describe('ControlledTextInput', () => {
       },
     });
 
-    render(
+    await render(
       <MockWrapperProvider>
         <ControlledTextInput
           {...register('testInput', {
@@ -81,7 +81,7 @@ describe('ControlledTextInput', () => {
       },
     });
 
-    render(
+    await render(
       <MockWrapperProvider>
         <ControlledTextInput {...register('testInput')} control={control} />
       </MockWrapperProvider>,

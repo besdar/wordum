@@ -4,8 +4,8 @@ import {View} from 'react-native';
 import {FlashcardContainer} from '../FlashcardContainer';
 
 describe('FlashcardContainer', () => {
-  it('should match the snapshot', () => {
-    const {toJSON} = render(
+  it('should match the snapshot', async () => {
+    const {toJSON} = await render(
       <FlashcardContainer>
         <View />
       </FlashcardContainer>,

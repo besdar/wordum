@@ -12,8 +12,8 @@ module.exports = {
     './src/shared/config/mocks/navigator.ts',
     './src/shared/config/mocks/eventBus.ts',
     './src/shared/config/mocks/expo-speech.ts',
+    './src/shared/config/mocks/jest-setup.ts',
   ],
-  setupFilesAfterEnv: ['./src/shared/config/mocks/jest-setup.ts'],
   fakeTimers: {
     enableGlobally: true,
   },

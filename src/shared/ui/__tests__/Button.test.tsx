@@ -3,8 +3,8 @@ import React from 'react';
 import {Button} from '../Button';
 
 describe('Button', () => {
-  it('should match the snapshot', () => {
-    const {toJSON} = render(<Button>Test</Button>);
+  it('should match the snapshot', async () => {
+    const {toJSON} = await render(<Button>Test</Button>);
 
     expect(toJSON()).toMatchSnapshot();
   });
@@ -12,7 +12,7 @@ describe('Button', () => {
   it('should not call onPress when disabled', async () => {
     const mockOnPress = jest.fn();
 
-    render(
+    await render(
       <Button onPress={mockOnPress} disabled>
         Press Me
       </Button>,

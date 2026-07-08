@@ -49,8 +49,8 @@ describe('useTrainingWord', () => {
     });
   });
 
-  it('should initialize with the first learning card', () => {
-    const {result} = renderHook(() => useTrainingWord(collection));
+  it('should initialize with the first learning card', async () => {
+    const {result} = await renderHook(() => useTrainingWord(collection));
 
     expect(result.current.trainingWord).toBe('testWord');
     expect(result.current.translation).toBe('testTranslation');
@@ -58,7 +58,7 @@ describe('useTrainingWord', () => {
   });
 
   it('should set the next training word correctly', async () => {
-    const {result} = renderHook(() => useTrainingWord(collection));
+    const {result} = await renderHook(() => useTrainingWord(collection));
 
     await act(() => result.current.setNextTrainingWord(Answers.Correct));
 
@@ -67,7 +67,7 @@ describe('useTrainingWord', () => {
   });
 
   it('should handle deletion of a word', async () => {
-    const {result} = renderHook(() => useTrainingWord(collection));
+    const {result} = await renderHook(() => useTrainingWord(collection));
 
     await act(() => result.current.setNextTrainingWord(Answers.Delete));
 
@@ -77,7 +77,7 @@ describe('useTrainingWord', () => {
   });
 
   it('should handle skipping listening type', async () => {
-    const {result} = renderHook(() => useTrainingWord(collection));
+    const {result} = await renderHook(() => useTrainingWord(collection));
 
     (getCardsToLearn as jest.Mock).mockReturnValue([]);
 
@@ -88,7 +88,7 @@ describe('useTrainingWord', () => {
 
   it('should show and hide emotional support cards during learning', async () => {
     const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0);
-    const {result} = renderHook(() => useTrainingWord(collection));
+    const {result} = await renderHook(() => useTrainingWord(collection));
 
     await act(() => result.current.setNextTrainingWord(Answers.Correct));
     await act(() => result.current.setNextTrainingWord(Answers.Correct));
@@ -96,7 +96,7 @@ describe('useTrainingWord', () => {
 
     expect(result.current.emotionalSupportCard).toBe(emotionalSupportCards[0]);
 
-    act(() => result.current.hideEmotionalSupportCard());
+    await act(() => result.current.hideEmotionalSupportCard());
 
     expect(result.current.emotionalSupportCard).toBeUndefined();
 
@@ -107,7 +107,7 @@ describe('useTrainingWord', () => {
     jest.spyOn(eventBus, 'emit').mockImplementation();
     (getCardsToLearn as jest.Mock).mockReturnValue([]);
 
-    const {result} = renderHook(() => useTrainingWord(collection));
+    const {result} = await renderHook(() => useTrainingWord(collection));
 
     await act(() => result.current.setNextTrainingWord(Answers.Correct));
 

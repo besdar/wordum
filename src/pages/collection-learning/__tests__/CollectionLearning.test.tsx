@@ -1,5 +1,10 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {render, screen, fireEvent} from '@testing-library/react-native';
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react-native';
 import {speak} from 'expo-speech';
 import React from 'react';
 import {Collection} from '../../../shared/model/collection';
@@ -37,7 +42,7 @@ describe('CollectionLearning', () => {
     jest.clearAllMocks();
   });
 
-  it('should render final screen when isItFinal is true', () => {
+  it('should render final screen when isItFinal is true', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: undefined,
       setNextTrainingWord: jest.fn(),
@@ -51,7 +56,7 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -59,7 +64,7 @@ describe('CollectionLearning', () => {
     expect(screen.getByText('finish')).toBeOnTheScreen();
   });
 
-  it('should call navigation.goBack when finish button is pressed on final screen', () => {
+  it('should call navigation.goBack when finish button is pressed on final screen', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: undefined,
       setNextTrainingWord: jest.fn(),
@@ -73,16 +78,16 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
-    fireEvent.press(screen.getByText('finish'));
+    await fireEvent.press(screen.getByText('finish'));
 
-    expect(mockGoBack).toHaveBeenCalled();
+    await waitFor(() => expect(mockGoBack).toHaveBeenCalled());
   });
 
-  it('should render flashcard view when learning type is flashcards', () => {
+  it('should render flashcard view when learning type is flashcards', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
       setNextTrainingWord: jest.fn(),
@@ -96,7 +101,7 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -104,7 +109,7 @@ describe('CollectionLearning', () => {
     expect(screen.getByText('show_answer')).toBeOnTheScreen(); // Assuming the answer is not shown initially
   });
 
-  it('should show translation and examples when answer is shown in flashcard view', () => {
+  it('should show translation and examples when answer is shown in flashcard view', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
       setNextTrainingWord: jest.fn(),
@@ -118,7 +123,7 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -126,14 +131,14 @@ describe('CollectionLearning', () => {
     expect(screen.queryByText('testTranslation')).not.toBeOnTheScreen();
 
     // Press show answer button
-    fireEvent.press(screen.getByText('show_answer'));
+    await fireEvent.press(screen.getByText('show_answer'));
 
     // Now translation and examples should be visible
     expect(screen.getByText('testTranslation')).toBeOnTheScreen();
     expect(screen.getByText('example sentence')).toBeOnTheScreen();
   });
 
-  it('should call setNextTrainingWord and hide answer when flashcard answer button is pressed', () => {
+  it('should call setNextTrainingWord and hide answer when flashcard answer button is pressed', async () => {
     const mockSetNextTrainingWord = jest.fn();
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
@@ -148,20 +153,20 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
     // Show answer first
-    fireEvent.press(screen.getByText('show_answer'));
+    await fireEvent.press(screen.getByText('show_answer'));
 
     // Press one of the answer buttons (e.g., "correct")
-    fireEvent.press(screen.getByText('correct'));
+    await fireEvent.press(screen.getByText('correct'));
 
-    expect(mockSetNextTrainingWord).toHaveBeenCalled();
+    await waitFor(() => expect(mockSetNextTrainingWord).toHaveBeenCalled());
   });
 
-  it('should render writing view when learning type is writing', () => {
+  it('should render writing view when learning type is writing', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
       setNextTrainingWord: jest.fn(),
@@ -175,14 +180,14 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
     expect(screen.getByText('testTranslation')).toBeOnTheScreen();
   });
 
-  it('should render listening view when learning type is listening', () => {
+  it('should render listening view when learning type is listening', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
       setNextTrainingWord: jest.fn(),
@@ -196,7 +201,7 @@ describe('CollectionLearning', () => {
       sound: 'testSound',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -204,7 +209,7 @@ describe('CollectionLearning', () => {
     expect(screen.getByText('no_audio_message')).toBeOnTheScreen(); // Assuming this button is rendered
   });
 
-  it('should call speak when volume button is pressed in listening view', () => {
+  it('should call speak when volume button is pressed in listening view', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
       setNextTrainingWord: jest.fn(),
@@ -218,18 +223,20 @@ describe('CollectionLearning', () => {
       sound: 'testSound',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
     // Find and press the volume button (IconButton with icon="volume-high")
     const volumeButton = screen.getByTestId('icon-button-volume-high');
-    fireEvent.press(volumeButton);
+    await fireEvent.press(volumeButton);
 
-    expect(speak).toHaveBeenCalledWith('testWord', {language: 'en-US'});
+    await waitFor(() =>
+      expect(speak).toHaveBeenCalledWith('testWord', {language: 'en-US'}),
+    );
   });
 
-  it('should call setNextTrainingWord with SkipListening when no audio button is pressed', () => {
+  it('should call setNextTrainingWord with SkipListening when no audio button is pressed', async () => {
     const mockSetNextTrainingWord = jest.fn();
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
@@ -244,16 +251,16 @@ describe('CollectionLearning', () => {
       sound: 'testSound',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
-    fireEvent.press(screen.getByText('no_audio_message'));
+    await fireEvent.press(screen.getByText('no_audio_message'));
 
-    expect(mockSetNextTrainingWord).toHaveBeenCalled();
+    await waitFor(() => expect(mockSetNextTrainingWord).toHaveBeenCalled());
   });
 
-  it('should render emotional support card and continue learning', () => {
+  it('should render emotional support card and continue learning', async () => {
     const mockHideEmotionalSupportCard = jest.fn();
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'testWord',
@@ -273,7 +280,7 @@ describe('CollectionLearning', () => {
       hideEmotionalSupportCard: mockHideEmotionalSupportCard,
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -285,12 +292,14 @@ describe('CollectionLearning', () => {
       screen.getByText('emotional_support_small_wins_message'),
     ).toBeOnTheScreen();
 
-    fireEvent.press(screen.getByText('keep_learning'));
+    await fireEvent.press(screen.getByText('keep_learning'));
 
-    expect(mockHideEmotionalSupportCard).toHaveBeenCalled();
+    await waitFor(() =>
+      expect(mockHideEmotionalSupportCard).toHaveBeenCalled(),
+    );
   });
 
-  it('should render loading indicator when no training word and not final', () => {
+  it('should render loading indicator when no training word and not final', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: undefined,
       setNextTrainingWord: jest.fn(),
@@ -304,7 +313,7 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -312,7 +321,7 @@ describe('CollectionLearning', () => {
     expect(screen.getByTestId('activity-indicator')).toBeOnTheScreen();
   });
 
-  it('should render error screen when something went wrong', () => {
+  it('should render error screen when something went wrong', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'text',
       setNextTrainingWord: jest.fn(),
@@ -326,7 +335,7 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
@@ -334,7 +343,7 @@ describe('CollectionLearning', () => {
     expect(screen.getByText('return_back')).toBeOnTheScreen();
   });
 
-  it('should call navigation.goBack when return_back button is pressed on error screen', () => {
+  it('should call navigation.goBack when return_back button is pressed on error screen', async () => {
     (useTrainingWord as jest.Mock).mockReturnValue({
       trainingWord: 'text',
       setNextTrainingWord: jest.fn(),
@@ -348,12 +357,12 @@ describe('CollectionLearning', () => {
       sound: '',
     });
 
-    render(
+    await render(
       <CollectionLearning route={mockRoute} navigation={mockNavigation} />,
     );
 
-    fireEvent.press(screen.getByText('return_back'));
+    await fireEvent.press(screen.getByText('return_back'));
 
-    expect(mockGoBack).toHaveBeenCalled();
+    await waitFor(() => expect(mockGoBack).toHaveBeenCalled());
   });
 });

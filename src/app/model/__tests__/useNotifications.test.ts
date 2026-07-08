@@ -12,8 +12,8 @@ jest.mock('../../../shared/lib/notifications', () => ({
 }));
 
 describe('useNotifications', () => {
-  it('initialized reminder and reset it on event', () => {
-    renderHook(() => useNotifications());
+  it('initialized reminder and reset it on event', async () => {
+    await renderHook(() => useNotifications());
 
     expect(initLearningReminder).toHaveBeenCalledTimes(1);
 
